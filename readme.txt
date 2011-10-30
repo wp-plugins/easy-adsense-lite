@@ -4,7 +4,7 @@ Donate link: http://buy.ads-ez.com/easy-adsense
 Tags: adsense, ad, ads, advertising, google
 Requires at least: 2.6
 Tested up to: 3.2
-Stable tag: 5.00
+Stable tag: 5.01
 
 Easy AdSense manages all aspects of Google AdSense for your blog: insert ads into posts and sidebar, and add a Google Search box. Easy and complete!
 
@@ -42,15 +42,15 @@ If you like Easy AdSense, you may want to check out my other plugins: [Theme Twe
 
 A major version upgrade is planned for later this year, which will be released as a new plugin, [Easy Google](http://www.thulasidas.com/plugins/easy-google/ "Easy Google, the next generation AdSense plugin"). This plugin will sport a modern, tabbed interface, and a completely re-written, refactored and optimized codebase and option data model, resulting in a more robust and extensible design, and better performance.
 
-= New in 5.00 =
+= New in 5.01 =
 
-Moving the old Pro features to the Lite edition, and releasing it.
+Documentation changes.
 
 == Upgrade Notice ==
 
-= 5.00 =
+= 5.01 =
 
-Moving the old Pro features to the Lite edition, and releasing it.
+Documentation changes.
 
 == Screenshots ==
 
@@ -154,6 +154,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V5.01: Documentation changes. [Oct 31, 2011]
 * V5.00: Moving the old Pro features to the Lite edition, and releasing it. [Oct 25, 2011]
 * V4.10: Removing unused, legacy code. [Oct 8, 2011]
 * V4.09: Simplifying `defaults.php`. [Oct 6, 2011]
