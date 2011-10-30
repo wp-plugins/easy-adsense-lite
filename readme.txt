@@ -28,7 +28,7 @@ Easy AdSense provides a very easy way to generate revenue from your blog using G
 5. Simplest possible configuration interface -- nothing more than cutting and pasting AdSense code, and with sensible defaults for the few options present, all with clear instructions.
 6. Internationalized (multiple languages supported).
 
-Easy AdSense Lite is the freely distributed version of a premium plugin. The [Pro version](https://buy.ads-ez.com/easy-adsense/ "Pro version of the Easy AdSense plugin") gives you more benefits -- lets you activate a filter to ensure that your ads show only on those pages that seem to comply with Google AdSense policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. The Pro version costs $4.95, and is appropriate if you expect to make more than $100 of ad revenue from your site.
+Easy AdSense Lite is the freely distributed version of a premium plugin. The [Pro version](http://buy.ads-ez.com/easy-adsense/ "Pro version of the Easy AdSense plugin") gives you more benefits. It gives you filter to ensure that your ads show only on those pages that seem to comply with Google AdSense policies, which can be important since some comments may render your pages inconsistent with those policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. Also in the works for the Pro version is a compatibility mode, which solves the issue of the ad insertion messing up your page appearances when using some  themes. These features will minimize your chance of getting banned. The Pro version costs $4.95, and is appropriate if you expect to make more than $100 of ad revenue from your site.
 
 If you feel that these features are a bit too much, consider my lean and mean AdSense plugin [AdSense Now!](http://www.thulasidas.com/plugins/adsense-now/ "The simplest possible way to AdSense enable your blog")
 
@@ -112,11 +112,11 @@ If you feel that the features of Easy AdSense are a bit too much, consider my le
 
 = I just upgraded to WordPress version 2.8. My widget is gone and I'm mad. What gives? =
 
-WP2.8 uses a different widget API. Easy AdSense is comapatible with it. Just go to your widget page, and drag and drop it again in the sidebar of your choice at the right point. Fret not, your settings and AdSense code are safely saved (per theme), and you don't have to cut and paste those details again.
+WP2.8 uses a different widget API. Easy AdSense is compatible with it. Just go to your widget page, and drag and drop it again in the sidebar of your choice at the right point. Fret not, your settings and AdSense code are safely saved (per theme), and you don't have to cut and paste those details again.
 
 = I just activated the plugin. How come I don't see any ads in my blog? =
 
-Note that you have to generate your adsense code from Google, and paste the *entire* code in the text boxes, replacing the existing text. There are three main text boxes corresponding to three ad locations - Lead-in, Mid-text and Lead-out. If you don't want to use a particular location, please supress it by selecting the appropriate option. Otherwise, the plugin will show a red box indicating where you ad would be shown.
+Note that you have to generate your adsense code from Google, and paste the *entire* code in the text boxes, replacing the existing text. There are three main text boxes corresponding to three ad locations - Lead-in, Mid-text and Lead-out. If you don't want to use a particular location, please suppress it by selecting the appropriate option. Otherwise, the plugin will show a red box indicating where you ad would be shown.
 
 If you just created the new Google AdSense code, it may not be active yet. Google takes about ten minutes or so before serving ads. Please try again later.
 
@@ -181,7 +181,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 * V2.90: Updated the Russian translation. [Apr 10, 2010]
 * V2.89: Updated translations (`da_DK`,`pt_PT` and  `es_ES`). [Mar 20, 2010]
 * V2.88: A minor fix on the number of ad blocks on a page. [Mar 6, 2010]
-* V2.87: Disabling ads in feeds if header placements are chosen (bug fix). Adding warning on potential incompatibility between some header/footer position options and other Wordpress widgets/plugins. [Feb 9, 2010]
+* V2.87: Disabling ads in feeds if header placements are chosen (bug fix). Adding warning on potential incompatibility between some header/footer position options and other WordPress widgets/plugins. [Feb 9, 2010]
 * V2.86: Re-enabling header options: Above/below header options stopped working in WP2.91. Here is a fix.[Jan 30, 2010]
 * V2.85: Minor bug fixes: some margin settings (on widget and link-unit) were not updating. [Jan 27, 2010]
 * V2.84: New feature: Display ad blocks based on the post length. Possible bug fix: suppress RSS feeds filtering. [Jan 22, 2010]
