@@ -4,7 +4,7 @@ Donate link: http://buy.ads-ez.com/easy-adsense
 Tags: adsense, ad, ads, advertising, google
 Requires at least: 2.6
 Tested up to: 3.2
-Stable tag: 5.01
+Stable tag: 5.02
 
 Easy AdSense manages all aspects of Google AdSense for your blog: insert ads into posts and sidebar, and add a Google Search box. Easy and complete!
 
@@ -28,29 +28,17 @@ Easy AdSense provides a very easy way to generate revenue from your blog using G
 5. Simplest possible configuration interface -- nothing more than cutting and pasting AdSense code, and with sensible defaults for the few options present, all with clear instructions.
 6. Internationalized (multiple languages supported).
 
-Easy AdSense Lite is the freely distributed version of a premium plugin. The [Pro version](http://buy.ads-ez.com/easy-adsense/ "Pro version of the Easy AdSense plugin") gives you more benefits. It gives you filter to ensure that your ads show only on those pages that seem to comply with Google AdSense policies, which can be important since some comments may render your pages inconsistent with those policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. Also in the works for the Pro version is a compatibility mode, which solves the issue of the ad insertion messing up your page appearances when using some  themes. These features will minimize your chance of getting banned. The Pro version costs $4.95, and is appropriate if you expect to make more than $100 of ad revenue from your site.
+Easy AdSense Lite is the freely distributed version of a premium plugin. The [Pro version](http://buy.ads-ez.com/easy-adsense/ "Pro version of the Easy AdSense plugin") gives you more benefits. It gives you filter to ensure that your ads show only on those pages that seem to comply with Google AdSense policies, which can be important since some comments may render your pages inconsistent with those policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. Also in the works for the Pro version is a compatibility mode, which solves the issue of the ad insertion messing up your page appearances when using some  themes.
 
-If you feel that these features are a bit too much, consider my lean and mean AdSense plugin [AdSense Now!](http://www.thulasidas.com/plugins/adsense-now/ "The simplest possible way to AdSense enable your blog")
+= New in 5.02 =
 
-Want to go beyond AdSense? Use my new plugin [Easy Ads](http://www.thulasidas.com/plugins/easy-ads/ "A new plugin to handle AdSense and its alternatives") that can handle [Clicksor](http://www.clicksor.com/pub/index.php?ref=105268 "Careful, don't double-date with AdSense and Clicksor, they get very jealous of each other!"), [BidVertiser](http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&Ref_PID=229404 "Another fine ad provider") or [Chitika](http://chitika.com/publishers.php?refid=manojt "Compatible with AdSense") and, of course, AdSense!
-
-PS: You'll need a [Google AdSense Account](http://adsense.google.com/).
-
-If you like Easy AdSense, you may want to check out my other plugins: [Theme Tweaker](http://www.thulasidas.com/plugins/theme-tweaker/ "To tweak the colors in your theme with no CSS/PHP editing") and [Easy WP LaTeX](/http://www.thulasidas.com/plugins/easy-latex/ "To display mathematical equations in your blog using LaTeX"). And my plugin for plugin authors: [Easy Translator](http://www.thulasidas.com/plugins/easy-translator/  "To translate any plugin (with internationalized strings) to your language.").
-
-= Coming Soon! =
-
-A major version upgrade is planned for later this year, which will be released as a new plugin, [Easy Google](http://www.thulasidas.com/plugins/easy-google/ "Easy Google, the next generation AdSense plugin"). This plugin will sport a modern, tabbed interface, and a completely re-written, refactored and optimized codebase and option data model, resulting in a more robust and extensible design, and better performance.
-
-= New in 5.01 =
-
-Documentation changes.
+Removing unused code and trimming readme.txt.
 
 == Upgrade Notice ==
 
-= 5.01 =
+= 5.02 =
 
-Documentation changes.
+Removing unused code and trimming readme.txt.
 
 == Screenshots ==
 
@@ -154,6 +142,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V5.02: Removing unused code and trimming readme.txt. [Nov 3, 2011]
 * V5.01: Documentation changes. [Oct 31, 2011]
 * V5.00: Moving the old Pro features to the Lite edition, and releasing it. [Oct 25, 2011]
 * V4.10: Removing unused, legacy code. [Oct 8, 2011]

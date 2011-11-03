@@ -3,7 +3,7 @@
 Plugin Name: Easy AdSense Lite
 Plugin URI: http://www.thulasidas.com/adsense
 Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense Lite</a>.
-Version: 5.01
+Version: 5.02
 Author: Manoj Thulasidas
 Author URI: http://www.thulasidas.com
 */
@@ -124,8 +124,6 @@ if (!class_exists("ezAdSense")) {
           'title_gsearch' => '',
           'margin_gsearch' => 0,
           'text_gsearch' => $this->defaults['defaultText'],
-          'mc' => 0,
-          'allow_exitjunction' => 'unknown',
           'max_count' => 3,
           'max_link' => 0,
           'force_midad' => false,
@@ -296,12 +294,6 @@ if (!class_exists("ezAdSense")) {
           $ezAdOptions['limit_lu'] = $limit ;
         }
         $ezAdOptions['info'] = $this->info() ;
-        if (isset($_POST['ezMC']))
-          $ezAdOptions['mc'] = floatval($_POST['ezMC']);
-        if (isset($_POST['ezAllowExitJunction']))
-          $ezAdOptions['allow_exitjunction'] = 'Yes' ;
-        else
-          $ezAdOptions['allow_exitjunction'] = 'No' ;
 
         update_option($mOptions, $ezAdOptions);
         echo '<div class="updated"><p><strong>' ;
@@ -379,7 +371,6 @@ if (!class_exists("ezAdSense")) {
     var $ezMax = 99 ;
     var $urMax = 99 ;
     var $luMax = 4 ;
-    var $mced = false ;
 
     function plugin_action($links, $file) {
       if ($file == plugin_basename(dirname(__FILE__).'/easy-adsense-lite.php')){
@@ -465,8 +456,6 @@ if (!class_exists("ezAdSense")) {
       if ($ezAdOptions['kill_cat'] && is_category()) return $content ;
       if ($ezAdOptions['kill_tag'] && is_tag()) return $content ;
       if ($ezAdOptions['kill_archive'] && is_archive()) return $content ;
-      $mc = $ezAdOptions['mc'] ;
-      $this->mced = false ;
       $this->ezMax = $ezAdOptions['max_count'] ;
       if ($ezAdOptions['force_widget']) $this->ezMax-- ;
       $this->urMax = $ezAdOptions['max_link'] ;
@@ -510,7 +499,7 @@ if (!class_exists("ezAdSense")) {
           $leadin =
             stripslashes($ezAdOptions['info'] . "<!-- Post[count: " . $ezCount . "] -->\n" .
                          '<div class="ezAdsense adsense adsense-leadin" ' . $inline . '>' .
-                         $this->mc($mc, $ezAdOptions['text_leadin']) .
+                         $ezAdOptions['text_leadin'] .
                          ($urCount++ < $this->urMax ? $unreal : '') .
                          "</div>\n" . $ezAdOptions['info'] . "\n") ;
         }
@@ -545,7 +534,7 @@ if (!class_exists("ezAdSense")) {
             $midtext =
               stripslashes($ezAdOptions['info'] . "<!-- Post[count: " . $ezCount . "] -->\n" .
                            '<div class="ezAdsense adsense adsense-midtext" ' . $inline . '>' .
-                           $this->mc($mc, $ezAdOptions['text_midtext']) .
+                           $ezAdOptions['text_midtext'] .
                            ($urCount++ < $this->urMax ? $unreal : '') .
                            "</div>\n" . $ezAdOptions['info'] . "\n") ;
             $content = substr_replace($content, $midtext.$repchar, $pickme, 2);
@@ -566,7 +555,7 @@ if (!class_exists("ezAdSense")) {
           $leadout =
           stripslashes($ezAdOptions['info'] . "<!-- Post[count: " . $ezCount . "] -->\n" .
                        '<div class="ezAdsense adsense adsense-leadout" ' . $inline . '>' .
-                       $this->mc($mc, $ezAdOptions['text_leadout']) .
+                       $ezAdOptions['text_leadout'] .
                        ($urCount++ < $this->urMax ? $unreal : '') .
                        "</div>\n" . $ezAdOptions['info'] . "\n") ;
         }
@@ -621,7 +610,7 @@ if (!class_exists("ezAdSense")) {
         $this->leadin =
           stripslashes($ezAdOptions['info'] . "<!-- Post[count: " . $ezCount . "] -->\n" .
                        '<div class="ezAdsense adsense adsense-leadin" ' . $inline . '>' .
-                       $this->mc($mc, $ezAdOptions['text_leadin']) .
+                       $ezAdOptions['text_leadin'] .
                        ($urCount++ < $this->urMax ? $unreal : '') .
                        "</div>\n" . $ezAdOptions['info'] . "\n") ;
         echo $this->leadin ;
@@ -671,7 +660,6 @@ if (!class_exists("ezAdSense")) {
         'Unreal</a></font></div>';
       echo $before_widget;
       if (!$ezAdOptions['kill_widget_title']) echo $before_title . $title . $after_title;
-      $mc = $ezAdOptions['mc'] ;
       $margin =  $ezAdOptions['margin_widget'] ;
       if ($ezAdOptions['kill_inline'])
         $inline = '' ;
@@ -679,7 +667,7 @@ if (!class_exists("ezAdSense")) {
 	    $inline = 'style="' . $show_widget . ';margin:' . $margin . 'px;' . $border. '"' ;
       echo stripslashes($ezAdOptions['info'] . "<!-- Widg[count: " . $ezCount . "] -->\n" .
                         '<div class="ezAdsense adsense adsense-widget"><div ' . $inline. '>' .
-                        $this->mc($mc, $ezAdOptions['text_widget'], true) .
+                        $ezAdOptions['text_widget'] .
                         ($urCount++ < $this->urMax ? $unreal : '') .
                         "</div></div>\n" . $ezAdOptions['info'] . "\n") ;
       echo $after_widget;

@@ -337,9 +337,7 @@ Colors:&nbsp; Normal:#<input style="width:55px;text-align:center;" id="ezBorderN
 <tr valign="top">
 <td width="50%" height="250px" valign="middle">
 
-<?php echo '<b>Support Options<br /> ' ; printf(__('Support %s by Donating Ad Space', 'easy-adsenser'), 'Easy AdSense') ; ?></b><br />
-<?php _e('Percentage of ad slots to share [Suggested: 5%]:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezMC" name="ezMC" value="<?php echo(stripslashes(htmlspecialchars($ezAdOptions['mc'])));?>" />%
-<br style="line-height: 12px;" />
+<?php echo '<b>Support Options<br /> ' ;  ?></b><br />
 
 <b><?php _e('Link-backs to', 'easy-adsenser') ; ?> <a href="http://www.Thulasidas.com" target="_blank">Unreal Blog</a></b>
 <?php _e('(Consider showing at least one link.)', 'easy-adsenser') ; ?><br />
