@@ -45,9 +45,10 @@ function makeTextWithTooltipTag($plg, $text, $tip, $title='', $width='')
   return $return ;
 }
 function renderPlg($name, $plg) {
+  if ($plg['isBook']) return ;
   $value = '<em><strong>'.$plg['value'].'</strong></em>';
   $desc = $plg['desc'] ;
-  $toolTip = $plg['title'] ;
+  $title = $plg['title'] ;
   $url = 'http://www.thulasidas.com/plugins/' . $name ;
   $link = '<b><a href="' . $url . '" target="_blank">' . $value . '</a> </b> ' ;
   $text = $link . $desc ;
@@ -57,29 +58,47 @@ function renderPlg($name, $plg) {
   $proVersion = " <a href='http://buy.ads-ez.com/$name' title='Buy the Pro version of $value for \$$price'>Get Pro Version</a><br />" ;
   $why = "<a href='http://buy.ads-ez.com/$name' title='Pro version of the $name plugin'><img src='https://www.paypalobjects.com/en_GB/SG/i/btn/btn_buynowCC_LG.gif' border='0' alt='PayPal — The safer, easier way to pay online.' class='alignright' /></a>
 <br />".$plg['pro'] ;
-  echo "<li>" . makeTextWithTooltip($text, $toolTip, $value, 350) .
-    makeTextWithTooltip($moreInfo, "Read more about $value at its own page.<br />".$toolTip, "More Information about $value", 300) .
-    makeTextWithTooltip($liteVersion, $toolTip, "Download $value - the Lite version", 300) .
+  echo "<li>" . makeTextWithTooltip($text, $title, $value, 350) .
+    makeTextWithTooltip($moreInfo, "Read more about $value at its own page.<br />".$title, "More Information about $value", 300) .
+    makeTextWithTooltip($liteVersion, $title, "Download $value - the Lite version", 300) .
     makeTextWithTooltipTag($name, $proVersion, $why, "Get $value Pro!", 300) .
+    "</li>\n" ;
+}
+function renderBook($name, $plg) {
+  if (!$plg['isBook']) return ;
+  $value = '<em><strong>'.$plg['value'].'</strong></em>';
+  $desc = $plg['desc'] ;
+  $title = $plg['title'] ;
+  $url = $plg['url'] ;
+  $link = '<b><a href="' . $url . '" target="_blank">' . $value . '</a> </b> ' ;
+  $text = $link . $desc ;
+  $price = $plg['price'] ;
+  $moreInfo = " <a href='$url' title='More info about $value at Unreal Blog'>More Info</a> " ;
+  $amazon = $plg['amazon'] ;
+  if (!empty($amazon)) $buyAmazon = " <a href='$amazon' title='Get $value from Amazon.com'>Get it at Amazon</a> " ;
+  $buyNow = " <a href='http://buy.ads-ez.com/$name' title='Buy and download $value for \$$price'>Buy and Download now!</a><br />" ;
+  $why = "<a href='http://buy.ads-ez.com/$name' title='$name'><img src='https://www.paypalobjects.com/en_GB/SG/i/btn/btn_buynowCC_LG.gif' border='0' alt='PayPal — The safer, easier way to pay online.' class='alignright' /></a>
+<br />".$title.$desc." $value costs only \$$price -- direct from the author." ;
+  echo "<li>" . makeTextWithTooltip($text, $title, $value, 350) .
+    makeTextWithTooltip($moreInfo, "Read all about $value at its own site.<br />", "$value", 300) .
+     makeTextWithTooltip($buyAmazon, $title, "Buy $value from Amazon", 300) .
+    makeTextWithTooltipTag($name, $buyNow, $why, "Buy $value!", 300) .
     "</li>\n" ;
 }
 
 ?>
-<?php // change the name in the src of the iframe below to $plgName-pro
+<?php
 ?>
 <span id="rate">
-<iframe src="http://wordpress.org/extend/plugins/easy-adsense-lite" width="1000px" height="750px">
+<iframe src="http://wordpress.org/extend/plugins/<?php echo $plgName ; ?>-lite" width="1000px" height="1000px">
 </iframe>
 </span>
 
 <table class="form-table" >
 <tr>
 <td>
-
-<?php // change the title in TagToTip below to $myPlugins[$plgName] . ' Pro'
-?>
 <ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >
-  <li><a href="#" onclick="TagToTip('rate', TITLE, 'WordPress: Easy AdSense Lite', STICKY, 1, CLOSEBTN, true, FIX, [25, 25])"><font color="red">If you like this plugin, please give it a 5* rating.</font></a> People tend to vote or comment only when something doesn't work, and it skews the overall rating. Please do your bit to unskew it!</li>
+  <li><a href="#" onclick="TagToTip('rate', TITLE, 'WordPress: <?php echo $myPlugins[$plgName] ;?> Lite', STICKY, 1, CLOSEBTN, true, FIX, [25, 25])"><font color="red">If you like this plugin, please give it a 5* rating.</font></a> People tend to vote or comment only when something doesn't work, and it skews the overall rating. Please do your bit to unskew it!</li>
 <li>
 <?php _e('Please report any problems. And share your thoughts and comments.', 'easy-adsenser') ; ?>&nbsp;<a href="http://wordpress.org/tags/<?php echo $plgName ; ?>" title="<?php _e('Post it in the WordPress forum', 'easy-adsenser') ; ?>" target="_blank"><?php _e("[WordPress Forum]", 'easy-adsenser') ?> </a>
 <li>
@@ -95,6 +114,17 @@ function renderPlg($name, $plg) {
 
 <?php
   foreach ($myPlugins as $name => $plg) if ($name != $plgName) renderPlg($name, $plg) ;
+?>
+
+</ul>
+</li>
+<li>
+<?php _e('My books -- on Physics, Philosophy, making Money etc:', 'easy-adsenser') ; ?>
+
+<ul style="margin-left:0px; padding-left:30px;list-style-type:square; list-style-position:inside;" >
+
+<?php
+  foreach ($myPlugins as $name => $plg){ renderBook($name, $plg) ;}
 ?>
 
 </ul>

@@ -57,15 +57,15 @@ function renderProText($name, $plg, $isPro) {
   $why = addslashes($plg['pro']) ;
   echo '<div style="background-color:#ffcccc;padding:5px;border: solid 1px">
 <center>
-<big style="color:#a48;font-variant: small-caps;text-decoration:underline" onmouseover="TagToTip(\'pro\', WIDTH, 230, TITLE, \'Buy the Pro Version\',STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 5, 5])"><b>The Pro Version</b></big>
+<big style="color:#a48;font-variant: small-caps;text-decoration:underline" onmouseover="TagToTip(\'pro\', WIDTH, 300, TITLE, \'Buy the Pro Version\',STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 5, 5])"><b>The Pro Version</b></big>
 </center>' ;
 
   if ($isPro){
-    $value .= ' Pro' ;
-    echo "Thank you for using $value. You are enjoying the \"Pro\" features$filter of the plugin. If you haven't purchased it yet, please consider <a href='http://buy.ads-ez.com/$name' title='Pro version of this plugin. Instant download link.'>buying it</a>. It costs only \$$price." ;
+    $value .= '<b><i> Pro</i></b>' ;
+    echo "You are enjoying $value with \"Pro\" features. Please consider <a href='http://buy.ads-ez.com/$name' title='Pro version of this plugin. Instant download link.'>buying it</a>, if you haven't already paid for it. It costs only \$$price." ;
   }
   else {
-    $value .= ' Lite' ;
+    $value .= '<b><i> Lite</i></b>' ;
     echo "Thank you for using $value. The \"Pro\" version gives you more options$filter. Consider <a href='http://buy.ads-ez.com/$name' title='Pro version of this plugin. Instant download link.'>buying it</a>. It costs only \$$price." ;
   }
   echo "<div id='pro'>" ;
@@ -107,7 +107,7 @@ echo <<<ENDDIVS
 <div id="unreal" style="margin-left:auto;margin-right:auto;width:200px;display:block;">
 <div style="text-align:center;width:200px;padding:1px;background:#aad;margin:2px;">
 <div style="text-align:center;width:192px;height:180px;padding:2px;border:solid 1px #000;background:#ccf;margin:1px;">
-<a style="text-decoration:none;" href="http://www.amazon.com/exec/obidos/ASIN/9810575947/unrblo-20" title="Find out more about The Unreal Universe and buy it ($9.95 for Kindle, $15.95 for paperback). It will change the way you view life and reality!">
+<a style="text-decoration:none;" href="http://buy.ads-ez.com/unreal-universe" title="Find out more about The Unreal Universe and buy it ($1.49 for eBook, $15.95 for paperback). It will change the way you view life and reality!">
 <big style="font-size:14px;font-family:arial;color:#a48;font-variant: small-caps;"><b>The Unreal Universe</b></big><br />
 <small style="font-size:12px;font-family:arial;color:#000;">
 A Book on Physics and Philosophy
@@ -116,7 +116,7 @@ A Book on Physics and Philosophy
 <hr />
 <table border="0" cellpadding="0" cellspacing="0" summary="" width="100%" align="center">
 <tr><td width="65%">
-<a style="text-decoration:none;" href="http://www.amazon.com/exec/obidos/ASIN/9810575947/unrblo-20" title="Find out more about The Unreal Universe and buy it ($9.95 for Kindle, $15.95 for paperback). It will change the way you view life and reality!">
+<a style="text-decoration:none;" href="http://buy.ads-ez.com/unreal-universe" title="Find out more about The Unreal Universe and buy it ($1.49 for eBook or Kindle, $15.95 for paperback). It will change the way you view life and reality!">
 <small style="font-size:10px;font-family:arial;color:#000;">
 Pages: 292<br />
 (282 in eBook)<br />
@@ -126,12 +126,13 @@ Illustrations: 34<br />
 Tables: 8 <br />
 Bibliography: Yes<br />
 Index: Yes<br />
-ISBN:<br />9789810575946&nbsp;
+ISBN:<br />9789810575946&nbsp;<br />
+<font color="red"><b>Only $1.49!</b></font>
 </small>
 </a>
 </td>
 <td>
-<a style="text-decoration:none;" href="http://www.amazon.com/exec/obidos/ASIN/9810575947/unrblo-20" title="Find out more about The Unreal Universe and buy it ($9.95 for Kindle, $15.95 for paperback). It will change the way you view life and reality!">
+<a style="text-decoration:none;" href="http://buy.ads-ez.com/unreal-universe" title="Find out more about The Unreal Universe and buy it ($1.49 for eBook or Kindle, $15.95 for paperback). It will change the way you view life and reality!">
 <img class="alignright" src="http://dl.dropbox.com/u/15050446/unreal.gif" border="0px" alt="TheUnrealUniverse" title="Read more about The Unreal Universe" />
 </a>
 </td>

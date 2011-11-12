@@ -16,7 +16,7 @@ function renderWhyPro($name, $plg) {
   echo "<b>Get Pro Version!</b>
 <a href='http://buy.ads-ez.com/$name' title='Pro version of the $value plugin for \$$price'><img src='https://www.paypalobjects.com/en_GB/SG/i/btn/btn_buynowCC_LG.gif' border='0' alt='PayPal — The safer, easier way to pay online.' class='alignright'/></a>
 <br />
-You are using the Lite version of $value, which is available in two versions:
+You are using the Lite version of $value, which is available in two versions: <b>Lite</b> and <b>pro</b>.
 <ul><li>
 $moreInfo
 <li>$why</li>

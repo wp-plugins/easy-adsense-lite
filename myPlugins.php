@@ -13,7 +13,11 @@ $myPlugins['easy-adsense'] =
     'blurb' => '<em><strong>Easy AdSense</strong></em> is an updated version of a very popular (downloaded over 600,000 times) WordPress plugin. This premium plugin ',
     'desc' => 'manages all aspects of Google AdSense for your blog. Easy and complete!',
     'title' => '<em><strong>Easy AdSense</strong></em> provides a very easy way to generate revenue from your blog using Google AdSense. It can insert ads into posts and sidebar, and add a Google Search box. With its full set of features, <em><strong>Easy AdSense</strong></em> is perhaps the first plugin to give you a complete solution for everything AdSense-related.',
-    'pro' => 'The Lite version of <em><strong>Easy AdSense</strong></em> is fully functional. But the Pro version gives you more features and control. In the Pro version, you get a filter to minimize the chance of your AdSense account getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to Google. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you.') ;
+    'pro' => 'The Lite version of <em><strong>Easy AdSense</strong></em> is fully functional. But the Pro version gives you more features and control. In the Pro version, you get a filter to minimize the chance of your AdSense account getting banned. It uses a fast and effective keyword matching algorithm to examine the contents (including comments that you may have no control over) of each page on the fly and determines whether the page content could look offensive to Google. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you.',
+    'benefits' => '<li>A safety filter to help you maintain your AdSense account standing. This fast and efficient filter will help keep your AdSense account in good standing by suppressing your ads on pages that may violate Google policies. For instance, if a visitor leaves a comment deemed offensive by Google, this filter will kick in as remove your ads from that page.</li>
+<li>Ability to suppress your ads on some IPs to prevent accidental clicks on your own ads -- one of the main reasons for getting your AdSense account banned. It will also help prevent intentional clicks (by your jealous competitor, for instance).</li>
+<li>A compatibility mode, if the ad insertion messes up the page layout. Some poorly coded themes may get your pages messed up by ad insertion. The compatibility mode will help prevent it.</li>'
+) ;
 
 $myPlugins['adsense-now'] =
   array('value' => 'AdSense Now!',
@@ -44,7 +48,7 @@ $myPlugins['easy-chitika'] =
     'share' => true,
     'long' => false,
     'blurb' => '<em><strong>Easy Chitika</strong></em> is an specialized, single-provider version of <em><strong>Easy Ads</strong></em>. If you are planning to use more than two providers, it may be easier and more economical to use <em><strong>Easy Ads</strong></em>. <em><strong>Easy Chitika</strong></em> ',
-    'desc' => 'provides you with a fully streamlined interface to manage Chitika advertising on your blog.',
+    'desc' => 'provides you with a fully streamlined interface to manage Chitika ads on your blog.',
     'title' => '<a href="http://chitika.com/publishers.php?refid=manojt" title="Compatible with AdSense">Chitika</a> is a good option if you want to supplement your AdSense income. <a href="http://buy.ads-ez.com/plugins/easy-chitika/" title="A new plugin to handle Chitika"><em><strong>Easy Chitika</strong></em></a> provides you with a specialized and intuitive interface to manage all aspects of Chitika ads on your blog, with size selectors, widget options, color-picker to customize your colors, etc.',
     'pro' => 'The Lite version of <em><strong>Easy Chitika</strong></em> is fully functional.  But the Pro version gives you more features and control. In the Pro version, you get a filter to minimize the chance of your account getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to the provider. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons the ad providers may ban you.' . $needPHP53) ;
 
@@ -55,7 +59,7 @@ $myPlugins['easy-bidvertiser'] =
     'share' => true,
     'long' => false,
     'blurb' => '<em><strong>Easy BidVertiser</strong></em> is an specialized, single-provider version of <em><strong>Easy Ads</strong></em>. If you are planning to use more than two providers, it may be easier and more economical to use <em><strong>Easy Ads</strong></em>. <em><strong>Easy BidVertiser</strong></em> ',
-    'desc' => 'provides you with a fully streamlined interface to manage BidVertiser advertising on your blog.',
+    'desc' => 'provides you with a fully streamlined interface to manage BidVertiser ads on your blog.',
     'title' => '<a href="http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&amp;Ref_PID=229404" title="Another fine ad provider">BidVertiser</a> is another fine ad provider. <a href="http://buy.ads-ez.com/plugins/easy-bidvertiser/" title="A new plugin to handle BidVertiser"><em><strong>Easy BidVertiser</strong></em></a> gives you a good interface to manage BidVertiser ads on your blog, with sidebar widget options.',
     'pro' => 'The Lite version of <em><strong>Easy BidVertiser</strong></em> is fully functional. But the Pro version gives you more features and control. In the Pro version, you get a filter to minimize the chance of your account getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to the provider. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons the ad providers may ban you.' . $needPHP53) ;
 
@@ -66,7 +70,7 @@ $myPlugins['easy-google'] =
     'share' => true,
     'long' => false,
     'blurb' => '<em><strong>Easy Google</strong></em> is a single-provider version of <em><strong>Easy Ads</strong></em> specialized for Google AdSense serving. If you are planning to use more than two providers, it may be easier and more economical to use <em><strong>Easy Ads</strong></em>. <em><strong>Easy Google</strong></em> ',
-    'desc' => 'provides you with a fully streamlined interface to manage Google AdSense advertising on your blog.',
+    'desc' => 'provides you with a fully streamlined interface to manage Google AdSense on your blog.',
     'title' => '<a href="http://buy.ads-ez.com/plugins/easy-google/" title="A new plugin to handle Google"><em><strong>Easy Google</strong></em></a> gives you a specialized and intuitive interface to manage AdSense ads on your blog, with size selectors, widget options, color-picker to customize your colors, etc. It is a new generation plugin with a fancy, tabbed interface.',
     'pro' => 'The Lite version of <em><strong>Easy Google</strong></em> is fully functional.  But the Pro version gives you more features and control. In the Pro version, you get a filter to minimize the chance of your AdSense account getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to Google. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you.' . $needPHP53) ;
 
@@ -103,4 +107,53 @@ $myPlugins['easy-translator'] =
     'title' => '<em><strong>Easy Translator</strong></em> is a plugin to translate other plugins. It picks up translatable strings (in _[_e]() functions) and presents them and their existing translations (from the MO object of the current text-domain, if loaded) in a user editable form. It can generate a valid PO file that can be emailed to the plugin author directly from the its window, streamlining your work.',
     'pro' => 'The Lite version of Easy Translator is fully functional. The Pro version adds the ability to email the generated PO file directly, without having to save it and attach it to a mail message.') ;
 
+$myPlugins['unreal-universe'] =
+  array('value' => 'The Unreal Universe - eBook',
+    'support' => '',
+    'url' => 'http://www.theunrealuniverse.com',
+    'amazon' => 'http://www.amazon.com/exec/obidos/ASIN/9810575947/unrblo-20',
+    'price' => '1.49',
+    'share' => false,
+    'long' => true,
+    'blurb' => '<em><strong>The Unreal Universe</strong></em> is a remarkable book on physics and philosophy, science and religion. This compelling read ',
+    'desc' => 'will change the way you look at reality and understand the universe around you. Ever wonder why nothing can faster than light? And the Earth was void until God said "Let there be light"? Here are some of the answers.',
+    'title' => '<em><strong>The Unreal Universe</strong></em> is a remarkable book on physics, philosophy and surprising interconnections among seemingly disconnected silos of human knowledge.',
+    'pro' => '',
+    'isBook' => true) ;
+
+function renderInvite($plg) {
+  $plgLongName = $plg['value'] ;
+  $plgPrice = $plg['price'] ;
+  $benefits = $plg['benefits'] ;
+  $yesTip = sprintf(__('Buy %s Pro for $%s. Instant download.', 'easy-adsenser'),$plgLongName, $plgPrice) ;
+  $yesTitle = __('Get the Pro version now!', 'easy-adsenser') ;
+  $noTip = __('Continue using the Lite version, and hide this message for now.', 'easy-adsenser') ;
+  $noTitle = __('Stay Lite', 'easy-adsenser') ;
+  if (empty($benefits)) return ;
+echo <<<ENDINVITE
+<div style="background-color:#fdd;border: solid 1px #f00; padding:5px" id="tnc">
+<p><h3>Want More Features? <a href="#" onmouseover="Tip('$yesTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$yesTitle')" onmouseout="UnTip()" onclick = "buttonwhich('Yes')">Go Pro!</a></h3>
+The Pro version of this plugin gives you more features and benefits. For instance,
+<ol>
+$benefits
+</ol>
+And much more. New features and bug fixes will first appear in the Pro version before being ported to this freely distributed Lite edition. </p>
+<input onmouseover="Tip('$yesTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$yesTitle')" onmouseout="UnTip()" type = "button" id = "ybutton" value = "Go Pro!" onclick = "buttonwhich('Yes')">
+<input onmouseover="Tip('$noTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$noTitle')" onmouseout="UnTip()" type = "button" id = "nbutton" value = "No thanks" onclick = "buttonwhich('No')">
+
+<script type = "text/javascript">
+function hideInvite() {
+  document.getElementById("tnc").style.display = 'none';
+}
+function buttonwhich(message) {
+  document.getElementById("ybutton").style.display = 'none';
+  document.getElementById("nbutton").disabled = 'true';
+  document.getElementById("nbutton").value = 'Thank you for using $plgLongName Lite!';
+  setTimeout('hideInvite()', 2000);
+  if (message == 'Yes') window.open('http://buy.ads-ez.com/easy-adsense') ;
+}
+</script>
+</div>
+ENDINVITE;
+}
 ?>

@@ -4,7 +4,7 @@ Donate link: http://buy.ads-ez.com/easy-adsense
 Tags: adsense, ad, ads, advertising, google
 Requires at least: 2.6
 Tested up to: 3.2
-Stable tag: 5.02
+Stable tag: 5.03
 
 Easy AdSense manages all aspects of Google AdSense for your blog: insert ads into posts and sidebar, and add a Google Search box. Easy and complete!
 
@@ -30,15 +30,15 @@ Easy AdSense provides a very easy way to generate revenue from your blog using G
 
 Easy AdSense Lite is the freely distributed version of a premium plugin. The [Pro version](http://buy.ads-ez.com/easy-adsense/ "Pro version of the Easy AdSense plugin") gives you more benefits. It gives you filter to ensure that your ads show only on those pages that seem to comply with Google AdSense policies, which can be important since some comments may render your pages inconsistent with those policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. Also in the works for the Pro version is a compatibility mode, which solves the issue of the ad insertion messing up your page appearances when using some  themes.
 
-= New in 5.02 =
+= New in 5.03 =
 
-Removing unused code and trimming readme.txt.
+Releasing Korean translation and updating Thai translation. Admin interface changes.
 
 == Upgrade Notice ==
 
-= 5.02 =
+= 5.03 =
 
-Removing unused code and trimming readme.txt.
+Releasing Korean translation and updating Thai translation. Admin interface changes.
 
 == Screenshots ==
 
@@ -118,6 +118,7 @@ Easy AdSense now uses a paid support model. Each [support question](https://www.
 
 == Translations ==
 
+* Korean: [Jong-In Kim](iNNiS.KR "http://innis.kr/wordpress")
 * Turkish: [Omer Faruk](http://ramerta.com "Easy AdSense in Turkish (Turkce Ceviri)"), [Nurullah DEMIR](http://ndemir.com "Nurullah DEMIR"), [Murat Umutlu](http://www.simavlilar.com "Simav Sitesi Simav Bilgileri Simav Hakkõnda"), [Murat Kolukırık](http://www.sachkuafor.com "Sach ® Kuaför Saç Kaynak Merkezi").
 * Spanish: [Joaquin R. Rizer](http://www.shanky.com.ar "Joaquin R. Rizer"), [Maikel Frias](http://www.maikeladas.es "Maikel Frias"), [Argelio D&Atilde;&shy;az](http://www.goymad.com "El Ca&Atilde;&plusmn;izo"), [MaLk Gopher](http://malk-gopher.com/blog "MaLk Gopher & Friends"), [Pablog Pabloixx](http://rockstarunder.com.ar "RockStar Under"), [Navarra-Tu poblacion](http://navarra.tupoblacion.com "Navarra-Tu poblacion"), [Federico](http://www.posadasgalipan.com "Posadas Galipan"), [J. Marcos Troncoso](http://www.yanotesigue.com "@YaNoTeSigue"), [Jesús Ángel del Pozo Domínguez](http://masters.abloque.com "Ciclismo máster"), [Alberto Montoya](http://www.twittplaya.com "Twitt Playa")
 * Portuguese: `pt_BR`: [Maicon Vieira](http://maiconvieira.com "Maicon Vieira"), [Blog da Associação Atlética Portuguesa MK](http://portuguesamk.com "Blog da Associação Atlética Portuguesa MK"), [Ivan Carlos](http://www.icarlos.net "Ivan Carlos"), [Carlos Henrique](http://www.nuncapare.com "NuncaPare"), [Murillo Ferrari](http://www.cparadiso.com.br "Cinema Paradiso"), [Eduardo Dantas Correia](http://eduardo.dantascorreia.com.br "Eduardo Dantas Correia"), [Leandro Vilela](http://www.vilela.pro.br "Leandro Vilela ._."), [Rubens Souza](http://www.panguo.com.br "Panguo"). `pt_PT`: [Rui Macdonald](http://ruimacdonald.com/wordpress "Rui Macdonald"), [jatefoste](http://jatefoste.com "Notícias sobre as últimas novidades tecnológicas"), [Tiago Alves](http://www.ptbyte.net/home ":::PTBYTE:::")
@@ -132,7 +133,7 @@ Easy AdSense now uses a paid support model. Each [support question](https://www.
 * Polish: [Daniel Fruzynski](http://www.poradnik-webmastera.com/ "Sir Zooro")
 * Ukrainian: [Vitalij](http://wpp.pp.ua "WordPress Plugins Ukraine")
 * Norwegian: [Terje Storsanden](http://www.storsanden.com/blog "Terje Storsanden")
-* Thai: [Poonyapat Wichuma](http://www.newbiesbiz.com/ "Guide to success in your e-commerce business.")
+* Thai: [Poonyapat Wichuma](http://www.newbiesbiz.com/ "Guide to success in your e-commerce business."), [Viruscom2](http://Viruscom2.com "Viruscom2")
 * Danish: [Georg S. Adamsen](http://wordpress.blogos.dk/2009/10/27/google-adsense-plugins-pa-dansk/ "Georg S. Adamsen"), [Morten Beutelmann](http://www.team-devo.dk "Devotion").
 * Iranean: [Soheil](http://sabzclick.com/blog "soheil")
 * Romanian: `ro_RO` [Bican Valeriu Marian](http://3d-paradise.co.cc "3D-Paradise"), [Anunturi Jibo](http://www.jibo.ro "jIBO.ro")
@@ -142,6 +143,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V5.03: Releasing Korean translation and updating Thai translation. Admin interface changes. [Nov 12, 2011]
 * V5.02: Removing unused code and trimming readme.txt. [Nov 3, 2011]
 * V5.01: Documentation changes. [Oct 31, 2011]
 * V5.00: Moving the old Pro features to the Lite edition, and releasing it. [Oct 25, 2011]
