@@ -4,7 +4,7 @@ Donate link: http://buy.ads-ez.com/easy-adsense
 Tags: adsense, ad, ads, advertising, google
 Requires at least: 2.6
 Tested up to: 3.2
-Stable tag: 5.04
+Stable tag: 5.05
 
 Easy AdSense manages all aspects of Google AdSense for your blog: insert ads into posts and sidebar, and add a Google Search box. Easy and complete!
 
@@ -30,15 +30,15 @@ Easy AdSense provides a very easy way to generate revenue from your blog using G
 
 Easy AdSense Lite is the freely distributed version of a premium plugin. The [Pro version](http://buy.ads-ez.com/easy-adsense/ "Pro version of the Easy AdSense plugin") gives you more benefits. It gives you filter to ensure that your ads show only on those pages that seem to comply with Google AdSense policies, which can be important since some comments may render your pages inconsistent with those policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. Also in the works for the Pro version is a compatibility mode, which solves the issue of the ad insertion messing up your page appearances when using some  themes.
 
-= New in 5.04 =
+= New in 5.05 =
 
-Updating Korean translation.
+Minor bug fixes.
 
 == Upgrade Notice ==
 
-= 5.04 =
+= 5.05 =
 
-Updating Korean translation.
+Minor bug fixes.
 
 == Screenshots ==
 
@@ -143,6 +143,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V5.05: Minor bug fixes. [Nov 15, 2011]
 * V5.04: Updating Korean translation [.mo file was missing in V5.03]. [Nov 13, 2011]
 * V5.03: Releasing Korean translation and updating Thai translation. Admin interface changes. [Nov 12, 2011]
 * V5.02: Removing unused code and trimming readme.txt. [Nov 3, 2011]

@@ -3,7 +3,7 @@
 Plugin Name: Easy AdSense Lite
 Plugin URI: http://www.thulasidas.com/adsense
 Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense Lite</a>.
-Version: 5.04
+Version: 5.05
 Author: Manoj Thulasidas
 Author URI: http://www.thulasidas.com
 */
@@ -171,7 +171,7 @@ if (!class_exists("ezAdSense")) {
         $w = substr($key, 0, $x);
         $h = substr($key, $x+1);
         $p = (int)(min($w,$h)/6) ;
-        $ret = '<div style="width:'.$w.'px;height:'.$h.'px;border:1px solid red;"><div style="padding:'.$p.'px;text-align:center;font-family:arial;font-size:8pt;"><p>Your ads will be inserted here by</p><p><b><a href="http://buy.ads-ez.com/easy-adsense" title="The most popular AdSense Plugin for WordPress" target="_blank">Easy AdSense Lite</a></b>.</p><p>Please go to the plugin admin page to paste your ad code.</p></div></div>' ;
+        $ret = '<div style="width:'.$w.'px;height:'.$h.'px;border:1px solid red;"><div style="padding:'.$p.'px;text-align:center;font-family:arial;font-size:8pt;"><p>Your ads will be inserted here by</p><p><b>Easy AdSense Lite</b>.</p><p>Please go to the plugin admin page to paste your ad code.</p></div></div>' ;
       }
       return $ret ;
     }
