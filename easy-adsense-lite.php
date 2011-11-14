@@ -3,7 +3,7 @@
 Plugin Name: Easy AdSense Lite
 Plugin URI: http://www.thulasidas.com/adsense
 Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense Lite</a>.
-Version: 5.05
+Version: 5.06
 Author: Manoj Thulasidas
 Author URI: http://www.thulasidas.com
 */
@@ -82,7 +82,6 @@ if (!class_exists("ezAdSense")) {
             '<b>Easy Adsense Lite</b> in your langugage (<b>' . $locale .
             "</b>)?&nbsp; <input type='submit' name='ezAds-translate' onmouseover=\"Tip('It is easy to have &lt;b&gt;Easy AdSense Lite&lt;/b&gt; in your language. All you have to do is to translate some strings, and email the file to the author.&lt;br /&gt;&lt;br /&gt;If you would like to help, please use the translation interface. It picks up the translatable strings in &lt;b&gt;Easy AdSense Lite&lt;/b&gt; and presents them (and their existing translations in &lt;b&gt;" . $this->locale .
           "&lt;/b&gt;, if any) in an easy-to-edit form. You can then generate a translation file and email it to the author all from the same form. Slick, isn\'t it?  I will include your translation in the next release.', WIDTH, 350, TITLE, 'How to Translate?', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 0, 5])\" onmouseout=\"UnTip()\" value ='Please help translate ' /></font>" ;
-
         }
       }
     }
@@ -357,7 +356,8 @@ if (!class_exists("ezAdSense")) {
       $me = basename(dirname(__FILE__)) . '/' . basename(__FILE__);
       $plugins = get_plugins() ;
       if ($hide)
-        $str =  "<!-- " . $plugins[$me]['Title'] . " V" . $plugins[$me]['Version'] . " -->\n";
+        $str =  "<!-- " . $plugins[$me]['Title'] . " V" .
+          $plugins[$me]['Version'] . " -->\n";
       else
         $str =  $plugins[$me]['Title'] . " V" . $plugins[$me]['Version'] ;
       return $str ;
@@ -373,7 +373,7 @@ if (!class_exists("ezAdSense")) {
     var $luMax = 4 ;
 
     function plugin_action($links, $file) {
-      if ($file == plugin_basename(dirname(__FILE__).'/easy-adsense-lite.php')){
+      if ($file == plugin_basename(dirname(__FILE__).'/easy-adsense-lite.php')) {
       $settings_link = "<a href='options-general.php?page=easy-adsense-lite.php'>" .
         __('Settings', 'easy-adsenser') . "</a>";
       array_unshift( $links, $settings_link );
@@ -401,7 +401,8 @@ if (!class_exists("ezAdSense")) {
           if ($tkey !== FALSE) {
             $value = strtolower(trim($val[0])) ;
             // ensure valid values for options
-            if ($value == 'left' || $value == 'right' || $value == 'center' || $value == 'no') {
+            if ($value == 'left' || $value == 'right'
+              || $value == 'center' || $value == 'no') {
               if ($value == 'left' || $value == 'right') $value = 'float:' . $value ;
               if ($value == 'center') $value = 'text-align:' . $value ;
               $metaOptions[$ezkeys[$tkey]] = $value ;
@@ -416,8 +417,10 @@ if (!class_exists("ezAdSense")) {
       $ezAdOptions = $this->getAdminOptions();
       global $post;
       $meta = get_post_custom($post->ID);
-      $adkeys = array('adsense', 'adsense-widget', 'adsense-search', 'adsense-linkunits') ;
-      $ezkeys = array('adsense', 'show_widget', 'title_gsearch', 'show_lu') ;
+      $adkeys = array('adsense', 'adsense-widget',
+                'adsense-search', 'adsense-linkunits') ;
+      $ezkeys = array('adsense', 'show_widget',
+                'title_gsearch', 'show_lu') ;
       $metaOptions = array() ;
       // initialize to ezAdOptions
       foreach ($ezkeys as $key => $optKey) {
@@ -431,18 +434,16 @@ if (!class_exists("ezAdSense")) {
           if ($tkey !== FALSE) {
             $value = strtolower(trim($val[0])) ;
             // ensure valid values for options
-            if ($value == 'left' || $value == 'right' || $value == 'center' || $value == 'no') {
+            if ($value == 'left' || $value == 'right'
+              || $value == 'center' || $value == 'no') {
               if ($value != 'no') $value = 'text-align:' . $value ;
-              if ($ezkeys[$tkey] != 'title_gsearch') $metaOptions[$ezkeys[$tkey]] = $value ;
+              if ($ezkeys[$tkey] != 'title_gsearch')
+                $metaOptions[$ezkeys[$tkey]] = $value ;
             }
           }
         }
       }
       return $metaOptions ;
-    }
-
-    function mc($mc, $ad, $size=false, $key='160x600') {
-      return $ad ;
     }
 
     function ezAdSense_content($content) {
@@ -463,7 +464,8 @@ if (!class_exists("ezAdSense")) {
       if ($ezCount >= $this->ezMax) return $content ;
       if(strpos($content, "<!--noadsense-->") !== false) return $content;
       $metaOptions = $this->contentMeta() ;
-      if (isset($metaOptions['adsense']) && $metaOptions['adsense'] == 'no') return $content;
+      if (isset($metaOptions['adsense']) && $metaOptions['adsense'] == 'no')
+        return $content;
       $this->handleDefaults($ezAdOptions) ;
 
       $wc = str_word_count($content) ;
@@ -493,15 +495,17 @@ if (!class_exists("ezAdSense")) {
           $ezCount++;
           $margin =  $ezAdOptions['margin_leadin'] ;
           if ($ezAdOptions['kill_inline'])
-		    $inline = '' ;
-		  else
-		    $inline = 'style="' . $show_leadin . ';margin:' . $margin . 'px;' . $border. '"' ;
+            $inline = '' ;
+          else
+            $inline = 'style="' . $show_leadin .
+              ';margin:' . $margin . 'px;' . $border. '"' ;
           $leadin =
-            stripslashes($ezAdOptions['info'] . "<!-- Post[count: " . $ezCount . "] -->\n" .
-                         '<div class="ezAdsense adsense adsense-leadin" ' . $inline . '>' .
-                         $ezAdOptions['text_leadin'] .
-                         ($urCount++ < $this->urMax ? $unreal : '') .
-                         "</div>\n" . $ezAdOptions['info'] . "\n") ;
+            stripslashes($ezAdOptions['info'] .
+              "<!-- Post[count: " . $ezCount . "] -->\n" .
+              '<div class="ezAdsense adsense adsense-leadin" ' . $inline . '>' .
+              $ezAdOptions['text_leadin'] .
+              ($urCount++ < $this->urMax ? $unreal : '') .
+              "</div>\n" . $ezAdOptions['info'] . "\n") ;
         }
       }
 
@@ -528,15 +532,17 @@ if (!class_exists("ezAdSense")) {
             $ezCount++;
             $margin =  $ezAdOptions['margin_midtext'] ;
             if ($ezAdOptions['kill_inline'])
-		      $inline = '' ;
-		    else
-		      $inline = 'style="' . $show_midtext . ';margin:' . $margin . 'px;' . $border. '"' ;
+              $inline = '' ;
+            else
+              $inline = 'style="' . $show_midtext .
+                ';margin:' . $margin . 'px;' . $border. '"' ;
             $midtext =
-              stripslashes($ezAdOptions['info'] . "<!-- Post[count: " . $ezCount . "] -->\n" .
-                           '<div class="ezAdsense adsense adsense-midtext" ' . $inline . '>' .
-                           $ezAdOptions['text_midtext'] .
-                           ($urCount++ < $this->urMax ? $unreal : '') .
-                           "</div>\n" . $ezAdOptions['info'] . "\n") ;
+              stripslashes($ezAdOptions['info'] .
+                "<!-- Post[count: " . $ezCount . "] -->\n" .
+                '<div class="ezAdsense adsense adsense-midtext" ' . $inline . '>' .
+                $ezAdOptions['text_midtext'] .
+                ($urCount++ < $this->urMax ? $unreal : '') .
+                "</div>\n" . $ezAdOptions['info'] . "\n") ;
             $content = substr_replace($content, $midtext.$repchar, $pickme, 2);
           }
         }
@@ -549,15 +555,17 @@ if (!class_exists("ezAdSense")) {
           $ezCount++;
           $margin =  $ezAdOptions['margin_leadout'] ;
           if ($ezAdOptions['kill_inline'])
-		    $inline = '' ;
-		  else
-		      $inline = 'style="' . $show_leadout . ';margin:' . $margin . 'px;' . $border. '"' ;
+            $inline = '' ;
+          else
+            $inline = 'style="' . $show_leadout .
+              ';margin:' . $margin . 'px;' . $border. '"' ;
           $leadout =
-          stripslashes($ezAdOptions['info'] . "<!-- Post[count: " . $ezCount . "] -->\n" .
-                       '<div class="ezAdsense adsense adsense-leadout" ' . $inline . '>' .
-                       $ezAdOptions['text_leadout'] .
-                       ($urCount++ < $this->urMax ? $unreal : '') .
-                       "</div>\n" . $ezAdOptions['info'] . "\n") ;
+            stripslashes($ezAdOptions['info'] .
+              "<!-- Post[count: " . $ezCount . "] -->\n" .
+              '<div class="ezAdsense adsense adsense-leadout" ' . $inline . '>' .
+              $ezAdOptions['text_leadout'] .
+              ($urCount++ < $this->urMax ? $unreal : '') .
+              "</div>\n" . $ezAdOptions['info'] . "\n") ;
         }
       }
       if ($ezAdOptions['header_leadin']) {
@@ -604,16 +612,18 @@ if (!class_exists("ezAdSense")) {
       if ($show_leadin != 'no') {
           $margin =  $ezAdOptions['margin_leadin'] ;
           if ($ezAdOptions['kill_inline'])
-		    $inline = '' ;
-		  else
-		    $inline = 'style="' . $show_leadin . ';margin:' . $margin . 'px;' . $border. '"' ;
-        $this->leadin =
-          stripslashes($ezAdOptions['info'] . "<!-- Post[count: " . $ezCount . "] -->\n" .
-                       '<div class="ezAdsense adsense adsense-leadin" ' . $inline . '>' .
-                       $ezAdOptions['text_leadin'] .
-                       ($urCount++ < $this->urMax ? $unreal : '') .
-                       "</div>\n" . $ezAdOptions['info'] . "\n") ;
-        echo $this->leadin ;
+            $inline = '' ;
+          else
+            $inline = 'style="' . $show_leadin .
+              ';margin:' . $margin . 'px;' . $border. '"' ;
+          $this->leadin =
+            stripslashes($ezAdOptions['info'] .
+              "<!-- Post[count: " . $ezCount . "] -->\n" .
+              '<div class="ezAdsense adsense adsense-leadin" ' . $inline . '>' .
+              $ezAdOptions['text_leadin'] .
+              ($urCount++ < $this->urMax ? $unreal : '') .
+              "</div>\n" . $ezAdOptions['info'] . "\n") ;
+          echo $this->leadin ;
       }
     }
 
@@ -659,17 +669,20 @@ if (!class_exists("ezAdSense")) {
         'target="_blank" title="Unreal Blog proudly brings you Easy AdSense Lite">' .
         'Unreal</a></font></div>';
       echo $before_widget;
-      if (!$ezAdOptions['kill_widget_title']) echo $before_title . $title . $after_title;
+      if (!$ezAdOptions['kill_widget_title'])
+        echo $before_title . $title . $after_title;
       $margin =  $ezAdOptions['margin_widget'] ;
       if ($ezAdOptions['kill_inline'])
         $inline = '' ;
-	  else
-	    $inline = 'style="' . $show_widget . ';margin:' . $margin . 'px;' . $border. '"' ;
-      echo stripslashes($ezAdOptions['info'] . "<!-- Widg[count: " . $ezCount . "] -->\n" .
-                        '<div class="ezAdsense adsense adsense-widget"><div ' . $inline. '>' .
-                        $ezAdOptions['text_widget'] .
-                        ($urCount++ < $this->urMax ? $unreal : '') .
-                        "</div></div>\n" . $ezAdOptions['info'] . "\n") ;
+      else
+        $inline = 'style="' . $show_widget .
+          ';margin:' . $margin . 'px;' . $border. '"' ;
+      echo stripslashes($ezAdOptions['info'] .
+        "<!-- Widg[count: " . $ezCount . "] -->\n" .
+        '<div class="ezAdsense adsense adsense-widget"><div ' . $inline. '>' .
+        $ezAdOptions['text_widget'] .
+        ($urCount++ < $this->urMax ? $unreal : '') .
+        "</div></div>\n" . $ezAdOptions['info'] . "\n") ;
       echo $after_widget;
     }
 
@@ -679,7 +692,8 @@ if (!class_exists("ezAdSense")) {
       $ezAdOptions['text_lu'] =
         $this->handleDefaultText($ezAdOptions['text_lu'], '160x160') ;
       $title = empty($ezAdOptions['title_lu']) ? '' :
-        $before_title . stripslashes(htmlspecialchars($ezAdOptions['title_lu'])) . $after_title ;
+        $before_title . stripslashes(htmlspecialchars($ezAdOptions['title_lu'])) .
+        $after_title ;
       $metaOptions = $this->widgetMeta() ;
       if (isset($metaOptions['adsense']) && $metaOptions['adsense'] == 'no') return ;
       $show_lu = $metaOptions['show_lu'] ;
@@ -698,10 +712,12 @@ if (!class_exists("ezAdSense")) {
         if ($ezAdOptions['kill_inline'])
           $inline = '' ;
 	    else
-	      $inline = 'style="' . $show_widget . ';margin:' . $margin . 'px;' . $border. '"' ;
-        echo stripslashes('<div class="ezAdsense adsense adsense-lu"><div ' . $inline. '>' . "\n" .
-                          $ezAdOptions['text_lu'] . "\n" .
-                          '</div></div>') ;
+	      $inline = 'style="' . $show_widget .
+                ';margin:' . $margin . 'px;' . $border. '"' ;
+        echo stripslashes('<div class="ezAdsense adsense adsense-lu"><div ' .
+          $inline. '>' . "\n" .
+          $ezAdOptions['text_lu'] . "\n" .
+          '</div></div>') ;
         echo $after_widget ;
       }
     }
@@ -729,9 +745,10 @@ if (!class_exists("ezAdSense")) {
           $inline = '' ;
 	    else
 	      $inline = 'style="margin:' . $margin . 'px; "' ;
-        echo stripslashes('<div class="ezAdsense adsense adsense-search"><div ' . $inline . '>' . "\n" .
-                          $ezAdOptions['text_gsearch'] . "\n" .
-                          '</div></div>') ;
+        echo stripslashes('<div class="ezAdsense adsense adsense-search"><div ' .
+          $inline . '>' . "\n" .
+          $ezAdOptions['text_gsearch'] . "\n" .
+          '</div></div>') ;
         echo $after_widget ;
       }
     }
@@ -754,20 +771,22 @@ if (!class_exists("ezAdSense")) {
       if (function_exists('wp_register_sidebar_widget')) {
         $widget_ops =
           array('classname' => 'widget_ezAd_ads', 'description' =>
-                'Easy AdSense Lite: ' . __('Show a Google AdSense block in your sidebar as a widget',
-                                     'easy-adsenser'));
+            'Easy AdSense Lite: ' .
+            __('Show a Google AdSense block in your sidebar as a widget',
+              'easy-adsenser'));
         wp_register_sidebar_widget('ezAd_ads', 'Google Ads',
-                                   array(&$this, 'widget_ezAd_ads'), $widget_ops);
+          array(&$this, 'widget_ezAd_ads'), $widget_ops);
         $widget_ops =
           array('classname' => 'widget_ezAd_search', 'description' =>
-                'Easy AdSense Lite: ' . __('Show a Google Search Box in your sidebar as a widget',
-                                      'easy-adsenser'));
+            'Easy AdSense Lite: ' .
+            __('Show a Google Search Box in your sidebar as a widget',
+              'easy-adsenser'));
         wp_register_sidebar_widget('ezAd_search', 'Google Search',
-                                   array(&$this, 'widget_ezAd_search'), $widget_ops);
+          array(&$this, 'widget_ezAd_search'), $widget_ops);
         wp_register_widget_control('ezAd_ads','Google Ads',
-                                   array(&$this, 'widget_ezAd_control'));
+          array(&$this, 'widget_ezAd_control'));
         wp_register_widget_control('ezAd_search','Google Search',
-                                   array(&$this, 'widget_ezAd_control'));
+          array(&$this, 'widget_ezAd_control'));
       }
     }
 
@@ -778,12 +797,13 @@ if (!class_exists("ezAdSense")) {
           $jd = $id + 1;
           $widget_ops =
             array('classname' => 'widget_ezAd_lu', 'description' =>
-                  'Easy AdSense Lite: ' . __('Show a Google Links Unit in your sidebar as a widget',
-                                        'easy-adsenser') . " ($jd)");
+              'Easy AdSense Lite: ' .
+              __('Show a Google Links Unit in your sidebar as a widget',
+                'easy-adsenser') . " ($jd)");
           wp_register_sidebar_widget($reg_wid, 'Google Link Units' . " ($jd)",
-                                     array(&$this, 'widget_ezAd_lu'), $widget_ops);
+            array(&$this, 'widget_ezAd_lu'), $widget_ops);
           wp_register_widget_control($reg_wid ,'Google Link Units' . " ($jd)",
-                                     array(&$this, 'widget_ezAd_lu_control'));
+            array(&$this, 'widget_ezAd_lu_control'));
         }
       }
     }
@@ -811,7 +831,7 @@ if (class_exists("ezAdSense")) {
         global $ez_ad ;
         if (function_exists('add_options_page')) {
           add_options_page('Easy AdSense Lite', 'Easy AdSense Lite', 9,
-                           basename(__FILE__), array(&$ez_ad, 'printAdminPage'));
+            basename(__FILE__), array(&$ez_ad, 'printAdminPage'));
         }
       }
     }
@@ -823,10 +843,11 @@ if (class_exists("ezAdSense")) {
         function ezAdsWidget() {
           $widget_ops =
             array('classname' => 'ezAdsWidget',
-                  'description' =>
-                  __('Show a Google AdSense block in your sidebar as a widget',
-                     'easy-adsenser') );
-          $this->WP_Widget('ezAdsWidget', 'Easy AdSense Lite: Google Ads', $widget_ops);
+              'description' =>
+              __('Show a Google AdSense block in your sidebar as a widget',
+                'easy-adsenser') );
+          $this->WP_Widget('ezAdsWidget', 'Easy AdSense Lite: Google Ads',
+            $widget_ops);
         }
        	function widget($args, $instance) {
           // outputs the content of the widget
@@ -846,17 +867,18 @@ if (class_exists("ezAdSense")) {
         }
       }
       add_action('widgets_init',
-                 create_function('', 'return register_widget("ezAdsWidget");'));
+        create_function('', 'return register_widget("ezAdsWidget");'));
 
       // sidebar Search Widget
       class ezAdsSearch extends WP_Widget {
         function ezAdsSearch() {
           $widget_ops =
             array('classname' => 'ezAdsSearch',
-                  'description' =>
-                  __('Show a Google Search Box in your sidebar as a widget',
-                     'easy-adsenser') );
-          $this->WP_Widget('ezAdsSearch', 'Easy AdSense Lite: Google Search', $widget_ops);
+              'description' =>
+              __('Show a Google Search Box in your sidebar as a widget',
+                'easy-adsenser') );
+          $this->WP_Widget('ezAdsSearch', 'Easy AdSense Lite: Google Search',
+            $widget_ops);
         }
        	function widget($args, $instance) {
           // outputs the content of the widget
@@ -876,17 +898,18 @@ if (class_exists("ezAdSense")) {
         }
       }
       add_action('widgets_init',
-                 create_function('', 'return register_widget("ezAdsSearch");'));
+        create_function('', 'return register_widget("ezAdsSearch");'));
 
       // sidebar Link Units
       class ezAdsLU extends WP_Widget {
         function ezAdsLU() {
           $widget_ops =
             array('classname' => 'ezAdsLU',
-                  'description' =>
-                  __('Show a Google Links Unit in your sidebar as a widget',
-                     'easy-adsenser') );
-          $this->WP_Widget('ezAdsLU', 'Easy AdSense Lite: Google Link Unit', $widget_ops);
+              'description' =>
+              __('Show a Google Links Unit in your sidebar as a widget',
+                'easy-adsenser') );
+          $this->WP_Widget('ezAdsLU', 'Easy AdSense Lite: Google Link Unit',
+            $widget_ops);
         }
        	function widget($args, $instance) {
           // outputs the content of the widget
@@ -927,7 +950,7 @@ if (class_exists("ezAdSense")) {
     */
     add_action('admin_menu', 'ezAdSense_ap');
     add_action('activate_' . basename(dirname(__FILE__)) . '/' . basename(__FILE__),
-               array(&$ez_ad, 'init'));
+      array(&$ez_ad, 'init'));
     add_filter('plugin_action_links', array($ez_ad, 'plugin_action'), -10, 2);
     if ($ezAdOptions['max_link'] == -1)
       add_action('wp_footer', array($ez_ad, 'footer_action'));
