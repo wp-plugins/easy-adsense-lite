@@ -36,7 +36,7 @@ else {
     <h2 title="<?php echo $this->info(false) ?>">Easy AdSense Lite Setup <a href="http://validator.w3.org/" target="_blank"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" title="Easy AdSense Lite Admin Page is certified Valid XHTML 1.0 Transitional" height="31" width="88" class="alignright"/></a>
 </h2>
 <?php
-    renderInvite($myPlugins[$plgName]) ;
+    renderInvite($myPlugins[$plgName], $plgName) ;
 ?>
 <table class="form-table">
 <tr><th scope="row"><h3><?php _e('Instructions', 'easy-adsenser') ; ?></h3></th></tr>

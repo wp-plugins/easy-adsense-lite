@@ -53,12 +53,13 @@ function renderPlg($name, $plg) {
   $link = '<b><a href="' . $url . '" target="_blank">' . $value . '</a> </b> ' ;
   $text = $link . $desc ;
   $price = $plg['price'] ;
-  $moreInfo = " <a href='http://www.thulasidas.com/plugins/$name' title='More info about $value at Unreal Blog'>More Info</a> " ;
-  $liteVersion = " <a href='http://buy.ads-ez.com/$name/$name.zip' title='Download the Lite version of $value'>Get Lite Version</a> " ;
-  $proVersion = " <a href='http://buy.ads-ez.com/$name' title='Buy the Pro version of $value for \$$price'>Get Pro Version</a><br />" ;
+  $moreInfo = "&nbsp;&nbsp;<a href='http://www.thulasidas.com/plugins/$name' title='More info about $value at Unreal Blog'>More Info</a> " ;
+  $liteVersion = "&nbsp;&nbsp; <a href='http://buy.ads-ez.com/$name/$name.zip' title='Download the Lite version of $value'>Get Lite Version</a> " ;
+  $proVersion = "&nbsp;&nbsp; <a href='http://buy.ads-ez.com/$name' title='Buy the Pro version of $value for \$$price'>Get Pro Version</a><br />" ;
   $why = "<a href='http://buy.ads-ez.com/$name' title='Pro version of the $name plugin'><img src='https://www.paypalobjects.com/en_GB/SG/i/btn/btn_buynowCC_LG.gif' border='0' alt='PayPal — The safer, easier way to pay online.' class='alignright' /></a>
 <br />".$plg['pro'] ;
   echo "<li>" . makeTextWithTooltip($text, $title, $value, 350) .
+    "<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" .
     makeTextWithTooltip($moreInfo, "Read more about $value at its own page.<br />".$title, "More Information about $value", 300) .
     makeTextWithTooltip($liteVersion, $title, "Download $value - the Lite version", 300) .
     makeTextWithTooltipTag($name, $proVersion, $why, "Get $value Pro!", 300) .
@@ -73,15 +74,16 @@ function renderBook($name, $plg) {
   $link = '<b><a href="' . $url . '" target="_blank">' . $value . '</a> </b> ' ;
   $text = $link . $desc ;
   $price = $plg['price'] ;
-  $moreInfo = " <a href='$url' title='More info about $value at Unreal Blog'>More Info</a> " ;
+  $moreInfo = "&nbsp;&nbsp; <a href='$url' title='More info about $value at Unreal Blog'>More Info</a> " ;
   $amazon = $plg['amazon'] ;
-  if (!empty($amazon)) $buyAmazon = " <a href='$amazon' title='Get $value from Amazon.com'>Get it at Amazon</a> " ;
-  $buyNow = " <a href='http://buy.ads-ez.com/$name' title='Buy and download $value for \$$price'>Buy and Download now!</a><br />" ;
+  if (!empty($amazon)) $buyAmazon = "&nbsp;&nbsp; <a href='$amazon' title='Get $value from Amazon.com'>Get it at Amazon</a> " ;
+  $buyNow = "&nbsp;&nbsp; <a href='http://buy.ads-ez.com/$name' title='Buy and download $value for \$$price'>Buy and Download now!</a><br />" ;
   $why = "<a href='http://buy.ads-ez.com/$name' title='$name'><img src='https://www.paypalobjects.com/en_GB/SG/i/btn/btn_buynowCC_LG.gif' border='0' alt='PayPal — The safer, easier way to pay online.' class='alignright' /></a>
 <br />".$title.$desc." $value costs only \$$price -- direct from the author." ;
   echo "<li>" . makeTextWithTooltip($text, $title, $value, 350) .
+    "<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" .
     makeTextWithTooltip($moreInfo, "Read all about $value at its own site.<br />", "$value", 300) .
-     makeTextWithTooltip($buyAmazon, $title, "Buy $value from Amazon", 300) .
+     makeTextWithTooltip($buyAmazon, $title, "Buy $value from Amazon", 350) .
     makeTextWithTooltipTag($name, $buyNow, $why, "Buy $value!", 300) .
     "</li>\n" ;
 }
@@ -100,7 +102,7 @@ function renderBook($name, $plg) {
 <ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >
   <li><a href="#" onclick="TagToTip('rate', TITLE, 'WordPress: <?php echo $myPlugins[$plgName] ;?> Lite', STICKY, 1, CLOSEBTN, true, FIX, [25, 25])"><font color="red">If you like this plugin, please give it a 5* rating.</font></a> People tend to vote or comment only when something doesn't work, and it skews the overall rating. Please do your bit to unskew it!</li>
 <li>
-<?php _e('Please report any problems. And share your thoughts and comments.', 'easy-adsenser') ; ?>&nbsp;<a href="http://wordpress.org/tags/<?php echo $plgName ; ?>" title="<?php _e('Post it in the WordPress forum', 'easy-adsenser') ; ?>" target="_blank"><?php _e("[WordPress Forum]", 'easy-adsenser') ?> </a>
+<?php _e('Please report any problems. And share your thoughts and comments.', 'easy-adsenser') ; ?>&nbsp;<a href="http://wordpress.org/tags/<?php echo $plgName . "-lite" ; ?>" title="<?php _e('Post it in the WordPress forum', 'easy-adsenser') ; ?>" target="_blank"><?php _e("[WordPress Forum]", 'easy-adsenser') ?> </a>
 <li>
   If you need support, please read more information about <a href="http://www.Thulasidas.com/plugins/<?php echo $plgName ; ?>-more#FAQ" target="_blank" title="<?php _e('Go to the plugin description page', 'easy-adsenser') ; ?>"><?php echo $myPlugins[$plgName]['value'] ; ?></a> first -- in particular, the FAQ section.
 </li>
