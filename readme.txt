@@ -4,7 +4,7 @@ Donate link: http://buy.ads-ez.com/easy-adsense
 Tags: adsense, ad, ads, advertising, google
 Requires at least: 2.6
 Tested up to: 3.2
-Stable tag: 5.07
+Stable tag: 5.08
 
 Easy AdSense manages all aspects of Google AdSense for your blog: insert ads into posts and sidebar, and add a Google Search box. Easy and complete!
 
@@ -32,13 +32,13 @@ Easy AdSense Lite is the freely distributed version of a premium plugin. The [Pr
 
 = New in this Release =
 
-Code clean up -- removing unused functions, indenting the code.
+Fixing a bug in enforcing the limit on the number of ad blocks. Updating translations.
 
 == Upgrade Notice ==
 
-= 5.06 =
+= 5.08 =
 
-Code clean up -- removing unused functions, indenting the code.
+Fixing a bug in enforcing the limit on the number of ad blocks. Updating translations.
 
 == Screenshots ==
 
@@ -122,7 +122,7 @@ Easy AdSense now uses a paid support model. Each [support question](https://www.
 * Turkish: [Omer Faruk](http://ramerta.com "Easy AdSense in Turkish (Turkce Ceviri)"), [Nurullah DEMIR](http://ndemir.com "Nurullah DEMIR"), [Murat Umutlu](http://www.simavlilar.com "Simav Sitesi Simav Bilgileri Simav Hakkõnda"), [Murat Kolukırık](http://www.sachkuafor.com "Sach ® Kuaför Saç Kaynak Merkezi").
 * Spanish: [Joaquin R. Rizer](http://www.shanky.com.ar "Joaquin R. Rizer"), [Maikel Frias](http://www.maikeladas.es "Maikel Frias"), [Argelio D&Atilde;&shy;az](http://www.goymad.com "El Ca&Atilde;&plusmn;izo"), [MaLk Gopher](http://malk-gopher.com/blog "MaLk Gopher & Friends"), [Pablog Pabloixx](http://rockstarunder.com.ar "RockStar Under"), [Navarra-Tu poblacion](http://navarra.tupoblacion.com "Navarra-Tu poblacion"), [Federico](http://www.posadasgalipan.com "Posadas Galipan"), [J. Marcos Troncoso](http://www.yanotesigue.com "@YaNoTeSigue"), [Jesús Ángel del Pozo Domínguez](http://masters.abloque.com "Ciclismo máster"), [Alberto Montoya](http://www.twittplaya.com "Twitt Playa")
 * Portuguese: `pt_BR`: [Maicon Vieira](http://maiconvieira.com "Maicon Vieira"), [Blog da Associação Atlética Portuguesa MK](http://portuguesamk.com "Blog da Associação Atlética Portuguesa MK"), [Ivan Carlos](http://www.icarlos.net "Ivan Carlos"), [Carlos Henrique](http://www.nuncapare.com "NuncaPare"), [Murillo Ferrari](http://www.cparadiso.com.br "Cinema Paradiso"), [Eduardo Dantas Correia](http://eduardo.dantascorreia.com.br "Eduardo Dantas Correia"), [Leandro Vilela](http://www.vilela.pro.br "Leandro Vilela ._."), [Rubens Souza](http://www.panguo.com.br "Panguo"). `pt_PT`: [Rui Macdonald](http://ruimacdonald.com/wordpress "Rui Macdonald"), [jatefoste](http://jatefoste.com "Notícias sobre as últimas novidades tecnológicas"), [Tiago Alves](http://www.ptbyte.net/home ":::PTBYTE:::")
-* Italian: [Angelo D Agostino](http://www.console-war.com "Angelo D Agostino"), [NokiaSymbian](http://www.nokiasymbian.it/wp "NokiaSymbian"), Saverio Tonno, [Fabio Napoleoni](http://techblog.zenit.org "Fabio's Tech Blog"), [Miglioriamo Velletri](http://www.miglioriamovelletri.it "Miglioriamo Velletri"), [Guadagno Col Web](http://www.guadagnoiocolweb.com "Guadagno Col Web").
+* Italian: [Angelo D Agostino](http://www.console-war.com "Angelo D Agostino"), [NokiaSymbian](http://www.nokiasymbian.it/wp "NokiaSymbian"), Saverio Tonno, [Fabio Napoleoni](http://techblog.zenit.org "Fabio's Tech Blog"), [Miglioriamo Velletri](http://www.miglioriamovelletri.it "Miglioriamo Velletri"), [Guadagno Col Web](http://www.guadagnoiocolweb.com "Guadagno Col Web"), [Federico](http://www.vitadapapa.it "Vita da Papà"),[Mondodecal](http://www.mondodecal.com "Mondodecal").
 * Bahasa Indonesia: [Hendry](http://debuk.com/ "Hendry"), [Percikan Info](http://gemparuang.com/new "Percikan Info").
 * Belarusian: [Marcis Gasuns](http://www.fatcow.com/ "Marcis Gasuns").
 * German: [Ole Emken](http://www.ganz-einfach.com "GANZ EINFACH"), [Andre Foltys](http://www.kindergarten-tip.de "Kindergarten-Tip.de"), [Mathias Roth](http://trade-service.eu "Service Center Weserstrasse"), [Albrecht Boucher](http://albrechtboucher.harth-server.de "Albrecht Boucher Blog"), Vincent Kollin.
@@ -143,6 +143,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V5.08: Fixing a bug in enforcing the limit on the number of ad blocks. Updating translations. [Jan 8, 2012]
 * V5.07: Minor fixes. [Nov 16, 2011]
 * V5.06: Code clean up -- removing unused functions, indenting the code. [Nov 15, 2011]
 * V5.05: Minor bug fixes. [Nov 15, 2011]

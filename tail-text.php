@@ -45,7 +45,7 @@ function makeTextWithTooltipTag($plg, $text, $tip, $title='', $width='')
   return $return ;
 }
 function renderPlg($name, $plg) {
-  if ($plg['isBook']) return ;
+  if ($plg['kind'] != '' && $plg['kind'] != 'plugin') return ;
   $value = '<em><strong>'.$plg['value'].'</strong></em>';
   $desc = $plg['desc'] ;
   $title = $plg['title'] ;
@@ -66,7 +66,7 @@ function renderPlg($name, $plg) {
     "</li>\n" ;
 }
 function renderBook($name, $plg) {
-  if (!$plg['isBook']) return ;
+  if ($plg['kind'] != 'book') return ;
   $value = '<em><strong>'.$plg['value'].'</strong></em>';
   $desc = $plg['desc'] ;
   $title = $plg['title'] ;
@@ -83,11 +83,10 @@ function renderBook($name, $plg) {
   echo "<li>" . makeTextWithTooltip($text, $title, $value, 350) .
     "<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" .
     makeTextWithTooltip($moreInfo, "Read all about $value at its own site.<br />", "$value", 300) .
-     makeTextWithTooltip($buyAmazon, $title, "Buy $value from Amazon", 350) .
+    makeTextWithTooltip($buyAmazon, $title, "Buy $value from Amazon", 350) .
     makeTextWithTooltipTag($name, $buyNow, $why, "Buy $value!", 300) .
     "</li>\n" ;
 }
-
 ?>
 <?php
 ?>
@@ -120,8 +119,9 @@ function renderBook($name, $plg) {
 
 </ul>
 </li>
+
 <li>
-<?php _e('My books -- on Physics, Philosophy, making Money etc:', 'easy-adsenser') ; ?>
+<?php _e('My Books -- on Physics, Philosophy, making Money etc:', 'easy-adsenser') ; ?>
 
 <ul style="margin-left:0px; padding-left:30px;list-style-type:square; list-style-position:inside;" >
 
@@ -131,7 +131,9 @@ function renderBook($name, $plg) {
 
 </ul>
 </li>
+
 </ul>
+
 </td>
 </tr>
 

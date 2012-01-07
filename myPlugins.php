@@ -16,7 +16,9 @@ $myPlugins['easy-adsense'] =
     'pro' => 'The Lite version of <em><strong>Easy AdSense</strong></em> is fully functional. But the Pro version gives you more features and control. In the Pro version, you get a filter to minimize the chance of your AdSense account getting banned. It uses a fast and effective keyword matching algorithm to examine the contents (including comments that you may have no control over) of each page on the fly and determines whether the page content could look offensive to Google. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you.',
     'benefits' => '<li>A safety filter to help you maintain your AdSense account standing. This fast and efficient filter will help keep your AdSense account in good standing by suppressing your ads on pages that may violate Google policies. For instance, if a visitor leaves a comment deemed offensive by Google, this filter will kick in as remove your ads from that page.</li>
 <li>Ability to suppress your ads on some IPs to prevent accidental clicks on your own ads -- one of the main reasons for getting your AdSense account banned. It will also help prevent intentional clicks (by your jealous competitor, for instance).</li>
-<li>A compatibility mode, if the ad insertion messes up the page layout. Some poorly coded themes may get your pages messed up by ad insertion. The compatibility mode will help prevent it.</li>'
+<li>A compatibility mode, if the ad insertion messes up the page layout. Some poorly coded themes may get your pages messed up by ad insertion. The compatibility mode will help prevent it.</li>
+<li>Ability to show a configurable number of ads on Excerpts (which make up the home page in some themes)</li>
+<li>Real text-wrapping option in Leadout ad blocks. In the Lite version, text-wrapping in the lead-out ad block may fail in some cases.</li>'
 ) ;
 
 $myPlugins['adsense-now'] =
@@ -29,7 +31,9 @@ $myPlugins['adsense-now'] =
     'desc' => 'gets you started with Google AdSense. No mess, no fuss.',
     'title' => '<em><strong>AdSense Now!</strong></em> is the simplest possible way to generate revenue from your blog using Google AdSense. Aiming at simplicity, <em><strong>AdSense Now!</strong></em> does only one thing: it puts your AdSense code in up to three spots in your posts and pages (both existing ones and those yet to be written).',
     'pro' => 'The Lite version of <em><strong>AdSense Now!</strong></em> is fully functional. In the Pro version, you get a filter to minimize the chance of your AdSense account getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to Google. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you.',
-    'benefits' => $myPlugins['easy-adsense']['benefits']) ;
+    'benefits' => '<li>A safety filter to help you maintain your AdSense account standing. This fast and efficient filter will help keep your AdSense account in good standing by suppressing your ads on pages that may violate Google policies. For instance, if a visitor leaves a comment deemed offensive by Google, this filter will kick in as remove your ads from that page.</li>
+<li>Ability to suppress your ads on some IPs to prevent accidental clicks on your own ads -- one of the main reasons for getting your AdSense account banned. It will also help prevent intentional clicks (by your jealous competitor, for instance).</li>
+<li>A compatibility mode, if the ad insertion messes up the page layout. Some poorly coded themes may get your pages messed up by ad insertion. The compatibility mode will help prevent it.</li>') ;
 
 $myPlugins['easy-ads'] =
   array('value' => 'Easy Ads',
@@ -86,7 +90,8 @@ $myPlugins['theme-tweaker'] =
     'title' => '<em><strong>Theme Tweaker</strong></em> displays the existing colors from your current theme, and gives you a color picker to replace them. It also lets you change them in bulk, like invert all colors, use grey scale etc.',
     'pro' => 'Note that <em><strong>Theme Tweaker</strong></em> may not work with some themes. Please verify its suitability using the Lite version first. The Lite version of the plugin is fully functional. The Pro version lets you create and save your tweaked <code>style.css</code> files, and even generate your own child themes!',
     'benefits' => '<li>Ability to generate and download <code>style.css</code> files with your modified colors.</li>
-<li>Ability to create a child theme so that your changes can be applied even when the underlying theme is updated.</li>') ;
+<li>Ability to create a child theme so that your changes can be applied even when the underlying theme is updated.</li>
+<li>More color schemes.</li>') ;
 
 $myPlugins['easy-latex'] =
   array('value' => 'Easy WP LaTeX',
@@ -122,7 +127,7 @@ $myPlugins['unreal-universe'] =
     'desc' => 'will change the way you look at reality and understand the universe around you. Ever wonder why nothing can faster than light? And the Earth was void until God said "Let there be light"? Here are some of the answers.',
     'title' => '<em><strong>The Unreal Universe</strong></em> is a remarkable book on physics, philosophy and surprising interconnections among seemingly disconnected silos of human knowledge.',
     'pro' => '',
-    'isBook' => true) ;
+    'kind' => 'book') ;
 
 function renderInvite($plg, $plgName) {
   $plgLongName = $plg['value'] ;
