@@ -45,6 +45,7 @@ function makeTextWithTooltipTag($plg, $text, $tip, $title='', $width='')
   return $return ;
 }
 function renderPlg($name, $plg) {
+  $plugindir = get_option('siteurl') . '/' . PLUGINDIR . '/' .  basename(dirname(__FILE__)) ;
   if ($plg['kind'] != '' && $plg['kind'] != 'plugin') return ;
   $value = '<em><strong>'.$plg['value'].'</strong></em>';
   $desc = $plg['desc'] ;
@@ -54,9 +55,9 @@ function renderPlg($name, $plg) {
   $text = $link . $desc ;
   $price = $plg['price'] ;
   $moreInfo = "&nbsp;&nbsp;<a href='http://www.thulasidas.com/plugins/$name' title='More info about $value at Unreal Blog'>More Info</a> " ;
-  $liteVersion = "&nbsp;&nbsp; <a href='http://buy.ads-ez.com/$name/$name.zip' title='Download the Lite version of $value'>Get Lite Version</a> " ;
-  $proVersion = "&nbsp;&nbsp; <a href='http://buy.ads-ez.com/$name' title='Buy the Pro version of $value for \$$price'>Get Pro Version</a><br />" ;
-  $why = "<a href='http://buy.ads-ez.com/$name' title='Pro version of the $name plugin'><img src='https://www.paypalobjects.com/en_GB/SG/i/btn/btn_buynowCC_LG.gif' border='0' alt='PayPal — The safer, easier way to pay online.' class='alignright' /></a>
+  $liteVersion = "&nbsp;&nbsp; <a href='http://buy.thulasidas.com/$name/$name.zip' title='Download the Lite version of $value'>Get Lite Version</a> " ;
+  $proVersion = "&nbsp;&nbsp; <a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of $value for \$$price'>Get Pro Version</a><br />" ;
+  $why = "<a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of the $name plugin'><img src='$plugindir/ezpaypal.png' border='0' alt='ezPayPal -- Instant PayPal Shop.' class='alignright' /></a>
 <br />".$plg['pro'] ;
   echo "<li>" . makeTextWithTooltip($text, $title, $value, 350) .
     "<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" .
@@ -66,6 +67,7 @@ function renderPlg($name, $plg) {
     "</li>\n" ;
 }
 function renderBook($name, $plg) {
+  $plugindir = get_option('siteurl') . '/' . PLUGINDIR . '/' .  basename(dirname(__FILE__)) ;
   if ($plg['kind'] != 'book') return ;
   $value = '<em><strong>'.$plg['value'].'</strong></em>';
   $desc = $plg['desc'] ;
@@ -77,8 +79,8 @@ function renderBook($name, $plg) {
   $moreInfo = "&nbsp;&nbsp; <a href='$url' title='More info about $value at Unreal Blog'>More Info</a> " ;
   $amazon = $plg['amazon'] ;
   if (!empty($amazon)) $buyAmazon = "&nbsp;&nbsp; <a href='$amazon' title='Get $value from Amazon.com'>Get it at Amazon</a> " ;
-  $buyNow = "&nbsp;&nbsp; <a href='http://buy.ads-ez.com/$name' title='Buy and download $value for \$$price'>Buy and Download now!</a><br />" ;
-  $why = "<a href='http://buy.ads-ez.com/$name' title='$name'><img src='https://www.paypalobjects.com/en_GB/SG/i/btn/btn_buynowCC_LG.gif' border='0' alt='PayPal — The safer, easier way to pay online.' class='alignright' /></a>
+  $buyNow = "&nbsp;&nbsp; <a href='http://buy.thulasidas.com/$name' title='Buy and download $value for \$$price'>Buy and Download now!</a><br />" ;
+  $why = "<a href='http://buy.thulasidas.com/$name' title='$name'><img src='$plugindir/ezpaypal.png' border='0' alt='ezPayPal -- Instant PayPal Shop.' class='alignright' /></a>
 <br />".$title.$desc." $value costs only \$$price -- direct from the author." ;
   echo "<li>" . makeTextWithTooltip($text, $title, $value, 350) .
     "<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" .

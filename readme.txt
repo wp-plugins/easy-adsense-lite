@@ -1,12 +1,12 @@
 === Easy AdSense Lite ===
 Contributors: manojtd
-Donate link: http://buy.ads-ez.com/easy-adsense
-Tags: adsense, ad, ads, advertising, google
+Donate link: http://buy.thulasidas.com/easy-adsense
+Tags: adsense, ad, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
-Tested up to: 3.2
-Stable tag: 5.08
+Tested up to: 3.3
+Stable tag: 5.09
 
-Easy AdSense manages all aspects of Google AdSense for your blog: insert ads into posts and sidebar, and add a Google Search box. Easy and complete!
+Easy AdSense manages all aspects of Google AdSense for your blog: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
 
 == Description ==
 
@@ -32,13 +32,13 @@ Easy AdSense Lite is the freely distributed version of a premium plugin. The [Pr
 
 = New in this Release =
 
-Fixing a bug in enforcing the limit on the number of ad blocks. Updating translations.
+Updating a few translations, consolidating image resources and trimming auxiliary files. New option to suppress invitations to upgrade the plugin.
 
 == Upgrade Notice ==
 
-= 5.08 =
+= 5.09 =
 
-Fixing a bug in enforcing the limit on the number of ad blocks. Updating translations.
+Updating a few translations, consolidating image resources and trimming auxiliary files. New option to suppress invitations to upgrade the plugin.
 
 == Screenshots ==
 
@@ -118,31 +118,11 @@ Easy AdSense now uses a paid support model. Each [support question](https://www.
 
 == Translations ==
 
-* Korean: [Jong-In Kim](iNNiS.KR "http://innis.kr/wordpress")
-* Turkish: [Omer Faruk](http://ramerta.com "Easy AdSense in Turkish (Turkce Ceviri)"), [Nurullah DEMIR](http://ndemir.com "Nurullah DEMIR"), [Murat Umutlu](http://www.simavlilar.com "Simav Sitesi Simav Bilgileri Simav Hakkõnda"), [Murat Kolukırık](http://www.sachkuafor.com "Sach ® Kuaför Saç Kaynak Merkezi").
-* Spanish: [Joaquin R. Rizer](http://www.shanky.com.ar "Joaquin R. Rizer"), [Maikel Frias](http://www.maikeladas.es "Maikel Frias"), [Argelio D&Atilde;&shy;az](http://www.goymad.com "El Ca&Atilde;&plusmn;izo"), [MaLk Gopher](http://malk-gopher.com/blog "MaLk Gopher & Friends"), [Pablog Pabloixx](http://rockstarunder.com.ar "RockStar Under"), [Navarra-Tu poblacion](http://navarra.tupoblacion.com "Navarra-Tu poblacion"), [Federico](http://www.posadasgalipan.com "Posadas Galipan"), [J. Marcos Troncoso](http://www.yanotesigue.com "@YaNoTeSigue"), [Jesús Ángel del Pozo Domínguez](http://masters.abloque.com "Ciclismo máster"), [Alberto Montoya](http://www.twittplaya.com "Twitt Playa")
-* Portuguese: `pt_BR`: [Maicon Vieira](http://maiconvieira.com "Maicon Vieira"), [Blog da Associação Atlética Portuguesa MK](http://portuguesamk.com "Blog da Associação Atlética Portuguesa MK"), [Ivan Carlos](http://www.icarlos.net "Ivan Carlos"), [Carlos Henrique](http://www.nuncapare.com "NuncaPare"), [Murillo Ferrari](http://www.cparadiso.com.br "Cinema Paradiso"), [Eduardo Dantas Correia](http://eduardo.dantascorreia.com.br "Eduardo Dantas Correia"), [Leandro Vilela](http://www.vilela.pro.br "Leandro Vilela ._."), [Rubens Souza](http://www.panguo.com.br "Panguo"). `pt_PT`: [Rui Macdonald](http://ruimacdonald.com/wordpress "Rui Macdonald"), [jatefoste](http://jatefoste.com "Notícias sobre as últimas novidades tecnológicas"), [Tiago Alves](http://www.ptbyte.net/home ":::PTBYTE:::")
-* Italian: [Angelo D Agostino](http://www.console-war.com "Angelo D Agostino"), [NokiaSymbian](http://www.nokiasymbian.it/wp "NokiaSymbian"), Saverio Tonno, [Fabio Napoleoni](http://techblog.zenit.org "Fabio's Tech Blog"), [Miglioriamo Velletri](http://www.miglioriamovelletri.it "Miglioriamo Velletri"), [Guadagno Col Web](http://www.guadagnoiocolweb.com "Guadagno Col Web"), [Federico](http://www.vitadapapa.it "Vita da Papà"),[Mondodecal](http://www.mondodecal.com "Mondodecal").
-* Bahasa Indonesia: [Hendry](http://debuk.com/ "Hendry"), [Percikan Info](http://gemparuang.com/new "Percikan Info").
-* Belarusian: [Marcis Gasuns](http://www.fatcow.com/ "Marcis Gasuns").
-* German: [Ole Emken](http://www.ganz-einfach.com "GANZ EINFACH"), [Andre Foltys](http://www.kindergarten-tip.de "Kindergarten-Tip.de"), [Mathias Roth](http://trade-service.eu "Service Center Weserstrasse"), [Albrecht Boucher](http://albrechtboucher.harth-server.de "Albrecht Boucher Blog"), Vincent Kollin.
-* Chinese: `zh_CN`: [Akii Snow](http://www.akii.org "Akii Snow"), [ShenMeng](http://shenmeng.org "ShenMeng"), [Joojen](http://www.keege.com "Joojen"), [http://imxiaoku.co.cc](http://imxiaoku.co.cc "http://imxiaoku.co.cc"). `zh_TW`: [AKiRA](http://akr.tw/ "AKiRA"), [人已散。曲未终。](http://leots.me "人已散。曲未终。")
-* Russian: ["ARCHIPOD"](http://archipod.ru "Vitaliy Alt"), [VN STUDIA](http://vlad.arvixe.ru, "VN-STUDIA") [be-os.ru](http://www.be-os.ru "be-os.ru"), [Алексей Ермаков](http://niagarin.ru "NiagariN.ru")
-* Arabic: [Aadil Ennia](http://www.darfx.com "Forex Home"), [Ahmed Ashraf](http://www.aatkcoblog.com "Aatkco Blog")
-* French: [Pierric DOMMEC](http://www.nos-comportements.fr "Nos Comportements")
-* Polish: [Daniel Fruzynski](http://www.poradnik-webmastera.com/ "Sir Zooro")
-* Ukrainian: [Vitalij](http://wpp.pp.ua "WordPress Plugins Ukraine")
-* Norwegian: [Terje Storsanden](http://www.storsanden.com/blog "Terje Storsanden")
-* Thai: [Poonyapat Wichuma](http://www.newbiesbiz.com/ "Guide to success in your e-commerce business."), [Viruscom2](http://Viruscom2.com "Viruscom2")
-* Danish: [Georg S. Adamsen](http://wordpress.blogos.dk/2009/10/27/google-adsense-plugins-pa-dansk/ "Georg S. Adamsen"), [Morten Beutelmann](http://www.team-devo.dk "Devotion").
-* Iranean: [Soheil](http://sabzclick.com/blog "soheil")
-* Romanian: `ro_RO` [Bican Valeriu Marian](http://3d-paradise.co.cc "3D-Paradise"), [Anunturi Jibo](http://www.jibo.ro "jIBO.ro")
-PS: Plugin author does not endorse any of the translators' websites, nor is he responsible for the contents therein.
-
 A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Translator* interface that will make the maintenance of translations a breeze. Please take a look (by following the link on the plugin admin page inviting you to improve the existing translation) and update your translations, when you get a chance. This translation interface works only on WP2.8+; please report any issues you encounter so that I can improve it. Thanks!
 
 == Change Log ==
 
+* V5.09: Updating a few translations, consolidating image resources and trimming auxiliary files. New option to suppress invitations to upgrade the plugin. [Mar 20, 2012]
 * V5.08: Fixing a bug in enforcing the limit on the number of ad blocks. Updating translations. [Jan 8, 2012]
 * V5.07: Minor fixes. [Nov 16, 2011]
 * V5.06: Code clean up -- removing unused functions, indenting the code. [Nov 15, 2011]

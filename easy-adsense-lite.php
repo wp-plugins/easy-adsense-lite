@@ -3,7 +3,7 @@
 Plugin Name: Easy AdSense Lite
 Plugin URI: http://www.thulasidas.com/adsense
 Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense Lite</a>.
-Version: 5.08
+Version: 5.09
 Author: Manoj Thulasidas
 Author URI: http://www.thulasidas.com
 */
@@ -99,7 +99,6 @@ if (!class_exists("ezAdSense")) {
 
       $ezAdSenseAdminOptions =
         array('info' => "<!-- Easy AdSense V4.00 -->\n",
-          'policy' => 'unknown',
           'show_leadin' => 'float:right',
           'wc_leadin' => 0,
           'margin_leadin' => 12,
@@ -136,6 +135,7 @@ if (!class_exists("ezAdSense")) {
           'border_widget' => false,
           'border_lu' => false,
           'limit_lu' => 1,
+          'kill_invites' => false,
           'kill_attach' => false,
           'kill_home' => false,
           'kill_front' => false,
@@ -194,8 +194,6 @@ if (!class_exists("ezAdSense")) {
       $ezAdOptions = $this->getAdminOptions();
 
       if (isset($_POST['update_ezAdSenseSettings'])) {
-        if (isset($_POST['ezAdSensePolicy']))
-          $ezAdOptions['policy'] = $_POST['ezAdSensePolicy'];
         if (isset($_POST['ezAdSenseShowLeadin']))
           $ezAdOptions['show_leadin'] = $_POST['ezAdSenseShowLeadin'];
         if (isset($_POST['ezAdSenseTextLeadin']))
@@ -253,6 +251,8 @@ if (!class_exists("ezAdSense")) {
             $title = $_POST['ezAdSearchTitle'];
           $ezAdOptions['title_gsearch'] = $title;
         }
+        if (isset($_POST['killInvites']))
+          $ezAdOptions['kill_invites'] = $_POST['killInvites'];
         $ezAdOptions['kill_gsearch_title'] = isset($_POST['ezAdKillSearchTitle']);
         if (isset($_POST['ezAdSenseTextGSearch']))
           $ezAdOptions['text_gsearch'] = $_POST['ezAdSenseTextGSearch'];

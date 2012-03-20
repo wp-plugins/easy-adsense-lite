@@ -2,7 +2,7 @@
 
 $myPlugins = array() ;
 
-$needPHP53 = ' <p> <font color="#c00">Note that this plugin requires PHPv5.3+. Please use the Lite version first to ensure that it works before buying the Pro version. If it does not work on your web host, consider the amazing <a href="http://buy.ads-ez.com/easy-adsense/" title=The most popular plugin to insert AdSense on your blog"><em><strong>Easy AdSense Pro</strong></em></a> for all your advertising needs. It can insert non-AdSense blocks as well.</font></p>' ;
+$needPHP53 = ' <p> <font color="#c00">Note that this plugin requires PHPv5.3+. Please use the Lite version first to ensure that it works before buying the Pro version. If it does not work on your web host, consider the amazing <a href="http://buy.thulasidas.com/easy-adsense/" title="The most popular plugin to insert AdSense on your blog"><em><strong>Easy AdSense Pro</strong></em></a> for all your advertising needs. It can insert non-AdSense blocks as well.</font></p>' ;
 
 $myPlugins['easy-adsense'] =
   array('value' => 'Easy AdSense',
@@ -45,29 +45,6 @@ $myPlugins['easy-ads'] =
     'desc' => 'showcases AdSense and its alternatives on your blog',
     'title' => '<em><strong>Easy Ads</strong></em> provides a unified and intuitive interface to manage multiple ad providers on your blog. It lets you insert ads provided by <a href="http://www.clicksor.com/pub/index.php?ref=105268" title="Careful, do not double-date with AdSense and Clicksor, they get very jealous of each other!">Clicksor</a>, <a href="http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&amp;Ref_PID=229404" title="Another fine ad provider">BidVertiser</a> or <a href="http://chitika.com/publishers.php?refid=manojt" title="Compatible with AdSense">Chitika</a> into your existing and future blog posts and pages.',
     'pro' => 'The Lite version of <em><strong>Easy Ads</strong></em> is fully functional.  In the Pro version, you get a filter to minimize the chance of your AdSense and other accounts getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to Google and others. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm (for each provider). The Pro version also gives you control over other global options like activating and deactivating various ad providers, resetting all options etc. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons the ad providers may ban you.' . $needPHP53) ;
-
-$myPlugins['easy-chitika'] =
-  array('value' => 'Easy Chitika',
-    'support' => 'K2XN646VT5LVQ',
-    'price' => '4.95',
-    'share' => true,
-    'long' => false,
-    'blurb' => '<em><strong>Easy Chitika</strong></em> is an specialized, single-provider version of <em><strong>Easy Ads</strong></em>. If you are planning to use more than two providers, it may be easier and more economical to use <em><strong>Easy Ads</strong></em>. <em><strong>Easy Chitika</strong></em> ',
-    'desc' => 'provides you with a fully streamlined interface to manage Chitika ads on your blog.',
-    'title' => '<a href="http://chitika.com/publishers.php?refid=manojt" title="Compatible with AdSense">Chitika</a> is a good option if you want to supplement your AdSense income. <a href="http://buy.ads-ez.com/plugins/easy-chitika/" title="A new plugin to handle Chitika"><em><strong>Easy Chitika</strong></em></a> provides you with a specialized and intuitive interface to manage all aspects of Chitika ads on your blog, with size selectors, widget options, color-picker to customize your colors, etc.',
-    'pro' => 'The Lite version of <em><strong>Easy Chitika</strong></em> is fully functional.  But the Pro version gives you more features and control. In the Pro version, you get a filter to minimize the chance of your account getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to the provider. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons the ad providers may ban you.' . $needPHP53) ;
-
-$myPlugins['easy-bidvertiser'] =
-  array('value' => 'Easy BidVertiser',
-    'support' => '4W6E6JVP5RYQU',
-    'price' => '4.95',
-    'share' => true,
-    'long' => false,
-    'blurb' => '<em><strong>Easy BidVertiser</strong></em> is an specialized, single-provider version of <em><strong>Easy Ads</strong></em>. If you are planning to use more than two providers, it may be easier and more economical to use <em><strong>Easy Ads</strong></em>. <em><strong>Easy BidVertiser</strong></em> ',
-    'desc' => 'provides you with a fully streamlined interface to manage BidVertiser ads on your blog.',
-    'title' => '<a href="http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&amp;Ref_PID=229404" title="Another fine ad provider">BidVertiser</a> is another fine ad provider. <a href="http://buy.ads-ez.com/plugins/easy-bidvertiser/" title="A new plugin to handle BidVertiser"><em><strong>Easy BidVertiser</strong></em></a> gives you a good interface to manage BidVertiser ads on your blog, with sidebar widget options.',
-    'pro' => 'The Lite version of <em><strong>Easy BidVertiser</strong></em> is fully functional. But the Pro version gives you more features and control. In the Pro version, you get a filter to minimize the chance of your account getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to the provider. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons the ad providers may ban you.' . $needPHP53) ;
-
 $myPlugins['easy-google'] =
   array('value' => 'Easy Google',
     'support' => '6M4A94KQMA9UL',
@@ -76,7 +53,7 @@ $myPlugins['easy-google'] =
     'long' => false,
     'blurb' => '<em><strong>Easy Google</strong></em> is a single-provider version of <em><strong>Easy Ads</strong></em> specialized for Google AdSense serving. If you are planning to use more than two providers, it may be easier and more economical to use <em><strong>Easy Ads</strong></em>. <em><strong>Easy Google</strong></em> ',
     'desc' => 'provides you with a fully streamlined interface to manage Google AdSense on your blog.',
-    'title' => '<a href="http://buy.ads-ez.com/plugins/easy-google/" title="A new plugin to handle Google"><em><strong>Easy Google</strong></em></a> gives you a specialized and intuitive interface to manage AdSense ads on your blog, with size selectors, widget options, color-picker to customize your colors, etc. It is a new generation plugin with a fancy, tabbed interface.',
+    'title' => '<a href="http://buy.thulasidas.com/plugins/easy-google/" title="A new plugin to handle Google"><em><strong>Easy Google</strong></em></a> gives you a specialized and intuitive interface to manage AdSense ads on your blog, with size selectors, widget options, color-picker to customize your colors, etc. It is a new generation plugin with a fancy, tabbed interface.',
     'pro' => 'The Lite version of <em><strong>Easy Google</strong></em> is fully functional.  But the Pro version gives you more features and control. In the Pro version, you get a filter to minimize the chance of your AdSense account getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to Google. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you.' . $needPHP53) ;
 
 $myPlugins['theme-tweaker'] =
@@ -127,15 +104,51 @@ $myPlugins['unreal-universe'] =
     'desc' => 'will change the way you look at reality and understand the universe around you. Ever wonder why nothing can faster than light? And the Earth was void until God said "Let there be light"? Here are some of the answers.',
     'title' => '<em><strong>The Unreal Universe</strong></em> is a remarkable book on physics, philosophy and surprising interconnections among seemingly disconnected silos of human knowledge.',
     'pro' => '',
-    'kind' => 'book') ;
+    'kind' =>'book') ;
 
-function renderInvite($plg, $plgName) {
+$myPlugins['iphoto-tagger'] =
+  array('value' => 'iPhoto Tagger -- Helper for iPhoto imports',
+    'support' => '',
+    'price' => '1.99',
+    'share' => false,
+    'long' => true,
+    'blurb' => '<em><strong>iPhotoTagger</strong></em> is for the budding photographer in you. This Mac program ',
+    'desc' => 'will make your life a lot easier if you have to import your existing pohtos into your iPhoto Library. It highlights the import status of your photos using an easy-to-follow color scheme.',
+    'title' => '<em><strong>iPhoto Tagger</strong></em> is a native Mac Application to locate and tag your existing photos depending on whether they have been imported into your iPhoto Library. It first goes through your iPhoto library and catalogs what you have there. It then scans the folder you specify and compares the photos in there with those in your library. If a photo is found exactly once, it will get a Green label, so that it stands out when you browse to it in your Finder (which is Mac-talk for Windows Explorer). Similarly, if the photo appears more than once in your iPhoto library, it will be tagged in Yellow. And, going the extra-mile, iPhotoTagger will color your folder Green if all the photos within have been imported into your iPhoto library. Those folders that have been partially imported will be tagged Yellow.',
+    'pro' => 'The Lite version of <em><strong>iPhoto Tagger</strong></em> is fully functional and makes the lists of the photos to be tagged. The Pro version adds the ability to automatically label those photos using Spotlight colors so that they stand out while browsing in Finder.',
+    'kind' => 'app') ;
+
+$myPlugins['ezpaypal'] =
+  array('value' => 'ezPayPal',
+    'price' => '4.95',
+    'share' => false,
+    'long' => true,
+    'blurb' => '<em><strong>ezPayPal</strong></em> is the simplest possible way to sell your digital goods online. Do you have an application, PHP package, photograph, PDF book (or any other downloadable item) to sell? Find the set up of a shopping cart system too overwhelming? <em>ezPayPal</em> may be the right solution for you.  It ',
+    'desc' => 'gets you started with your online business. Easy and simple!',
+    'title' => '<em><strong>ezPayPal</strong></em> helps you quickly set up an online store to sell any downloadable item, where your buyers can pay for it and get an automatic, expiring download link. The whole flow is fully automated and designed to run unattended.',
+    'pro' => 'The Lite version of <em><strong>ezPayPal</strong></em> is fully functional. But the Pro version gives you more features and control. The Pro version has improved data security, sandbox mode, database backup and restore, security audit, data migration tools, template editor, email facilities, upgradeable products and so on. Please follow the more info link for details.',
+    'benefits' => '<li><em>Data Security</em>: The <em>Pro</em> version takes special measures to set up data verification links to ensure your sales data is safe and not susceptible to corruption. In technical terms, it checks for the existence of InnoDB in your MySQL installation, and uses it if found, setting up foreign keys to ensure referential integrity, and indices to guarantee performance. The Lite version uses the default MyISAM engine, fast and simple, but not exactly secure.</li>
+<li><em>Sandbox Mode</em>: In the <em>Pro</em> version, you have the option to choose PayPal sandbox mode so that you can check your setup before going live.</li>
+<li><em>DB Backup</em>: The <em>Pro</em> version has an option to generate a backup of your sales info to download to a safe location.</li>
+<li><em>DB Restore</em>: It also provides a means to restore (of course) a previously backed up data file, overwriting (or appending to, as you wish) the existing sales info.</li>
+<li><em>Security Audit</em>: The <em>Pro</em> version provides you with a tool to check your settings and installation for possible security issues.</li>
+<li><em>Data Migration</em>: Using this <em>Pro</em> tool, your database tables can be automatically upgraded to the later version without losing your sales info and other settings. You will also get sample PHP files that can be used to migrate your data from text files into the database.</li>
+<li><em>Template Editor</em>: The email body, thank you page and download display are all editable in the <em>Pro</em> version.</li>
+<li><em>Uninstall Support</em>: In the unlikely event that you want to stop using ezPayPal, this <em>Pro</em> tool can help you clean up your database by deleting all the tables created during ezPayPal installation.</li>
+<li><em>Additional Tools</em>: The <em>Pro</em> version also gives you a bunch of tools (php example files) that can help you migrate your existing sales data or product definitions.</li>
+<li><em>Email facilities</em>: You can select a number of your buyers to notify, for example, of a critical update of your products, or of a free upgrade opportunity.</li>
+<li><em>Upgradeable Products</em>: You can define products that are upgradeable. For instance, you can sell a short eBook at an introductory price. If your buyer likes it, he has the option of buying the full book by paying the difference.</li>
+',
+    'kind' => 'app') ;
+
+if (!function_exists('renderInvite')) {
+ function renderInvite($plg, $plgName) {
   $plgLongName = $plg['value'] ;
   $plgPrice = $plg['price'] ;
   $benefits = $plg['benefits'] ;
   $yesTip = sprintf(__('Buy %s Pro for $%s. Instant download.', 'easy-adsenser'),$plgLongName, $plgPrice) ;
   $yesTitle = __('Get the Pro version now!', 'easy-adsenser') ;
-  $noTip = __('Continue using the Lite version, and hide this message for now.', 'easy-adsenser') ;
+  $noTip = __('Continue using the Lite version, and hide this message forever. After clicking this button, please remember to save your options to hide this box for good.', 'easy-adsenser') ;
   $noTitle = __('Stay Lite', 'easy-adsenser') ;
   if (empty($benefits)) return ;
 echo <<<ENDINVITE
@@ -148,7 +161,7 @@ $benefits
 And much more. New features and bug fixes will first appear in the Pro version before being ported to this freely distributed Lite edition. </p>
 <input onmouseover="Tip('$yesTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$yesTitle')" onmouseout="UnTip()" type = "button" id = "ybutton" value = "Go Pro!" onclick = "buttonwhich('Yes')">
 <input onmouseover="Tip('$noTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$noTitle')" onmouseout="UnTip()" type = "button" id = "nbutton" value = "No thanks" onclick = "buttonwhich('No')">
-
+<input type="hidden" id="killInvites" name="killInvites" value="" />
 <script type = "text/javascript">
 function hideInvite() {
   document.getElementById("tnc").style.display = 'none';
@@ -156,12 +169,14 @@ function hideInvite() {
 function buttonwhich(message) {
   document.getElementById("ybutton").style.display = 'none';
   document.getElementById("nbutton").disabled = 'true';
-  document.getElementById("nbutton").value = 'Thank you for using $plgLongName Lite!';
-  setTimeout('hideInvite()', 2000);
-  if (message == 'Yes') window.open('http://buy.ads-ez.com/$plgName') ;
+  document.getElementById("killInvites").value = 'true' ;
+  document.getElementById("nbutton").value = 'Thank you for using $plgLongName Lite! Please save options to hide this box forever.';
+  setTimeout('hideInvite()', 3000);
+  if (message == 'Yes') window.open('http://buy.thulasidas.com/$plgName') ;
 }
 </script>
 </div>
 ENDINVITE;
+}
 }
 ?>

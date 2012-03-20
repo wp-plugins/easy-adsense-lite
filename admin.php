@@ -33,10 +33,11 @@ else {
 ?>
 
 <div class="wrap" id="wrapper" style="width:900px">
-    <h2 title="<?php echo $this->info(false) ?>">Easy AdSense Lite Setup <a href="http://validator.w3.org/" target="_blank"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" title="Easy AdSense Lite Admin Page is certified Valid XHTML 1.0 Transitional" height="31" width="88" class="alignright"/></a>
+    <h2 title="<?php echo $this->info(false) ?>">Easy AdSense Lite Setup
 </h2>
+<form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">
 <?php
-    renderInvite($myPlugins[$plgName], $plgName) ;
+    if (!$ezAdOptions['kill_invites']) renderInvite($myPlugins[$plgName], $plgName) ;
 ?>
 <table class="form-table">
 <tr><th scope="row"><h3><?php _e('Instructions', 'easy-adsenser') ; ?></h3></th></tr>
@@ -70,7 +71,6 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense Lit
 </tr>
 </table>
 
-<form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">
 <br />
 
 <table class="form-table">
@@ -449,9 +449,13 @@ no', 'easy-adsenser') ;?>
 <font color="red"><?php printf(__('The <b>Uninstall</b> button really kills %s after cleaning up all the options it wrote in your database. This is your only warning! Please be careful with all database operations -- keep a backup.', 'easy-adsenser'), '<em>Easy AdSense Lite</em>') ; ?></font><br />
 <b><?php _e('Kill this plugin. (Are you quite sure?)', 'easy-adsenser') ?></b></span>
 
-<div style="background-color:#cff;padding:5px;border: solid 1px;margin:5px;">
-<?php @include (dirname (__FILE__).'/why-pro.php'); ?>
-</div>
+<?php
+if (!$ezAdOptions['kill_invites'])  {
+  echo '<div style="background-color:#cff;padding:5px;border: solid 1px;margin:5px;">' ;
+  @include (dirname (__FILE__).'/why-pro.php');
+  echo '</div>' ;
+}
+?>
 
 <div style="background-color:#fcf;padding:5px;border: solid 1px;margin:5px;">
 <?php @include (dirname (__FILE__).'/support.php'); ?>
