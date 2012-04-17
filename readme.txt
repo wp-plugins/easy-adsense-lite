@@ -122,7 +122,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
-* V5.10: Updating a few translations (only change).
+* V5.10: Updating a few translations (only change). [Apr 18, 2012]
 * V5.09: Updating a few translations, consolidating image resources and trimming auxiliary files. New option to suppress invitations to upgrade the plugin. [Mar 20, 2012]
 * V5.08: Fixing a bug in enforcing the limit on the number of ad blocks. Updating translations. [Jan 8, 2012]
 * V5.07: Minor fixes. [Nov 16, 2011]
