@@ -4,9 +4,9 @@ Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, ad, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 3.3
-Stable tag: 5.09
+Stable tag: 5.10
 
-Easy AdSense manages all aspects of Google AdSense for your blog: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
+Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
 
 == Description ==
 
@@ -32,13 +32,13 @@ Easy AdSense Lite is the freely distributed version of a premium plugin. The [Pr
 
 = New in this Release =
 
-Updating a few translations, consolidating image resources and trimming auxiliary files. New option to suppress invitations to upgrade the plugin.
+Updating a few translations.
 
 == Upgrade Notice ==
 
-= 5.09 =
+= 5.10 =
 
-Updating a few translations, consolidating image resources and trimming auxiliary files. New option to suppress invitations to upgrade the plugin.
+Updating a few translations.
 
 == Screenshots ==
 
@@ -122,6 +122,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V5.10: Updating a few translations.
 * V5.09: Updating a few translations, consolidating image resources and trimming auxiliary files. New option to suppress invitations to upgrade the plugin. [Mar 20, 2012]
 * V5.08: Fixing a bug in enforcing the limit on the number of ad blocks. Updating translations. [Jan 8, 2012]
 * V5.07: Minor fixes. [Nov 16, 2011]
