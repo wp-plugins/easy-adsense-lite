@@ -1,10 +1,10 @@
-=== Easy AdSense Lite ===
+=== Easy AdSense ===
 Contributors: manojtd
 Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, ad, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 3.3
-Stable tag: 5.10
+Stable tag: 5.11
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
 
@@ -14,31 +14,31 @@ Easy AdSense provides a very easy way to generate revenue from your blog using G
 
 = Features =
 
-1. Enforces the Google policy of not more than three ad blocks per page.
+1. Enforces the Google AdSense policy of not more than three adsense blocks per page.
 2. Sidebar Widgets:
  - For AdSense for content with custom title.
  - For search with customizable text or image title.
  - For Link Units.
 3. Rich set of Options:
- - Put Link Units or Ad Blocks in header or footer.
+ - Put Link Units or AdSense Blocks in header or footer.
  - Suppress ads on all pages (as opposed to posts), or on the front/home page.
  - Add a customizable mouse-over border decoration on ad blocks.
- - Display ad blocks based on the post length.
+ - Display adsense blocks based on the post length.
 4. Control over the positioning and display of AdSense blocks in each post or page.
 5. Simplest possible configuration interface -- nothing more than cutting and pasting AdSense code, and with sensible defaults for the few options present, all with clear instructions.
 6. Internationalized (multiple languages supported).
 
-Easy AdSense Lite is the freely distributed version of a premium plugin. The [Pro version](http://buy.ads-ez.com/easy-adsense/ "Pro version of the Easy AdSense plugin") gives you more benefits. It gives you filter to ensure that your ads show only on those pages that seem to comply with Google AdSense policies, which can be important since some comments may render your pages inconsistent with those policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. Also in the works for the Pro version is a compatibility mode, which solves the issue of the ad insertion messing up your page appearances when using some  themes.
+Easy AdSense is the freely distributed version of a premium plugin. The [Pro version](http://buy.ads-ez.com/easy-adsense/ "Pro version of the Easy AdSense plugin") gives you more benefits. It gives you filter to ensure that your Google AdSense ads show only on those pages that seem to comply with Google AdSense policies, which can be important since some comments may render your pages inconsistent with those policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. Also in the works for the Pro version is a compatibility mode, which solves the issue of the ad insertion messing up your page appearances when using some  themes.
 
 = New in this Release =
 
-Updating a few translations.
+Renaming the plugin -- dropping the word Lite, and other minor documentation changes.
 
 == Upgrade Notice ==
 
-= 5.10 =
+= 5.11 =
 
-Updating a few translations.
+Renaming the plugin -- dropping the word Lite, and other minor documentation changes.
 
 == Screenshots ==
 
@@ -64,11 +64,11 @@ This seems to be a problem with some WordPress installations. I have never been 
 
 = What are the different versions of the plugin? =
 
-Easy AdSense Lite is the freely distributed version of a premium plugin. The [Pro version](https://buy.ads-ez.com/easy-adsense/ "Pro version of the Easy AdSense plugin") gives you more benefits -- lets you activate a filter to ensure that your ads show only on those pages that seem to comply with Google AdSense policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. The Pro version costs $4.95, and is appropriate if you expect to make more than $100 of ad revenue from your site.
+Easy AdSense is the freely distributed version of a premium plugin. The [Pro version](https://buy.ads-ez.com/easy-adsense/ "Pro version of the Easy AdSense plugin") gives you more benefits -- lets you activate a filter to ensure that your ads show only on those pages that seem to comply with Google AdSense policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. The Pro version costs $4.95, and is appropriate if you expect to make more than $100 of ad revenue from your site.
 
 Note that support is *not* included. Each [support question](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HYZ5AWPYSC8VA "Ask a support question via PayPal") (for both the Lite and Pro versions) will be charged at $0.95. The same charges will apply for follow-up questions as well. In other words, support pricing is on a per-question basis, not a per-issue basis.
 
-= The new placement option for lead-in ad block in the header doesn't work the way I like. Can you fix it? =
+= The new placement option for lead-in adsense block in the header doesn't work the way I like. Can you fix it? =
 
 Short answer: No, I couldn't figure out how to do it better.
 
@@ -90,9 +90,9 @@ One of my motivations in writing Easy AdSense was the fact that every time I swi
 
 But this unfortunately means that you do have to set the code *once* whenever you switch to a new theme. I suppose I could have checked your database for some other AdSense code and presented it as defaults, but such complex logic usually results in less robust programs, and pain and suffering down the road.
 
-= Can I control how the ad blocks are formatted in each page? =
+= Can I control how the adsense blocks are formatted in each page? =
 
-Yes! Now, in V2.1+, you more options [through **custom fields**] to control ad blocks in individual posts/pages. Add custom fields with keys like **adsense-top, adsense-middle, adsense-bottom, adsense-widget, adsense-search** and with values like **left, right, center** or **no** to have control how the ad blocks show up in each post or page. The value "**no**" suppresses all AdSense ad blocks in the post or page.
+Yes! Now, in V2.1+, you more options [through **custom fields**] to control adsense blocks in individual posts/pages. Add custom fields with keys like **adsense-top, adsense-middle, adsense-bottom, adsense-widget, adsense-search** and with values like **left, right, center** or **no** to have control how the Google adsense blocks show up in each post or page. The value "**no**" suppresses all AdSense ad blocks in the post or page.
 
 = I find this *easy* plugin too complex with too many options. Any alternatives? =
 
@@ -122,9 +122,10 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V5.11: Renaming the plugin -- dropping the word Lite, and other minor documentation changes. [May 7, 2012]
 * V5.10: Updating a few translations (only change). [Apr 18, 2012]
 * V5.09: Updating a few translations, consolidating image resources and trimming auxiliary files. New option to suppress invitations to upgrade the plugin. [Mar 20, 2012]
-* V5.08: Fixing a bug in enforcing the limit on the number of ad blocks. Updating translations. [Jan 8, 2012]
+* V5.08: Fixing a bug in enforcing the limit on the number of adsense blocks. Updating translations. [Jan 8, 2012]
 * V5.07: Minor fixes. [Nov 16, 2011]
 * V5.06: Code clean up -- removing unused functions, indenting the code. [Nov 15, 2011]
 * V5.05: Minor bug fixes. [Nov 15, 2011]
@@ -158,21 +159,21 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 * V2.91: Updated some translations and added a new reminder on Google policy. [May 20, 2010]
 * V2.90: Updated the Russian translation. [Apr 10, 2010]
 * V2.89: Updated translations (`da_DK`,`pt_PT` and  `es_ES`). [Mar 20, 2010]
-* V2.88: A minor fix on the number of ad blocks on a page. [Mar 6, 2010]
+* V2.88: A minor fix on the number of adsense blocks on a page. [Mar 6, 2010]
 * V2.87: Disabling ads in feeds if header placements are chosen (bug fix). Adding warning on potential incompatibility between some header/footer position options and other WordPress widgets/plugins. [Feb 9, 2010]
 * V2.86: Re-enabling header options: Above/below header options stopped working in WP2.91. Here is a fix.[Jan 30, 2010]
 * V2.85: Minor bug fixes: some margin settings (on widget and link-unit) were not updating. [Jan 27, 2010]
-* V2.84: New feature: Display ad blocks based on the post length. Possible bug fix: suppress RSS feeds filtering. [Jan 22, 2010]
+* V2.84: New feature: Display adsense blocks based on the post length. Possible bug fix: suppress RSS feeds filtering. [Jan 22, 2010]
 * V2.83: Bug fix (ads on admin pages). New translation (Danish `da_DK`). Updating several translations. [Dec 10, 2009]
-* V2.82: Option to suppress in-line style statements so that you can use your style.css to control the ad blocks. Updating a few translations (`tr_TR`, `de_DE`). [Oct 25, 2009]
-* V2.81: New text wrapping options around ad blocks. Updating a few translations (`es_ES`, `zh_CN`), and releasing Norwegian (`nb_NO`), and Thai (`th_TH`). [Oct 14, 2009]
+* V2.82: Option to suppress in-line style statements so that you can use your style.css to control the adsense blocks. Updating a few translations (`tr_TR`, `de_DE`). [Oct 25, 2009]
+* V2.81: New text wrapping options around adsense blocks. Updating a few translations (`es_ES`, `zh_CN`), and releasing Norwegian (`nb_NO`), and Thai (`th_TH`). [Oct 14, 2009]
 * V2.80: Code clean up, updated Italian and new Ukrainian (`uk_UA`) translations. [Sept 24, 2009]
 * V2.79: Updating some translations (`es_ES`, `pt_BR`, `de_DE`). [Sept 7, 2009]
 * V2.78: More translations. Minor bug fixes (to silence `WP_DEBUG` warnings). [Sept 1, 2009]
 * V2.77: French Translation, finally! [August 22, 2009]
 * V2.76: Releasing new Arabic, and updated German and Indonesian translations. [Aug 19, 2009]
 * V2.75: Improvements on the header and footer options. Partially switching to ClickBank for the donated ad slots. Releasing more translations. [August 10, 2009]
-* V2.73: A long overdue option for putting ad blocks near the header and footer. Preparation to use other ad providers (ClickBank for now) in the donated ad slots. [August 2, 2009]
+* V2.73: A long overdue option for putting adsense blocks near the header and footer. Preparation to use other ad providers (ClickBank for now) in the donated ad slots. [August 2, 2009]
 * V2.72: A bug fix related to suppressing the search box and link units titles. [July 30, 2009]
 * V2.71: Option to tweak the margins on ad-blocks, as requested by some users. [July 29, 2009]
 * V2.70: New option to suppress widget titles. [July 25, 2009]

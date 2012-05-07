@@ -33,7 +33,7 @@ else {
 ?>
 
 <div class="wrap" id="wrapper" style="width:900px">
-    <h2 title="<?php echo $this->info(false) ?>">Easy AdSense Lite Setup
+    <h2 title="<?php echo $this->info(false) ?>">Easy AdSense Setup
 </h2>
 <form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">
 <?php
@@ -48,7 +48,7 @@ else {
 <li>
 <a href="#" title="<?php _e('Click for help', 'easy-adsenser') ; ?>" onclick="TagToTip('help0',WIDTH, 300, TITLE, '<?php _e('How to Set it up', 'easy-adsenser') ; ?>', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 15, 5])">
 <?php
-printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense Lite</em>') ;
+printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em>') ;
 ?></a><br />
 </li>
 <li>
@@ -446,7 +446,7 @@ no', 'easy-adsenser') ;?>
 <b><?php _e('Discard all your changes and load defaults. (Are you quite sure?)', 'easy-adsenser') ?></b></span>
 
 <span id="help5">
-<font color="red"><?php printf(__('The <b>Uninstall</b> button really kills %s after cleaning up all the options it wrote in your database. This is your only warning! Please be careful with all database operations -- keep a backup.', 'easy-adsenser'), '<em>Easy AdSense Lite</em>') ; ?></font><br />
+<font color="red"><?php printf(__('The <b>Uninstall</b> button really kills %s after cleaning up all the options it wrote in your database. This is your only warning! Please be careful with all database operations -- keep a backup.', 'easy-adsenser'), '<em>Easy AdSense</em>') ; ?></font><br />
 <b><?php _e('Kill this plugin. (Are you quite sure?)', 'easy-adsenser') ?></b></span>
 
 <?php
@@ -468,7 +468,7 @@ if (!$ezAdOptions['kill_invites'])  {
 <tr><td>
 <ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >
 <li>
-<?php printf(__('%s uses the excellent Javascript/DHTML tooltips by %s', 'easy-adsenser'), '<b>Easy Adsense Lite</b>', '<a href="http://www.walterzorn.com" target="_blank" title="Javascript, DTML Tooltips"> Walter Zorn</a>.') ;
+<?php printf(__('%s uses the excellent Javascript/DHTML tooltips by %s', 'easy-adsenser'), '<b>Easy Adsense</b>', '<a href="http://www.walterzorn.com" target="_blank" title="Javascript, DTML Tooltips"> Walter Zorn</a>.') ;
 ?>
 </li>
 </ul>

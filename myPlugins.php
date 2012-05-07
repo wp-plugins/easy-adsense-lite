@@ -2,7 +2,7 @@
 
 $myPlugins = array() ;
 
-$needPHP53 = ' <p> <font color="#c00">Note that this plugin requires PHPv5.3+. Please use the Lite version first to ensure that it works before buying the Pro version. If it does not work on your web host, consider the amazing <a href="http://buy.thulasidas.com/easy-adsense/" title="The most popular plugin to insert AdSense on your blog"><em><strong>Easy AdSense Pro</strong></em></a> for all your advertising needs. It can insert non-AdSense blocks as well.</font></p>' ;
+$needPHP53 = ' <p> <font color="#c00">Note that this plugin requires PHPv5.0+. Please use the Lite version first to ensure that it works before buying the Pro version. If it does not work on your web host, consider the amazing <a href="http://buy.thulasidas.com/easy-adsense/" title="The most popular plugin to insert AdSense on your blog"><em><strong>Easy AdSense Pro</strong></em></a> for all your advertising needs. It can insert non-AdSense blocks as well.</font></p>' ;
 
 $myPlugins['easy-adsense'] =
   array('value' => 'Easy AdSense',
