@@ -67,6 +67,11 @@ function renderProText($name, $plg) {
   echo "</div>" ;
 }
 
+function renderAffiliate() {
+  $plugindir = get_option('siteurl') . '/' . PLUGINDIR . '/' .  basename(dirname(__FILE__)) ;
+  echo "<div style='padding:0px;border:none; width:300px' id='support' onmouseover=\"Tip('<b>ezAffiliates</b>: The most affiliate-centric revenue sharing model on the Web. Finally, you can make some serious returns on your web presence.<br /><b>Generous 50% Commission</b>: perhaps the highest rate of revenue sharing on the web. With just a couple of sales of this plugin, you will have recovered your purchase price!<br /><b>$10 Minimum Payout</b> so that you will not be waiting forever before you qualify for payment.<br /><b>Lifetime Tracking</b>: ezAffiliates uses cookie-less tracking technology to attribute every purchase of your lead to your account. Whatever your leads buy from us, whenever they do, will earn you commission. No cookie expiry!<br /><b>High Quality Products</b> such as this plugin, and other premium plugins and PHP packages.<br /><b>Diverse Markets</b>: Bloggers who blog about plugins, PayPal integration, affiliate marketing, MacOS apps and even eBooks will find ezAffiliates attractive and more effective that their current ad campaigns.', WIDTH, 295, TITLE, 'ezAffiliates', FIX, [this, 0, 0])\" onmouseout=\"UnTip()\" ><a href='http://affiliates.thulasidas.com'><img src='$plugindir/invite.gif' /></a></div>" ;
+}
+
 function renderSupportText($name, $plg, $long=true) {
   $value = '<em><strong>'.$plg['value'].'</strong></em>';
   $supportText = "<div style=\"background-color:#cff;padding:5px;border: solid 1px\" id=\"support\"><b>Support $value. <a href=\"http://buy.thulasidas.com/$name\" title=\"Pro version of this plugin. Instant download link.\">Go Pro!</a></b>" ;
@@ -167,13 +172,16 @@ ENDDIVS;
 
 echo '<td width="30%">' ;
 
-renderSupportText($plgName, $myPlugins[$plgName], $myPlugins[$plgName]['long']) ;
+if (rand(0,2) % 2) {
+  renderSupportText($plgName, $myPlugins[$plgName], $myPlugins[$plgName]['long']) ;
+  renderTipDivs($name) ;
+}
+else renderAffiliate() ;
 
 echo '</td>' ;
 echo '<td width="30%">' ;
 
 renderProText($plgName, $myPlugins[$plgName]) ;
-renderTipDivs($name) ;
 
 echo '</td>' ;
 

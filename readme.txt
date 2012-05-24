@@ -1,10 +1,10 @@
 === Easy AdSense ===
 Contributors: manojtd
-Donate link: http://buy.thulasidas.com/easy-adsense
+Donate link: http://affiliates.thulasidas.com/
 Tags: adsense, ad, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 3.3
-Stable tag: 5.11
+Stable tag: 5.12
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
 
@@ -28,17 +28,17 @@ Easy AdSense provides a very easy way to generate revenue from your blog using G
 5. Simplest possible configuration interface -- nothing more than cutting and pasting AdSense code, and with sensible defaults for the few options present, all with clear instructions.
 6. Internationalized (multiple languages supported).
 
-Easy AdSense is the freely distributed version of a premium plugin. The [Pro version](http://buy.ads-ez.com/easy-adsense/ "Pro version of the Easy AdSense plugin") gives you more benefits. It gives you filter to ensure that your Google AdSense ads show only on those pages that seem to comply with Google AdSense policies, which can be important since some comments may render your pages inconsistent with those policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. Also in the works for the Pro version is a compatibility mode, which solves the issue of the ad insertion messing up your page appearances when using some  themes.
+Easy AdSense is the freely distributed version of a premium plugin. The [Pro version](http://buy.thulasidas.com/easy-adsense "Pro version of the Easy AdSense plugin") gives you more benefits. It gives you filter to ensure that your Google AdSense ads show only on those pages that seem to comply with Google AdSense policies, which can be important since some comments may render your pages inconsistent with those policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. Also in the works for the Pro version is a compatibility mode, which solves the issue of the ad insertion messing up your page appearances when using some  themes.
 
 = New in this Release =
 
-Renaming the plugin -- dropping the word Lite, and other minor documentation changes.
+Documentation and admin updates. Translation interface changes.
 
 == Upgrade Notice ==
 
-= 5.11 =
+= 5.12 =
 
-Renaming the plugin -- dropping the word Lite, and other minor documentation changes.
+Documentation and admin updates. Translation interface changes.
 
 == Screenshots ==
 
@@ -64,7 +64,7 @@ This seems to be a problem with some WordPress installations. I have never been 
 
 = What are the different versions of the plugin? =
 
-Easy AdSense is the freely distributed version of a premium plugin. The [Pro version](https://buy.ads-ez.com/easy-adsense/ "Pro version of the Easy AdSense plugin") gives you more benefits -- lets you activate a filter to ensure that your ads show only on those pages that seem to comply with Google AdSense policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. The Pro version costs $4.95, and is appropriate if you expect to make more than $100 of ad revenue from your site.
+Easy AdSense is the freely distributed version of a premium plugin. The [Pro version](https://buy.thulasidas.com/easy-adsense "Pro version of the Easy AdSense plugin") gives you more benefits -- lets you activate a filter to ensure that your ads show only on those pages that seem to comply with Google AdSense policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. The Pro version costs $4.95, and is appropriate if you expect to make more than $100 of ad revenue from your site.
 
 Note that support is *not* included. Each [support question](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HYZ5AWPYSC8VA "Ask a support question via PayPal") (for both the Lite and Pro versions) will be charged at $0.95. The same charges will apply for follow-up questions as well. In other words, support pricing is on a per-question basis, not a per-issue basis.
 
@@ -122,6 +122,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V5.12: Documentation and admin updates. Translation interface changes. [May 24, 2012]
 * V5.11: Renaming the plugin -- dropping the word Lite, and other minor documentation changes. [May 7, 2012]
 * V5.10: Updating a few translations (only change). [Apr 18, 2012]
 * V5.09: Updating a few translations, consolidating image resources and trimming auxiliary files. New option to suppress invitations to upgrade the plugin. [Mar 20, 2012]
