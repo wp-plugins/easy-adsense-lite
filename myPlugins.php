@@ -146,22 +146,22 @@ if (!function_exists('renderInvite')) {
   $plgLongName = $plg['value'] ;
   $plgPrice = $plg['price'] ;
   $benefits = $plg['benefits'] ;
-  $yesTip = sprintf(__('Buy %s Pro for $%s. Instant download.', 'easy-adsenser'),$plgLongName, $plgPrice) ;
+  $yesTip = sprintf(__('Buy %s Pro for $%s. PayPal payment. Instant download.', 'easy-adsenser'),$plgLongName, $plgPrice) ;
   $yesTitle = __('Get the Pro version now!', 'easy-adsenser') ;
-  $noTip = __('Continue using the Lite version, and hide this message forever. After clicking this button, please remember to save your options to hide this box for good.', 'easy-adsenser') ;
+  $noTip = __('Continue using the Lite version, and hide this message. After clicking this button, please remember to save your options to hide this box for good.', 'easy-adsenser') ;
   $noTitle = __('Stay Lite', 'easy-adsenser') ;
   if (empty($benefits)) return ;
 echo <<<ENDINVITE
-<div style="background-color:#fdd;border: solid 1px #f00; padding:5px" id="tnc">
+<input type="hidden" id="killInvites" name="killInvites" value="" />
+<div class="updated" id="tnc">
 <p><h3>Want More Features? <a href="#" onmouseover="Tip('$yesTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$yesTitle')" onmouseout="UnTip()" onclick = "buttonwhich('Yes')">Go Pro!</a></h3>
 The Pro version of this plugin gives you more features and benefits. For instance,
 <ol>
 $benefits
 </ol>
 And much more. New features and bug fixes will first appear in the Pro version before being ported to this freely distributed Lite edition. </p>
-<input onmouseover="Tip('$yesTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$yesTitle')" onmouseout="UnTip()" type = "button" id = "ybutton" value = "Go Pro!" onclick = "buttonwhich('Yes')">
-<input onmouseover="Tip('$noTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$noTitle')" onmouseout="UnTip()" type = "button" id = "nbutton" value = "No thanks" onclick = "buttonwhich('No')">
-<input type="hidden" id="killInvites" name="killInvites" value="" />
+<input onmouseover="Tip('$yesTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$yesTitle')" onmouseout="UnTip()" type = "button" id = "ybutton" value = "Go Pro!" onclick = "buttonwhich('Yes')" />
+<input onmouseover="Tip('$noTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$noTitle')" onmouseout="UnTip()" type = "button" id = "nbutton" value = "No thanks" onclick = "buttonwhich('No')" />
 <script type = "text/javascript">
 function hideInvite() {
   document.getElementById("tnc").style.display = 'none';
@@ -170,8 +170,8 @@ function buttonwhich(message) {
   document.getElementById("ybutton").style.display = 'none';
   document.getElementById("nbutton").disabled = 'true';
   document.getElementById("killInvites").value = 'true' ;
-  document.getElementById("nbutton").value = 'Thank you for using $plgLongName Lite! Please save options to hide this box forever.';
-  setTimeout('hideInvite()', 3000);
+  document.getElementById("nbutton").value = 'Thank you for using $plgLongName! Please save options to hide this box forever';
+  setTimeout('hideInvite()', 5000);
   if (message == 'Yes') window.open('http://buy.thulasidas.com/$plgName') ;
 }
 </script>
@@ -179,4 +179,40 @@ function buttonwhich(message) {
 ENDINVITE;
 }
 }
+if (!function_exists('renderRating')) {
+   function renderRating($plg, $plgName) {
+     $plgDir = dirname(__FILE__) ;
+     $plgCTime = filemtime($plgDir) ;
+     $days = ( $plgCTime - time() )/ 60/60/24 ;
+     $plgLongName = $plg['value'] ;
+     $hideTip = __('Click the link to hide this box. After clicking this link, please remember to save your options to hide this box for good.', 'easy-adsenser') ;
+     if (time() > $plgCTime + (60*60*24*30))
+       $msg = "You've installed this plugin over a month ago." ;
+     else
+       $msg = "You will find it feature-rich and robust." ;
+     $plg = basename($plgDir) ;
+echo <<<ENDRATING
+<div class='updated' id='rating'>
+<p>Thanks for using <i><b>$plgLongName</b></i>! $msg<br />
+If it works and your are satisfied, why not <a href='http://wordpress.org/extend/plugins/$plg/'>rate it</a>
+and <a href='http://wordpress.org/extend/plugins/$plg/'>recommend it</a> to others? :-)
+<a id='hideRating' href='#' style='float:right; display:block; border:none;'  onmouseover="Tip('$hideTip', WIDTH, 200, CLICKCLOSE, true, TITLE, 'Hide this Box')" onmouseout="UnTip()" onclick = "hideme()">
+<small style='font-weight:normal;'>Don't show this anymore</small></a></p></div>
+<input type="hidden" id="killRating" name="killRating" value="" />
+<script type = "text/javascript">
+function hideRating() {
+  document.getElementById("rating").style.display = 'none';
+}
+function hideme() {
+  document.getElementById("killRating").value = 'true' ;
+  document.getElementById("hideRating").innerHTML = 'Please hit the "Save Changes" button below to hide this box forever';
+  setTimeout('hideRating()', 4000);
+}
+</script>
+ENDRATING;
+ }
+}
 ?>
+
+
+

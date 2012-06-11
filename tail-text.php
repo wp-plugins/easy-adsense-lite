@@ -90,20 +90,11 @@ function renderBook($name, $plg) {
     "</li>\n" ;
 }
 ?>
-<?php
-?>
-<span id="rate">
-<iframe src="http://wordpress.org/extend/plugins/<?php echo $plgName ; ?>-lite" width="1000px" height="1000px">
-</iframe>
-</span>
 
 <table class="form-table" >
 <tr>
 <td>
 <ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >
-  <li><a href="#" onclick="TagToTip('rate', TITLE, 'WordPress: <?php echo $myPlugins[$plgName] ;?> Lite', STICKY, 1, CLOSEBTN, true, FIX, [25, 25])"><font color="red">If you like this plugin, please give it a 5* rating.</font></a> People tend to vote or comment only when something doesn't work, and it skews the overall rating. Please do your bit to unskew it!</li>
-<li>
-<?php _e('Please report any problems. And share your thoughts and comments.', 'easy-adsenser') ; ?>&nbsp;<a href="http://wordpress.org/tags/<?php echo $plgName . "-lite" ; ?>" title="<?php _e('Post it in the WordPress forum', 'easy-adsenser') ; ?>" target="_blank"><?php _e("[WordPress Forum]", 'easy-adsenser') ?> </a>
 <li>
   If you need support, please read more information about <a href="http://www.Thulasidas.com/plugins/<?php echo $plgName ; ?>-more#FAQ" target="_blank" title="<?php _e('Go to the plugin description page', 'easy-adsenser') ; ?>"><?php echo $myPlugins[$plgName]['value'] ; ?></a> first -- in particular, the FAQ section.
 </li>

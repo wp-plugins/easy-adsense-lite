@@ -35,8 +35,10 @@ else {
 <div class="wrap" id="wrapper" style="width:900px">
     <h2 title="<?php echo $this->info(false) ?>">Easy AdSense Setup
 </h2>
+
 <form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">
 <?php
+    if (!$ezAdOptions['kill_rating']) renderRating($myPlugins[$plgName], $plgName) ;
     if (!$ezAdOptions['kill_invites']) renderInvite($myPlugins[$plgName], $plgName) ;
 ?>
 <table class="form-table">
@@ -58,10 +60,6 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 <li>
 <a href="#" title="<?php _e('Click for help', 'easy-adsenser') ; ?>" onclick="TagToTip('help1a',WIDTH, 300, TITLE, '<?php _e('All-in-One AdSense Control', 'easy-adsenser') ; ?>', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 15, 5])">
 <?php _e('Sidebar Widgets, Link Units or Google Search', 'easy-adsenser') ;?></a><br />
-</li>
-<li>
-<a href="#" title="<?php _e('Click for help', 'easy-adsenser') ; ?>" onclick="TagToTip('rate', TITLE, 'WordPress: Easy AdSense', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [25, 25])">
-<?php _e('Check out the FAQ and rate this plugin.', 'easy-adsenser') ;?></a><br />
 </li>
 </ul>
 </td>
