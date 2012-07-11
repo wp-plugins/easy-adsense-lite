@@ -170,9 +170,9 @@ function buttonwhich(message) {
   document.getElementById("ybutton").style.display = 'none';
   document.getElementById("nbutton").disabled = 'true';
   document.getElementById("killInvites").value = 'true' ;
-  document.getElementById("nbutton").value = 'Thank you for using $plgLongName! Please save options to hide this box forever';
   setTimeout('hideInvite()', 5000);
   if (message == 'Yes') window.open('http://buy.thulasidas.com/$plgName') ;
+  if (message == 'No') document.getElementById("nbutton").value = 'Thank you for using $plgLongName! Please save options to hide this box forever';
 }
 </script>
 </div>

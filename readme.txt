@@ -3,8 +3,8 @@ Contributors: manojtd
 Donate link: http://affiliates.thulasidas.com/
 Tags: adsense, ad, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
-Tested up to: 3.3
-Stable tag: 5.13
+Tested up to: 3.4
+Stable tag: 5.14
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
 
@@ -14,31 +14,31 @@ Easy AdSense provides a very easy way to generate revenue from your blog using G
 
 = Features =
 
-1. Enforces the Google AdSense policy of not more than three adsense blocks per page.
-2. Sidebar Widgets:
+1. Easy AdSense enforces the Google AdSense policy of not more than three adsense blocks per page.
+2. Easy Adsense provides Sidebar Widgets:
  - For AdSense for content with custom title.
  - For search with customizable text or image title.
  - For Link Units.
-3. Rich set of Options:
+3. Easy AdSense has a rich set of Options:
  - Put Link Units or AdSense Blocks in header or footer.
  - Suppress ads on all pages (as opposed to posts), or on the front/home page.
  - Add a customizable mouse-over border decoration on ad blocks.
  - Display adsense blocks based on the post length.
-4. Control over the positioning and display of AdSense blocks in each post or page.
-5. Simplest possible configuration interface -- nothing more than cutting and pasting AdSense code, and with sensible defaults for the few options present, all with clear instructions.
-6. Internationalized (multiple languages supported).
+4. Easy AdSense lets you control over the positioning and display of AdSense blocks in each post or page.
+5. Easy AdSense sports the simplest possible configuration interface -- nothing more than cutting and pasting AdSense code, and with sensible defaults for the few options present, all with clear instructions.
+6. Easy AdSense is internationalized with multiple languages supported.
 
 Easy AdSense is the freely distributed version of a premium plugin. The [Pro version](http://buy.thulasidas.com/easy-adsense "Pro version of the Easy AdSense plugin") gives you more benefits. It gives you filter to ensure that your Google AdSense ads show only on those pages that seem to comply with Google AdSense policies, which can be important since some comments may render your pages inconsistent with those policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. Also in the works for the Pro version is a compatibility mode, which solves the issue of the ad insertion messing up your page appearances when using some  themes.
 
 = New in this Release =
 
-Updating translations. Adding some text on the admin page about rating.
+Testing compatibility with WP 3.4
 
 == Upgrade Notice ==
 
-= 5.13 =
+= 5.14 =
 
-Updating translations. Adding some text on the admin page about rating.
+Testing compatibility with WP 3.4
 
 == Screenshots ==
 
@@ -122,6 +122,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V5.14: Testing compatibility with WP 3.4. [July 10, 2012]
 * V5.13: Updating translations. Adding some text on the admin page about rating. [June 12, 2012]
 * V5.12: Documentation and admin updates. Translation interface changes. [May 24, 2012]
 * V5.11: Renaming the plugin -- dropping the word Lite, and other minor documentation changes. [May 7, 2012]
