@@ -45,6 +45,7 @@ function makeTextWithTooltipTag($plg, $text, $tip, $title='', $width='')
   return $return ;
 }
 function renderPlg($name, $plg) {
+  if (!empty($plg['hide']) && $plg['hide']) return ;
   $plugindir = get_option('siteurl') . '/' . PLUGINDIR . '/' .  basename(dirname(__FILE__)) ;
   if ($plg['kind'] != '' && $plg['kind'] != 'plugin') return ;
   $value = '<em><strong>'.$plg['value'].'</strong></em>';
@@ -102,7 +103,7 @@ function renderBook($name, $plg) {
   <?php _e("Or, if you still need help, you can raise a support question.", 'easy-adsenser') ?> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=<?php echo $myPlugins[$plgName]['support']  ; ?>" title="<?php _e('Ask a support question via PayPal @ $0.95', 'easy-adsenser') ; ?>"> <?php _e("[Request Paid Support]", 'easy-adsenser') ?></a>
 </li>
 <li>
-<?php _e('Check out my other plugin efforts:', 'easy-adsenser') ; ?>
+<?php _e('Check out my other plugin and PHP efforts:', 'easy-adsenser') ; ?>
 
 <ul style="margin-left:0px; padding-left:30px;list-style-type:square; list-style-position:inside;" >
 

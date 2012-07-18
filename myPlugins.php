@@ -2,7 +2,52 @@
 
 $myPlugins = array() ;
 
-$needPHP53 = ' <p> <font color="#c00">Note that this plugin requires PHPv5.0+. Please use the Lite version first to ensure that it works before buying the Pro version. If it does not work on your web host, consider the amazing <a href="http://buy.thulasidas.com/easy-adsense/" title="The most popular plugin to insert AdSense on your blog"><em><strong>Easy AdSense Pro</strong></em></a> for all your advertising needs. It can insert non-AdSense blocks as well.</font></p>' ;
+$needPHP5 = ' <p> <font color="#c00">Note that this plugin requires PHPv5.0+. Please use the Lite version first to ensure that it works before buying the Pro version. If it does not work on your web host, consider the amazing <a href="http://buy.thulasidas.com/easy-adsense/" title="The most popular plugin to insert AdSense on your blog"><em><strong>Easy AdSense Pro</strong></em></a> for all your advertising needs. It can insert non-AdSense blocks as well.</font></p>' ;
+
+$myPlugins['ezpaypal-pro'] =
+  array('value' => 'ezPayPal',
+    'support' => 'YBB5HXSJ97C7E',
+    'price' => '9.95',
+    'share' => false,
+    'long' => false,
+    'blurb' => '<em><strong>ezPayPal Pro</strong></em> is the simplest possible way to sell your digital goods online. This standalone PHP package ',
+    'desc' => 'helps you quickly set up an online store to sell any downloadable item, where your buyers can pay for it and get an automatic, expiring download link',
+    'title' => 'Do you have an application, PHP package, photograph, PDF book (or any other downloadable item) to sell? Find the set up of a shopping cart system too overwhelming? <em>ezPayPal</em> may be the right solution for you.',
+    'pro' => 'The Pro version adds a whole slew of features: Data Security, Sandbox Mode, Template Editors, Automatic Handling of returns, refunds, e-chques etc, Sales Editor, Email Tools, Product Version support, Batch Product File Uploads, Data backup/restore/migration tools and so on. It can also be enhanced with optional modules like Affiliate Package, Reporting Tools etc. This powerful and professional package  provides you with a complete and robust solution for your online business.  <em><strong>ezPayPal Pro</strong></em> provides the most robust and feature-complete solution to sell your digital goods online. It helps you quickly set up an online store to sell any downloadable item, where your buyers can pay for it and get an automatic, expiring download link. The whole flow runs fully automated and designed to run unattended. <em><strong>ezPayPal</strong></em> manages all aspects of selling your digital goods.') ;
+
+$myPlugins['easy-ads'] =
+  array('value' => 'Easy Ads',
+    'support' => 'YBB5HXSJ97C7E',
+    'price' => '8.95',
+    'share' => true,
+    'long' => false,
+    'blurb' => '<em><strong>Easy Ads</strong></em> is a multi-provider advertising plugin. This streamlined plugin ',
+    'desc' => 'showcases AdSense and its alternatives on your blog',
+    'title' => '<em><strong>Easy Ads</strong></em> provides a unified and intuitive interface to manage multiple ad providers on your blog. It lets you insert ads provided by <a href="http://www.clicksor.com/pub/index.php?ref=105268" title="Careful, do not double-date with AdSense and Clicksor, they get very jealous of each other!">Clicksor</a>, <a href="http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&amp;Ref_PID=229404" title="Another fine ad provider">BidVertiser</a> or <a href="http://chitika.com/publishers.php?refid=manojt" title="Compatible with AdSense">Chitika</a> into your existing and future blog posts and pages.',
+    'pro' => 'The Lite version of <em><strong>Easy Ads</strong></em> is fully functional.  In the Pro version, you get a filter to minimize the chance of your AdSense and other accounts getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to Google and others. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm (for each provider). The Pro version also gives you control over other global options like activating and deactivating various ad providers, resetting all options etc. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons the ad providers may ban you.' . $needPHP5) ;
+
+$myPlugins['easy-paypal'] =
+  array('value' => 'Easy PayPal',
+    'support' => 'YBB5HXSJ97C7E',
+    'price' => '6.95',
+    'share' => false,
+    'long' => false,
+    'blurb' => '<em><strong>Easy PayPal</strong></em> is the plugin version of ezPayPal, the simplest possible way to sell your digital goods online. This premium plugin ',
+    'desc' => 'helps you quickly set up an online store to sell any downloadable item, where your buyers can pay for it and get an automatic, expiring download link',
+    'title' => 'Do you have an application, PHP package, photograph, PDF book (or any other downloadable item) to sell from your blog? Find the set up of a shopping cart system too overwhelming? <em>ezPayPal</em> may be the right solution for you.',
+    'pro' => 'The Pro version adds a whole slew of features: Data Security, Sandbox Mode, Template Editors, Automatic Handling of returns, refunds, e-chques etc, Sales Editor, Email Tools, Product Version support, Batch Product File Uploads, Data backup/restore/migration tools and so on. It can also be enhanced with optional modules like Affiliate Package, Reporting Tools etc. This powerful and professional package  provides you with a complete and robust solution for your online business.  <em><strong>ezPayPal Pro</strong></em> provides the most robust and feature-complete solution to sell your digital goods online. It helps you quickly set up an online store to sell any downloadable item, where your buyers can pay for it and get an automatic, expiring download link. The whole flow runs fully automated and designed to run unattended. <em><strong>ezPayPal</strong></em> manages all aspects of selling your digital goods.') ;
+
+$myPlugins['google-adsense'] =
+  array('value' => 'Google AdSense',
+    'support' => '6M4A94KQMA9UL',
+    'price' => '5.95',
+    'share' => true,
+    'long' => false,
+    'hide' => true,
+    'blurb' => '<em><strong>Google AdSense</strong></em> is a single-provider version of <em><strong>Easy Ads</strong></em> specialized for Google AdSense serving. If you are planning to use more than two providers, it may be easier and more economical to use <em><strong>Easy Ads</strong></em>. <em><strong>Google AdSense</strong></em> ',
+    'desc' => 'provides you with a fully streamlined interface to manage Google AdSense on your blog.',
+    'title' => '<a href="http://buy.thulasidas.com/plugins/google-adsense/" title="A new plugin to handle Google"><em><strong>Google AdSense</strong></em></a> gives you a specialized and intuitive interface to manage AdSense ads on your blog, with size selectors, widget options, color-picker to customize your colors, etc. It is a new generation plugin with a fancy, tabbed interface.',
+    'pro' => 'The Lite version of <em><strong>Google AdSense</strong></em> is fully functional.  But the Pro version gives you more features and control. In the Pro version, you get a filter to minimize the chance of your AdSense account getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to Google. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you.' . $needPHP5) ;
 
 $myPlugins['easy-adsense'] =
   array('value' => 'Easy AdSense',
@@ -34,27 +79,6 @@ $myPlugins['adsense-now'] =
     'benefits' => '<li>A safety filter to help you maintain your AdSense account standing. This fast and efficient filter will help keep your AdSense account in good standing by suppressing your ads on pages that may violate Google policies. For instance, if a visitor leaves a comment deemed offensive by Google, this filter will kick in as remove your ads from that page.</li>
 <li>Ability to suppress your ads on some IPs to prevent accidental clicks on your own ads -- one of the main reasons for getting your AdSense account banned. It will also help prevent intentional clicks (by your jealous competitor, for instance).</li>
 <li>A compatibility mode, if the ad insertion messes up the page layout. Some poorly coded themes may get your pages messed up by ad insertion. The compatibility mode will help prevent it.</li>') ;
-
-$myPlugins['easy-ads'] =
-  array('value' => 'Easy Ads',
-    'support' => 'YBB5HXSJ97C7E',
-    'price' => '8.95',
-    'share' => true,
-    'long' => false,
-    'blurb' => '<em><strong>Easy Ads</strong></em> is a multi-provider advertising plugin. This streamlined plugin ',
-    'desc' => 'showcases AdSense and its alternatives on your blog',
-    'title' => '<em><strong>Easy Ads</strong></em> provides a unified and intuitive interface to manage multiple ad providers on your blog. It lets you insert ads provided by <a href="http://www.clicksor.com/pub/index.php?ref=105268" title="Careful, do not double-date with AdSense and Clicksor, they get very jealous of each other!">Clicksor</a>, <a href="http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&amp;Ref_PID=229404" title="Another fine ad provider">BidVertiser</a> or <a href="http://chitika.com/publishers.php?refid=manojt" title="Compatible with AdSense">Chitika</a> into your existing and future blog posts and pages.',
-    'pro' => 'The Lite version of <em><strong>Easy Ads</strong></em> is fully functional.  In the Pro version, you get a filter to minimize the chance of your AdSense and other accounts getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to Google and others. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm (for each provider). The Pro version also gives you control over other global options like activating and deactivating various ad providers, resetting all options etc. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons the ad providers may ban you.' . $needPHP53) ;
-$myPlugins['easy-google'] =
-  array('value' => 'Easy Google',
-    'support' => '6M4A94KQMA9UL',
-    'price' => '4.95',
-    'share' => true,
-    'long' => false,
-    'blurb' => '<em><strong>Easy Google</strong></em> is a single-provider version of <em><strong>Easy Ads</strong></em> specialized for Google AdSense serving. If you are planning to use more than two providers, it may be easier and more economical to use <em><strong>Easy Ads</strong></em>. <em><strong>Easy Google</strong></em> ',
-    'desc' => 'provides you with a fully streamlined interface to manage Google AdSense on your blog.',
-    'title' => '<a href="http://buy.thulasidas.com/plugins/easy-google/" title="A new plugin to handle Google"><em><strong>Easy Google</strong></em></a> gives you a specialized and intuitive interface to manage AdSense ads on your blog, with size selectors, widget options, color-picker to customize your colors, etc. It is a new generation plugin with a fancy, tabbed interface.',
-    'pro' => 'The Lite version of <em><strong>Easy Google</strong></em> is fully functional.  But the Pro version gives you more features and control. In the Pro version, you get a filter to minimize the chance of your AdSense account getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to Google. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you.' . $needPHP53) ;
 
 $myPlugins['theme-tweaker'] =
   array('value' => 'Theme Tweaker',
@@ -180,8 +204,7 @@ ENDINVITE;
 }
 }
 if (!function_exists('renderRating')) {
-   function renderRating($plg, $plgName) {
-     $plgDir = dirname(__FILE__) ;
+  function renderRating($plg, $plgDir, $killable = true) {
      $plgCTime = filemtime($plgDir) ;
      $days = ( $plgCTime - time() )/ 60/60/24 ;
      $plgLongName = $plg['value'] ;
@@ -190,14 +213,15 @@ if (!function_exists('renderRating')) {
        $msg = "You've installed this plugin over a month ago." ;
      else
        $msg = "You will find it feature-rich and robust." ;
-     $plg = basename($plgDir) ;
+     $plgKey = basename($plgDir) ;
+     if (!$killable) $display = "style='display:none'" ;
 echo <<<ENDRATING
 <div class='updated' id='rating'>
 <p>Thanks for using <i><b>$plgLongName</b></i>! $msg<br />
-If it works and your are satisfied, why not <a href='http://wordpress.org/extend/plugins/$plg/'>rate it</a>
-and <a href='http://wordpress.org/extend/plugins/$plg/'>recommend it</a> to others? :-)
-<a id='hideRating' href='#' style='float:right; display:block; border:none;'  onmouseover="Tip('$hideTip', WIDTH, 200, CLICKCLOSE, true, TITLE, 'Hide this Box')" onmouseout="UnTip()" onclick = "hideme()">
-<small style='font-weight:normal;'>Don't show this anymore</small></a></p></div>
+If it works and your are satisfied, why not <a href='http://wordpress.org/extend/plugins/$plgKey/'>rate it</a>
+and <a href='http://wordpress.org/extend/plugins/$plgKey/'>recommend it</a> to others? :-)
+<small style='font-weight:normal;'><a id='hideRating' $display href='#' style='float:right; display:block; border:none;'  onmouseover="Tip('$hideTip', WIDTH, 200, CLICKCLOSE, true, TITLE, 'Hide this Box')" onmouseout="UnTip()" onclick = "hideme()">
+Don't show this anymore</a></small></p></div>
 <input type="hidden" id="killRating" name="killRating" value="" />
 <script type = "text/javascript">
 function hideRating() {
@@ -212,7 +236,3 @@ function hideme() {
 ENDRATING;
  }
 }
-?>
-
-
-

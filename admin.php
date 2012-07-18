@@ -19,7 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 @include(dirname (__FILE__).'/myPlugins.php');
-$plgName = 'easy-adsense' ;
 $ezIsPro = false;
 
 echo '<script type="text/javascript" src="'. get_option('siteurl') . '/' . PLUGINDIR . '/' .  basename(dirname(__FILE__)) . '/wz_tooltip.js"></script>' ;
@@ -38,7 +37,9 @@ else {
 
 <form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">
 <?php
-    if (!$ezAdOptions['kill_rating']) renderRating($myPlugins[$plgName], $plgName) ;
+    $plgDir = dirname(__FILE__) ;
+    $plgName = 'easy-adsense' ;
+    if (!$ezAdOptions['kill_rating']) renderRating($myPlugins[$plgName], $plgDir) ;
     if (!$ezAdOptions['kill_invites']) renderInvite($myPlugins[$plgName], $plgName) ;
 ?>
 <table class="form-table">
