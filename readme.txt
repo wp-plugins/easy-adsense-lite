@@ -4,7 +4,7 @@ Donate link: http://affiliates.thulasidas.com/
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 3.4
-Stable tag: 5.16
+Stable tag: 5.17
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
 
@@ -32,13 +32,13 @@ Easy AdSense is the freely distributed version of a premium plugin. The [Pro ver
 
 = New in this Release =
 
-Adding nl_NL translation.
+Taking care of some debug notices from WordPress debug mode.
 
 == Upgrade Notice ==
 
-= 5.16 =
+= 5.17 =
 
-Adding nl_NL translation.
+Taking care of some debug notices from WordPress debug mode.
 
 == Screenshots ==
 
@@ -67,6 +67,12 @@ This seems to be a problem with some WordPress installations. I have never been 
 Easy AdSense is the freely distributed version of a premium plugin. The [Pro version](https://buy.thulasidas.com/easy-adsense "Pro version of the Easy AdSense plugin") gives you more benefits -- lets you activate a filter to ensure that your ads show only on those pages that seem to comply with Google AdSense policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. The Pro version costs $4.95, and is appropriate if you expect to make more than $100 of ad revenue from your site.
 
 Note that support is *not* included. Each [support question](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HYZ5AWPYSC8VA "Ask a support question via PayPal") (for both the Lite and Pro versions) will be charged at $0.95. The same charges will apply for follow-up questions as well. In other words, support pricing is on a per-question basis, not a per-issue basis.
+
+= I still don't get it. Porn and site block - that you already have during Asdense ad setup? =
+
+What you have in AdSense is an ability to block ads from certain sites. For instance, if you don't like ads *from* my site "thulasidas.com", you can block them. What the pro version gives you is the ability to block ads *to* certain clients. That is, if you don't want visitors from certain IP addresses see your ads (because they may click on too many of them, getting your AdSense account banned, for instance), you can with my plugin.
+
+Porn block also is similar -- Google lets you choose non-porn ads (I think). What my plugin does is to look at the content of your page, and block ads if it looks like a porn page. (This can happen if a spammer posts a porn kind of comment on your blog, which again may get your AdSense account banned.)
 
 = The new placement option for lead-in adsense block in the header doesn't work the way I like. Can you fix it? =
 
@@ -122,6 +128,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V5.17: Taking care of some debug notices from WordPress debug mode. [Aug 27, 2012]
 * V5.16: Adding nl_NL translation. [Aug 12, 2012]
 * V5.15: Minor changes to the admin page. [July 18, 2012]
 * V5.14: Testing compatibility with WP 3.4. [July 10, 2012]
