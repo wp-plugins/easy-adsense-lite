@@ -47,7 +47,7 @@ function makeTextWithTooltipTag($plg, $text, $tip, $title='', $width='')
 function renderPlg($name, $plg) {
   if (!empty($plg['hide']) && $plg['hide']) return ;
   $plugindir = get_option('siteurl') . '/' . PLUGINDIR . '/' .  basename(dirname(__FILE__)) ;
-  if ($plg['kind'] != '' && $plg['kind'] != 'plugin') return ;
+  if (!empty($plg['kind']) && $plg['kind'] != '' && $plg['kind'] != 'plugin') return ;
   $value = '<em><strong>'.$plg['value'].'</strong></em>';
   $desc = $plg['desc'] ;
   $title = $plg['title'] ;
@@ -69,7 +69,7 @@ function renderPlg($name, $plg) {
 }
 function renderBook($name, $plg) {
   $plugindir = get_option('siteurl') . '/' . PLUGINDIR . '/' .  basename(dirname(__FILE__)) ;
-  if ($plg['kind'] != 'book') return ;
+  if (empty($plg['kind']) || $plg['kind'] != 'book') return ;
   $value = '<em><strong>'.$plg['value'].'</strong></em>';
   $desc = $plg['desc'] ;
   $title = $plg['title'] ;

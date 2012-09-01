@@ -3,7 +3,7 @@
 Plugin Name: Easy AdSense
 Plugin URI: http://www.thulasidas.com/adsense
 Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense</a>.
-Version: 5.17
+Version: 5.18
 Author: Manoj Thulasidas
 Author URI: http://www.thulasidas.com
 */
@@ -120,6 +120,7 @@ if (!class_exists("ezAdSense")) {
           'margin_lu' => 12,
           'text_lu' => $this->defaults['defaultText'],
           'title_gsearch' => '',
+          'kill_gsearch_title' => '',
           'margin_gsearch' => 0,
           'text_gsearch' => $this->defaults['defaultText'],
           'max_count' => 3,
@@ -135,6 +136,8 @@ if (!class_exists("ezAdSense")) {
           'border_widget' => false,
           'border_lu' => false,
           'limit_lu' => 1,
+          'title_lu' => '',
+          'kill_lu_title' => false,
           'kill_invites' => false,
           'kill_rating' => false,
           'kill_attach' => false,
@@ -143,7 +146,9 @@ if (!class_exists("ezAdSense")) {
           'kill_cat' => false,
           'kill_tag' => false,
           'kill_archive' => false,
-          'kill_inline' => false
+          'kill_inline' => false,
+          'kill_widget_title' => false,
+          'title_widget' => ''
               );
       $ezAdOptions = get_option($mOptions);
       if (empty($ezAdOptions)) {
@@ -269,7 +274,7 @@ if (!class_exists("ezAdSense")) {
 
         $ezAdOptions['force_midad'] = isset($_POST['ezForceMidAd']);
         $ezAdOptions['force_widget'] = isset($_POST['ezForceWidget']);
-        $ezAdOptions['allow_feeds'] = false ; // isset($_POST['ezAllowFeeds']);
+        $ezAdOptions['allow_feeds'] = isset($_POST['ezAllowFeeds']);
         $ezAdOptions['kill_pages'] = isset($_POST['ezKillPages']);
         $ezAdOptions['kill_home'] = isset($_POST['ezKillHome']);
         $ezAdOptions['kill_attach'] = isset($_POST['ezKillAttach']);
@@ -387,72 +392,38 @@ if (!class_exists("ezAdSense")) {
     function contentMeta() {
       $ezAdOptions = $this->getAdminOptions();
       global $post;
-      $meta = array() ;
-      if ($post) $meta = get_post_custom($post->ID);
-      $adkeys = array('adsense', 'adsense-top', 'adsense-middle', 'adsense-bottom') ;
-      $ezkeys = array('adsense', 'show_leadin', 'show_midtext', 'show_leadout') ;
+      $lookup = array('adsense' => 'adsense',
+                'adsense-top' =>'show_leadin',
+                'adsense-middle' => 'show_midtext',
+                'adsense-bottom' => 'show_leadout',
+                'adsense-widget' => 'show_widget',
+                'adsense-search' => 'title_gsearch',
+                'adsense-linkunits' => 'show_lu') ;
       $metaOptions = array() ;
-      // initialize to ezAdOptions
-      foreach ($ezkeys as $key => $optKey) {
-        if (isset($ezAdOptions[$optKey]))
-            $metaOptions[$ezkeys[$key]] = $ezAdOptions[$optKey] ;
-      }
-      // overwrite with custom fields
-      if (!empty($meta)) {
-        foreach ($meta as $key => $val) {
-          $tkey = array_search(strtolower(trim($key)), $adkeys) ;
-          if ($tkey !== FALSE) {
-            $value = strtolower(trim($val[0])) ;
-            // ensure valid values for options
-            if ($value == 'left' || $value == 'right'
-              || $value == 'center' || $value == 'no') {
-              if ($value == 'left' || $value == 'right') $value = 'float:' . $value ;
-              if ($value == 'center') $value = 'text-align:' . $value ;
-              $metaOptions[$ezkeys[$tkey]] = $value ;
-            }
-          }
-        }
-      }
-      return $metaOptions ;
-    }
-
-    function widgetMeta() {
-      $ezAdOptions = $this->getAdminOptions();
-      global $post;
-      $meta = get_post_custom($post->ID);
-      $adkeys = array('adsense', 'adsense-widget',
-                'adsense-search', 'adsense-linkunits') ;
-      $ezkeys = array('adsense', 'show_widget',
-                'title_gsearch', 'show_lu') ;
-      $metaOptions = array() ;
-      // initialize to ezAdOptions
-      foreach ($ezkeys as $key => $optKey) {
-        if (isset($ezAdOptions[$optKey]))
-          $metaOptions[$ezkeys[$key]] = $ezAdOptions[$optKey] ;
-      }
-      // overwrite with custom fields
-      if (!empty($meta)) {
-        foreach ($meta as $key => $val) {
-          $tkey = array_search(strtolower(trim($key)), $adkeys) ;
-          if ($tkey !== FALSE) {
-            $value = strtolower(trim($val[0])) ;
-            // ensure valid values for options
-            if ($value == 'left' || $value == 'right'
-              || $value == 'center' || $value == 'no') {
-              if ($value != 'no') $value = 'text-align:' . $value ;
-              if ($ezkeys[$tkey] != 'title_gsearch')
-                $metaOptions[$ezkeys[$tkey]] = $value ;
-            }
-          }
-        }
+      foreach ($lookup as $metaKey => $optKey) {
+        if (!empty($ezAdOptions[$optKey])) $metaOptions[$optKey] = $ezAdOptions[$optKey] ;
+        else $metaOptions[$optKey] = '' ;
+        $customStyle = get_post_custom_values($metaKey, $post->ID, true);
+        if (is_array($customStyle))
+          $metaStyle = strtolower($customStyle[0]) ;
+        else
+          $metaStyle = strtolower($customStyle) ;
+        $style = '' ;
+        if ($metaStyle == 'left')
+          $style = 'float:left;display:block;' ;
+        else if ($metaStyle == 'right')
+          $style = 'float:right;display:block;' ;
+        else if ($metaStyle == 'center')
+          $style = 'text-align:center;display:block;' ;
+        else $style = $metaStyle ;
+        if (!empty($style)) $metaOptions[$optKey] = $style ;
       }
       return $metaOptions ;
     }
 
     function ezAdSense_content($content) {
-      // if (!$ezAdOptions['allow_feeds'] && is_feed()) return $content ;
-      if (is_feed()) return $content ;
       $ezAdOptions = $this->getAdminOptions();
+      if (!$ezAdOptions['allow_feeds'] && is_feed()) return $content ;
       if ($ezAdOptions['kill_pages'] && is_page()) return $content ;
       if ($ezAdOptions['kill_attach'] && is_attachment()) return $content ;
       if ($ezAdOptions['kill_home'] && is_home()) return $content ;
@@ -642,7 +613,7 @@ if (!class_exists("ezAdSense")) {
       $ezAdOptions = $this->getAdminOptions();
       $ezAdOptions['text_widget'] =
         $this->handleDefaultText($ezAdOptions['text_widget'], '160x600') ;
-      $metaOptions = $this->widgetMeta() ;
+      $metaOptions = $this->contentMeta() ;
       if (isset($metaOptions['adsense']) && $metaOptions['adsense'] == 'no') return ;
       $show_widget = $metaOptions['show_widget'] ;
       if ($show_widget == 'no') return ;
@@ -695,9 +666,8 @@ if (!class_exists("ezAdSense")) {
       $ezAdOptions['text_lu'] =
         $this->handleDefaultText($ezAdOptions['text_lu'], '160x160') ;
       $title = empty($ezAdOptions['title_lu']) ? '' :
-        $before_title . stripslashes(htmlspecialchars($ezAdOptions['title_lu'])) .
-        $after_title ;
-      $metaOptions = $this->widgetMeta() ;
+        $before_title . stripslashes(htmlspecialchars($ezAdOptions['title_lu'])) . $after_title ;
+      $metaOptions = $this->contentMeta() ;
       if (isset($metaOptions['adsense']) && $metaOptions['adsense'] == 'no') return ;
       $show_lu = $metaOptions['show_lu'] ;
       $border = '' ;
@@ -730,7 +700,7 @@ if (!class_exists("ezAdSense")) {
       $ezAdOptions = $this->getAdminOptions();
       $ezAdOptions['text_gsearch'] =
         $this->handleDefaultText($ezAdOptions['text_gsearch'], '160x160') ;
-      $metaOptions = $this->widgetMeta() ;
+      $metaOptions = $this->contentMeta() ;
       if (isset($metaOptions['adsense']) && $metaOptions['adsense'] == 'no') return ;
       $title_gsearch = $metaOptions['title_gsearch'] ;
       if ($title_gsearch != 'no') {

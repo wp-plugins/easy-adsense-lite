@@ -92,7 +92,7 @@ $myPlugins['theme-tweaker'] =
     'pro' => 'Note that <em><strong>Theme Tweaker</strong></em> may not work with some themes. Please verify its suitability using the Lite version first. The Lite version of the plugin is fully functional. The Pro version lets you create and save your tweaked <code>style.css</code> files, and even generate your own child themes!',
     'benefits' => '<li>Ability to generate and download <code>style.css</code> files with your modified colors.</li>
 <li>Ability to create a child theme so that your changes can be applied even when the underlying theme is updated.</li>
-<li>More color schemes.</li>') ;
+<li>Scanning for *all* the style files in your theme directory to find all possible color definitions.</li>') ;
 
 $myPlugins['easy-latex'] =
   array('value' => 'Easy WP LaTeX',
@@ -214,6 +214,7 @@ if (!function_exists('renderRating')) {
      else
        $msg = "You will find it feature-rich and robust." ;
      $plgKey = basename($plgDir) ;
+     $display = '' ;
      if (!$killable) $display = "style='display:none'" ;
 echo <<<ENDRATING
 <div class='updated' id='rating'>
