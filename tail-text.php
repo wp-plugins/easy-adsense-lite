@@ -56,7 +56,7 @@ function renderPlg($name, $plg) {
   $text = $link . $desc ;
   $price = $plg['price'] ;
   $moreInfo = "&nbsp;&nbsp;<a href='http://www.thulasidas.com/plugins/$name' title='More info about $value at Unreal Blog'>More Info</a> " ;
-  $liteVersion = "&nbsp;&nbsp; <a href='http://buy.thulasidas.com/$name/$name.zip' title='Download the Lite version of $value'>Get Lite Version</a> " ;
+  $liteVersion = "&nbsp;&nbsp; <a href='http://buy.thulasidas.com/lite/$name.zip' title='Download the Lite version of $value'>Get Lite Version</a> " ;
   $proVersion = "&nbsp;&nbsp; <a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of $value for \$$price'>Get Pro Version</a><br />" ;
   $why = "<a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of the $name plugin'><img src='$plugindir/ezpaypal.png' border='0' alt='ezPayPal -- Instant PayPal Shop.' class='alignright' /></a>
 <br />".$plg['pro'] ;
