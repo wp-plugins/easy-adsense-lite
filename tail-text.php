@@ -57,7 +57,7 @@ function renderPlg($name, $plg) {
   $price = $plg['price'] ;
   $moreInfo = "&nbsp;&nbsp;<a href='http://www.thulasidas.com/plugins/$name' title='More info about $value at Unreal Blog'>More Info</a> " ;
   $liteVersion = "&nbsp;&nbsp; <a href='http://buy.thulasidas.com/lite/$name.zip' title='Download the Lite version of $value'>Get Lite Version</a> " ;
-  $proVersion = "&nbsp;&nbsp; <a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of $value for \$$price'>Get Pro Version</a><br />" ;
+  $proVersion = "&nbsp;&nbsp; <a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of $value for \$$price' onclick=\"popupwindow('http://buy.thulasidas.com/$name','Get {$plg['value']}', 1024, 768);return false;\">Get Pro Version</a><br />" ;
   $why = "<a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of the $name plugin'><img src='$plugindir/ezpaypal.png' border='0' alt='ezPayPal -- Instant PayPal Shop.' class='alignright' /></a>
 <br />".$plg['pro'] ;
   echo "<li>" . makeTextWithTooltip($text, $title, $value, 350) .
@@ -97,14 +97,10 @@ function renderBook($name, $plg) {
 <td>
 <ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >
 <li>
-  If you need support, please read more information about <a href="http://www.Thulasidas.com/plugins/<?php echo $plgName ; ?>-more#FAQ" target="_blank" title="<?php _e('Go to the plugin description page', 'easy-adsenser') ; ?>"><?php echo $myPlugins[$plgName]['value'] ; ?></a> first -- in particular, the FAQ section.
-</li>
-<li>
-  <?php _e("Or, if you still need help, you can raise a support question.", 'easy-adsenser') ?> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=<?php echo $myPlugins[$plgName]['support']  ; ?>" title="<?php _e('Ask a support question via PayPal @ $0.95', 'easy-adsenser') ; ?>"> <?php _e("[Request Paid Support]", 'easy-adsenser') ?></a>
-</li>
-<li>
 <?php _e('Check out my other plugin and PHP efforts:', 'easy-adsenser') ; ?>
-
+<script type = "text/javascript">
+function popupwindow(url, title, w, h){  var left =(screen.width/2)-(w/2);  var top =(screen.height/2)-(h/2);  return window.open(url, title,'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);}
+</script>
 <ul style="margin-left:0px; padding-left:30px;list-style-type:square; list-style-position:inside;" >
 
 <?php

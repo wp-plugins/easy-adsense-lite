@@ -352,7 +352,7 @@ Colors:&nbsp; Normal:#<input style="width:55px;text-align:center;" id="ezBorderN
 <input type="radio" id="ezAdSenseLinkMax0" name="ezAdSenseLinkMax" value="0" <?php if ($ezAdOptions['max_link'] == 0) { echo('checked="checked"'); }?> /> <?php _e('Show no links to my blog anywhere (Are you sure?!)', 'easy-adsenser') ; echo '</label>' ?>
 <br />
 <br style="line-height: 12px;" />
-<?php echo '<span onmouseover="TagToTip(\'pro\', WIDTH, 350, TITLE, \'Buy the Pro Version\',STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 5, 5])"><b>Buy the <a href="http://buy.ads-ez.com/easy-adsense" target="_blank">Pro Version</a></b><br />More features, more power!</span>' ; ?>
+<?php echo '<span onmouseover="TagToTip(\'pro\', WIDTH, 350, TITLE, \'Buy the Pro Version\',STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 5, 5])"><b>Buy the <a href="http://buy.thulasidas.com/easy-adsense" target="_blank" ' . "onclick=\"popupwindow('http://buy.thulasidas.com/easy-adsense','Get Easy AdSense Pro', 1024, 768);return false;\"" . '>Pro Version</a></b><br />More features, more power!</span>' ; ?>
 </td>
 </tr>
 </table>

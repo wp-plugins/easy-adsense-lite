@@ -1,10 +1,10 @@
 === Easy AdSense ===
 Contributors: manojtd
-Donate link: http://affiliates.thulasidas.com/
+Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 3.4
-Stable tag: 5.19
+Stable tag: 5.20
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
 
@@ -32,13 +32,13 @@ Easy AdSense is the freely distributed version of a premium plugin. The [Pro ver
 
 = New in this Release =
 
-Updating zh_CN translation.
+Admin interface modifications. Updating some translations.
 
 == Upgrade Notice ==
 
-= 5.19 =
+= 5.20 =
 
-Updating zh_CN translation.
+Admin interface modifications. Updating some translations.
 
 == Screenshots ==
 
@@ -66,7 +66,9 @@ This seems to be a problem with some WordPress installations. I have never been 
 
 Easy AdSense is the freely distributed version of a premium plugin. The [Pro version](https://buy.thulasidas.com/easy-adsense "Pro version of the Easy AdSense plugin") gives you more benefits -- lets you activate a filter to ensure that your ads show only on those pages that seem to comply with Google AdSense policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. The Pro version costs $4.95, and is appropriate if you expect to make more than $100 of ad revenue from your site.
 
-Note that support is *not* included. Each [support question](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HYZ5AWPYSC8VA "Ask a support question via PayPal") (for both the Lite and Pro versions) will be charged at $0.95. The same charges will apply for follow-up questions as well. In other words, support pricing is on a per-question basis, not a per-issue basis.
+= How can I contact the plugin author if I need help? =
+
+This plugin uses a paid support model in order to manage the support load. Each [support ticket](http://support.thulasidas.com "Ask a support question") will be charged at $0.95 for the Lite version (and for the Pro version after a short free support period). The support ticket is valid for 48 hours, and further follow-up questions will call for a new support ticket.
 
 = I still don't get it. Porn and site block - that you already have during Asdense ad setup? =
 
@@ -128,6 +130,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V5.20: Admin interface modifications. Updating some translations. [Sep 21, 2012]
 * V5.19: Updating zh_CN translation. [Sep 15, 2012]
 * V5.18: Coding improvements: refactoring, minor fixes. [Aug 30, 2012]
 * V5.17: Taking care of some debug notices from WordPress debug mode. [Aug 27, 2012]

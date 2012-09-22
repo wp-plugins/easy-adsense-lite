@@ -29,12 +29,12 @@ function renderHeadText($name, $plg) {
   $text = $link . $desc ;
   $price = $plg['price'] ;
   $moreInfo =
-    "<b><a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of $value for \$$price. Instant download link.'>Pro Version</a></b>" ;
+    "<b><a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of $value for \$$price. Instant download link.' onclick=\"popupwindow('http://buy.thulasidas.com/$name','Get {$plg['value']}', 1024, 768);return false;\">Pro Version</a></b>" ;
   $toolTip .= addslashes('<br />' . $moreInfo) ;
   $why = addslashes($plg['pro']) ;
   $version = 'Lite' ;
   echo "<b>Get Pro Version!</b>
-<a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of the $name plugin. Instant download link.'><img src='$plugindir/ezpaypal.png' border='0' alt='ezPayPal -- Instant PayPal Shop.' class='alignright'/></a>
+<a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of the $name plugin. Instant download link.' onclick=\"popupwindow('http://buy.thulasidas.com/$name','Get {$plg['value']}', 1024, 768);return false;\"><img src='$plugindir/ezpaypal.png' border='0' alt='ezPayPal -- Instant PayPal Shop.' class='alignright'/></a>
 <br />
 You are using the $version version of $value, which is also available as in a Pro version.
 <ul><li>
@@ -50,8 +50,8 @@ function renderProText($name, $plg) {
   $toolTip = $plg['title'] ;
   $price = $plg['price'] ;
   $moreInfo =
-    "&nbsp; <a href='http://buy.thulasidas.com/$name/$name.zip' title='Download the Lite version of $value'>Lite Version </a>" .
-    "&nbsp; <a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of $value for \$$price'>Pro Version</a>" ;
+    "&nbsp; <a href='http://buy.thulasidas.com/lite/$name.zip' title='Download the Lite version of $value'>Lite Version </a>" .
+    "&nbsp; <a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of $value for \$$price' onclick=\"popupwindow('http://buy.thulasidas.com/$name','Get {$plg['value']}', 1024, 768);return false;\">Pro Version</a>" ;
   $toolTip .= addslashes('<br />' . $moreInfo) ;
   $why = addslashes($plg['pro']) ;
   echo '<div style="background-color:#ffcccc;padding:5px;border: solid 1px">
@@ -60,7 +60,7 @@ function renderProText($name, $plg) {
 </center>' ;
 
   $value .= '<b><i> Lite</i></b>' ;
-  echo "Thank you for using $value. The \"Pro\" version gives you more options$filter. Consider <a href='http://buy.thulasidas.com/$name' title='Pro version of this plugin. Instant download link.'>buying it</a>. It costs only \$$price." ;
+  echo "Thank you for using $value. The \"Pro\" version gives you more options$filter. Consider <a href='http://buy.thulasidas.com/$name' title='Pro version of this plugin. Instant download link.'  onclick=\"popupwindow('http://buy.thulasidas.com/$name','Get {$plg['value']}', 1024, 768);return false;\">buying it</a>. It costs only \$$price." ;
 
   echo "<div id='pro'>" ;
   renderHeadText($name, $plg) ;
@@ -83,8 +83,8 @@ function renderSupportText($name, $plg, $long=true) {
   $supportText .= "<br />$longText<span onmouseover=\"TagToTip('arvixe', WIDTH, 300, TITLE, 'Arvixe - My favorite provider!',STICKY, 1, CLOSEBTN, true, FIX, [this, -200, 2])\"><a href='http://www.arvixe.com/1933.html' target='_blank'>just $4/month</a></span>. " ;
   if ($long) $longText = "My books on " ;
   else $longText= 'Books: ' ;
-  $supportText .= "<br />$longText<span style=\"text-decoration:underline\" onmouseover=\"TagToTip('unreal', WIDTH, 205, TITLE, 'Buy &lt;em&gt;The Unreal Universe&lt;/em&gt;',STICKY, 1, CLOSEBTN, true, FIX, [this, 5, 2])\"><b><a href='http://www.amazon.com/exec/obidos/ASIN/9810575947/unrblo-20' target='_blank'>Physics</a></b></span> or " ;
-  $supportText .= "<span style=\"text-decoration:underline\" onmouseover=\"TagToTip('pqd', WIDTH, 205, TITLE, '&lt;em&gt;Principles of Quant. Devel.&lt;/em&gt;',STICKY, 1, CLOSEBTN, true, FIX, [this, 5, 2])\"><b><a href='http://www.amazon.com/exec/obidos/ASIN/0470745703/unrblo-20' target='_blank'>Money</a></b></span>." ;
+  $supportText .= "<br />$longText<span style=\"text-decoration:underline\" onmouseover=\"TagToTip('unreal', WIDTH, 205, TITLE, 'Buy &lt;em&gt;The Unreal Universe&lt;/em&gt;',STICKY, 1, CLOSEBTN, true, FIX, [this, 5, 2])\"><b><a href='http://buy.thulasidas.com/unreal' target='_blank'>Physics &amp; Philosophy</a></b></span> or " ;
+  $supportText .= "<span style=\"text-decoration:underline\" onmouseover=\"TagToTip('pqd', WIDTH, 205, TITLE, '&lt;em&gt;Principles of Quant. Devel.&lt;/em&gt;',STICKY, 1, CLOSEBTN, true, FIX, [this, 5, 2])\"><b><a href='http://www.amazon.com/exec/obidos/ASIN/0470745703/unrblo-20' target='_blank'>Money &amp; Finance</a></b></span>." ;
   echo $supportText ;
 }
 
@@ -172,7 +172,7 @@ ENDDIVS;
 
 echo '<td width="30%">' ;
 
-if (rand(0,2) % 2) {
+if (rand(0,2) % 2 || $plgName == "easy-ads" || $plgName = "google-adsense") {
   renderSupportText($plgName, $myPlugins[$plgName], $myPlugins[$plgName]['long']) ;
   renderTipDivs($name) ;
 }
