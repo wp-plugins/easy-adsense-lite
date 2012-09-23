@@ -172,7 +172,7 @@ ENDDIVS;
 
 echo '<td width="30%">' ;
 
-if (rand(0,2) % 2 || $plgName == "easy-ads" || $plgName = "google-adsense") {
+if (rand(0,2) % 2 || $plgName == "easy-ads" || $plgName == "google-adsense") {
   renderSupportText($plgName, $myPlugins[$plgName], $myPlugins[$plgName]['long']) ;
   renderTipDivs($name) ;
 }
