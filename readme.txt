@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 3.4
-Stable tag: 5.21
+Stable tag: 5.22
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
 
@@ -32,13 +32,13 @@ Easy AdSense is the freely distributed version of a premium plugin. The [Pro ver
 
 = New in this Release =
 
-Minor bug fix.
+Adding a user support link on the admin page.
 
 == Upgrade Notice ==
 
-= 5.21 =
+= 5.22 =
 
-Minor bug fix.
+Adding a user support link on the admin page.
 
 == Screenshots ==
 
@@ -120,16 +120,13 @@ If you just created the new Google AdSense code, it may not be active yet. Googl
 
 The middle ads are designed to show up only on long posts (of more than 20 paragraphs). Use the option to force the mid-text ads (in v1.82+) to override this length check.
 
-= How do I report a bug or ask a question? =
-
-Easy AdSense now uses a paid support model. Each [support question](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HYZ5AWPYSC8VA "Ask a support question via PayPal") question is now sent along with a payment of $0.95 via a PayPal interface.
-
 == Translations ==
 
 A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Translator* interface that will make the maintenance of translations a breeze. Please take a look (by following the link on the plugin admin page inviting you to improve the existing translation) and update your translations, when you get a chance. This translation interface works only on WP2.8+; please report any issues you encounter so that I can improve it. Thanks!
 
 == Change Log ==
 
+* V5.22: Adding a user support link on the admin page. [Oct 5, 2012]
 * V5.21: Minor bug fix. [Sep 24, 2012]
 * V5.20: Admin interface modifications. Updating some translations. [Sep 21, 2012]
 * V5.19: Updating zh_CN translation. [Sep 15, 2012]
