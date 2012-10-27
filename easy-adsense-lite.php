@@ -3,7 +3,7 @@
 Plugin Name: Easy AdSense
 Plugin URI: http://www.thulasidas.com/adsense
 Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense</a>.
-Version: 5.22
+Version: 5.23
 Author: Manoj Thulasidas
 Author URI: http://www.thulasidas.com
 */
@@ -567,8 +567,9 @@ if (!class_exists("ezAdSense")) {
       // if it is an admin page, don't show ads
       if (is_admin()) return ;
       // there are issues with feeds as well
-      if (is_feed()) return  ;
-      // This is sad: Need to reconstruct $this->leadin
+      // is_feed() is not ready, because the WP query hasn't been run yet.
+      if (strpos($_SERVER['REQUEST_URI'], 'feed') !== false) return ;
+      // This is sad: Need to pre-construct $this->leadin
       $mThemeName = get_option('stylesheet') ;
       $mOptions = "ezAdSense" . $mThemeName ;
       $ezAdOptions = get_option($mOptions);

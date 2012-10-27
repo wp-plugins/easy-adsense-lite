@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 3.4
-Stable tag: 5.22
+Stable tag: 5.23
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
 
@@ -32,13 +32,13 @@ Easy AdSense is the freely distributed version of a premium plugin. The [Pro ver
 
 = New in this Release =
 
-Adding a user support link on the admin page.
+The above-header placement does not mess up the RSS feed now.
 
 == Upgrade Notice ==
 
-= 5.22 =
+= 5.23 =
 
-Adding a user support link on the admin page.
+The above-header placement does not mess up the RSS feed now.
 
 == Screenshots ==
 
@@ -126,6 +126,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V5.23: The above-header placement does not mess up the RSS feed now. [Oct 27, 2012]
 * V5.22: Adding a user support link on the admin page. [Oct 5, 2012]
 * V5.21: Minor bug fix. [Sep 24, 2012]
 * V5.20: Admin interface modifications. Updating some translations. [Sep 21, 2012]
