@@ -39,8 +39,8 @@ else {
 <?php
     $plgDir = dirname(__FILE__) ;
     $plgName = 'easy-adsense' ;
-    if (!$ezAdOptions['kill_rating']) renderRating($myPlugins[$plgName], $plgDir) ;
-    if (!$ezAdOptions['kill_invites']) renderInvite($myPlugins[$plgName], $plgName) ;
+    if (empty($this->options['kill_rating'])) renderRating($myPlugins[$plgName], $plgDir) ;
+    if (empty($this->options['kill_invites'])) renderInvite($myPlugins[$plgName], $plgName) ;
 ?>
 <table class="form-table">
 <tr><th scope="row"><h3><?php _e('Instructions', 'easy-adsenser') ; ?></h3></th></tr>
@@ -73,7 +73,7 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 <br />
 
 <table class="form-table">
-<tr><th scope="row"><h3><?php printf(__('Options (for the %s theme)', 'easy-adsenser'), $mThemeName); ?> </h3></th></tr>
+<tr><th scope="row"><h3><?php printf(__('Options (for the %s theme)', 'easy-adsenser'), get_option('stylesheet')); ?> </h3></th></tr>
 </table>
 
 <table width="100%">
@@ -111,31 +111,31 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 <td width="50%" height="220px" valign="middle">
 <b><?php _e('Lead-in AdSense Text', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Appears near the beginning of the post)', 'easy-adsenser') ; ?><br />
-<textarea cols="50" rows="15" name="ezAdSenseTextLeadin" style="width: 95%; height: 130px;"><?php echo(stripslashes(htmlspecialchars($ezAdOptions['text_leadin']))) ?></textarea>
+<textarea cols="50" rows="15" name="ezAdSenseTextLeadin" style="width: 95%; height: 130px;"><?php echo(stripslashes(htmlspecialchars($this->options['text_leadin']))) ?></textarea>
 <br />
 <b><?php _e('Ad Alignment', 'easy-adsenser') ; ?></b>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span onmouseover="Tip('<?php _e('Suppress this ad block if the post is not at least this many words long. Enter 0 or a small number if you do not want to suppress ads based on the number of words in the page/post.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Min. Word Count', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Min. Word Count', 'easy-adsenser') ; ?>: <input style="width:40px;text-align:center;" id="ezLeadInWC" name="ezLeadInWC" value="<?php echo(stripslashes(htmlspecialchars($ezAdOptions['wc_leadin'])));?>" /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span onmouseover="Tip('<?php _e('Use the margin setting to trim margins. Decreasing the margin moves the ad block left and up. Margin can be negative.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Tweak Margins', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Margin:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezLeadInMargin" name="ezLeadInMargin" value="<?php echo(stripslashes(htmlspecialchars($ezAdOptions['margin_leadin'])));?>" />px</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span onmouseover="Tip('<?php _e('Suppress this ad block if the post is not at least this many words long. Enter 0 or a small number if you do not want to suppress ads based on the number of words in the page/post.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Min. Word Count', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Min. Word Count', 'easy-adsenser') ; ?>: <input style="width:40px;text-align:center;" id="ezLeadInWC" name="ezLeadInWC" value="<?php echo(stripslashes(htmlspecialchars($this->options['wc_leadin'])));?>" /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span onmouseover="Tip('<?php _e('Use the margin setting to trim margins. Decreasing the margin moves the ad block left and up. Margin can be negative.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Tweak Margins', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Margin:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezLeadInMargin" name="ezLeadInMargin" value="<?php echo(stripslashes(htmlspecialchars($this->options['margin_leadin'])));?>" />px</span>
 <br />
 
 <label for="ezHeaderLeadin" onmouseover="Tip('<?php _e('Select where you would like to show the lead-in ad block. A placement above or below the blog header would be suitable for a wide AdSense block.', 'easy-adsenser') ; echo (htmlspecialchars('<br />Note that <b>Below Header</b> and <b>End of Page</b> options are hacks that may not be compatible with the WordPress default widget for <b>Recent Posts</b> or anything else that may use DB queries or loops. If you have problems with your sidebars and/or font sizes, please choose some other <b>Postion</b> option.')) ; ?>', WIDTH, 240, TITLE, '<?php _e('(Where to show?)', 'easy-adsenser') ?>')" onmouseout="UnTip()">
 <?php _e('Position:', 'easy-adsenser') ; ?>
 <select style="width:30%;" id="ezHeaderLeadin" name="ezHeaderLeadin">
-<option <?php if ($ezAdOptions['header_leadin'] == 'send_headers') { echo('selected="selected"'); }?> value ="send_headers"><?php _e('Above Header', 'easy-adsenser') ?></option>
-<option <?php if ($ezAdOptions['header_leadin'] == 'the_content') { echo('selected="selected"'); }?> value ="the_content"><?php _e('Below Header', 'easy-adsenser') ?></option>
-<option <?php if ($ezAdOptions['header_leadin'] == '') { echo('selected="selected"'); }?> value =""><?php _e('Beginning of Post', 'easy-adsenser') ?></option>
+<option <?php if ($this->options['header_leadin'] == 'send_headers') { echo('selected="selected"'); }?> value ="send_headers"><?php _e('Above Header', 'easy-adsenser') ?></option>
+<option <?php if ($this->options['header_leadin'] == 'the_content') { echo('selected="selected"'); }?> value ="the_content"><?php _e('Below Header', 'easy-adsenser') ?></option>
+<option <?php if ($this->options['header_leadin'] == '') { echo('selected="selected"'); }?> value =""><?php _e('Beginning of Post', 'easy-adsenser') ?></option>
 </select>
 </label>
 &nbsp;
 <label for="ezAdSenseShowLeadin" onmouseover="Tip('<?php _e('Decide whether to show this AdSense block, and specify how to align it.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('(Where to show?)', 'easy-adsenser') ?>')" onmouseout="UnTip()">
 <?php _e('Show:', 'easy-adsenser') ; ?>
 <select style="width:42%;" id="ezAdSenseShowLeadin" name="ezAdSenseShowLeadin">
-<option <?php if ($ezAdOptions['show_leadin'] == 'no') { echo('selected="selected"'); }?> value ="no"><?php _e('Suppress Lead-in Ad', 'easy-adsenser') ?></option>
-<option <?php if ($ezAdOptions['show_leadin'] == 'float:left') { echo('selected="selected"'); }?> value ="float:left"><?php _e('Align Left', 'easy-adsenser'); echo ', ' ; _e('Text-wrapped', 'easy-adsenser'); ?></option>
-<option <?php if ($ezAdOptions['show_leadin'] == 'text-align:left') { echo('selected="selected"'); }?> value ="text-align:left"><?php _e('Align Left', 'easy-adsenser'); echo ', ' ; _e('No wrap', 'easy-adsenser'); ?></option>
-<option <?php if ($ezAdOptions['show_leadin'] == 'text-align:center') { echo('selected="selected"'); }?> value ="text-align:center"><?php _e('Center', 'easy-adsenser') ?></option>
-<option <?php if ($ezAdOptions['show_leadin'] == 'float:right') { echo('selected="selected"'); }?> value ="float:right"><?php _e('Align Right', 'easy-adsenser'); echo ', ' ; _e('Text-wrapped', 'easy-adsenser'); ?></option>
-<option <?php if ($ezAdOptions['show_leadin'] == 'text-align:right') { echo('selected="selected"'); }?> value ="text-align:right"><?php _e('Align Rigth', 'easy-adsenser'); echo ', ' ; _e('No wrap', 'easy-adsenser'); ?></option>
+<option <?php if ($this->options['show_leadin'] == 'no') { echo('selected="selected"'); }?> value ="no"><?php _e('Suppress Lead-in Ad', 'easy-adsenser') ?></option>
+<option <?php if ($this->options['show_leadin'] == 'float:left') { echo('selected="selected"'); }?> value ="float:left"><?php _e('Align Left', 'easy-adsenser'); echo ', ' ; _e('Text-wrapped', 'easy-adsenser'); ?></option>
+<option <?php if ($this->options['show_leadin'] == 'text-align:left') { echo('selected="selected"'); }?> value ="text-align:left"><?php _e('Align Left', 'easy-adsenser'); echo ', ' ; _e('No wrap', 'easy-adsenser'); ?></option>
+<option <?php if ($this->options['show_leadin'] == 'text-align:center') { echo('selected="selected"'); }?> value ="text-align:center"><?php _e('Center', 'easy-adsenser') ?></option>
+<option <?php if ($this->options['show_leadin'] == 'float:right') { echo('selected="selected"'); }?> value ="float:right"><?php _e('Align Right', 'easy-adsenser'); echo ', ' ; _e('Text-wrapped', 'easy-adsenser'); ?></option>
+<option <?php if ($this->options['show_leadin'] == 'text-align:right') { echo('selected="selected"'); }?> value ="text-align:right"><?php _e('Align Rigth', 'easy-adsenser'); echo ', ' ; _e('No wrap', 'easy-adsenser'); ?></option>
 </select>
 </label>
 <br />
@@ -145,23 +145,23 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 <td width="50%" height="220px" valign="middle">
 <b><?php _e('Mid-Post AdSense Text', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Appears near the middle of the post)', 'easy-adsenser') ; ?><br />
-<textarea cols="50" rows="15" name="ezAdSenseTextMidtext" style="width: 95%; height: 130px;"><?php echo(stripslashes(htmlspecialchars($ezAdOptions['text_midtext']))) ?></textarea>
+<textarea cols="50" rows="15" name="ezAdSenseTextMidtext" style="width: 95%; height: 130px;"><?php echo(stripslashes(htmlspecialchars($this->options['text_midtext']))) ?></textarea>
 <br />
 <b><?php _e('Ad Alignment', 'easy-adsenser') ; ?></b>&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span onmouseover="Tip('<?php _e('Suppress this ad block if the post is not at least this many words long. Enter 0 or a small number if you do not want to suppress ads based on the number of words in the page/post.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Min. Word Count', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Min. Word Count', 'easy-adsenser') ; ?>: <input style="width:40px;text-align:center;" id="ezMidTextWC" name="ezMidTextWC" value="<?php echo(stripslashes(htmlspecialchars($ezAdOptions['wc_midtext'])));?>" /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span onmouseover="Tip('<?php _e('Use the margin setting to trim margins. Decreasing the margin moves the ad block left and up. Margin can be negative.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Tweak Margins', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Margin:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezMidTextMargin" name="ezMidTextMargin" value="<?php echo(stripslashes(htmlspecialchars($ezAdOptions['margin_midtext'])));?>" />px</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span onmouseover="Tip('<?php _e('Suppress this ad block if the post is not at least this many words long. Enter 0 or a small number if you do not want to suppress ads based on the number of words in the page/post.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Min. Word Count', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Min. Word Count', 'easy-adsenser') ; ?>: <input style="width:40px;text-align:center;" id="ezMidTextWC" name="ezMidTextWC" value="<?php echo(stripslashes(htmlspecialchars($this->options['wc_midtext'])));?>" /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span onmouseover="Tip('<?php _e('Use the margin setting to trim margins. Decreasing the margin moves the ad block left and up. Margin can be negative.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Tweak Margins', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Margin:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezMidTextMargin" name="ezMidTextMargin" value="<?php echo(stripslashes(htmlspecialchars($this->options['margin_midtext'])));?>" />px</span>
 <br />
 <label for="ezForceMidAd" onmouseover="Tip('<?php _e('Force mid-text ad (if enabled) even in short posts.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Force Mid-post Ad', 'easy-adsenser') ?>')" onmouseout="UnTip()">
-<input type="checkbox" id="ezForceMidAd" name="ezForceMidAd"  <?php if ($ezAdOptions['force_midad']) { echo('checked="checked"'); }?> /> <?php _e('Force Mid-post Ad', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" id="ezForceMidAd" name="ezForceMidAd"  <?php if ($this->options['force_midad']) { echo('checked="checked"'); }?> /> <?php _e('Force Mid-post Ad', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <label for="ezAdSenseShowMidtext" onmouseover="Tip('<?php _e('Decide whether to show this AdSense block, and specify how to align it.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('(Where to show?)', 'easy-adsenser') ?>')" onmouseout="UnTip()">
 <?php _e('Show:', 'easy-adsenser') ; ?>
 <select style="width:42%;" id="ezAdSenseShowMidtext" name="ezAdSenseShowMidtext">
-<option <?php if ($ezAdOptions['show_midtext'] == 'no') { echo('selected="selected"'); }?> value ="no"><?php _e('Suppress Mid-post Ad', 'easy-adsenser') ?></option>
-<option <?php if ($ezAdOptions['show_midtext'] == 'float:left') { echo('selected="selected"'); }?> value ="float:left"><?php _e('Align Left', 'easy-adsenser'); echo ', ' ; _e('Text-wrapped', 'easy-adsenser'); ?></option>
-<option <?php if ($ezAdOptions['show_midtext'] == 'text-align:left') { echo('selected="selected"'); }?> value ="text-align:left"><?php _e('Align Left', 'easy-adsenser'); echo ', ' ; _e('No wrap', 'easy-adsenser'); ?></option>
-<option <?php if ($ezAdOptions['show_midtext'] == 'text-align:center') { echo('selected="selected"'); }?> value ="text-align:center"><?php _e('Center', 'easy-adsenser') ?></option>
-<option <?php if ($ezAdOptions['show_midtext'] == 'float:right') { echo('selected="selected"'); }?> value ="float:right"><?php _e('Align Right', 'easy-adsenser'); echo ', ' ; _e('Text-wrapped', 'easy-adsenser'); ?></option>
-<option <?php if ($ezAdOptions['show_midtext'] == 'text-align:right') { echo('selected="selected"'); }?> value ="text-align:right"><?php _e('Align Rigth', 'easy-adsenser'); echo ', ' ; _e('No wrap', 'easy-adsenser'); ?></option>
+<option <?php if ($this->options['show_midtext'] == 'no') { echo('selected="selected"'); }?> value ="no"><?php _e('Suppress Mid-post Ad', 'easy-adsenser') ?></option>
+<option <?php if ($this->options['show_midtext'] == 'float:left') { echo('selected="selected"'); }?> value ="float:left"><?php _e('Align Left', 'easy-adsenser'); echo ', ' ; _e('Text-wrapped', 'easy-adsenser'); ?></option>
+<option <?php if ($this->options['show_midtext'] == 'text-align:left') { echo('selected="selected"'); }?> value ="text-align:left"><?php _e('Align Left', 'easy-adsenser'); echo ', ' ; _e('No wrap', 'easy-adsenser'); ?></option>
+<option <?php if ($this->options['show_midtext'] == 'text-align:center') { echo('selected="selected"'); }?> value ="text-align:center"><?php _e('Center', 'easy-adsenser') ?></option>
+<option <?php if ($this->options['show_midtext'] == 'float:right') { echo('selected="selected"'); }?> value ="float:right"><?php _e('Align Right', 'easy-adsenser'); echo ', ' ; _e('Text-wrapped', 'easy-adsenser'); ?></option>
+<option <?php if ($this->options['show_midtext'] == 'text-align:right') { echo('selected="selected"'); }?> value ="text-align:right"><?php _e('Align Rigth', 'easy-adsenser'); echo ', ' ; _e('No wrap', 'easy-adsenser'); ?></option>
 </select>
 </label>
 
@@ -171,32 +171,32 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 <td width="50%" height="250px" valign="middle">
 <b><?php _e('Post Lead-out AdSense Text', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Appears near the end of the post)', 'easy-adsenser') ; ?><br />
-<textarea cols="50" rows="15" name="ezAdSenseTextLeadout" style="width: 95%; height: 162px;"><?php echo(stripslashes(htmlspecialchars($ezAdOptions['text_leadout']))) ?></textarea>
+<textarea cols="50" rows="15" name="ezAdSenseTextLeadout" style="width: 95%; height: 162px;"><?php echo(stripslashes(htmlspecialchars($this->options['text_leadout']))) ?></textarea>
 <br />
 <b><?php _e('Ad Alignment', 'easy-adsenser') ; ?></b>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span onmouseover="Tip('<?php _e('Suppress this ad block if the post is not at least this many words long. Enter 0 or a small number if you do not want to suppress ads based on the number of words in the page/post.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Min. Word Count', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Min. Word Count', 'easy-adsenser') ; ?>: <input style="width:40px;text-align:center;" id="ezLeadOutWC" name="ezLeadOutWC" value="<?php echo(stripslashes(htmlspecialchars($ezAdOptions['wc_leadout'])));?>" /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span onmouseover="Tip('<?php _e('Use the margin setting to trim margins. Decreasing the margin moves the ad block left and up. Margin can be negative.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Tweak Margins', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Margin:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezLeadOutMargin" name="ezLeadOutMargin" value="<?php echo(stripslashes(htmlspecialchars($ezAdOptions['margin_leadout'])));?>" />px</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span onmouseover="Tip('<?php _e('Suppress this ad block if the post is not at least this many words long. Enter 0 or a small number if you do not want to suppress ads based on the number of words in the page/post.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Min. Word Count', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Min. Word Count', 'easy-adsenser') ; ?>: <input style="width:40px;text-align:center;" id="ezLeadOutWC" name="ezLeadOutWC" value="<?php echo(stripslashes(htmlspecialchars($this->options['wc_leadout'])));?>" /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span onmouseover="Tip('<?php _e('Use the margin setting to trim margins. Decreasing the margin moves the ad block left and up. Margin can be negative.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Tweak Margins', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Margin:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezLeadOutMargin" name="ezLeadOutMargin" value="<?php echo(stripslashes(htmlspecialchars($this->options['margin_leadout'])));?>" />px</span>
 <br />
 
 <label for="ezFooterLeadout" onmouseover="Tip('<?php _e('Select where you would like to show the lead-out ad block. A placement above or below the blog footer would be suitable for a wide AdSense block.', 'easy-adsenser') ; echo (htmlspecialchars('<br />Note that <b>Below Header</b> and <b>End of Page</b> options are hacks that may not be compatible with the WordPress default widget for <b>Recent Posts</b> or anything else that may use DB queries or loops. If you have problems with your sidebars and/or font sizes, please choose some other <b>Position</b> option.')) ;  ?>', WIDTH, 240, TITLE, '<?php _e('(Where to show?)', 'easy-adsenser') ?>')" onmouseout="UnTip()">
 <?php _e('Position:', 'easy-adsenser') ; ?>
 <select style="width:30%;" id="ezFooterLeadout" name="ezFooterLeadout">
-<option <?php if ($ezAdOptions['footer_leadout'] == '') { echo('selected="selected"'); }?> value =""><?php _e('End of Post', 'easy-adsenser') ?></option>
-<option <?php if ($ezAdOptions['footer_leadout'] == 'loop_end') { echo('selected="selected"'); }?> value ="loop_end"><?php _e('End of Page', 'easy-adsenser') ?></option>
-<option <?php if ($ezAdOptions['footer_leadout'] == 'get_footer') { echo('selected="selected"'); }?> value ="get_footer"><?php _e('Above Footer', 'easy-adsenser') ?></option>
-<option <?php if ($ezAdOptions['footer_leadout'] == 'wp_footer') { echo('selected="selected"'); }?> value ="wp_footer"><?php _e('Below Footer', 'easy-adsenser') ?></option>
+<option <?php if ($this->options['footer_leadout'] == '') { echo('selected="selected"'); }?> value =""><?php _e('End of Post', 'easy-adsenser') ?></option>
+<option <?php if ($this->options['footer_leadout'] == 'loop_end') { echo('selected="selected"'); }?> value ="loop_end"><?php _e('End of Page', 'easy-adsenser') ?></option>
+<option <?php if ($this->options['footer_leadout'] == 'get_footer') { echo('selected="selected"'); }?> value ="get_footer"><?php _e('Above Footer', 'easy-adsenser') ?></option>
+<option <?php if ($this->options['footer_leadout'] == 'wp_footer') { echo('selected="selected"'); }?> value ="wp_footer"><?php _e('Below Footer', 'easy-adsenser') ?></option>
 </select>
 </label>
 &nbsp;
 <label for="ezAdSenseShowLeadout" onmouseover="Tip('<?php _e('Decide whether to show this AdSense block, and specify how to align it.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('(Where to show?)', 'easy-adsenser') ?>')" onmouseout="UnTip()">
 <?php _e('Show:', 'easy-adsenser') ; ?>
 <select style="width:42%;" id="ezAdSenseShowLeadout" name="ezAdSenseShowLeadout">
-<option <?php if ($ezAdOptions['show_leadout'] == 'no') { echo('selected="selected"'); }?> value ="no"><?php _e('Suppress Lead-out Ad', 'easy-adsenser') ?></option>
-<option <?php if ($ezAdOptions['show_leadout'] == 'float:left') { echo('selected="selected"'); }?> value ="float:left"><?php _e('Align Left', 'easy-adsenser'); echo ', ' ; _e('Text-wrapped', 'easy-adsenser'); ?></option>
-<option <?php if ($ezAdOptions['show_leadout'] == 'text-align:left') { echo('selected="selected"'); }?> value ="text-align:left"><?php _e('Align Left', 'easy-adsenser'); echo ', ' ; _e('No wrap', 'easy-adsenser'); ?></option>
-<option <?php if ($ezAdOptions['show_leadout'] == 'text-align:center') { echo('selected="selected"'); }?> value ="text-align:center"><?php _e('Center', 'easy-adsenser') ?></option>
-<option <?php if ($ezAdOptions['show_leadout'] == 'float:right') { echo('selected="selected"'); }?> value ="float:right"><?php _e('Align Right', 'easy-adsenser'); echo ', ' ; _e('Text-wrapped', 'easy-adsenser'); ?></option>
-<option <?php if ($ezAdOptions['show_leadout'] == 'text-align:right') { echo('selected="selected"'); }?> value ="text-align:right"><?php _e('Align Rigth', 'easy-adsenser'); echo ', ' ; _e('No wrap', 'easy-adsenser'); ?></option>
+<option <?php if ($this->options['show_leadout'] == 'no') { echo('selected="selected"'); }?> value ="no"><?php _e('Suppress Lead-out Ad', 'easy-adsenser') ?></option>
+<option <?php if ($this->options['show_leadout'] == 'float:left') { echo('selected="selected"'); }?> value ="float:left"><?php _e('Align Left', 'easy-adsenser'); echo ', ' ; _e('Text-wrapped', 'easy-adsenser'); ?></option>
+<option <?php if ($this->options['show_leadout'] == 'text-align:left') { echo('selected="selected"'); }?> value ="text-align:left"><?php _e('Align Left', 'easy-adsenser'); echo ', ' ; _e('No wrap', 'easy-adsenser'); ?></option>
+<option <?php if ($this->options['show_leadout'] == 'text-align:center') { echo('selected="selected"'); }?> value ="text-align:center"><?php _e('Center', 'easy-adsenser') ?></option>
+<option <?php if ($this->options['show_leadout'] == 'float:right') { echo('selected="selected"'); }?> value ="float:right"><?php _e('Align Right', 'easy-adsenser'); echo ', ' ; _e('Text-wrapped', 'easy-adsenser'); ?></option>
+<option <?php if ($this->options['show_leadout'] == 'text-align:right') { echo('selected="selected"'); }?> value ="text-align:right"><?php _e('Align Rigth', 'easy-adsenser'); echo ', ' ; _e('No wrap', 'easy-adsenser'); ?></option>
 </select>
 </label>
 <br />
@@ -211,52 +211,52 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 <font size="-2"></font>
 <br />
 <label for="ezAdSenseMax3">
-<input type="radio" id="ezAdSenseMax3" name="ezAdSenseMax" value="3" <?php if ($ezAdOptions['max_count'] == 3) { echo('checked="checked"'); }?> /> <?php _e('Three ad blocks (including the side bar widget, if enabled).', 'easy-adsenser') ; ?></label><br />
+<input type="radio" id="ezAdSenseMax3" name="ezAdSenseMax" value="3" <?php if ($this->options['max_count'] == 3) { echo('checked="checked"'); }?> /> <?php _e('Three ad blocks (including the side bar widget, if enabled).', 'easy-adsenser') ; ?></label><br />
 <label for="ezAdSenseMax2">
-<input type="radio" id="ezAdSenseMax2" name="ezAdSenseMax" value="2" <?php if ($ezAdOptions['max_count'] == 2) { echo('checked="checked"'); }?> /> <?php _e('Two ad blocks.', 'easy-adsenser') ; ?></label>
+<input type="radio" id="ezAdSenseMax2" name="ezAdSenseMax" value="2" <?php if ($this->options['max_count'] == 2) { echo('checked="checked"'); }?> /> <?php _e('Two ad blocks.', 'easy-adsenser') ; ?></label>
 <label for="ezAdSenseMax1">
-<input type="radio" id="ezAdSenseMax1" name="ezAdSenseMax" value="1" <?php if ($ezAdOptions['max_count'] == 1) { echo('checked="checked"'); }?> /> <?php _e('One ad block.', 'easy-adsenser') ; ?></label>
+<input type="radio" id="ezAdSenseMax1" name="ezAdSenseMax" value="1" <?php if ($this->options['max_count'] == 1) { echo('checked="checked"'); }?> /> <?php _e('One ad block.', 'easy-adsenser') ; ?></label>
 <label for="ezAdSenseMax0">
-<input type="radio" id="ezAdSenseMax0" name="ezAdSenseMax" value="0" <?php if ($ezAdOptions['max_count'] == 0) { echo('checked="checked"'); }?> /> <?php _e('No ad blocks in posts.', 'easy-adsenser') ; ?></label><br />
+<input type="radio" id="ezAdSenseMax0" name="ezAdSenseMax" value="0" <?php if ($this->options['max_count'] == 0) { echo('checked="checked"'); }?> /> <?php _e('No ad blocks in posts.', 'easy-adsenser') ; ?></label><br />
 <label for="ezAdSenseMax9">
-<input type="radio" id="ezAdSenseMax9" name="ezAdSenseMax" value="99" <?php if ($ezAdOptions['max_count'] == 99) { echo('checked="checked"'); }?> /> <?php _e('Any number of ad blocks (At your own risk!)', 'easy-adsenser') ; ?></label><br />
+<input type="radio" id="ezAdSenseMax9" name="ezAdSenseMax" value="99" <?php if ($this->options['max_count'] == 99) { echo('checked="checked"'); }?> /> <?php _e('Any number of ad blocks (At your own risk!)', 'easy-adsenser') ; ?></label><br />
 
-<?php if (get_bloginfo('version') < 2.8) {_e('Number of Link Units widgets (&le; 3) [Google serves only three]:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezLimitLU" name="ezLimitLU" value="<?php echo(stripslashes(htmlspecialchars($ezAdOptions['limit_lu'])));?>" /><br /><br style="line-height: 3px;" /> <?php } else echo '<br style="line-height: 3px;" />' ;?>
+<?php if (get_bloginfo('version') < 2.8) {_e('Number of Link Units widgets (&le; 3) [Google serves only three]:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezLimitLU" name="ezLimitLU" value="<?php echo(stripslashes(htmlspecialchars($this->options['limit_lu'])));?>" /><br /><br style="line-height: 3px;" /> <?php } else echo '<br style="line-height: 3px;" />' ;?>
 
 <b><?php _e('Suppress AdSense Ad Blocks on:', 'easy-adsenser') ; ?></b>&nbsp;&nbsp;
-<input type="checkbox" id="ezKillPages" name="ezKillPages" value="true" <?php if ($ezAdOptions['kill_pages']) { echo('checked="checked"'); }?> /> <a href="http://codex.wordpress.org/Pages" target="_blank" title="<?php _e('Click to see the difference between posts and pages', 'easy-adsenser') ; ?>"><?php _e('Pages (Ads only on Posts)', 'easy-adsenser') ; ?></a><br />
+<input type="checkbox" id="ezKillPages" name="ezKillPages" value="true" <?php if ($this->options['kill_pages']) { echo('checked="checked"'); }?> /> <a href="http://codex.wordpress.org/Pages" target="_blank" title="<?php _e('Click to see the difference between posts and pages', 'easy-adsenser') ; ?>"><?php _e('Pages (Ads only on Posts)', 'easy-adsenser') ; ?></a><br />
 <label for="ezKillAttach" title="<?php _e('Pages that show attachments', 'easy-adsenser') ; ?>">
-<input type="checkbox" id="ezKillAttach" name="ezKillAttach" <?php if ($ezAdOptions['kill_attach']) { echo('checked="checked"'); }?> /> <?php _e('Attachment Page', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;
+<input type="checkbox" id="ezKillAttach" name="ezKillAttach" <?php if ($this->options['kill_attach']) { echo('checked="checked"'); }?> /> <?php _e('Attachment Page', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;
 <label for="ezKillHome" title="<?php _e('Home Page and Front Page are the same for most blogs', 'easy-adsenser') ; ?>">
-<input type="checkbox" id="ezKillHome" name="ezKillHome" <?php if ($ezAdOptions['kill_home']) { echo('checked="checked"'); }?> /> <?php _e('Home Page', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;
+<input type="checkbox" id="ezKillHome" name="ezKillHome" <?php if ($this->options['kill_home']) { echo('checked="checked"'); }?> /> <?php _e('Home Page', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;
 <label for="ezKillFront" title="<?php _e('Home Page and Front Page are the same for most blogs', 'easy-adsenser') ; ?>">
-<input type="checkbox" id="ezKillFront" name="ezKillFront" <?php if ($ezAdOptions['kill_front']) { echo('checked="checked"'); }?> /> <?php _e('Front Page', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;
+<input type="checkbox" id="ezKillFront" name="ezKillFront" <?php if ($this->options['kill_front']) { echo('checked="checked"'); }?> /> <?php _e('Front Page', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;
 <br />
 <label for="ezKillCat" title="<?php _e('Pages that come up when you click on category names', 'easy-adsenser') ; ?>">
-<input type="checkbox" id="ezKillCat" name="ezKillCat" <?php if ($ezAdOptions['kill_cat']) { echo('checked="checked"'); }?> /> <?php _e('Category Pages', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" id="ezKillCat" name="ezKillCat" <?php if ($this->options['kill_cat']) { echo('checked="checked"'); }?> /> <?php _e('Category Pages', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;&nbsp;&nbsp;
 <label for="ezKillTag" title="<?php _e('Pages that come up when you click on tag names', 'easy-adsenser') ; ?>">
-<input type="checkbox" id="ezKillTag" name="ezKillTag" <?php if ($ezAdOptions['kill_tag']) { echo('checked="checked"'); }?> /> <?php _e('Tag Pages', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;&nbsp;
+<input type="checkbox" id="ezKillTag" name="ezKillTag" <?php if ($this->options['kill_tag']) { echo('checked="checked"'); }?> /> <?php _e('Tag Pages', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;&nbsp;
 <label for="ezKillArchive" title="<?php _e('Pages that come up when you click on year/month archives', 'easy-adsenser') ; ?>">
-<input type="checkbox" id="ezKillArchive" name="ezKillArchive" <?php if ($ezAdOptions['kill_archive']) { echo('checked="checked"'); }?> /> <?php _e('Archive Pages', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;
+<input type="checkbox" id="ezKillArchive" name="ezKillArchive" <?php if ($this->options['kill_archive']) { echo('checked="checked"'); }?> /> <?php _e('Archive Pages', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;
 <br style="line-height: 5px;" />
 
 <b><?php _e('Other Options', 'easy-adsenser') ; ?></b><br />
 <!-- <label for="ezAllowFeeds">
-<input type="checkbox" id="ezAllowFeeds" name="ezAllowFeeds"  <?php if ($ezAdOptions['allow_feeds']) { echo('checked="checked"'); }?> /> <?php _e('Allow ad blocks in feeds. [Please report any problems with this option.]', 'easy-adsenser') ; ?></label><br /> -->
+<input type="checkbox" id="ezAllowFeeds" name="ezAllowFeeds"  <?php if ($this->options['allow_feeds']) { echo('checked="checked"'); }?> /> <?php _e('Allow ad blocks in feeds. [Please report any problems with this option.]', 'easy-adsenser') ; ?></label><br /> -->
 <label for="ezForceWidget">
-<input type="checkbox" id="ezForceWidget" name="ezForceWidget"  <?php if ($ezAdOptions['force_widget']) { echo('checked="checked"'); }?> /> <?php _e('Prioritize sidebar widget. (Always shows the widget, if enabled.)', 'easy-adsenser') ; ?></label><br />
+<input type="checkbox" id="ezForceWidget" name="ezForceWidget"  <?php if ($this->options['force_widget']) { echo('checked="checked"'); }?> /> <?php _e('Prioritize sidebar widget. (Always shows the widget, if enabled.)', 'easy-adsenser') ; ?></label><br />
 
 <label for="ezShowBorders"  onmouseover="Tip('<?php _e('Google Policy says that you may not direct user attention to the ads via arrows or other graphical gimmicks. Please convince yourself that showing a mouseover decoration does not violate this Google statement before enabling this option.', 'easy-adsenser') ?>',WIDTH, 240, TITLE, 'Your call')" onmouseout="UnTip()" >
-<input type="checkbox" id="ezShowBorders" name="ezShowBorders" <?php if ($ezAdOptions['show_borders']) { echo('checked="checked"'); }?> /> <?php _e('Show a border around the ads?', 'easy-adsenser') ; ?></label>&nbsp;
+<input type="checkbox" id="ezShowBorders" name="ezShowBorders" <?php if ($this->options['show_borders']) { echo('checked="checked"'); }?> /> <?php _e('Show a border around the ads?', 'easy-adsenser') ; ?></label>&nbsp;
 <label for="ezBorderWidget" title="<?php _e('Show the same border on the sidebar widget as well?', 'easy-adsenser') ; ?>">
-<input type="checkbox" id="ezBorderWidget" name="ezBorderWidget" <?php if ($ezAdOptions['border_widget']) { echo('checked="checked"'); }?> /> <?php _e('Widget?', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;
+<input type="checkbox" id="ezBorderWidget" name="ezBorderWidget" <?php if ($this->options['border_widget']) { echo('checked="checked"'); }?> /> <?php _e('Widget?', 'easy-adsenser') ; ?></label>&nbsp;&nbsp;
 <label for="ezBorderLU" title="<?php _e('Show the same border on the link units too?', 'easy-adsenser') ; ?>">
-<input type="checkbox" id="ezBorderLU" name="ezBorderLU" <?php if ($ezAdOptions['border_lu']) { echo('checked="checked"'); }?> /> <?php _e('Link Units?', 'easy-adsenser') ; ?></label><br />&nbsp;&nbsp;&nbsp;&nbsp;
-Width: <input style="width:25px;text-align:center;" id="ezBorderWidth" name="ezBorderWidth" value="<?php echo(stripslashes(htmlspecialchars($ezAdOptions['border_width'])));?>" />px&nbsp;&nbsp;
-Colors:&nbsp; Normal:#<input style="width:55px;text-align:center;" id="ezBorderNormal" name="ezBorderNormal" value="<?php echo(stripslashes(htmlspecialchars($ezAdOptions['border_normal'])));?>" />&nbsp;&nbsp; Hover:#<input style="width:55px;text-align:center;" id="ezBorderColor" name="ezBorderColor" value="<?php echo(stripslashes(htmlspecialchars($ezAdOptions['border_color'])));?>" /><br />
+<input type="checkbox" id="ezBorderLU" name="ezBorderLU" <?php if ($this->options['border_lu']) { echo('checked="checked"'); }?> /> <?php _e('Link Units?', 'easy-adsenser') ; ?></label><br />&nbsp;&nbsp;&nbsp;&nbsp;
+Width: <input style="width:25px;text-align:center;" id="ezBorderWidth" name="ezBorderWidth" value="<?php echo(stripslashes(htmlspecialchars($this->options['border_width'])));?>" />px&nbsp;&nbsp;
+Colors:&nbsp; Normal:#<input style="width:55px;text-align:center;" id="ezBorderNormal" name="ezBorderNormal" value="<?php echo(stripslashes(htmlspecialchars($this->options['border_normal'])));?>" />&nbsp;&nbsp; Hover:#<input style="width:55px;text-align:center;" id="ezBorderColor" name="ezBorderColor" value="<?php echo(stripslashes(htmlspecialchars($this->options['border_color'])));?>" /><br />
 
 <label for="ezKillInLine"  onmouseover="Tip('<?php _e('All &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;s that &lt;em&gt;Easy AdSense&lt;/em&gt; creates have the class attribute &lt;code&gt;adsense&lt;/code&gt;. Furthermore, they have class attributes like &lt;code&gt;adsense-leadin&lt;/code&gt;, &lt;code&gt;adsense-midtext&lt;/code&gt;, &lt;code&gt;adsense-leadout&lt;/code&gt;, &lt;code&gt;adsense-widget&lt;/code&gt; and &lt;code&gt;adsense-lu&lt;/code&gt; depending on the type. You can set the style for these classes in your theme &lt;code&gt;style.css&lt;/code&gt; to control their appearance.&lt;br /&gt;If this is all Greek to you, please leave the option unchecked.', 'easy-adsenser'); ?>',WIDTH, 290, TITLE, 'CSS vs. In-Line')" onmouseout="UnTip()" >
-<input type="checkbox" id="ezKillInLine" name="ezKillInLine"  <?php if ($ezAdOptions['kill_inline']) { echo('checked="checked"'); }?> /> <?php _e('Suppress in-line styles (Control ad-blocks using style.css)', 'easy-adsenser') ; ?></label>
+<input type="checkbox" id="ezKillInLine" name="ezKillInLine"  <?php if ($this->options['kill_inline']) { echo('checked="checked"'); }?> /> <?php _e('Suppress in-line styles (Control ad-blocks using style.css)', 'easy-adsenser') ; ?></label>
 </td>
 </tr>
 </table>
@@ -269,67 +269,67 @@ Colors:&nbsp; Normal:#<input style="width:55px;text-align:center;" id="ezBorderN
 <td width="50%" height="220px" valign="middle">
 <b><?php _e('AdSense Widget Text', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Appears in the Sidebar as a Widget)', 'easy-adsenser') ; ?><br />
-<textarea cols="50" rows="15" name="ezAdSenseTextWidget" style="width: 95%; height: 110px;"><?php echo(stripslashes(htmlspecialchars($ezAdOptions['text_widget']))) ?></textarea>
+<textarea cols="50" rows="15" name="ezAdSenseTextWidget" style="width: 95%; height: 110px;"><?php echo(stripslashes(htmlspecialchars($this->options['text_widget']))) ?></textarea>
 <br />
 <b><?php _e('Ad Alignment', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Where to show?)', 'easy-adsenser') ; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span onmouseover="Tip('<?php _e('Use the margin setting to trim margins. Decreasing the margin moves the ad block left and up. Margin can be negative.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Tweak Margins', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Margin:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezWidgetMargin" name="ezWidgetMargin" value="<?php echo(stripslashes(htmlspecialchars($ezAdOptions['margin_widget'])));?>" />px</span>
+<span onmouseover="Tip('<?php _e('Use the margin setting to trim margins. Decreasing the margin moves the ad block left and up. Margin can be negative.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Tweak Margins', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Margin:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezWidgetMargin" name="ezWidgetMargin" value="<?php echo(stripslashes(htmlspecialchars($this->options['margin_widget'])));?>" />px</span>
 <br />
 <label for="ezAdSenseShowWidget_left">
-<input type="radio" id="ezAdSenseShowWidget_left" name="ezAdSenseShowWidget" value="text-align:left" <?php if ($ezAdOptions['show_widget'] == "text-align:left") { echo('checked="checked"'); }?> /> <?php _e('Align Left', 'easy-adsenser') ; ?> </label>&nbsp;
+<input type="radio" id="ezAdSenseShowWidget_left" name="ezAdSenseShowWidget" value="text-align:left" <?php if ($this->options['show_widget'] == "text-align:left") { echo('checked="checked"'); }?> /> <?php _e('Align Left', 'easy-adsenser') ; ?> </label>&nbsp;
 <label for="ezAdSenseShowWidget_center">
-<input type="radio" id="ezAdSenseShowWidget_center" name="ezAdSenseShowWidget" value="text-align:center" <?php if ($ezAdOptions['show_widget'] == "text-align:center") { echo('checked="checked"'); }?> /> <?php _e('Center', 'easy-adsenser') ; ?> </label>&nbsp;
+<input type="radio" id="ezAdSenseShowWidget_center" name="ezAdSenseShowWidget" value="text-align:center" <?php if ($this->options['show_widget'] == "text-align:center") { echo('checked="checked"'); }?> /> <?php _e('Center', 'easy-adsenser') ; ?> </label>&nbsp;
 <label for="ezAdSenseShowWidget_right">
-<input type="radio" id="ezAdSenseShowWidget_right" name="ezAdSenseShowWidget" value="text-align:right" <?php if ($ezAdOptions['show_widget'] == "text-align:right") { echo('checked="checked"'); }?> /> <?php _e('Align Right', 'easy-adsenser') ; ?> </label>&nbsp;
+<input type="radio" id="ezAdSenseShowWidget_right" name="ezAdSenseShowWidget" value="text-align:right" <?php if ($this->options['show_widget'] == "text-align:right") { echo('checked="checked"'); }?> /> <?php _e('Align Right', 'easy-adsenser') ; ?> </label>&nbsp;
 <label for="ezAdSenseShowWidget_no">
-<input type="radio" id="ezAdSenseShowWidget_no" name="ezAdSenseShowWidget" value="no" <?php if ($ezAdOptions['show_widget'] == "no") { echo('checked="checked"'); }?> /> <?php _e('Suppress Widget', 'easy-adsenser') ; ?></label><br />
-<label for="ezAdWidgetTitle"><b><?php _e('Widget Title:', 'easy-adsenser') ; ?></b>&nbsp; <input style="width:200px" id="ezAdWidgetTitle" name="ezAdWidgetTitle" type="text" value= "<?php echo(stripslashes(htmlspecialchars($ezAdOptions['title_widget']))) ?>" /></label>&nbsp;
-<label for="ezAdKillWidgetTitle"><input type="checkbox" id="ezAdKillWidgetTitle" name="ezAdKillWidgetTitle" <?php if ($ezAdOptions['kill_widget_title']) { echo('checked="checked"'); }?> /> <?php _e('Hide Title', 'easy-adsenser') ; ?> </label>
+<input type="radio" id="ezAdSenseShowWidget_no" name="ezAdSenseShowWidget" value="no" <?php if ($this->options['show_widget'] == "no") { echo('checked="checked"'); }?> /> <?php _e('Suppress Widget', 'easy-adsenser') ; ?></label><br />
+<label for="ezAdWidgetTitle"><b><?php _e('Widget Title:', 'easy-adsenser') ; ?></b>&nbsp; <input style="width:200px" id="ezAdWidgetTitle" name="ezAdWidgetTitle" type="text" value= "<?php echo(stripslashes(htmlspecialchars($this->options['title_widget']))) ?>" /></label>&nbsp;
+<label for="ezAdKillWidgetTitle"><input type="checkbox" id="ezAdKillWidgetTitle" name="ezAdKillWidgetTitle" <?php if ($this->options['kill_widget_title']) { echo('checked="checked"'); }?> /> <?php _e('Hide Title', 'easy-adsenser') ; ?> </label>
 </td>
 </tr>
 <tr valign="top">
 <td width="50%" height="220px" valign="middle">
 <b><?php _e('AdSense Link-Units Text', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Appears in the Sidebar as  Widgets)', 'easy-adsenser') ; ?><br />
-<textarea cols="50" rows="15" name="ezAdSenseTextLU" style="width: 95%; height: 110px;"><?php echo(stripslashes(htmlspecialchars($ezAdOptions['text_lu']))) ?></textarea>
+<textarea cols="50" rows="15" name="ezAdSenseTextLU" style="width: 95%; height: 110px;"><?php echo(stripslashes(htmlspecialchars($this->options['text_lu']))) ?></textarea>
 <br />
 <b><?php _e('Ad Alignment', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Where to show?)', 'easy-adsenser') ; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span onmouseover="Tip('<?php _e('Use the margin setting to trim margins. Decreasing the margin moves the ad block left and up. Margin can be negative.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Tweak Margins', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Margin:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezLUMargin" name="ezLUMargin" value="<?php echo(stripslashes(htmlspecialchars($ezAdOptions['margin_lu'])));?>" />px</span>
+<span onmouseover="Tip('<?php _e('Use the margin setting to trim margins. Decreasing the margin moves the ad block left and up. Margin can be negative.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Tweak Margins', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Margin:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezLUMargin" name="ezLUMargin" value="<?php echo(stripslashes(htmlspecialchars($this->options['margin_lu'])));?>" />px</span>
 <br />
 <label for="ezAdSenseShowLU_left">
-<input type="radio" id="ezAdSenseShowLU_left" name="ezAdSenseShowLU" value="text-align:left" <?php if ($ezAdOptions['show_lu'] == "text-align:left") { echo('checked="checked"'); }?> /> <?php _e('Align Left', 'easy-adsenser') ; ?> </label>&nbsp;
+<input type="radio" id="ezAdSenseShowLU_left" name="ezAdSenseShowLU" value="text-align:left" <?php if ($this->options['show_lu'] == "text-align:left") { echo('checked="checked"'); }?> /> <?php _e('Align Left', 'easy-adsenser') ; ?> </label>&nbsp;
 <label for="ezAdSenseShowLU_center">
-<input type="radio" id="ezAdSenseShowLU_center" name="ezAdSenseShowLU" value="text-align:center" <?php if ($ezAdOptions['show_lu'] == "text-align:center") { echo('checked="checked"'); }?> /> <?php _e('Center', 'easy-adsenser') ; ?> </label>&nbsp;
+<input type="radio" id="ezAdSenseShowLU_center" name="ezAdSenseShowLU" value="text-align:center" <?php if ($this->options['show_lu'] == "text-align:center") { echo('checked="checked"'); }?> /> <?php _e('Center', 'easy-adsenser') ; ?> </label>&nbsp;
 <label for="ezAdSenseShowLU_right">
-<input type="radio" id="ezAdSenseShowLU_right" name="ezAdSenseShowLU" value="text-align:right" <?php if ($ezAdOptions['show_lu'] == "text-align:right") { echo('checked="checked"'); }?> /> <?php _e('Align Right', 'easy-adsenser') ; ?> </label>&nbsp;
+<input type="radio" id="ezAdSenseShowLU_right" name="ezAdSenseShowLU" value="text-align:right" <?php if ($this->options['show_lu'] == "text-align:right") { echo('checked="checked"'); }?> /> <?php _e('Align Right', 'easy-adsenser') ; ?> </label>&nbsp;
 <label for="ezAdSenseShowLU_no">
-<input type="radio" id="ezAdSenseShowLU_no" name="ezAdSenseShowLU" value="no" <?php if ($ezAdOptions['show_lu'] == "no") { echo('checked="checked"'); }?> /> <?php _e('Suppress Link Units', 'easy-adsenser') ; ?></label><br />
-<label for="ezAdLUTitle"><b><?php _e('Link Unit Title:', 'easy-adsenser') ; ?></b>&nbsp; <input style="width: 200px;" id="ezAdLUTitle" name="ezAdLUTitle" type="text" value= "<?php echo(stripslashes(htmlspecialchars($ezAdOptions['title_lu']))) ?>" /></label>
-<label for="ezAdKillLUTitle"><input type="checkbox" id="ezAdKillLUTitle" name="ezAdKillLUTitle" <?php if ($ezAdOptions['kill_lu_title']) { echo('checked="checked"'); }?> /> <?php _e('Hide Title', 'easy-adsenser') ; ?> </label>
+<input type="radio" id="ezAdSenseShowLU_no" name="ezAdSenseShowLU" value="no" <?php if ($this->options['show_lu'] == "no") { echo('checked="checked"'); }?> /> <?php _e('Suppress Link Units', 'easy-adsenser') ; ?></label><br />
+<label for="ezAdLUTitle"><b><?php _e('Link Unit Title:', 'easy-adsenser') ; ?></b>&nbsp; <input style="width: 200px;" id="ezAdLUTitle" name="ezAdLUTitle" type="text" value= "<?php echo(stripslashes(htmlspecialchars($this->options['title_lu']))) ?>" /></label>
+<label for="ezAdKillLUTitle"><input type="checkbox" id="ezAdKillLUTitle" name="ezAdKillLUTitle" <?php if ($this->options['kill_lu_title']) { echo('checked="checked"'); }?> /> <?php _e('Hide Title', 'easy-adsenser') ; ?> </label>
 </td>
 </tr>
 <tr valign="top">
 <td width="50%" height="250px" valign="middle">
 <b><?php _e('Google Search Widget', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Adds a Google Search Box to your sidebar)', 'easy-adsenser') ; ?><br />
-<textarea cols="50" rows="15" name="ezAdSenseTextGSearch" style="width: 95%; height: 110px;"><?php echo(stripslashes(htmlspecialchars($ezAdOptions['text_gsearch']))) ?></textarea>
+<textarea cols="50" rows="15" name="ezAdSenseTextGSearch" style="width: 95%; height: 110px;"><?php echo(stripslashes(htmlspecialchars($this->options['text_gsearch']))) ?></textarea>
 <br />
 <b><?php _e('Search Title', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Title of the Google Search Widget)', 'easy-adsenser') ; ?>&nbsp;&nbsp;&nbsp;&nbsp;
-<span onmouseover="Tip('<?php _e('Use the margin setting to trim margins. Decreasing the margin moves the ad block left and up. Margin can be negative.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Tweak Margins', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Margin:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezSearchMargin" name="ezSearchMargin" value="<?php echo(stripslashes(htmlspecialchars($ezAdOptions['margin_gsearch'])));?>" />px</span>
+<span onmouseover="Tip('<?php _e('Use the margin setting to trim margins. Decreasing the margin moves the ad block left and up. Margin can be negative.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Tweak Margins', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Margin:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezSearchMargin" name="ezSearchMargin" value="<?php echo(stripslashes(htmlspecialchars($this->options['margin_gsearch'])));?>" />px</span>
 <br />
 <label for="ezAdSenseShowGSearch_dark">
-<input type="radio" id="ezAdSenseShowGSearch_dark" name="ezAdSenseShowGSearch" value="dark" <?php if ($ezAdOptions['title_gsearch'] == "dark") { echo('checked="checked"'); }?> />&nbsp; <?php echo '<img src=" ' . $this->plugindir . '/google-dark.gif" border="0" alt="Google (dark)" style="background:black;vertical-align:-40%;"'; ?> /> </label>&nbsp;
+<input type="radio" id="ezAdSenseShowGSearch_dark" name="ezAdSenseShowGSearch" value="dark" <?php if ($this->options['title_gsearch'] == "dark") { echo('checked="checked"'); }?> />&nbsp; <?php echo '<img src=" ' . $this->plugindir . '/google-dark.gif" border="0" alt="Google (dark)" style="background:black;vertical-align:-40%;"'; ?> /> </label>&nbsp;
 <label for="ezAdSenseShowGSearch_light">
-<input type="radio" id="ezAdSenseShowGSearch_light" name="ezAdSenseShowGSearch" value="light" <?php if ($ezAdOptions['title_gsearch'] == "light") { echo('checked="checked"'); }?> />&nbsp; <?php echo '<img src=" ' . $this->plugindir . '/google-light.gif" border="0" alt="Google (light)" style="background:white;vertical-align:-40%;"'; ?> /> </label>&nbsp;
+<input type="radio" id="ezAdSenseShowGSearch_light" name="ezAdSenseShowGSearch" value="light" <?php if ($this->options['title_gsearch'] == "light") { echo('checked="checked"'); }?> />&nbsp; <?php echo '<img src=" ' . $this->plugindir . '/google-light.gif" border="0" alt="Google (light)" style="background:white;vertical-align:-40%;"'; ?> /> </label>&nbsp;
 <label for="ezAdSenseShowGSearch_no">
-<input type="radio" id="ezAdSenseShowGSearch_no" name="ezAdSenseShowGSearch" value="no" <?php if ($ezAdOptions['title_gsearch'] == "no") { echo('checked="checked"'); }?> /> <?php _e('Suppress Search Box', 'easy-adsenser') ; ?></label><br /><br />
+<input type="radio" id="ezAdSenseShowGSearch_no" name="ezAdSenseShowGSearch" value="no" <?php if ($this->options['title_gsearch'] == "no") { echo('checked="checked"'); }?> /> <?php _e('Suppress Search Box', 'easy-adsenser') ; ?></label><br /><br />
 <label for="ezAdSenseShowGSearch_text">
-<input type="radio" id="ezAdSenseShowGSearch_text" name="ezAdSenseShowGSearch" value="text" <?php $title = $ezAdOptions['title_gsearch'] ; if ($title != 'dark' && $title != 'light' && $title != 'no') { echo('checked="checked"'); }?> /> <b><?php _e('Custom Title:', 'easy-adsenser') ; ?></b></label>&nbsp;
+<input type="radio" id="ezAdSenseShowGSearch_text" name="ezAdSenseShowGSearch" value="text" <?php $title = $this->options['title_gsearch'] ; if ($title != 'dark' && $title != 'light' && $title != 'no') { echo('checked="checked"'); }?> /> <b><?php _e('Custom Title:', 'easy-adsenser') ; ?></b></label>&nbsp;
 <label for="ezAdSearchTitle">
-<input style="width: 200px;" id="ezAdSearchTitle" name="ezAdSearchTitle" type="text" value= "<?php echo(stripslashes(htmlspecialchars($ezAdOptions['title_gsearch']))) ?>" /></label>
-<label for="ezAdKillSearchTitle"><input type="checkbox" id="ezAdKillSearchTitle" name="ezAdKillSearchTitle" <?php if ($ezAdOptions['kill_gsearch_title']) { echo('checked="checked"'); }?> /> <?php _e('Hide Title', 'easy-adsenser') ; ?> </label>
+<input style="width: 200px;" id="ezAdSearchTitle" name="ezAdSearchTitle" type="text" value= "<?php echo(stripslashes(htmlspecialchars($this->options['title_gsearch']))) ?>" /></label>
+<label for="ezAdKillSearchTitle"><input type="checkbox" id="ezAdKillSearchTitle" name="ezAdKillSearchTitle" <?php if ($this->options['kill_gsearch_title']) { echo('checked="checked"'); }?> /> <?php _e('Hide Title', 'easy-adsenser') ; ?> </label>
 </td>
 </tr>
 </table>
@@ -343,13 +343,13 @@ Colors:&nbsp; Normal:#<input style="width:55px;text-align:center;" id="ezBorderN
 <b><?php _e('Link-backs to', 'easy-adsenser') ; ?> <a href="http://www.Thulasidas.com" target="_blank">Unreal Blog</a></b>
 <?php _e('(Consider showing at least one link.)', 'easy-adsenser') ; ?><br />
 <label for="ezAdSenseLinkMax99">
-<input type="radio" id="ezAdSenseLinkMax99" name="ezAdSenseLinkMax" value="99" <?php if ($ezAdOptions['max_link'] == 99) { echo('checked="checked"'); }?> /> <?php _e('Show a link under every ad block.', 'easy-adsenser') ; ?></label><br />
+<input type="radio" id="ezAdSenseLinkMax99" name="ezAdSenseLinkMax" value="99" <?php if ($this->options['max_link'] == 99) { echo('checked="checked"'); }?> /> <?php _e('Show a link under every ad block.', 'easy-adsenser') ; ?></label><br />
 <label for="ezAdSenseLinkMax1">
-<input type="radio" id="ezAdSenseLinkMax1" name="ezAdSenseLinkMax" value="1" <?php if ($ezAdOptions['max_link'] == 1) { echo('checked="checked"'); }?> /> <?php _e('Show the link only under the first ad block.', 'easy-adsenser') ; ?></label><br />
+<input type="radio" id="ezAdSenseLinkMax1" name="ezAdSenseLinkMax" value="1" <?php if ($this->options['max_link'] == 1) { echo('checked="checked"'); }?> /> <?php _e('Show the link only under the first ad block.', 'easy-adsenser') ; ?></label><br />
 <label for="ezAdSenseLinkMax-1">
-<input type="radio" id="ezAdSenseLinkMax-1" name="ezAdSenseLinkMax" value="-1" <?php if ($ezAdOptions['max_link'] == -1) { echo('checked="checked"'); }?> /> <?php _e('Show the link at the bottom of your blog page.', 'easy-adsenser') ; ?></label><br />
+<input type="radio" id="ezAdSenseLinkMax-1" name="ezAdSenseLinkMax" value="-1" <?php if ($this->options['max_link'] == -1) { echo('checked="checked"'); }?> /> <?php _e('Show the link at the bottom of your blog page.', 'easy-adsenser') ; ?></label><br />
 <label for="ezAdSenseLinkMax0">
-<input type="radio" id="ezAdSenseLinkMax0" name="ezAdSenseLinkMax" value="0" <?php if ($ezAdOptions['max_link'] == 0) { echo('checked="checked"'); }?> /> <?php _e('Show no links to my blog anywhere (Are you sure?!)', 'easy-adsenser') ; echo '</label>' ?>
+<input type="radio" id="ezAdSenseLinkMax0" name="ezAdSenseLinkMax" value="0" <?php if ($this->options['max_link'] == 0) { echo('checked="checked"'); }?> /> <?php _e('Show no links to my blog anywhere (Are you sure?!)', 'easy-adsenser') ; echo '</label>' ?>
 <br />
 <br style="line-height: 12px;" />
 <?php echo '<span onmouseover="TagToTip(\'pro\', WIDTH, 350, TITLE, \'Buy the Pro Version\',STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 5, 5])"><b>Buy the <a href="http://buy.thulasidas.com/easy-adsense" target="_blank" ' . "onclick=\"popupwindow('http://buy.thulasidas.com/easy-adsense','Get Easy AdSense Pro', 1024, 768);return false;\"" . '>Pro Version</a></b><br />More features, more power!</span>' ; ?>
@@ -449,7 +449,7 @@ no', 'easy-adsenser') ;?>
 <b><?php _e('Kill this plugin. (Are you quite sure?)', 'easy-adsenser') ?></b></span>
 
 <?php
-if (!$ezAdOptions['kill_invites'])  {
+if (!$this->options['kill_invites'])  {
   echo '<div style="background-color:#cff;padding:5px;border: solid 1px;margin:5px;">' ;
   @include (dirname (__FILE__).'/why-pro.php');
   echo '</div>' ;

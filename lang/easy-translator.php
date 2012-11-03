@@ -52,6 +52,7 @@ if (!class_exists("ezTran") && !class_exists("PO")) {
     function textId() {
       $ht = round(strlen($this->id)/52 + 1) * 25 ;
       $col = 'background-color:#f5f5f5;' ;
+      $col = $tit = '' ;
       if ($this->keyVal > MINMATCH+1) {
         $col = "background-color:#ffc;border: solid 1px #f00" ;
         $tit = 'onmouseover = "Tip(\'Another similar string: ' .
@@ -70,6 +71,7 @@ if (!class_exists("ezTran") && !class_exists("PO")) {
 
     function textStr() {
       $ht = round(strlen($this->id)/52 + 1) * 25 ;
+      $col = $tit = '' ;
       if ($this->tranVal > MINMATCH+1){
         $col = "background-color:#fdd;border: solid 1px #f00" ;
         $tit = 'onmouseover = "Tip(\'Using the translation for a similar string: ' .
@@ -79,7 +81,7 @@ if (!class_exists("ezTran") && !class_exists("PO")) {
           'onmouseout="UnTip()"';
       }
       $s =  '<textarea cols="50" rows="15" name="' . $this->num .
-        '" style="width: 45%;height:' . $ht . 'px;' . $col. '" ' .
+        '" style="width: 45%;height:' . $ht . 'px;' . $col . '" ' .
         $tit . '>';
       $s .=  htmlspecialchars($this->str, ENT_QUOTES) ;
       $s .= '</textarea><br />' ;
@@ -94,7 +96,7 @@ if (!class_exists("ezTran") && !class_exists("PO")) {
       session_start() ;
       $this->status = '' ;
       $this->error = '' ;
-      if ($_POST['ezAds-savePot']) {
+      if (!empty($_POST['ezAds-savePot'])) {
         $file = $_POST['potFile'] ;
         $str = $_POST['potStr'] ;
         header('Content-Disposition: attachment; filename="' . $file .'"');
@@ -107,12 +109,12 @@ if (!class_exists("ezTran") && !class_exists("PO")) {
         $this->status = '<div class="updated">Pot file: ' . $file . ' was saved.</div> ' ;
         exit(0) ;
       }
-      if ($_POST['ezAds-clear']) {
+      if (!empty($_POST['ezAds-clear'])) {
         $this->status =
           '<div class="updated">Reloaded the translations from PHP files and MO.</div> ' ;
         unset($_SESSION['ezAds-POs']) ;
       }
-      if ($_POST['ezAds-mailPot']) {
+      if (!empty($_POST['ezAds-mailPot'])) {
         $file = $_POST['potFile'] ;
         $str = stripslashes($_POST['potStr']) ;
         $str = str_replace("\'", "'", $str) ;
@@ -197,8 +199,13 @@ if (!class_exists("ezTran") && !class_exists("PO")) {
       $keys = array_unique($matches[1]) ;
       $keys = str_replace(array("\'", '\"', '\n'), array("'", '"', "\n"), $keys) ;
       foreach ($keys as $n => $k) {
-        $v = $mo[$k] ;
-        $t = $v->translations[0] ;
+        if (!empty($mo[$k])) {
+          $v = $mo[$k] ;
+          $t = $v->translations[0] ;
+        }
+        else {
+          $t = '' ;
+        }
         $po = new PO($k, $t) ;
         $po->num = $n ;
         array_push($POs, $po) ;
