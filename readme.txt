@@ -3,8 +3,8 @@ Contributors: manojtd
 Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
-Tested up to: 3.4
-Stable tag: 6.02
+Tested up to: 3.5
+Stable tag: 6.03
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
 
@@ -32,13 +32,13 @@ Easy AdSense is the freely distributed version of a premium plugin. The [Pro ver
 
 = New in this Release =
 
-Fixing the incompatibility with Jetpack.
+Documentation changes, testing with WP3.5, translation updates.
 
 == Upgrade Notice ==
 
-= 6.02 =
+= 6.03 =
 
-Fixing the incompatibility with Jetpack.
+Documentation changes, testing with WP3.5, translation updates.
 
 == Screenshots ==
 
@@ -100,7 +100,7 @@ But this unfortunately means that you do have to set the code *once* whenever yo
 
 = Can I control how the adsense blocks are formatted in each page? =
 
-Yes! Now, in V2.1+, you more options [through **custom fields**] to control adsense blocks in individual posts/pages. Add custom fields with keys like **adsense-top, adsense-middle, adsense-bottom, adsense-widget, adsense-search** and with values like **left, right, center** or **no** to have control how the Google adsense blocks show up in each post or page. The value "**no**" suppresses all AdSense ad blocks in the post or page.
+Yes! Now, in V2.1+, you have more options (using [Custom Fields](http://codex.wordpress.org/Custom_Fields "Scroll down to the section titled Usage")) to control adsense blocks in individual posts/pages. Add custom fields with keys like `adsense-top`, `adsense-middle`, `adsense-bottom`, `adsense-widget`, `adsense-search` and with values like `left`, `right`, `center` or `no` to have control how the Google adsense blocks show up in each post or page. A Custom Field `adsense` with  value `no` suppresses all AdSense ad blocks in the post or page.
 
 = I find this *easy* plugin too complex with too many options. Any alternatives? =
 
@@ -126,6 +126,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V6.03: Documentation changes, testing with WP3.5, translation updates. [Dec 22, 2012]
 * V6.02: Fixing the incompatibility with Jetpack. [Dec 17, 2012]
 * V6.01: Updating a few translations. [Dec 5, 2012]
 * V6.00: Major re-organization of the code. [Nov 1, 2012]
