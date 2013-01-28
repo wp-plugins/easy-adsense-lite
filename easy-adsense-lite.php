@@ -3,7 +3,7 @@
   Plugin Name: Easy AdSense
   Plugin URI: http://www.thulasidas.com/adsense
   Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense</a>.
-  Version: 6.03
+  Version: 6.04
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
 */
@@ -719,7 +719,7 @@ if (class_exists("EzAdSense")) {
         global $ezAdSense ;
         if (function_exists('add_options_page')) {
           add_options_page('Easy AdSense', 'Easy AdSense', 'activate_plugins',
-            basename(__FILE__), array(&$ezAdSense, 'printAdminPage'));
+            basename(__FILE__), array($ezAdSense, 'printAdminPage'));
         }
       }
     }

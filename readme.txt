@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 3.5
-Stable tag: 6.03
+Stable tag: 6.04
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
 
@@ -32,13 +32,13 @@ Easy AdSense is the freely distributed version of a premium plugin. The [Pro ver
 
 = New in this Release =
 
-Documentation changes, testing with WP3.5, translation updates.
+Bug fixes (Fatal error: Call-time pass-by-reference has been removed).
 
 == Upgrade Notice ==
 
-= 6.03 =
+= 6.04 =
 
-Documentation changes, testing with WP3.5, translation updates.
+Bug fixes (Fatal error: Call-time pass-by-reference has been removed).
 
 == Screenshots ==
 
@@ -126,6 +126,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V6.04: Bug fixes (Fatal error: Call-time pass-by-reference has been removed). [Jan 27, 2013]
 * V6.03: Documentation changes, testing with WP3.5, translation updates. [Dec 22, 2012]
 * V6.02: Fixing the incompatibility with Jetpack. [Dec 17, 2012]
 * V6.01: Updating a few translations. [Dec 5, 2012]
