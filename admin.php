@@ -32,7 +32,7 @@ else {
 ?>
 
 <div class="wrap" id="wrapper" style="width:900px">
-    <h2 title="<?php echo $this->info(false) ?>">Easy AdSense Setup
+    <h2>Easy AdSense Setup
 </h2>
 
 <form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">

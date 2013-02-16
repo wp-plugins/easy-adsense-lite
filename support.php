@@ -25,16 +25,19 @@ function renderSupport($name, $plg) {
   _e('Ask a support question (in English or French only) via ezSupport @ $0.95', 'easy-adsenser') ;
   echo "'><img src='$plugindir/ezsupport.png' class='alignright' border='0' alt='ezSupport Portal'/></a>" ;
   printf(__("If you need help with %s, please read the FAQ section on the $link page. It may answer all your questions.", 'easy-adsenser'), $value, $link) ;
-  echo "<br />" ;
+  echo "<br style='line-height: 20px;'/>" ;
   _e("Or, if you still need help, you can raise a support ticket.", 'easy-adsenser') ;
   echo "&nbsp;<a href='http://support.thulasidas.com' onclick=\"popupwindow('http://support.thulasidas.com','ezSupport for $value', 1024, 768);return false;\" title='" ;
   _e('Ask a support question (in English or French only) via ezSupport @ $0.95', 'easy-adsenser') ;
   echo "'>" ;
   _e("[Request Paid Support]", 'easy-adsenser') ;
-  echo "</a>&nbsp;<small><em>[" ;
-  _e('Implemented using our ezSupport Ticket System.', 'easy-adsenser') ;
-  echo "]</em></small>" ;
   $info = ezPluginInfo() ;
+  echo "</a>&nbsp;<small><em>[" ;
+  _e('Using our ezSupport Ticket System.', 'easy-adsenser') ;
+  echo "]</em></small>" ;
+  echo "<small style='float:right'><em>[" ;
+  printf(__('You are using %s (V%s)', 'easy-adsenser'), $value, $info[0]['Version']) ;
+  echo "]</em></small>" ;
   $_SESSION['ezSupport'] = $info[0]['Info'] ;
 }
 
