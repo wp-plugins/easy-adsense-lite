@@ -93,7 +93,6 @@ if (!class_exists("ezTran") && !class_exists("PO")) {
     var $status, $error ;
     function ezTran()
     {
-      session_start() ;
       $this->status = '' ;
       $this->error = '' ;
       if (!empty($_POST['ezAds-savePot'])) {

@@ -94,6 +94,21 @@ $myPlugins['theme-tweaker'] =
 <li>Ability to create a child theme so that your changes can be applied even when the underlying theme is updated.</li>
 <li>Scanning for *all* the style files in your theme directory to find all possible color definitions.</li>') ;
 
+$myPlugins['easy-quiz'] =
+  array('value' => 'Easy Quiz',
+    'support' => 'UKPDMR89Z22DN',
+    'price' => '2.95',
+    'share' => false,
+    'long' => true,
+    'blurb' =>'<em><strong>Easy Quiz</strong></em> is a jQuery quiz plugin that ',
+    'desc' => 'runs a simple but elegant quiz on your posts or pages.',
+    'title' => '<em><strong>Easy Quiz</strong></em> displays the statements or questions you type into your post or page (surrounded by <code>[ezquiz][/ezquiz]</code> tag) as a neat quiz for your reader on his/her browser. The answers are not transfered to your server, and there is no extra server load in running the quiz.',
+    'pro' => '<em><strong>Easy Quiz</strong></em>, in its lite form, comes with a standard color scheme. If you would like to modify the color scheme, please consider the Pro version. It gives you color pickers for all aspects of the quiz display so that you can perfectly match your theme. It also lets you have different types of quizes (true-or-false, fill-in-the-blanks, multiple-choice, etc.), which you can even mix and match within one test. The Lite version of the plugin is fully functional, but is limited to only true-or-false questions.',
+    'benefits' => '<li>Different types of quizes (true-or-false, fill-in-the-blanks, multiple-choice, etc.).</li>
+<li>Ability to mix and match different types of questions within one quiz.</li>
+<li>Ability to tweak the quiz display colors.</li>
+<li>Color pickers for customization with live preview on the admin page.</li>') ;
+
 $myPlugins['easy-latex'] =
   array('value' => 'Easy WP LaTeX',
     'support' => 'UFFMGT9QHJY2N',
