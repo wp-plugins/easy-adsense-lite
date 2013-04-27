@@ -47,9 +47,12 @@ if (empty($this->options['kill_invites']))
   renderInvite($myPlugins[$plgName], $plgName) ;
 ?>
 <table class="form-table">
-<tr><th scope="row"><h3><?php _e('Instructions', 'easy-adsenser') ; ?></h3></th></tr>
-<tr valign="middle">
-<td width="40%">
+<tr><th scope="row"><?php _e('Instructions', 'easy-adsenser') ; ?></th></tr>
+</table>
+
+<table class="form-table" style="width:100%">
+<tr style="vertical-align:middle">
+<td style="width:40%">
 
 <ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >
 <li>
@@ -77,16 +80,16 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 <br />
 
 <table class="form-table">
-<tr><th scope="row"><h3><?php printf(__('Options (for the %s theme)', 'easy-adsenser'), get_option('stylesheet')); ?> </h3></th></tr>
+<tr><th scope="row"><?php printf(__('Options (for the %s theme)', 'easy-adsenser'), get_option('stylesheet')); ?> </th></tr>
 </table>
 
-<table width="100%">
+<table style="width:100%">
 <tr>
-<td width="50%" height="50px">
+<td style="width:50%;height:50px">
 
 <table class="form-table">
 <tr>
-<td width="50%" height="40px">
+<td style="width:50%;height:40px">
 <b><u><?php _e('Ad Blocks in Your Posts', 'easy-adsenser') ; ?></u></b><br />
 <?php _e('[Appears in your posts and pages]', 'easy-adsenser') ; ?>
 </td>
@@ -94,10 +97,10 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 </table>
 </td>
 
-<td width="50%" height="50px">
+<td style="width:50%;height:50px">
 <table class="form-table">
 <tr>
-<td width="50%" height="40px">
+<td style="width:50%;height:40px">
 <b><u><?php _e('Widgets for Your Sidebars', 'easy-adsenser') ; ?></u></b><br />
 <?php _e('[See <a href="widgets.php"> Appearance (or Design) &rarr; Widgets</a>]', 'easy-adsenser') ; ?>
 </td>
@@ -107,12 +110,12 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 </tr>
 </table>
 
-<table width="100%">
-<tr valign="top">
-<td width="50%">
+<table style="width:100%">
+<tr style="vertical-align:top">
+<td style="width:50%">
 <table class="form-table">
-<tr valign="top">
-<td width="50%" height="220px" valign="middle">
+<tr style="vertical-align:top">
+<td style="width:50%;height:220px;vertical-align:middle">
 <b><?php _e('Lead-in AdSense Text', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Appears near the beginning of the post)', 'easy-adsenser') ; ?><br />
 <textarea cols="50" rows="15" name="ezAdSenseTextLeadin" style="width: 95%; height: 130px;"><?php echo(stripslashes(htmlspecialchars($this->options['text_leadin']))) ?></textarea>
@@ -145,8 +148,8 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 <br />
 </td>
 </tr>
-<tr valign="top">
-<td width="50%" height="220px" valign="middle">
+<tr style="vertical-align:top">
+<td style="width:50%;height:220px;vertical-align:middle">
 <b><?php _e('Mid-Post AdSense Text', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Appears near the middle of the post)', 'easy-adsenser') ; ?><br />
 <textarea cols="50" rows="15" name="ezAdSenseTextMidtext" style="width: 95%; height: 130px;"><?php echo(stripslashes(htmlspecialchars($this->options['text_midtext']))) ?></textarea>
@@ -171,8 +174,8 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 
 </td>
 </tr>
-<tr valign="top">
-<td width="50%" height="250px" valign="middle">
+<tr style="vertical-align:top">
+<td style="width:50%;height:250px;vertical-align:middle">
 <b><?php _e('Post Lead-out AdSense Text', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Appears near the end of the post)', 'easy-adsenser') ; ?><br />
 <textarea cols="50" rows="15" name="ezAdSenseTextLeadout" style="width: 95%; height: 162px;"><?php echo(stripslashes(htmlspecialchars($this->options['text_leadout']))) ?></textarea>
@@ -209,10 +212,9 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 </table>
 
 <table class="form-table">
-<tr valign="top">
-<td width="50%" height="250px" valign="middle">
+<tr style="vertical-align:top">
+<td style="width:50%;height:250px;vertical-align:middle">
 <b title="<?php _e('(Google policy allows no more than three ad blocks and three link units per page)', 'easy-adsenser') ; ?>"><?php _e('Option on Google Policy', 'easy-adsenser') ; ?></b>
-<font size="-2"></font>
 <br />
 <label for="ezAdSenseMax3">
 <input type="radio" id="ezAdSenseMax3" name="ezAdSenseMax" value="3" <?php if ($this->options['max_count'] == 3) { echo('checked="checked"'); }?> /> <?php _e('Three ad blocks (including the side bar widget, if enabled).', 'easy-adsenser') ; ?></label><br />
@@ -266,11 +268,11 @@ Colors:&nbsp; Normal:#<input style="width:55px;text-align:center;" id="ezBorderN
 </table>
 
 </td>
-<td width="50%">
+<td style="width:50%">
 
 <table class="form-table">
-<tr valign="top">
-<td width="50%" height="220px" valign="middle">
+<tr style="vertical-align:top">
+<td style="width:50%;height:220px;vertical-align:middle">
 <b><?php _e('AdSense Widget Text', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Appears in the Sidebar as a Widget)', 'easy-adsenser') ; ?><br />
 <textarea cols="50" rows="15" name="ezAdSenseTextWidget" style="width: 95%; height: 110px;"><?php echo(stripslashes(htmlspecialchars($this->options['text_widget']))) ?></textarea>
@@ -291,8 +293,8 @@ Colors:&nbsp; Normal:#<input style="width:55px;text-align:center;" id="ezBorderN
 <label for="ezAdKillWidgetTitle"><input type="checkbox" id="ezAdKillWidgetTitle" name="ezAdKillWidgetTitle" <?php if ($this->options['kill_widget_title']) { echo('checked="checked"'); }?> /> <?php _e('Hide Title', 'easy-adsenser') ; ?> </label>
 </td>
 </tr>
-<tr valign="top">
-<td width="50%" height="220px" valign="middle">
+<tr style="vertical-align:top">
+<td style="width:50%;height:220px;vertical-align:middle">
 <b><?php _e('AdSense Link-Units Text', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Appears in the Sidebar as  Widgets)', 'easy-adsenser') ; ?><br />
 <textarea cols="50" rows="15" name="ezAdSenseTextLU" style="width: 95%; height: 110px;"><?php echo(stripslashes(htmlspecialchars($this->options['text_lu']))) ?></textarea>
@@ -313,8 +315,8 @@ Colors:&nbsp; Normal:#<input style="width:55px;text-align:center;" id="ezBorderN
 <label for="ezAdKillLUTitle"><input type="checkbox" id="ezAdKillLUTitle" name="ezAdKillLUTitle" <?php if ($this->options['kill_lu_title']) { echo('checked="checked"'); }?> /> <?php _e('Hide Title', 'easy-adsenser') ; ?> </label>
 </td>
 </tr>
-<tr valign="top">
-<td width="50%" height="250px" valign="middle">
+<tr style="vertical-align:top">
+<td style="width:50%;height:250px;vertical-align:middle">
 <b><?php _e('Google Search Widget', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Adds a Google Search Box to your sidebar)', 'easy-adsenser') ; ?><br />
 <textarea cols="50" rows="15" name="ezAdSenseTextGSearch" style="width: 95%; height: 110px;"><?php echo(stripslashes(htmlspecialchars($this->options['text_gsearch']))) ?></textarea>
@@ -324,9 +326,9 @@ Colors:&nbsp; Normal:#<input style="width:55px;text-align:center;" id="ezBorderN
 <span onmouseover="Tip('<?php _e('Use the margin setting to trim margins. Decreasing the margin moves the ad block left and up. Margin can be negative.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Tweak Margins', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Margin:', 'easy-adsenser') ; ?> <input style="width:30px;text-align:center;" id="ezSearchMargin" name="ezSearchMargin" value="<?php echo(stripslashes(htmlspecialchars($this->options['margin_gsearch'])));?>" />px</span>
 <br />
 <label for="ezAdSenseShowGSearch_dark">
-<input type="radio" id="ezAdSenseShowGSearch_dark" name="ezAdSenseShowGSearch" value="dark" <?php if ($this->options['title_gsearch'] == "dark") { echo('checked="checked"'); }?> />&nbsp; <?php echo '<img src=" ' . $this->plugindir . '/google-dark.gif" border="0" alt="Google (dark)" style="background:black;vertical-align:-40%;"'; ?> /> </label>&nbsp;
+<input type="radio" id="ezAdSenseShowGSearch_dark" name="ezAdSenseShowGSearch" value="dark" <?php if ($this->options['title_gsearch'] == "dark") { echo('checked="checked"'); }?> />&nbsp; <?php echo '<img src=" ' . $this->plugindir . '/google-dark.gif" alt="Google (dark)" style="background:black;vertical-align:-40%;"'; ?> /> </label>&nbsp;
 <label for="ezAdSenseShowGSearch_light">
-<input type="radio" id="ezAdSenseShowGSearch_light" name="ezAdSenseShowGSearch" value="light" <?php if ($this->options['title_gsearch'] == "light") { echo('checked="checked"'); }?> />&nbsp; <?php echo '<img src=" ' . $this->plugindir . '/google-light.gif" border="0" alt="Google (light)" style="background:white;vertical-align:-40%;"'; ?> /> </label>&nbsp;
+<input type="radio" id="ezAdSenseShowGSearch_light" name="ezAdSenseShowGSearch" value="light" <?php if ($this->options['title_gsearch'] == "light") { echo('checked="checked"'); }?> />&nbsp; <?php echo '<img src=" ' . $this->plugindir . '/google-light.gif"  alt="Google (light)" style="background:white;vertical-align:-40%;"'; ?> /> </label>&nbsp;
 <label for="ezAdSenseShowGSearch_no">
 <input type="radio" id="ezAdSenseShowGSearch_no" name="ezAdSenseShowGSearch" value="no" <?php if ($this->options['title_gsearch'] == "no") { echo('checked="checked"'); }?> /> <?php _e('Suppress Search Box', 'easy-adsenser') ; ?></label><br /><br />
 <label for="ezAdSenseShowGSearch_text">
@@ -339,8 +341,8 @@ Colors:&nbsp; Normal:#<input style="width:55px;text-align:center;" id="ezBorderN
 </table>
 
 <table class="form-table">
-<tr valign="top">
-<td width="50%" height="250px" valign="middle">
+<tr style="vertical-align:top">
+<td style="width:50%;height:250px;vertical-align:middle">
 
 <?php echo '<b>Support Options<br /> ' ;  ?></b><br />
 
@@ -441,15 +443,15 @@ no', 'easy-adsenser') ;?>
 </span>
 
 <span id="help3">
-<font color="red"><?php _e('This <b>Reset Options</b> button discards all your changes and loads the default options. This is your only warning!', 'easy-adsenser') ; ?></font><br />
+<span style="color:red"><?php _e('This <b>Reset Options</b> button discards all your changes and loads the default options. This is your only warning!', 'easy-adsenser') ; ?></span><br />
 <b><?php _e('Discard all your changes and load defaults. (Are you quite sure?)', 'easy-adsenser') ?></b></span>
 
 <span id="help4">
-<font color="red"><?php _e('The <b>Database Cleanup</b> button discards all your AdSense settings you have saved so far for <b>all</b> the themes, including the current one. Use it only if you know that you won\'t be using these themes. Please be careful with all database operations -- keep a backup.', 'easy-adsenser') ; ?></font><br />
+<span style="color:red"><?php _e('The <b>Database Cleanup</b> button discards all your AdSense settings you have saved so far for <b>all</b> the themes, including the current one. Use it only if you know that you won\'t be using these themes. Please be careful with all database operations -- keep a backup.', 'easy-adsenser') ; ?></span><br />
 <b><?php _e('Discard all your changes and load defaults. (Are you quite sure?)', 'easy-adsenser') ?></b></span>
 
 <span id="help5">
-<font color="red"><?php printf(__('The <b>Uninstall</b> button really kills %s after cleaning up all the options it wrote in your database. This is your only warning! Please be careful with all database operations -- keep a backup.', 'easy-adsenser'), '<em>Easy AdSense</em>') ; ?></font><br />
+<span style="color:red"><?php printf(__('The <b>Uninstall</b> button really kills %s after cleaning up all the options it wrote in your database. This is your only warning! Please be careful with all database operations -- keep a backup.', 'easy-adsenser'), '<em>Easy AdSense</em>') ; ?></span><br />
 <b><?php _e('Kill this plugin. (Are you quite sure?)', 'easy-adsenser') ?></b></span>
 
 <?php
@@ -467,7 +469,7 @@ if (!$this->options['kill_invites'])  {
 <?php @include (dirname (__FILE__).'/tail-text.php'); ?>
 
 <table class="form-table" >
-<tr><th scope="row"><h3><?php _e('Credits', 'easy-adsenser'); ?></h3></th></tr>
+<tr><th scope="row"><?php _e('Credits', 'easy-adsenser'); ?></th></tr>
 <tr><td>
 <ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >
 <li>
