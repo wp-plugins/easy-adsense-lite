@@ -2,11 +2,10 @@
 
 $myPlugins = array() ;
 
-$needPHP5 = ' <p> <font color="#c00">Note that this plugin requires PHPv5.0+. Please use the Lite version first to ensure that it works before buying the Pro version. If it does not work on your web host, consider the amazing <a href="http://buy.thulasidas.com/easy-adsense/" title="The most popular plugin to insert AdSense on your blog"><em><strong>Easy AdSense Pro</strong></em></a> for all your advertising needs. It can insert non-AdSense blocks as well.</font></p>' ;
+$needPHP5 = ' <br /> <span style="font-color:#c00;">Note that this plugin requires PHPv5.0+. Please use the Lite version first to ensure that it works before buying the Pro version. If it does not work on your web host, consider the amazing <a href="http://buy.thulasidas.com/easy-adsense/" title="The most popular plugin to insert AdSense on your blog"><em><strong>Easy AdSense Pro</strong></em></a> for all your advertising needs. It can insert non-AdSense blocks as well.</span>' ;
 
 $myPlugins['ezpaypal-pro'] =
   array('value' => 'ezPayPal',
-    'support' => 'YBB5HXSJ97C7E',
     'price' => '9.95',
     'share' => false,
     'long' => false,
@@ -17,7 +16,6 @@ $myPlugins['ezpaypal-pro'] =
 
 $myPlugins['easy-ads'] =
   array('value' => 'Easy Ads',
-    'support' => 'YBB5HXSJ97C7E',
     'price' => '8.95',
     'share' => true,
     'long' => false,
@@ -28,7 +26,6 @@ $myPlugins['easy-ads'] =
 
 $myPlugins['easy-paypal'] =
   array('value' => 'Easy PayPal',
-    'support' => 'YBB5HXSJ97C7E',
     'price' => '6.95',
     'share' => false,
     'long' => false,
@@ -39,7 +36,6 @@ $myPlugins['easy-paypal'] =
 
 $myPlugins['google-adsense'] =
   array('value' => 'Google AdSense',
-    'support' => '6M4A94KQMA9UL',
     'price' => '5.95',
     'share' => true,
     'long' => false,
@@ -51,7 +47,6 @@ $myPlugins['google-adsense'] =
 
 $myPlugins['easy-adsense'] =
   array('value' => 'Easy AdSense',
-    'support' => 'HYZ5AWPYSC8VA',
     'price' => '4.95',
     'share' => true,
     'long' => true,
@@ -68,7 +63,6 @@ $myPlugins['easy-adsense'] =
 
 $myPlugins['adsense-now'] =
   array('value' => 'AdSense Now!',
-    'support' => 'UE28AQZUTTX8Q',
     'price' => '3.95',
     'share' => true,
     'long' => true,
@@ -82,7 +76,6 @@ $myPlugins['adsense-now'] =
 
 $myPlugins['theme-tweaker'] =
   array('value' => 'Theme Tweaker',
-    'support' => 'UKPDMR89Z22DN',
     'price' => '3.95',
     'share' => false,
     'long' => true,
@@ -96,7 +89,6 @@ $myPlugins['theme-tweaker'] =
 
 $myPlugins['easy-quiz'] =
   array('value' => 'Easy Quiz',
-    'support' => 'UKPDMR89Z22DN',
     'price' => '2.95',
     'share' => false,
     'long' => true,
@@ -109,9 +101,22 @@ $myPlugins['easy-quiz'] =
 <li>Ability to tweak the quiz display colors.</li>
 <li>Color pickers for customization with live preview on the admin page.</li>') ;
 
+$myPlugins['easy-text-links'] =
+  array('value' => 'Easy Text Links',
+    'price' => '7.95',
+    'share' => false,
+    'long' => true,
+    'blurb' =>'<em><strong>Easy Text Links</strong></em> is a robust and modern advertising plugin that ',
+    'desc' => 'helps you sell and manage text links on your blog.',
+    'title' => '<em><strong>Easy Text Links</strong></em> helps you make extra revenue from your blog by selling text links. Text link advertising can be significantly more lucrative than contextual ads. This plugin automates the insertion and expiration of the links, and helps you with quick reminder emails to your advertisers. If you get a lot of advertising enquiries for text links, this is the right plugin for you.',
+    'pro' => '<em><strong>Easy Text Links</strong></em>, in its light form, is already a powerful plugin. The Pro version lets you integrate seamlessly with Easy PayPal and fully automate your link sales, expiration and reminder emails.',
+    'benefits' => '<li>Automated link sales and management.</li>
+<li>Automated email reminders, and subscription based links.</li>
+<li>Choice of several attractive Advertise Here images.</li>
+<li>Dedicated dedicated and multi-insertable widget for displaying your links.</li>') ;
+
 $myPlugins['easy-latex'] =
   array('value' => 'Easy WP LaTeX',
-    'support' => 'UFFMGT9QHJY2N',
     'price' => '2.95',
     'share' => false,
     'long' => true,
@@ -122,7 +127,6 @@ $myPlugins['easy-latex'] =
 
 $myPlugins['easy-translator'] =
   array('value' => 'Easy Translator',
-    'support' => '48XZQ7LRDAV28',
     'price' => '1.95' ,
     'share' => false,
     'long' => true,
@@ -133,7 +137,6 @@ $myPlugins['easy-translator'] =
 
 $myPlugins['unreal-universe'] =
   array('value' => 'The Unreal Universe - eBook',
-    'support' => '',
     'url' => 'http://www.theunrealuniverse.com',
     'amazon' => 'http://www.amazon.com/exec/obidos/ASIN/9810575947/unrblo-20',
     'price' => '1.49',
@@ -147,7 +150,6 @@ $myPlugins['unreal-universe'] =
 
 $myPlugins['iphoto-tagger'] =
   array('value' => 'iPhoto Tagger -- Helper for iPhoto imports',
-    'support' => '',
     'price' => '1.99',
     'share' => false,
     'long' => true,

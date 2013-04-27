@@ -41,7 +41,6 @@ function makeTextWithTooltipTag($plg, $text, $tip, $title='', $width='')
     "onmouseover=\"TagToTip('". $plg . "', " .
     "$widthText $titleText FIX, [this, 5, 5])\" " .
     "onmouseout=\"UnTip()\">$text</span>" ;
-  echo "<div id=$plg> $tip </div>";
   return $return ;
 }
 function renderPlg($name, $plg) {
@@ -58,13 +57,14 @@ function renderPlg($name, $plg) {
   $moreInfo = "&nbsp;&nbsp;<a href='http://www.thulasidas.com/plugins/$name' title='More info about $value at Unreal Blog'>More Info</a> " ;
   $liteVersion = "&nbsp;&nbsp; <a href='http://buy.thulasidas.com/lite/$name.zip' title='Download the Lite version of $value'>Get Lite Version</a> " ;
   $proVersion = "&nbsp;&nbsp; <a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of $value for \$$price' onclick=\"popupwindow('http://buy.thulasidas.com/$name','Get {$plg['value']}', 1024, 768);return false;\">Get Pro Version</a><br />" ;
-  $why = "<a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of the $name plugin'><img src='$plugindir/ezpaypal.png' border='0' alt='ezPayPal -- Instant PayPal Shop.' class='alignright' /></a>
+  $why = "<a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of the $name plugin' onclick=\"popupwindow('http://buy.thulasidas.com/$name','Get {$plg['value']}', 1024, 768);return false;\"><img src='$plugindir/ezpaypal.png' alt='ezPayPal -- Instant PayPal Shop.' class='alignright' /></a>
 <br />".$plg['pro'] ;
   echo "<li>" . makeTextWithTooltip($text, $title, $value, 350) .
     "<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" .
     makeTextWithTooltip($moreInfo, "Read more about $value at its own page.<br />".$title, "More Information about $value", 300) .
     makeTextWithTooltip($liteVersion, $title, "Download $value - the Lite version", 300) .
     makeTextWithTooltipTag($name, $proVersion, $why, "Get $value Pro!", 300) .
+    "<span id=$name> $why </span>" .
     "</li>\n" ;
 }
 function renderBook($name, $plg) {
@@ -81,13 +81,14 @@ function renderBook($name, $plg) {
   $amazon = $plg['amazon'] ;
   if (!empty($amazon)) $buyAmazon = "&nbsp;&nbsp; <a href='$amazon' title='Get $value from Amazon.com'>Get it at Amazon</a> " ;
   $buyNow = "&nbsp;&nbsp; <a href='http://buy.thulasidas.com/$name' title='Buy and download $value for \$$price'>Buy and Download now!</a><br />" ;
-  $why = "<a href='http://buy.thulasidas.com/$name' title='$name'><img src='$plugindir/ezpaypal.png' border='0' alt='ezPayPal -- Instant PayPal Shop.' class='alignright' /></a>
+  $why = "<a href='http://buy.thulasidas.com/$name' title='$name' onclick=\"popupwindow('http://buy.thulasidas.com/$name','Get {$plg['value']}', 1024, 768);return false;\"><img src='$plugindir/ezpaypal.png' alt='ezPayPal -- Instant PayPal Shop.' class='alignright' /></a>
 <br />".$title.$desc." $value costs only \$$price -- direct from the author." ;
   echo "<li>" . makeTextWithTooltip($text, $title, $value, 350) .
     "<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" .
     makeTextWithTooltip($moreInfo, "Read all about $value at its own site.<br />", "$value", 300) .
     makeTextWithTooltip($buyAmazon, $title, "Buy $value from Amazon", 350) .
     makeTextWithTooltipTag($name, $buyNow, $why, "Buy $value!", 300) .
+    "<span id=$name> $why </span>" .
     "</li>\n" ;
 }
 ?>
@@ -104,7 +105,8 @@ function popupwindow(url, title, w, h){  var left =(screen.width/2)-(w/2);  var 
 <ul style="margin-left:0px; padding-left:30px;list-style-type:square; list-style-position:inside;" >
 
 <?php
-  foreach ($myPlugins as $name => $plg) if ($name != $plgName) renderPlg($name, $plg) ;
+  $keys = array_rand($myPlugins, 3);
+  foreach ($keys as $name) if ($name != $plgName) renderPlg($name, $myPlugins[$name]) ;
 ?>
 
 </ul>

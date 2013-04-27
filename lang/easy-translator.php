@@ -327,6 +327,8 @@ msgstr ""
         $pot .= '<div style="width:100%;padding:15px"></div>' ;
 
         foreach ($POs as $n => $po) {
+          if (!is_object ($po) && gettype ($po) == 'object')
+            $po = unserialize (serialize ($po)); // need this only on Chrome!!
           $pot .= $po->textId() . "\n" . $po->textStr() . "\n\n" ;
         }
       }

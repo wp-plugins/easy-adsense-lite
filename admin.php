@@ -25,6 +25,7 @@ echo '<script type="text/javascript" src="'. get_option('siteurl') . '/' . PLUGI
 if (isset($this->ezTran)) {
   echo '<div class="wrap" style="width:900px">' ;
   echo '<form method="post" action="' . $_SERVER["REQUEST_URI"] . '">' ;
+  wp_nonce_field('EzAdsenseSubmit','EzAdsenseNonce');
   $this->ezTran->printAdminPage() ;
   echo "</form>\n</div>" ;
 }
@@ -37,10 +38,13 @@ else {
 
 <form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">
 <?php
-    $plgDir = dirname(__FILE__) ;
-    $plgName = 'easy-adsense' ;
-    if (empty($this->options['kill_rating'])) renderRating($myPlugins[$plgName], $plgDir) ;
-    if (empty($this->options['kill_invites'])) renderInvite($myPlugins[$plgName], $plgName) ;
+wp_nonce_field('EzAdsenseSubmit','EzAdsenseNonce');
+$plgDir = dirname(__FILE__) ;
+$plgName = 'easy-adsense' ;
+if (empty($this->options['kill_rating']))
+  renderRating($myPlugins[$plgName], $plgDir) ;
+if (empty($this->options['kill_invites']))
+  renderInvite($myPlugins[$plgName], $plgName) ;
 ?>
 <table class="form-table">
 <tr><th scope="row"><h3><?php _e('Instructions', 'easy-adsenser') ; ?></h3></th></tr>
