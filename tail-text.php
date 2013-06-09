@@ -51,7 +51,7 @@ function renderPlg($name, $plg) {
   $desc = $plg['desc'] ;
   $title = $plg['title'] ;
   $url = 'http://www.thulasidas.com/plugins/' . $name ;
-  $link = '<b><a href="' . $url . '" target="_blank">' . $value . '</a> </b> ' ;
+  $link = '<b><a href="' . $url . '" target="_blank">' . $value . '</a></b>&nbsp; ' ;
   $text = $link . $desc ;
   $price = $plg['price'] ;
   $moreInfo = "&nbsp;&nbsp;<a href='http://www.thulasidas.com/plugins/$name' title='More info about $value at Unreal Blog'>More Info</a> " ;
@@ -74,7 +74,7 @@ function renderBook($name, $plg) {
   $desc = $plg['desc'] ;
   $title = $plg['title'] ;
   $url = $plg['url'] ;
-  $link = '<b><a href="' . $url . '" target="_blank">' . $value . '</a> </b> ' ;
+  $link = '<b><a href="' . $url . '" target="_blank">' . $value . '</a></b>&nbsp; ' ;
   $text = $link . $desc ;
   $price = $plg['price'] ;
   $moreInfo = "&nbsp;&nbsp; <a href='$url' title='More info about $value at Unreal Blog'>More Info</a> " ;
@@ -105,8 +105,10 @@ function popupwindow(url, title, w, h){  var left =(screen.width/2)-(w/2);  var 
 <ul style="margin-left:0px; padding-left:30px;list-style-type:square; list-style-position:inside;" >
 
 <?php
-  $keys = array_rand($myPlugins, 3);
-  foreach ($keys as $name) if ($name != $plgName) renderPlg($name, $myPlugins[$name]) ;
+  $myPluginsU = array_unique($myPlugins, SORT_REGULAR);
+  unset($myPluginsU[$plgName]);
+  $keys = array_rand($myPluginsU, 3);
+  foreach ($keys as $name) if ($name != $plgName) renderPlg($name, $myPluginsU[$name]) ;
 ?>
 
 </ul>

@@ -47,7 +47,7 @@ if (empty($this->options['kill_invites']))
   renderInvite($myPlugins[$plgName], $plgName) ;
 ?>
 <table class="form-table">
-<tr><th scope="row"><?php _e('Instructions', 'easy-adsenser') ; ?></th></tr>
+<tr><th scope="row"><b><?php _e('Instructions', 'easy-adsenser') ; ?></b></th></tr>
 </table>
 
 <table class="form-table" style="width:100%">
@@ -80,7 +80,7 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 <br />
 
 <table class="form-table">
-<tr><th scope="row"><?php printf(__('Options (for the %s theme)', 'easy-adsenser'), get_option('stylesheet')); ?> </th></tr>
+<tr><th scope="row"><b><?php printf(__('Options (for the %s theme)', 'easy-adsenser'), get_option('stylesheet')); ?></b></th></tr>
 </table>
 
 <table style="width:100%">
@@ -342,7 +342,7 @@ Colors:&nbsp; Normal:#<input style="width:55px;text-align:center;" id="ezBorderN
 
 <table class="form-table">
 <tr style="vertical-align:top">
-<td style="width:50%;height:250px;vertical-align:middle">
+<td style="width:50%;height:250px;vertical-align:middle;color:#d00;">
 
 <?php echo '<b>Support Options<br /> ' ;  ?></b><br />
 
@@ -469,7 +469,7 @@ if (!$this->options['kill_invites'])  {
 <?php @include (dirname (__FILE__).'/tail-text.php'); ?>
 
 <table class="form-table" >
-<tr><th scope="row"><?php _e('Credits', 'easy-adsenser'); ?></th></tr>
+<tr><th scope="row"><b><?php _e('Credits', 'easy-adsenser'); ?></b></th></tr>
 <tr><td>
 <ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >
 <li>
