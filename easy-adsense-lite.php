@@ -3,7 +3,7 @@
   Plugin Name: Easy AdSense
   Plugin URI: http://www.thulasidas.com/adsense
   Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense</a>.
-  Version: 6.21
+  Version: 6.22
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
 */
@@ -163,6 +163,7 @@ if (!class_exists("EzAdSense")) {
         $this->options['kill_tag'] = isset($_POST['ezKillTag']);
         $this->options['kill_archive'] = isset($_POST['ezKillArchive']);
         $this->options['kill_inline'] = isset($_POST['ezKillInLine']);
+        $this->options['kill_linebreaks'] = isset($_POST['ezKillLineBreaks']);
 
         $this->options['show_borders'] = isset($_POST['ezShowBorders']);
         if (isset($_POST['ezBorderWidth']))
@@ -258,7 +259,7 @@ if (!class_exists("EzAdSense")) {
 
     function mkDefaultOptions(){
       $defaultOptions =
-        array('info' => "<!-- Easy AdSense V6.01 -->\n",
+        array('info' => "<!-- Easy AdSense Lite -->",
           'show_leadin' => 'float:right',
           'wc_leadin' => 0,
           'margin_leadin' => 12,
@@ -308,6 +309,7 @@ if (!class_exists("EzAdSense")) {
           'kill_archive' => false,
           'kill_inline' => false,
           'kill_widget_title' => false,
+          'kill_linebreaks' => false,
           'title_widget' => '');
       return $defaultOptions ;
     }
@@ -357,9 +359,13 @@ if (!class_exists("EzAdSense")) {
     }
 
     function info($hide=true) {
-      $str = "Easy AdSense (WP) V6.00" ;
+      if ( ! function_exists( 'get_plugin_data' ) )
+      require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+      $plugin_data = get_plugin_data( __FILE__ );
+      $version = $plugin_data['Version'];
+      $str = "Easy AdSense (WP) V$version" ;
       if ($hide)
-        $str = "<!-- $str -->\n";
+        $str = "<!-- $str -->";
       return $str ;
     }
 
@@ -429,6 +435,9 @@ if (!class_exists("EzAdSense")) {
       $this->handleDefaults() ;
       $this->options['info'] = $this->info() ;
 
+      if ($this->options['kill_linebreaks']) $linebreak = "" ;
+      else  $linebreak = "\n" ;
+
       $wc = str_word_count($content) ;
       $unreal = '' ;
       if ((is_single() || is_page()) && $this->urCount < $this->urMax)
@@ -440,14 +449,15 @@ if (!class_exists("EzAdSense")) {
           'Unreal</a></font></div>';
 
       $border = '' ;
-      if ($this->options['show_borders'])
+      if ($this->options['show_borders']) {
         $border='border:#' . $this->options['border_normal'] .
-          ' solid ' . $this->options['border_width'] . 'px;" ' .
-          ' onmouseover="this.style.border=\'#' . $this->options['border_color'] .
-          ' solid ' . $this->options['border_width'] . 'px\'" ' .
-          'onmouseout="this.style.border=\'#' . $this->options['border_normal'] .
-          ' solid ' . $this->options['border_width'] . 'px\'"' ;
-
+                ' solid ' . $this->options['border_width'] . 'px;" ' .
+                ' onmouseover="this.style.border=\'#' . $this->options['border_color'] .
+                ' solid ' . $this->options['border_width'] . 'px\'" ' .
+                'onmouseout="this.style.border=\'#' . $this->options['border_normal'] .
+                ' solid ' . $this->options['border_width'] . 'px\'"' ;
+        // $border="border:#{$this->options['border_normal']} solid {$this->options['border_width']}px;\" onmouseover=\"this.style.border='#{$this->options['border_color']} solid {$this->options['border_width']}px'\" onmouseout=\"this.style.border='#{$this->options['border_normal']} solid {$this->options['border_width']}px'" ;
+        }
       $show_leadin = $metaOptions['show_leadin'] ;
       $leadin = '' ;
       if ($show_leadin != 'no' && $wc > $this->options['wc_leadin']) {
@@ -461,11 +471,11 @@ if (!class_exists("EzAdSense")) {
               ';margin:' . $margin . 'px;' . $border. '"' ;
           $leadin =
             stripslashes($this->options['info'] .
-              "<!-- Post[count: " . $this->ezCount . "] -->\n" .
+              "$linebreak<!-- Post[count: " . $this->ezCount . "] -->$linebreak" .
               '<div class="ezAdsense adsense adsense-leadin" ' . $inline . '>' .
               $this->options['text_leadin'] .
               ($this->urCount++ < $this->urMax ? $unreal : '') .
-              "</div>\n" . $this->options['info'] . "\n") ;
+              "</div>$linebreak" . $this->options['info'] . "$linebreak") ;
         }
       }
 
@@ -497,11 +507,11 @@ if (!class_exists("EzAdSense")) {
                 ';margin:' . $margin . 'px;' . $border. '"' ;
             $midtext =
               stripslashes($this->options['info'] .
-                "<!-- Post[count: " . $this->ezCount . "] -->\n" .
+                "$linebreak<!-- Post[count: " . $this->ezCount . "] -->$linebreak" .
                 '<div class="ezAdsense adsense adsense-midtext" ' . $inline . '>' .
                 $this->options['text_midtext'] .
                 ($this->urCount++ < $this->urMax ? $unreal : '') .
-                "</div>\n" . $this->options['info'] . "\n") ;
+                "</div>$linebreak" . $this->options['info'] . "$linebreak") ;
             $content = substr_replace($content, $midtext.$repchar, $pickme, 2);
           }
         }
@@ -520,11 +530,11 @@ if (!class_exists("EzAdSense")) {
               ';margin:' . $margin . 'px;' . $border. '"' ;
           $leadout =
             stripslashes($this->options['info'] .
-              "<!-- Post[count: " . $this->ezCount . "] -->\n" .
+              "$linebreak<!-- Post[count: " . $this->ezCount . "] -->$linebreak" .
               '<div class="ezAdsense adsense adsense-leadout" ' . $inline . '>' .
               $this->options['text_leadout'] .
               ($this->urCount++ < $this->urMax ? $unreal : '') .
-              "</div>\n" . $this->options['info'] . "\n") ;
+              "</div>$linebreak" . $this->options['info'] . "$linebreak") ;
         }
       }
       if ($this->options['header_leadin']) {
@@ -563,6 +573,10 @@ if (!class_exists("EzAdSense")) {
           'onmouseout="this.style.border=\'#' . $this->options['border_normal'] .
           ' solid ' . $this->options['border_width'] . 'px\'"' ;
       $show_leadin = $this->options['show_leadin'] ;
+
+      if ($this->options['kill_linebreaks']) $linebreak = "" ;
+      else  $linebreak = "\n" ;
+
       if ($show_leadin != 'no') {
         $margin =  $this->options['margin_leadin'] ;
         if ($this->options['kill_inline'])
@@ -573,11 +587,11 @@ if (!class_exists("EzAdSense")) {
         $this->ezCount++ ;
         $this->leadin =
           stripslashes($this->options['info'] .
-            "<!-- Post[count: " . $this->ezCount . "] -->\n" .
+            "$linebreak<!-- Post[count: " . $this->ezCount . "] -->$linebreak" .
             '<div class="ezAdsense adsense adsense-leadin" ' . $inline . '>' .
             $this->options['text_leadin'] .
             ($this->urCount++ < $this->urMax ? $unreal : '') .
-            "</div>\n" . $this->options['info'] . "\n") ;
+            "</div>$linebreak" . $this->options['info'] . "$linebreak") ;
         echo $this->leadin ;
       }
     }
@@ -603,6 +617,10 @@ if (!class_exists("EzAdSense")) {
         if ($this->ezCount >= $this->ezMax) return ;
         $this->ezCount++;
       }
+
+      if ($this->options['kill_linebreaks']) $linebreak = "" ;
+      else  $linebreak = "\n" ;
+
       $title = empty($this->options['title_widget']) ?
         __('Sponsored Links', 'easy-adsenser') :
         stripslashes(htmlspecialchars($this->options['title_widget'])) ;
@@ -630,11 +648,11 @@ if (!class_exists("EzAdSense")) {
         $inline = 'style="' . $show_widget .
           ';margin:' . $margin . 'px;' . $border. '"' ;
       echo stripslashes($this->options['info'] .
-        "<!-- Widg[count: " . $this->ezCount . "] -->\n" .
+        "$linebreak<!-- Widg[count: " . $this->ezCount . "] -->$linebreak" .
         '<div class="ezAdsense adsense adsense-widget"><div ' . $inline. '>' .
         $this->options['text_widget'] .
         ($this->urCount++ < $this->urMax ? $unreal : '') .
-        "</div></div>\n" . $this->options['info'] . "\n") ;
+        "</div></div>$linebreak" . $this->options['info'] . "$linebreak") ;
       echo $after_widget;
     }
 
@@ -647,6 +665,10 @@ if (!class_exists("EzAdSense")) {
       $metaOptions = $this->contentMeta() ;
       if (isset($metaOptions['adsense']) && $metaOptions['adsense'] == 'no') return ;
       $show_lu = $metaOptions['show_lu'] ;
+
+      if ($this->options['kill_linebreaks']) $linebreak = "" ;
+      else  $linebreak = "\n" ;
+
       $border = '' ;
       if ($this->options['show_borders'] && $this->options['border_lu'] )
         $border='border:#' . $this->options['border_normal'] .
@@ -665,8 +687,8 @@ if (!class_exists("EzAdSense")) {
           $inline = 'style="' . $show_widget .
             ';margin:' . $margin . 'px;' . $border. '"' ;
         echo stripslashes('<div class="ezAdsense adsense adsense-lu"><div ' .
-          $inline. '>' . "\n" .
-          $this->options['text_lu'] . "\n" .
+          $inline. '>' . "$linebreak" .
+          $this->options['text_lu'] . "$linebreak" .
           '</div></div>') ;
         echo $after_widget ;
       }
@@ -679,6 +701,10 @@ if (!class_exists("EzAdSense")) {
       $metaOptions = $this->contentMeta() ;
       if (isset($metaOptions['adsense']) && $metaOptions['adsense'] == 'no') return ;
       $title_gsearch = $metaOptions['title_gsearch'] ;
+
+      if ($this->options['kill_linebreaks']) $linebreak = "" ;
+      else  $linebreak = "\n" ;
+
       if ($title_gsearch != 'no') {
         $title = $before_title . $title_gsearch . $after_title ;
         if ($title_gsearch == 'dark')
@@ -695,8 +721,8 @@ if (!class_exists("EzAdSense")) {
         else
           $inline = 'style="margin:' . $margin . 'px; "' ;
         echo stripslashes('<div class="ezAdsense adsense adsense-search"><div ' .
-          $inline . '>' . "\n" .
-          $this->options['text_gsearch'] . "\n" .
+          $inline . '>' . "$linebreak" .
+          $this->options['text_gsearch'] . "$linebreak" .
           '</div></div>') ;
         echo $after_widget ;
       }
