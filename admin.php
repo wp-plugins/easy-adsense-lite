@@ -175,10 +175,10 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 </td>
 </tr>
 <tr style="vertical-align:top">
-<td style="width:50%;height:250px;vertical-align:middle">
+<td style="width:50%;height:200px;vertical-align:middle">
 <b><?php _e('Post Lead-out AdSense Text', 'easy-adsenser') ; ?></b>&nbsp;
 <?php _e('(Appears near the end of the post)', 'easy-adsenser') ; ?><br />
-<textarea cols="50" rows="15" name="ezAdSenseTextLeadout" style="width: 95%; height: 162px;"><?php echo(stripslashes(htmlspecialchars($this->options['text_leadout']))) ?></textarea>
+<textarea cols="50" rows="15" name="ezAdSenseTextLeadout" style="width: 95%; height: 112px;"><?php echo(stripslashes(htmlspecialchars($this->options['text_leadout']))) ?></textarea>
 <br />
 <b><?php _e('Ad Alignment', 'easy-adsenser') ; ?></b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span onmouseover="Tip('<?php _e('Suppress this ad block if the post is not at least this many words long. Enter 0 or a small number if you do not want to suppress ads based on the number of words in the page/post.', 'easy-adsenser') ?>', WIDTH, 240, TITLE, '<?php _e('Min. Word Count', 'easy-adsenser') ?>')" onmouseout="UnTip()"><?php _e('Min. Word Count', 'easy-adsenser') ; ?>: <input style="width:40px;text-align:center;" id="ezLeadOutWC" name="ezLeadOutWC" value="<?php echo(stripslashes(htmlspecialchars($this->options['wc_leadout'])));?>" /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -264,8 +264,12 @@ Colors:&nbsp; Normal:#<input style="width:55px;text-align:center;" id="ezBorderN
 <label for="ezKillInLine"  onmouseover="Tip('<?php _e('All &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;s that &lt;em&gt;Easy AdSense&lt;/em&gt; creates have the class attribute &lt;code&gt;adsense&lt;/code&gt;. Furthermore, they have class attributes like &lt;code&gt;adsense-leadin&lt;/code&gt;, &lt;code&gt;adsense-midtext&lt;/code&gt;, &lt;code&gt;adsense-leadout&lt;/code&gt;, &lt;code&gt;adsense-widget&lt;/code&gt; and &lt;code&gt;adsense-lu&lt;/code&gt; depending on the type. You can set the style for these classes in your theme &lt;code&gt;style.css&lt;/code&gt; to control their appearance.&lt;br /&gt;If this is all Greek to you, please leave the option unchecked.', 'easy-adsenser'); ?>',WIDTH, 290, TITLE, 'CSS vs. In-Line')" onmouseout="UnTip()" >
 <input type="checkbox" id="ezKillInLine" name="ezKillInLine"  <?php if ($this->options['kill_inline']) { echo('checked="checked"'); }?> /> <?php _e('Suppress in-line styles (Control ad-blocks using style.css)', 'easy-adsenser') ; ?></label><br />
 
-<label for="ezKillLineBreaks"  onmouseover="Tip('<?php _e('If you find that you have extra vertical spaces or if your ad code is messed up with &lt;code&gt;&lt;&lt;/code&gt;&lt;code&gt;p&gt;&lt;/code&gt; or &lt;code&gt;&lt;&lt;/code&gt;&lt;code&gt;br /&gt;&lt;/code&gt; tags, try checking this option.&lt;br /&gt;Under normal cirumstances, this option should be left unchecked.', 'easy-adsenser'); ?>',WIDTH, 290, TITLE, 'CSS vs. In-Line')" onmouseout="UnTip()" >
-<input type="checkbox" id="ezKillLineBreaks" name="ezKillLineBreaks"  <?php if ($this->options['kill_linebreaks']) { echo('checked="checked"'); }?> /> <?php _e('Prevent spurious line breaks', 'easy-adsenser') ; ?></label>
+<label for="ezKillLineBreaks"  onmouseover="Tip('<?php _e('If you find that you have extra vertical spaces or if your ad code is messed up with &lt;code&gt;&lt;&lt;/code&gt;&lt;code&gt;p&gt;&lt;/code&gt; or &lt;code&gt;&lt;&lt;/code&gt;&lt;code&gt;br /&gt;&lt;/code&gt; tags, try checking this option.&lt;br /&gt;Under normal cirumstances, this option should be left unchecked.', 'easy-adsenser'); ?>',WIDTH, 290, TITLE, 'Spurious Linebreaks')" onmouseout="UnTip()" >
+<input type="checkbox" id="ezKillLineBreaks" name="ezKillLineBreaks"  <?php if ($this->options['kill_linebreaks']) { echo('checked="checked"'); }?> /> <?php _e('Prevent spurious line breaks', 'easy-adsenser') ; ?></label><br />
+
+<label for="ezSuppressBoxes"  onmouseover="Tip('<?php _e('If no ad text is entered for a particular slot, Easy AdSense Pro displays a box with red borders to indicate where an would have been placed. If you would like to suppress them, check this option.', 'easy-adsenser'); ?>',WIDTH, 290, TITLE, 'Suppress Red Boxes')" onmouseout="UnTip()" >
+<input type="checkbox" id="ezSuppressBoxes" name="ezSuppressBoxes"  <?php if ($this->options['suppressBoxes']) { echo('checked="checked"'); }?> /> <?php _e('Suppress Placement Boxes', 'easy-adsenser') ; ?></label>
+
 </td>
 </tr>
 </table>

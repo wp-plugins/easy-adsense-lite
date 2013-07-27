@@ -3,7 +3,7 @@
   Plugin Name: Easy AdSense
   Plugin URI: http://www.thulasidas.com/adsense
   Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense</a>.
-  Version: 6.22
+  Version: 6.23
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
 */
@@ -164,6 +164,7 @@ if (!class_exists("EzAdSense")) {
         $this->options['kill_archive'] = isset($_POST['ezKillArchive']);
         $this->options['kill_inline'] = isset($_POST['ezKillInLine']);
         $this->options['kill_linebreaks'] = isset($_POST['ezKillLineBreaks']);
+        $this->options['suppressBoxes'] = isset($_POST['ezSuppressBoxes']);
 
         $this->options['show_borders'] = isset($_POST['ezShowBorders']);
         if (isset($_POST['ezBorderWidth']))
@@ -310,6 +311,7 @@ if (!class_exists("EzAdSense")) {
           'kill_inline' => false,
           'kill_widget_title' => false,
           'kill_linebreaks' => false,
+          'suppressBoxes' => false,
           'title_widget' => '');
       return $defaultOptions ;
     }
@@ -324,11 +326,16 @@ if (!class_exists("EzAdSense")) {
     function handleDefaultText($text, $key = '300x250') {
       $ret = $text ;
       if ($ret == $this->defaults['defaultText'] || strlen(trim($ret)) == 0) {
-        $x = strpos($key, 'x') ;
-        $w = substr($key, 0, $x);
-        $h = substr($key, $x+1);
-        $p = (int)(min($w,$h)/6) ;
-        $ret = '<div style="width:'.$w.'px;height:'.$h.'px;border:1px solid red;"><div style="padding:'.$p.'px;text-align:center;font-family:arial;font-size:8pt;"><p>Your ads will be inserted here by</p><p><b>Easy AdSense</b>.</p><p>Please go to the plugin admin page to paste your ad code.</p></div></div>' ;
+        if ($this->options['suppressBoxes']) {
+          $ret = '';
+        }
+        else {
+          $x = strpos($key, 'x') ;
+          $w = substr($key, 0, $x);
+          $h = substr($key, $x+1);
+          $p = (int)(min($w,$h)/6) ;
+          $ret = '<div style="width:'.$w.'px;height:'.$h.'px;border:1px solid red;"><div style="padding:'.$p.'px;text-align:center;font-family:arial;font-size:8pt;"><p>Your ads will be inserted here by</p><p><b>Easy AdSense</b>.</p><p>Please go to the plugin admin page to<br /><u title="Generate your ad code from your provider and paste it in the text box for this ad slot">Paste your ad code</u> OR<br /> <u title="Use the dropdown under the text box for this ad slot to suppress it">Suppress this ad slot</u> OR<br /><u title="Use the option to suppress placement boxes">Suppress Placement Boxes</u>.</p></div></div>' ;
+        }
       }
       return $ret ;
     }
