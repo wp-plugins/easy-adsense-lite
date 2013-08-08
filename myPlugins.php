@@ -148,6 +148,19 @@ $myPlugins['unreal-universe'] =
     'pro' => '',
     'kind' =>'book') ;
 
+$myPlugins['pqd'] =
+  array('value' => 'Principles of Quantitative Development - Companion eBook',
+    'url' => 'http://pqd.thulasidas.com',
+    'amazon' => 'http://www.amazon.com/exec/obidos/ASIN/0470745703/unrblo-20',
+    'price' => '5.49',
+    'share' => false,
+    'long' => true,
+    'blurb' => 'This eBook companion to <em><strong>Principles of Quantitative Development</strong></em> is a lucid and succinct exposé on the trade life cycle and the business groups involved in managing it, bringing together the big picture of how a trade flows through the systems, and the role of a quantitative professional in the organization. This compelling book ',
+    'desc' => 'looks at the need and demand for in-house trading platforms, addressing the current trends in the industry. It then looks at the trade life cycle and its participants, from beginning to end, and then the functions within the front, middle and back office, giving the reader a full understanding and appreciation of the perspectives and needs of each function.',
+    'title' => '<em><strong>Principles of Quantitative Development</strong></em> has been enthusiastically endorsed by the leading professionals in the quantitative finance space, including <strong>Paul Wilmott</strong>.',
+    'pro' => '',
+    'kind' =>'book') ;
+
 $myPlugins['iphoto-tagger'] =
   array('value' => 'iPhoto Tagger -- Helper for iPhoto imports',
     'price' => '1.99',

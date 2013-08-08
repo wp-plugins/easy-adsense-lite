@@ -77,7 +77,7 @@ function renderBook($name, $plg) {
   $link = '<b><a href="' . $url . '" target="_blank">' . $value . '</a></b>&nbsp; ' ;
   $text = $link . $desc ;
   $price = $plg['price'] ;
-  $moreInfo = "&nbsp;&nbsp; <a href='$url' title='More info about $value at Unreal Blog'>More Info</a> " ;
+  $moreInfo = "&nbsp;&nbsp; <a href='$url' title='More info about $value'>More Info</a> " ;
   $amazon = $plg['amazon'] ;
   if (!empty($amazon)) $buyAmazon = "&nbsp;&nbsp; <a href='$amazon' title='Get $value from Amazon.com'>Get it at Amazon</a> " ;
   $buyNow = "&nbsp;&nbsp; <a href='http://buy.thulasidas.com/$name' title='Buy and download $value for \$$price'>Buy and Download now!</a><br />" ;
@@ -87,8 +87,8 @@ function renderBook($name, $plg) {
     "<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" .
     makeTextWithTooltip($moreInfo, "Read all about $value at its own site.<br />", "$value", 300) .
     makeTextWithTooltip($buyAmazon, $title, "Buy $value from Amazon", 350) .
-    makeTextWithTooltipTag($name, $buyNow, $why, "Buy $value!", 300) .
-    "<span id=$name> $why </span>" .
+    makeTextWithTooltipTag("$name-book", $buyNow, $why, "Buy $value!", 300) .
+    "<span id=$name-book> $why </span>" .
     "</li>\n" ;
 }
 ?>

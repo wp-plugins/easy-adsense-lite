@@ -84,7 +84,7 @@ function renderSupportText($name, $plg, $long=true) {
   if ($long) $longText = "My books on " ;
   else $longText= 'Books: ' ;
   $supportText .= "<br />$longText<span style=\"text-decoration:underline\" onmouseover=\"TagToTip('unreal', WIDTH, 205, TITLE, 'Buy &lt;em&gt;The Unreal Universe&lt;/em&gt;',STICKY, 1, CLOSEBTN, true, FIX, [this, 5, 2])\"><b><a href='http://buy.thulasidas.com/unreal' target='_blank'>Physics &amp; Philosophy</a></b></span> or " ;
-  $supportText .= "<span style=\"text-decoration:underline\" onmouseover=\"TagToTip('pqd', WIDTH, 205, TITLE, '&lt;em&gt;Principles of Quant. Devel.&lt;/em&gt;',STICKY, 1, CLOSEBTN, true, FIX, [this, 5, 2])\"><b><a href='http://www.amazon.com/exec/obidos/ASIN/0470745703/unrblo-20' target='_blank'>Money &amp; Finance</a></b></span>.</div>" ;
+  $supportText .= "<span style=\"text-decoration:underline\" onmouseover=\"TagToTip('pqd', WIDTH, 205, TITLE, '&lt;em&gt;Principles of Quant. Devel.&lt;/em&gt;',STICKY, 1, CLOSEBTN, true, FIX, [this, 5, 2])\"><b><a href='http://buy.thulasidas.com/pqd' target='_blank'>Money &amp; Finance</a></b></span>.</div>" ;
   echo $supportText ;
 }
 
@@ -140,20 +140,20 @@ ISBN: 9789810575946&nbsp;<br />
 <div id="pqd" style="margin-left:auto;margin-right:auto;width:200px;display:none;">
 <div style="text-align:center;width:200px;padding:1px;background:#000;margin:2px;">
 <div style="text-align:center;width:190px;height:185px;padding:2px;padding-top:1px;padding-left:4px;border:solid 1px #fff;background:#411;margin:1px;">
-<a style="text-decoration:none;" href="http://www.amazon.com/exec/obidos/ASIN/0470745703/unrblo-20" title="Find out more about Principles of Quantitative Development and buy it from Amazon.com">
+<a style="text-decoration:none;" href="http://buy.thulasidas.com/pqd" title="Buy the companion eBook to Principles of Quantitative Development from the author (only $5.49)">
 <span style="font-size:14px;font-family:arial;color:#fff;font-variant: small-caps;">A Remarkable Book from Wiley-Finance</span>
 </a>
 <hr />
 <table style="border-width:0;padding:2px;width:100%;margin-left:auto;margin-right:auto;border-spacing:0;border-collapse:collapse;">
 <tr><td style="padding:0px">
 <div style="border:solid 1px #faa;height:126px;width:82px;">
-<a style="text-decoration:none;" href="http://www.amazon.com/exec/obidos/ASIN/0470745703/unrblo-20" title="Find out more about Principles of Quantitative Development and buy it from Amazon.com">
-<img src="$plugindir/pqd-82x126.gif" alt="PQD" title="Principles of Quantitative Development from Amazon.com" />
+<a style="text-decoration:none;" href="http://buy.thulasidas.com/pqd" title="Buy the companion eBook to Principles of Quantitative Development from the author (only $5.49)">
+<img src="$plugindir/pqd-82x126.gif" alt="PQD" title="Buy the companion eBook to Principles of Quantitative Development from the author (only $5.49)" />
 </a>
 </div>
 </td>
 <td style="padding:3px">
-<a style="text-decoration:none;" href="http://www.amazon.com/exec/obidos/ASIN/0470745703/unrblo-20" title="Find out more about Principles of Quantitative Development and buy it from Amazon.com">
+<a style="text-decoration:none;" href="http://buy.thulasidas.com/pqd" title="Buy the companion eBook to Principles of Quantitative Development from the author (only $5.49)">
 <em style="font-size:14px;font-family:arial;color:#fff;">"An excellent book!"</em><br />
 <small style="font-size:13px;font-family:arial;color:#faa;">&nbsp;&nbsp;&#8212; Paul Wilmott</small>
 <br />
