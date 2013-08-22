@@ -3,7 +3,7 @@
   Plugin Name: Easy AdSense
   Plugin URI: http://www.thulasidas.com/adsense
   Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense</a>.
-  Version: 6.30
+  Version: 6.31
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
 */
@@ -390,7 +390,7 @@ if (!class_exists("EzAdSense")) {
       return $links;
     }
 
-    function contentMeta() {
+    function getMetaOptions() {
       global $post;
       $lookup = array('adsense' => 'adsense',
                 'adsense-top' =>'show_leadin',
@@ -436,7 +436,7 @@ if (!class_exists("EzAdSense")) {
       $this->urMax = $this->options['max_link'] ;
       if ($this->ezCount >= $this->ezMax) return $content ;
       if(strpos($content, "<!--noadsense-->") !== false) return $content;
-      $metaOptions = $this->contentMeta() ;
+      $metaOptions = $this->getMetaOptions() ;
       if (isset($metaOptions['adsense']) && $metaOptions['adsense'] == 'no')
         return $content;
       $this->handleDefaults() ;
@@ -614,7 +614,7 @@ if (!class_exists("EzAdSense")) {
       $this->options['text_widget'] =
         $this->handleDefaultText($this->options['text_widget'], '160x600') ;
       $this->options['info'] = $this->info() ;
-      $metaOptions = $this->contentMeta() ;
+      $metaOptions = $this->getMetaOptions() ;
       if (isset($metaOptions['adsense']) && $metaOptions['adsense'] == 'no') return ;
       $show_widget = $metaOptions['show_widget'] ;
       if ($show_widget == 'no') return ;
@@ -669,7 +669,7 @@ if (!class_exists("EzAdSense")) {
         $this->handleDefaultText($this->options['text_lu'], '160x160') ;
       $title = empty($this->options['title_lu']) ? '' :
         $before_title . stripslashes(htmlspecialchars($this->options['title_lu'])) . $after_title ;
-      $metaOptions = $this->contentMeta() ;
+      $metaOptions = $this->getMetaOptions() ;
       if (isset($metaOptions['adsense']) && $metaOptions['adsense'] == 'no') return ;
       $show_lu = $metaOptions['show_lu'] ;
 
@@ -705,7 +705,7 @@ if (!class_exists("EzAdSense")) {
       extract($args);
       $this->options['text_gsearch'] =
         $this->handleDefaultText($this->options['text_gsearch'], '160x160') ;
-      $metaOptions = $this->contentMeta() ;
+      $metaOptions = $this->getMetaOptions() ;
       if (isset($metaOptions['adsense']) && $metaOptions['adsense'] == 'no') return ;
       $title_gsearch = $metaOptions['title_gsearch'] ;
 

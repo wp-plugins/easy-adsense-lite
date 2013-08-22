@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 3.6
-Stable tag: 6.30
+Stable tag: 6.31
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
 
@@ -28,17 +28,26 @@ Easy AdSense provides a very easy way to generate revenue from your blog using G
 5. Easy AdSense sports the simplest possible configuration interface -- nothing more than cutting and pasting AdSense code, and with sensible defaults for the few options present, all with clear instructions.
 6. Easy AdSense is internationalized with multiple languages supported.
 
-Easy AdSense is the freely distributed version of a premium plugin. The [Pro version](http://buy.thulasidas.com/easy-adsense "Pro version of the Easy AdSense plugin") gives you more benefits. It gives you filter to ensure that your Google AdSense ads show only on those pages that seem to comply with Google AdSense policies, which can be important since some comments may render your pages inconsistent with those policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. Also in the works for the Pro version is a compatibility mode, which solves the issue of the ad insertion messing up your page appearances when using some  themes.
+= Pro Version =
+
+Easy AdSense is the freely distributed version of a premium plugin. The [Pro version](http://buy.thulasidas.com/easy-adsense "Pro version of the Easy AdSense plugin") gives you more features. Here is a list of the Pro features:
+
+1. Safe Content filter: To ensure that your Google AdSense ads show only on those pages that seem to comply with Google AdSense policies, which can be important since some comments may render your pages inconsistent with those policies.
+2. IP filter: Ability to specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned.
+3. Compatibility mode: To solve the issue of the ad insertion messing up your page appearances when using some themes.
+4. Shortcode support: Show the ads only on the pages or posts you want, and exactly where you want them.
+5. Mobile support: Ability to suppress ads on mobile devices.
+6. Ability to show a configurable number of ads on Excerpts (which make up the home page in some themes).
 
 = New in this Release =
 
-Compatibility with WP3.6.
+Translation updates. Documentation changes.
 
 == Upgrade Notice ==
 
-= 6.30 =
+= 6.31 =
 
-Compatibility with WP3.6.
+Translation updates. Documentation changes.
 
 == Screenshots ==
 
@@ -106,10 +115,6 @@ Yes! Now, in V2.1+, you have more options (using [Custom Fields](http://codex.wo
 
 If you feel that the features of Easy AdSense are a bit too much, consider my lean and mean AdSense plugin [AdSense Now!](http://www.thulasidas.com/plugins/adsense-now/ "The simplest possible way to AdSense enable your blog")
 
-= I just upgraded to WordPress version 2.8. My widget is gone and I'm mad. What gives? =
-
-WP2.8 uses a different widget API. Easy AdSense is compatible with it. Just go to your widget page, and drag and drop it again in the sidebar of your choice at the right point. Fret not, your settings and AdSense code are safely saved (per theme), and you don't have to cut and paste those details again.
-
 = I just activated the plugin. How come I don't see any ads in my blog? =
 
 Note that you have to generate your adsense code from Google, and paste the *entire* code in the text boxes, replacing the existing text. There are three main text boxes corresponding to three ad locations - Lead-in, Mid-text and Lead-out. If you don't want to use a particular location, please suppress it by selecting the appropriate option. Otherwise, the plugin will show a red box indicating where you ad would be shown.
@@ -126,6 +131,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V6.31: Translation updates. Documentation changes. [Aug 22, 2013]
 * V6.30: Compatibility with WP3.6. [Aug 8, 2013]
 * V6.23: New option to suppress the red placeholder boxes that annoy some users. [Jul 27, 2013]
 * V6.22: New option to prevent line-breaks in ad insertion. [Jul 3, 2013]

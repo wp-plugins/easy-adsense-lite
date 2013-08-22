@@ -107,6 +107,9 @@ function popupwindow(url, title, w, h){  var left =(screen.width/2)-(w/2);  var 
 <?php
   $myPluginsU = array_unique($myPlugins, SORT_REGULAR);
   unset($myPluginsU[$plgName]);
+  foreach ($myPluginsU as  $k => $p) {
+    if (isset($p['hide']) || isset($p['kind'])) unset($myPluginsU[$k]);
+  }
   $keys = array_rand($myPluginsU, 3);
   foreach ($keys as $name) if ($name != $plgName) renderPlg($name, $myPluginsU[$name]) ;
 ?>
