@@ -18,7 +18,7 @@ function renderSupport($name, $plg) {
   $plugindir = get_option('siteurl') . '/' . PLUGINDIR . '/' .  basename(dirname(__FILE__)) ;
   $value = $plg['value'];
   $desc = $plg['desc'] ;
-  $url = 'http://www.thulasidas.com/plugins/' . $name . '#FAQ' ;
+  $url = 'http://www.thulasidas.com/plugins/' . $name . '#faq' ;
   $link = '<a href="' . $url . '" target="_blank">' . $value . '</a>' ;
   echo "&nbsp;<a href='http://support.thulasidas.com' onclick=\"popupwindow('http://support.thulasidas.com','ezSupport for $value', 1024, 768);return false;\" title='" ;
   _e('Ask a support question (in English or French only) via ezSupport @ $0.95', 'easy-adsenser') ;
