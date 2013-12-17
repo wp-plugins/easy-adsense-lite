@@ -8,7 +8,13 @@ function ezPluginInfo(){
     $baseDir = dirname($k) ;
     if ($baseDir == $me) {
       $version = $p['Version'] ;
-      $info = "$break{$p['Title']} V{$p['Version']} (Referer: {$_SERVER['HTTP_REFERER']})" ;
+      if (!empty($_SERVER['HTTP_REFERER'])) {
+        $referer = $_SERVER['HTTP_REFERER'];
+      }
+      else {
+        $referer = 'Unknown';
+      }
+      $info = "$break{$p['Title']} V{$p['Version']} (Referer: $referer)" ;
       $ret[] = array('Version' => $version, 'Info' => $info) ;
     }
   }
@@ -111,5 +117,3 @@ function googleTranslateElementInit() {
 renderTranslator($plgName);
 
 renderSupport($plgName, $myPlugins[$plgName]) ;
-
-?>
