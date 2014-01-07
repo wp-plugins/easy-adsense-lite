@@ -3,7 +3,7 @@
   Plugin Name: Easy AdSense
   Plugin URI: http://www.thulasidas.com/adsense
   Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense</a>.
-  Version: 6.50
+  Version: 6.51
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
 */
@@ -165,6 +165,9 @@ if (!class_exists("EzAdSense")) {
         $this->options['kill_inline'] = isset($_POST['ezKillInLine']);
         $this->options['kill_linebreaks'] = isset($_POST['ezKillLineBreaks']);
         $this->options['suppressBoxes'] = isset($_POST['ezSuppressBoxes']);
+        $this->options['kill_single'] = isset($_POST['ezKillSingle']);
+        $this->options['kill_search'] = isset($_POST['ezKillSearch']);
+        $this->options['kill_sticky'] = isset($_POST['ezKillSticky']);
 
         $this->options['show_borders'] = isset($_POST['ezShowBorders']);
         if (isset($_POST['ezBorderWidth']))
@@ -311,6 +314,9 @@ if (!class_exists("EzAdSense")) {
           'kill_inline' => false,
           'kill_widget_title' => false,
           'kill_linebreaks' => false,
+          'kill_single' => false,
+          'kill_search' => true,
+          'kill_sticky' => false,
           'suppressBoxes' => false,
           'title_widget' => '');
       return $defaultOptions ;
@@ -431,6 +437,9 @@ if (!class_exists("EzAdSense")) {
       if ($this->options['kill_cat'] && is_category()) return $content ;
       if ($this->options['kill_tag'] && is_tag()) return $content ;
       if ($this->options['kill_archive'] && is_archive()) return $content ;
+      if ($this->options['kill_single'] && is_single()) return $content ;
+      if ($this->options['kill_search'] && is_search()) return $content ;
+      if ($this->options['kill_sticky'] && is_sticky()) return $content ;
       $this->ezMax = $this->options['max_count'] ;
       if ($this->options['force_widget']) $this->ezMax-- ;
       $this->urMax = $this->options['max_link'] ;

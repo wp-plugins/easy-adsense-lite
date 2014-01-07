@@ -1,62 +1,63 @@
 <?php
-function ezPluginInfo(){
-  $me = basename(dirname(__FILE__)) ;
-  $plugins = get_plugins() ;
-  $ret = array('Version' => '', 'Info' => '') ;
-  $break = '' ;
+
+function ezPluginInfo() {
+  $me = basename(dirname(__FILE__));
+  $plugins = get_plugins();
+  $ret = array('Version' => '', 'Info' => '');
+  $break = '';
   foreach ($plugins as $k => $p) {
-    $baseDir = dirname($k) ;
+    $baseDir = dirname($k);
     if ($baseDir == $me) {
-      $version = $p['Version'] ;
+      $version = $p['Version'];
       if (!empty($_SERVER['HTTP_REFERER'])) {
         $referer = $_SERVER['HTTP_REFERER'];
       }
       else {
         $referer = 'Unknown';
       }
-      $info = "$break{$p['Title']} V{$p['Version']} (Referer: $referer)" ;
-      $ret[] = array('Version' => $version, 'Info' => $info) ;
+      $info = "$break{$p['Title']} V{$p['Version']} (Referer: $referer)";
+      $ret[] = array('Version' => $version, 'Info' => $info);
     }
   }
-  return $ret ;
-}
-function renderSupport($name, $plg) {
-  $plugindir = get_option('siteurl') . '/' . PLUGINDIR . '/' .  basename(dirname(__FILE__)) ;
-  $value = $plg['value'];
-  $desc = $plg['desc'] ;
-  $url = 'http://www.thulasidas.com/plugins/' . $name . '#faq' ;
-  $link = '<a href="' . $url . '" target="_blank">' . $value . '</a>' ;
-  echo "&nbsp;<a href='http://support.thulasidas.com' onclick=\"popupwindow('http://support.thulasidas.com','ezSupport for $value', 1024, 768);return false;\" title='" ;
-  _e('Ask a support question (in English or French only) via ezSupport @ $0.95', 'easy-adsenser') ;
-  echo "'><img src='$plugindir/ezsupport.png' class='alignright' alt='ezSupport Portal'/></a>" ;
-  printf(__("If you need help with %s, please read the FAQ section on the $link page. It may answer all your questions.", 'easy-adsenser'), $value, $link) ;
-  echo "<br style='line-height: 20px;'/>" ;
-  _e("Or, if you still need help, you can raise a support ticket.", 'easy-adsenser') ;
-  echo "&nbsp;<a href='http://support.thulasidas.com' onclick=\"popupwindow('http://support.thulasidas.com','ezSupport for $value', 1024, 768);return false;\" title='" ;
-  _e('Ask a support question (in English or French only) via ezSupport @ $0.95', 'easy-adsenser') ;
-  echo "'>" ;
-  _e("[Request Paid Support]", 'easy-adsenser') ;
-  $info = ezPluginInfo() ;
-  echo "</a>&nbsp;<small><em>[" ;
-  _e('Using our ezSupport Ticket System.', 'easy-adsenser') ;
-  echo "]</em></small>" ;
-  echo "<small style='float:right'><em>[" ;
-  printf(__('You are using %s (V%s)', 'easy-adsenser'), $value, $info[0]['Version']) ;
-  echo "]</em></small>" ;
-  $_SESSION['ezSupport'] = $info[0]['Info'] ;
+  return $ret;
 }
 
-function renderTranslator($plgName){
+function renderSupport($name, $plg) {
+  $plugindir = get_option('siteurl') . '/' . PLUGINDIR . '/' . basename(dirname(__FILE__));
+  $value = $plg['value'];
+  $url = 'http://www.thulasidas.com/plugins/' . $name . '#faq';
+  $link = '<a href="' . $url . '" target="_blank">' . $value . '</a>';
+  echo "&nbsp;<a href='http://support.thulasidas.com' onclick=\"popupwindow('http://support.thulasidas.com','ezSupport for $value', 1024, 768);return false;\" title='";
+  _e('Ask a support question (in English or French only) via ezSupport @ $0.95', 'easy-adsenser');
+  echo "'><img src='$plugindir/ezsupport.png' class='alignright' alt='ezSupport Portal'/></a>";
+  printf(__("If you need help with %s, please read the FAQ section on the $link page. It may answer all your questions.", 'easy-adsenser'), $value, $link);
+  echo "<br style='line-height: 20px;'/>";
+  _e("Or, if you still need help, you can raise a support ticket.", 'easy-adsenser');
+  echo "&nbsp;<a href='http://support.thulasidas.com' onclick=\"popupwindow('http://support.thulasidas.com','ezSupport for $value', 1024, 768);return false;\" title='";
+  _e('Ask a support question (in English or French only) via ezSupport @ $0.95', 'easy-adsenser');
+  echo "'>";
+  _e("[Request Paid Support]", 'easy-adsenser');
+  $info = ezPluginInfo();
+  echo "</a>&nbsp;<small><em>[";
+  _e('Using our ezSupport Ticket System.', 'easy-adsenser');
+  echo "]</em></small>";
+  echo "<small style='float:right'><em>[";
+  printf(__('You are using %s (V%s)', 'easy-adsenser'), $value, $info[0]['Version']);
+  echo "]</em></small>";
+  $_SESSION['ezSupport'] = $info[0]['Info'];
+}
+
+function renderTranslator($plgName) {
   $locale = get_locale();
   if (strncmp($locale, "en", 2) == 0) {
     return;
   }
   if ($plgName == 'adsense-now' ||
-    $plgName == 'easy-adsense' ||
-    $plgName == 'easy-translator') {
+          $plgName == 'easy-adsense' ||
+          $plgName == 'easy-translator') {
     return;
   }
-  echo '<div style="background-color:#ddd;padding:5px;border: solid 1px;margin:5px;">' ;
+  echo '<div style="background-color:#ddd;padding:5px;border: solid 1px;margin:5px;">';
   echo "<script type='text/javascript'>
 <!--
 function hideTranslator(id, btn, translator) {
@@ -116,4 +117,4 @@ function googleTranslateElementInit() {
 
 renderTranslator($plgName);
 
-renderSupport($plgName, $myPlugins[$plgName]) ;
+renderSupport($plgName, $myPlugins[$plgName]);

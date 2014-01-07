@@ -36,7 +36,7 @@ else {
     <h2>Easy AdSense Setup
 </h2>
 
-<form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">
+<form method="post" action="">
 <?php
 wp_nonce_field('EzAdsenseSubmit','EzAdsenseNonce');
 $plgDir = dirname(__FILE__) ;
@@ -46,8 +46,8 @@ if (empty($this->options['kill_rating']))
 if (empty($this->options['kill_invites']))
   renderInvite($myPlugins[$plgName], $plgName) ;
 ?>
-<table class="form-table">
-<tr><th scope="row"><b><?php _e('Instructions', 'easy-adsenser') ; ?></b></th></tr>
+<table>
+<tr><th scope="row"><h3><?php _e('Instructions', 'easy-adsenser') ; ?></h3></th></tr>
 </table>
 
 <table class="form-table" style="width:100%">
@@ -79,8 +79,8 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 
 <br />
 
-<table class="form-table">
-<tr><th scope="row"><b><?php printf(__('Options (for the %s theme)', 'easy-adsenser'), get_option('stylesheet')); ?></b></th></tr>
+<table>
+<tr><th scope="row"><h3><?php printf(__('Options (for the %s theme)', 'easy-adsenser'), get_option('stylesheet')); ?></h3></th></tr>
 </table>
 
 <table style="width:100%">
@@ -231,8 +231,8 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 
 <b><?php _e('Suppress AdSense Ad Blocks on:', 'easy-adsenser') ; ?></b>&nbsp;&nbsp;
 <input type="checkbox" id="ezKillPages" name="ezKillPages" value="true" <?php if ($this->options['kill_pages']) { echo('checked="checked"'); }?> /> <a href="http://codex.wordpress.org/Pages" target="_blank" title="<?php _e('Click to see the difference between posts and pages', 'easy-adsenser') ; ?>"><?php _e('Pages (Ads only on Posts)', 'easy-adsenser') ; ?></a><br />
-<label style="display:inline-block;width:35%" for="ezKillAttach" title="<?php _e('Pages that show attachments', 'easy-adsenser') ; ?>">
-<input type="checkbox" id="ezKillAttach" name="ezKillAttach" <?php if ($this->options['kill_attach']) { echo('checked="checked"'); }?> /> <?php _e('Attachment Page', 'easy-adsenser') ; ?></label>
+<label style="display:inline-block;width:35%" for="ezKillSticky" title="<?php _e('Sticky front page -- if you use a post as a front page', 'easy-adsenser') ; ?>">
+<input type="checkbox" id="ezKillSticky" name="ezKillSticky" <?php if ($this->options['kill_sticky']) { echo('checked="checked"'); }?> /> <?php _e('Sticky Front Page', 'easy-adsenser') ; ?></label>
 <label style="display:inline-block;width:25%" for="ezKillHome" title="<?php _e('Home Page and Front Page are the same for most blogs', 'easy-adsenser') ; ?>">
 <input type="checkbox" id="ezKillHome" name="ezKillHome" <?php if ($this->options['kill_home']) { echo('checked="checked"'); }?> /> <?php _e('Home Page', 'easy-adsenser') ; ?></label>
 <label style="display:inline-block;width:30%" for="ezKillFront" title="<?php _e('Home Page and Front Page are the same for most blogs', 'easy-adsenser') ; ?>">
@@ -244,6 +244,12 @@ printf(__('A few easy steps to setup %s', 'easy-adsenser'),'<em>Easy AdSense</em
 <input type="checkbox" id="ezKillTag" name="ezKillTag" <?php if ($this->options['kill_tag']) { echo('checked="checked"'); }?> /> <?php _e('Tag Pages', 'easy-adsenser') ; ?></label>
 <label style="display:inline-block;width:30%" for="ezKillArchive" title="<?php _e('Pages that come up when you click on year/month archives', 'easy-adsenser') ; ?>">
 <input type="checkbox" id="ezKillArchive" name="ezKillArchive" <?php if ($this->options['kill_archive']) { echo('checked="checked"'); }?> /> <?php _e('Archive Pages', 'easy-adsenser') ; ?></label>
+<label style="display:inline-block;width:35%" for="ezKillSearch" title="<?php _e('Pages showing search results', 'easy-adsenser') ; ?>">
+<input type="checkbox" id="ezKillSearch" name="ezKillSearch" <?php if ($this->options['kill_search']) { echo('checked="checked"'); }?> /> <?php _e('Search Results', 'easy-adsenser') ; ?></label>
+<label style="display:inline-block;width:25%" for="ezKillSingle" title="<?php _e('Posts (ads will be shown only on other kind of pages as specified in these checkboxes)', 'easy-adsenser') ; ?>">
+<input type="checkbox" id="ezKillSingle" name="ezKillSingle" <?php if ($this->options['kill_single']) { echo('checked="checked"'); }?> /> <?php _e('Single Posts', 'easy-adsenser') ; ?></label>
+<label style="display:inline-block;width:30%" for="ezKillAttach" title="<?php _e('Pages that show attachments', 'easy-adsenser') ; ?>">
+<input type="checkbox" id="ezKillAttach" name="ezKillAttach" <?php if ($this->options['kill_attach']) { echo('checked="checked"'); }?> /> <?php _e('Attachment Page', 'easy-adsenser') ; ?></label>
 <br />
 <br style="line-height: 15px;" />
 
@@ -489,4 +495,3 @@ if (!$this->options['kill_invites'])  {
 </div>
 <?php
    }
-?>
