@@ -1,5 +1,22 @@
 <?php
 
+/*
+  Copyright (C) 2008 www.ads-ez.com
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License as
+  published by the Free Software Foundation; either version 3 of the
+  License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 $myPlugins = array();
 
 $needPHP5 = ' <br /> <span style="font-color:#c00;">Note that this plugin requires PHPv5.0+. Please use the Lite version first to ensure that it works before buying the Pro version. If it does not work on your web host, consider the amazing <a href="http://buy.thulasidas.com/easy-adsense/" title="The most popular plugin to insert AdSense on your blog"><em><strong>Easy AdSense Pro</strong></em></a> for all your advertising needs. It can insert non-AdSense blocks as well.</span>';
@@ -117,13 +134,13 @@ $myPlugins['easy-latex'] = array('value' => 'Easy WP LaTeX',
             'pro' => 'The Lite version of the plugin is fully functional. The Pro version gives you options to cache the equation images so that your pages load faster.');
 
 $myPlugins['easy-translator'] = array('value' => 'Easy Translator',
-            'price' => '1.95',
+            'price' => '3.95',
             'share' => false,
             'long' => true,
             'blurb' => '<em><strong>Easy Translator</strong></em> ',
-            'desc' => 'is a plugin translation tool for authors and translators. (Not a blog page translator!)',
-            'title' => '<em><strong>Easy Translator</strong></em> is a plugin to translate other plugins. It picks up translatable strings (in _[_e]() functions) and presents them and their existing translations (from the MO object of the current text-domain, if loaded) in a user editable form. It can generate a valid PO file that can be emailed to the plugin author directly from the its window, streamlining your work.',
-            'pro' => 'The Lite version of Easy Translator is fully functional. The Pro version adds the ability to email the generated PO file directly, without having to save it and attach it to a mail message.');
+            'desc' => 'is a blog post translator and a plugin translation tool for authors and translators.',
+            'title' => '<em><strong>Easy Translator</strong></em> is a plugin to translate other plugins as well as blog posts. For blog posts and pages, it provides a customizable widget to enable machine translation (from Google or Microsoft). For plugins, it picks up translatable strings (in _[_e]() functions) and presents them and their existing translations (from the MO object of the current text-domain, if loaded) in a user editable form. It can generate a valid PO file that can be emailed to the plugin author directly from the its window, streamlining your work.',
+            'pro' => 'The Lite version of Easy Translator is fully functional. The Pro version adds machine translation help from Google, the ability to email the generated PO file directly, without having to save it and attach it to a mail message,  and color pickers to match the widget colors to your blog theme.');
 
 $myPlugins['unreal-universe'] = array('value' => 'The Unreal Universe - eBook',
             'url' => 'http://www.theunrealuniverse.com',
@@ -181,84 +198,4 @@ $myPlugins['ezpaypal'] = array('value' => 'ezPayPal',
 <li><em>Upgradeable Products</em>: You can define products that are upgradeable. For instance, you can sell a short eBook at an introductory price. If your buyer likes it, he has the option of buying the full book by paying the difference.</li>
 ');
 
-if (!function_exists('renderInvite')) {
-
-  function renderInvite($plg, $plgName) {
-    $plgLongName = $plg['value'];
-    $plgPrice = $plg['price'];
-    $benefits = $plg['benefits'];
-    $yesTip = sprintf(__('Buy %s Pro for $%s. PayPal payment. Instant download.', 'easy-adsenser'), $plgLongName, $plgPrice);
-    $yesTitle = __('Get the Pro version now!', 'easy-adsenser');
-    $noTip = __('Continue using the Lite version, and hide this message. After clicking this button, please remember to save your options to hide this box for good.', 'easy-adsenser');
-    $noTitle = __('Stay Lite', 'easy-adsenser');
-    if (empty($benefits)) {
-      return;
-    }
-    echo <<<ENDINVITE
-<input type="hidden" id="killInvites" name="killInvites" value="" />
-<div class="updated" id="tnc">
-<p><h3>Want More Features? <a href="#" onmouseover="Tip('$yesTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$yesTitle')" onmouseout="UnTip()" onclick = "buttonwhich('Yes')">Go Pro!</a></h3>
-The Pro version of this plugin gives you more features and benefits. For instance,
-<ol>
-$benefits
-</ol>
-And much more. New features and bug fixes will first appear in the Pro version before being ported to this freely distributed Lite edition. <br />
-<input onmouseover="Tip('$yesTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$yesTitle')" onmouseout="UnTip()" type = "button" id = "ybutton" value = "Go Pro!" onclick = "buttonwhich('Yes')" />
-<input onmouseover="Tip('$noTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$noTitle')" onmouseout="UnTip()" type = "button" id = "nbutton" value = "No thanks" onclick = "buttonwhich('No')" />
-<script type = "text/javascript">
-function hideInvite() {
-  document.getElementById("tnc").style.display = 'none';
-}
-function buttonwhich(message) {
-  document.getElementById("ybutton").style.display = 'none';
-  document.getElementById("nbutton").disabled = 'true';
-  document.getElementById("killInvites").value = 'true' ;
-  setTimeout('hideInvite()', 5000);
-  if (message == 'Yes') popupwindow('http://buy.thulasidas.com/$plgName','Get {$plg['value']}', 1024, 768) ;
-  if (message == 'No') document.getElementById("nbutton").value = 'Thank you for using $plgLongName! Please save options to hide this box forever';
-}
-</script>
-</div>
-ENDINVITE;
-  }
-
-}
-if (!function_exists('renderRating')) {
-
-  function renderRating($plg, $plgDir, $killable = true) {
-    $plgCTime = filemtime($plgDir);
-    $plgLongName = $plg['value'];
-    $hideTip = __('Click the link to hide this box. After clicking this link, please remember to save your options to hide this box for good.', 'easy-adsenser');
-    if (time() > $plgCTime + (60 * 60 * 24 * 30)) {
-      $msg = "You've installed this plugin over a month ago.";
-    }
-    else {
-      $msg = "You will find it feature-rich and robust.";
-    }
-    $plgKey = basename($plgDir);
-    $display = '';
-    if (!$killable) {
-      $display = "style='display:none'";
-    }
-    echo <<<ENDRATING
-<div class='updated' id='rating'>
-<p>Thanks for using <i><b>$plgLongName</b></i>! $msg <br />
-If you are satisfied with how well it works, why not <a href='http://wordpress.org/extend/plugins/$plgKey/' onclick="popupwindow('http://wordpress.org/extend/plugins/$plgKey/','Rate it', 1024, 768);return false;">rate it</a>
-and <a href='http://wordpress.org/extend/plugins/$plgKey/' onclick="popupwindow('http://wordpress.org/extend/plugins/$plgKey/','Rate it', 1024, 768);return false;">recommend it</a> to others? :-)
-<small style='font-weight:normal;'><a id='hideRating' $display href='#' style='float:right; display:block; border:none;'  onmouseover="Tip('$hideTip', WIDTH, 200, CLICKCLOSE, true, TITLE, 'Hide this Box')" onmouseout="UnTip()" onclick = "hideme()">
-Don't show this anymore</a></small></p></div>
-<input type="hidden" id="killRating" name="killRating" value="" />
-<script type = "text/javascript">
-function hideRating() {
-  document.getElementById("rating").style.display = 'none';
-}
-function hideme() {
-  document.getElementById("killRating").value = 'true' ;
-  document.getElementById("hideRating").innerHTML = 'Please hit the "Save Changes" button below to hide this box forever';
-  setTimeout('hideRating()', 4000);
-}
-</script>
-ENDRATING;
-  }
-
-}
+$this->myPlugins = $myPlugins;

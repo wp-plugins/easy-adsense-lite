@@ -4,7 +4,8 @@ Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 3.8
-Stable tag: 6.51
+Stable tag: 7.00
+License: GPL2 or later
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
 
@@ -39,15 +40,9 @@ Easy AdSense is the freely distributed version of a premium plugin. The [Pro ver
 5. Mobile support: Ability to suppress ads on mobile devices.
 6. Ability to show a configurable number of ads on Excerpts (which make up the home page in some themes).
 
-= New in this Release =
-
-Adding options to suppress ads on sticky front page or search pages.
-
 == Upgrade Notice ==
 
-= 6.51 =
-
-Adding options to suppress ads on sticky front page or search pages.
+Major changes to the options data model and the translation interface. If you notice anything not working as expected, please leave a note.
 
 == Screenshots ==
 
@@ -67,9 +62,23 @@ Although the Easy AdSense plugin is designed to handle Google AdSense efficientl
 
 == Frequently Asked Questions ==
 
-= Why do I get a "Plugin does not have valid header" error? =
+= I just activated the plugin. How come I don't see any ads in my blog? =
 
-This seems to be a problem with some WordPress installations. I have never been able to reproduce this error on any of my installations. I have found [this on the web](http://webdesign.anmari.com/2312/activation-error-plugin-does-not-have-valid-header-still-activates/ "This may give you some ideas") though.
+Note that you have to generate your adsense code from Google, and paste the *entire* code in the text boxes, replacing the existing text. There are three main text boxes corresponding to three ad locations - Lead-in, Mid-text and Lead-out. If you don't want to use a particular location, please suppress it by selecting the appropriate option. Otherwise, the plugin will show a red box indicating where you ad would be shown.
+
+If you just created the new Google AdSense code, it may not be active yet. Google takes about ten minutes or so before serving ads. Please try again later.
+
+= I activated the plugin, and I see a lot of red boxes on my blog posts your ads will be inserted here. How do I get rid of them? =
+
+Easy AdSense shows the spots on your blog where the ads would be shown if you entered the ad code on its admin page by drawing a red box. This is meant to serve as a reminder for you to go to the admin page and enter the ad code. If you would like to suppress them, check the option "Suppress Placement Boxes" near the bottom of the admin page. The right thing to do, however, would be to enter your ad codes in the text boxes for each ad slot, or suppress the ad slot by selecting the corresponding "Show" option under the ad slot text box.
+
+= The admin page is cluttered with links and information about the author. Any way to suppress them? =
+
+Please check the option "Kill author links on the admin page" near the bottom of the admin page if you find the links and info annoying.
+
+= I cannot figure out how to suppress a particular ad slot. Do I have to display all three ad slots all the time? =
+
+Of course not. The option to suppress the ad slots is in the "Show" drop-down menu below the corresponding text boxes. The first option in the menu is to suppress the ad slot.
 
 = What are the different versions of the plugin? =
 
@@ -77,7 +86,7 @@ Easy AdSense is the freely distributed version of a premium plugin. The [Pro ver
 
 = How can I contact the plugin author if I need help? =
 
-This plugin uses a paid support model in order to manage the support load. Each [support ticket](http://support.thulasidas.com "Ask a support question") will be charged at $0.95 for the Lite version (and for the Pro version after a short free support period). The support ticket is valid for 48 hours, and further follow-up questions will call for a new support ticket.
+This plugin uses a paid support model in order to manage the support load. Each [support ticket](http://support.thulasidas.com "Ask a support question") will be charged at $0.95 for the Lite version (and for the Pro version after a short free support period). The support ticket is valid for 72 hours, and further follow-up questions will call for a new support ticket.
 
 = I still don't get it. Porn and site block - that you already have during Asdense ad setup? =
 
@@ -115,12 +124,6 @@ Yes! Now, in V2.1+, you have more options (using [Custom Fields](http://codex.wo
 
 If you feel that the features of Easy AdSense are a bit too much, consider my lean and mean AdSense plugin [AdSense Now!](http://www.thulasidas.com/plugins/adsense-now/ "The simplest possible way to AdSense enable your blog")
 
-= I just activated the plugin. How come I don't see any ads in my blog? =
-
-Note that you have to generate your adsense code from Google, and paste the *entire* code in the text boxes, replacing the existing text. There are three main text boxes corresponding to three ad locations - Lead-in, Mid-text and Lead-out. If you don't want to use a particular location, please suppress it by selecting the appropriate option. Otherwise, the plugin will show a red box indicating where you ad would be shown.
-
-If you just created the new Google AdSense code, it may not be active yet. Google takes about ten minutes or so before serving ads. Please try again later.
-
 = I am having a difficult time getting the middle of post ads to show. They show in some posts, but not all of them. Any possible recommendations? =
 
 The middle ads are designed to show up only on long posts (of more than 20 paragraphs). Use the option to force the mid-text ads (in v1.82+) to override this length check.
@@ -131,6 +134,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V7.00: Major changes to the options data model and the translation interface. [Mar 21, 2014]
 * V6.51: Adding options to suppress ads on sticky front page or search pages. [Jan 7, 2014]
 * V6.50: Compatibility checks for WordPress V3.8. Admin page updates [Dec 17, 2013]
 * V6.40: Compatibility checks for WordPress V3.7. Translation updates. [Nov 11, 2013]
