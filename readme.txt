@@ -140,6 +140,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V7.01: Changes to show ads on home/front pages made up of full posts. Translation interface improvements. [Mar 29, 2014]
 * V7.00: Major changes to the options data model and the translation interface. [Mar 21, 2014]
 * V6.51: Adding options to suppress ads on sticky front page or search pages. [Jan 7, 2014]
 * V6.50: Compatibility checks for WordPress V3.8. Admin page updates [Dec 17, 2013]
