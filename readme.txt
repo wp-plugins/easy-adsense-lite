@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 3.8
-Stable tag: 7.00
+Stable tag: 7.01
 License: GPL2 or later
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
@@ -42,7 +42,7 @@ Easy AdSense is the freely distributed version of a premium plugin. The [Pro ver
 
 == Upgrade Notice ==
 
-Major changes to the options data model and the translation interface. If you notice anything not working as expected, please leave a note.
+Changes to show ads on home/front pages made up of full posts. (Those made up of excerpts cannot show ads.)
 
 == Screenshots ==
 
@@ -62,6 +62,12 @@ Although the Easy AdSense plugin is designed to handle Google AdSense efficientl
 
 == Frequently Asked Questions ==
 
+= Why doesn't my home/front page show no ads? =
+
+Ads are inserted by attaching a filter to the contents. If your home/front page is made up of full posts, the content filter will apply and you will see ads. On the other hand, if your home/front page is made up of excerpts (snippets of post contents), the content filter doesn't apply.
+
+It is possible to apply the filter on excerpts as well. But then, we have to make sure that it applies only to the first three excerpts (to comply with Google policy). This feature is implemented in the [Pro version](http://buy.thulasidas.com/easy-adsense "Pro version of the Easy AdSense plugin") of the plugin.
+
 = I just activated the plugin. How come I don't see any ads in my blog? =
 
 Note that you have to generate your adsense code from Google, and paste the *entire* code in the text boxes, replacing the existing text. There are three main text boxes corresponding to three ad locations - Lead-in, Mid-text and Lead-out. If you don't want to use a particular location, please suppress it by selecting the appropriate option. Otherwise, the plugin will show a red box indicating where you ad would be shown.
@@ -70,7 +76,7 @@ If you just created the new Google AdSense code, it may not be active yet. Googl
 
 = I activated the plugin, and I see a lot of red boxes on my blog posts your ads will be inserted here. How do I get rid of them? =
 
-Easy AdSense shows the spots on your blog where the ads would be shown if you entered the ad code on its admin page by drawing a red box. This is meant to serve as a reminder for you to go to the admin page and enter the ad code. If you would like to suppress them, check the option "Suppress Placement Boxes" near the bottom of the admin page. The right thing to do, however, would be to enter your ad codes in the text boxes for each ad slot, or suppress the ad slot by selecting the corresponding "Show" option under the ad slot text box.
+Easy AdSense draws a red box on your blog posts to show where the ads would be shown if you entered the ad code on its admin page. This is meant to serve as a reminder for you to go to the admin page and enter the ad code. If you would like to suppress them, check the option "Suppress Placement Boxes" near the bottom of the admin page. The right thing to do, however, would be to enter your ad codes in the text boxes for each ad slot, or suppress the ad slot by selecting the corresponding "Show" option under the ad slot text box.
 
 = The admin page is cluttered with links and information about the author. Any way to suppress them? =
 

@@ -19,7 +19,7 @@
 
 echo '<td style="width:30%">';
 
-if (rand(0, 2) % 2 || $this->slug == "easy-ads" || $this->slug == "google-adsense") {
+if (rand(0, 2) % 2 || $ez->slug == "easy-ads" || $ez->slug == "google-adsense") {
   $ez->renderSupportText();
   $ez->renderTipDivs();
 }

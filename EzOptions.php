@@ -525,6 +525,7 @@ if (!class_exists("EzBasePlugin")) {
     var $slug, $domain, $name, $plgDir, $plgURL, $plgFile;
     var $ezTran, $ezAdmin, $myPlugins;
     var $isPro, $strPro;
+    var $options;
 
     function __construct($slug, $name, $file) {
       $this->slug = $slug;
@@ -567,12 +568,7 @@ if (!class_exists("EzBasePlugin")) {
       }
     }
 
-    function printAdminPage() {
-      // if translating, print translation interface
-      if ($this->ezTran->printAdminPage()) {
-        return;
-      }
-      $this->handleSubmits();
+    function mkEzAdmin() {
       require_once($this->plgDir . '/myPlugins.php');
       $slug = $this->slug;
       $plg = $this->myPlugins[$slug];
@@ -590,6 +586,16 @@ if (!class_exists("EzBasePlugin")) {
       }
       $this->ezAdmin->domain = $this->domain;
       $this->ezAdmin->plgFile = $this->plgFile;
+      return $this->ezAdmin;
+    }
+
+    function printAdminPage() {
+      // if translating, print translation interface
+      if ($this->ezTran->printAdminPage()) {
+        return;
+      }
+      $this->handleSubmits();
+      $this->mkEzAdmin();
       return $this->ezAdmin;
     }
 

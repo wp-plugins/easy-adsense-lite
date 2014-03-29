@@ -16,9 +16,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!$this->options['kill_author']) {
+if (!$ez->killAuthor) {
   ?>
-
   <table class="form-table" >
     <tr>
       <td>
@@ -36,7 +35,7 @@ if (!$this->options['kill_author']) {
 
               <?php
               $myPluginsU = array_unique($this->myPlugins, SORT_REGULAR);
-              unset($myPluginsU[$this->slug]);
+              unset($myPluginsU[$ez->slug]);
               foreach ($myPluginsU as $k => $p) {
                 if (isset($p['hide']) || isset($p['kind'])) {
                   unset($myPluginsU[$k]);
@@ -44,7 +43,7 @@ if (!$this->options['kill_author']) {
               }
               $keys = array_rand($myPluginsU, 3);
               foreach ($keys as $name) {
-                if ($name != $this->slug) {
+                if ($name != $ez->slug) {
                   $ez->renderPlg($name, $myPluginsU[$name]);
                 }
               }
