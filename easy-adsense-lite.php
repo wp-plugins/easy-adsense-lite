@@ -4,7 +4,7 @@
   Plugin Name: Easy AdSense
   Plugin URI: http://www.thulasidas.com/adsense
   Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense</a>.
-  Version: 7.01
+  Version: 7.02
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -739,6 +739,19 @@ if (!class_exists("EzAdSense")) {
       return $paras;
     }
 
+    function mkBorder() {
+      $border = '';
+      if ($this->options['show_borders']) {
+        $border = 'border:#' . $this->options['border_normal'] .
+                ' solid ' . $this->options['border_width'] . 'px;" ' .
+                ' onmouseover="this.style.border=\'#' . $this->options['border_color'] .
+                ' solid ' . $this->options['border_width'] . 'px\'" ' .
+                'onmouseout="this.style.border=\'#' . $this->options['border_normal'] .
+                ' solid ' . $this->options['border_width'] . 'px\'"';
+      }
+      return $border;
+    }
+
     function filterContent($content) {
       foreach ($this->kills as $k) {
         $fn = "is_$k";
@@ -792,10 +805,7 @@ if (!class_exists("EzAdSense")) {
       else {
         $unreal = '';
       }
-      $border = '';
-      if ($this->options['show_borders']) {
-        $border = "border:#{$this->options['border_normal']} solid {$this->options['border_width']}px;' onmouseover='this.style.border=\"#{$this->options['border_color']} solid {$this->options['border_width']}px\"' onmouseout='this.style.border=\"#{$this->options['border_normal']} solid {$this->options['border_width']}px\"";
-      }
+      $border = $this->mkBorder();
 
       $show_leadin = $metaOptions['show_leadin'];
       $leadin = '';
@@ -913,15 +923,7 @@ if (!class_exists("EzAdSense")) {
       if (strpos($_SERVER['REQUEST_URI'], 'feed') !== false) {
         return;
       }
-      $border = '';
-      if ($this->options['show_borders']) {
-        $border = 'border:#' . $this->options['border_normal'] .
-                ' solid ' . $this->options['border_width'] . 'px;" ' .
-                ' onmouseover="this.style.border=\'#' . $this->options['border_color'] .
-                ' solid ' . $this->options['border_width'] . 'px\'" ' .
-                'onmouseout="this.style.border=\'#' . $this->options['border_normal'] .
-                ' solid ' . $this->options['border_width'] . 'px\'"';
-      }
+      $border = $this->mkBorder();
       $show_leadin = $this->options['show_leadin'];
       if ($show_leadin != 'no') {
         $margin = $this->options['margin_leadin'];
@@ -1018,15 +1020,7 @@ if (class_exists("EzAdSense")) {
         $title = empty($ezAdSense->options['title_widget']) ?
                 __('Sponsored Links', 'easy-adsenser') :
                 stripslashes(htmlspecialchars($ezAdSense->options['title_widget']));
-        $border = '';
-        if ($ezAdSense->options['show_borders'] && $ezAdSense->options['border_widget']) {
-          $border = 'border:#' . $ezAdSense->options['border_normal'] .
-                  ' solid ' . $ezAdSense->options['border_width'] . 'px ;"' .
-                  ' onmouseover="this.style.border=\'#' . $ezAdSense->options['border_color'] .
-                  ' solid ' . $ezAdSense->options['border_width'] . 'px\'" ' .
-                  'onmouseout="this.style.border=\'#' . $ezAdSense->options['border_normal'] .
-                  ' solid ' . $ezAdSense->options['border_width'] . 'px\'"';
-        }
+        $border = $ezAdSense->mkBorder();
         echo $before_widget;
         if (!$ezAdSense->options['kill_widget_title']) {
           echo $before_title . $title . $after_title;
@@ -1043,8 +1037,8 @@ if (class_exists("EzAdSense")) {
                 "$linebreak<!-- Widg[count: " . $ezAdSense->ezCount . "] -->$linebreak" .
                 '<div class="ezAdsense adsense adsense-widget"><div ' . $inline . '>' .
                 $ezAdSense->options['text_widget']) .
-                ($ezAdSense->urCount++ < $ezAdSense->urMax ? $unreal : '') .
-                "</div></div>$linebreak" . $ezAdSense->options['info'] . "$linebreak";
+        ($ezAdSense->urCount++ < $ezAdSense->urMax ? $unreal : '') .
+        "</div></div>$linebreak" . $ezAdSense->options['info'] . "$linebreak";
         echo $after_widget;
       }
 
@@ -1164,15 +1158,7 @@ if (class_exists("EzAdSense")) {
           return;
         }
         $show_lu = $metaOptions['show_lu'];
-        $border = '';
-        if ($ezAdSense->options['show_borders'] && $ezAdSense->options['border_lu']) {
-          $border = 'border:#' . $ezAdSense->options['border_normal'] .
-                  ' solid ' . $ezAdSense->options['border_width'] . 'px;" ' .
-                  ' onmouseover="this.style.border=\'#' . $ezAdSense->options['border_color'] .
-                  ' solid ' . $ezAdSense->options['border_width'] . 'px\'" ' .
-                  'onmouseout="this.style.border=\'#' . $ezAdSense->options['border_normal'] .
-                  ' solid ' . $ezAdSense->options['border_width'] . 'px\'"';
-        }
+        $border = $ezAdSense->mkBorder();
         if ($show_lu != 'no') {
           if ($ezAdSense->options['kill_linebreaks']) {
             $linebreak = "";
