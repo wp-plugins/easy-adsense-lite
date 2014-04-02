@@ -4,7 +4,7 @@
   Plugin Name: Easy AdSense
   Plugin URI: http://www.thulasidas.com/adsense
   Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense</a>.
-  Version: 7.02
+  Version: 7.10
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -40,7 +40,7 @@ if (!class_exists("EzAdSense")) {
     var $invite, $locale, $defaults, $helpTags,
             $leadin, $leadout, $options, $optionName, $metaOptions;
     var $ezMax, $urMax, $urCount, $ezCount;
-    var $adminMsg;
+    var $adminMsg, $border;
     var $kills = array('page', 'sticky', 'home', 'front_page', 'category',
         'tag', 'archive', 'search', 'single', 'attachment');
     var $ezOptions = array();
@@ -64,12 +64,7 @@ if (!class_exists("EzAdSense")) {
       $this->urCount = 0;
       $this->ezCount = 0;
       $this->metaOptions = array();
-    }
-
-    function session_start() {
-      if (!session_id()) {
-        @session_start();
-      }
+      $this->border = '';
     }
 
     static function showUnreal($print = false) {
@@ -198,6 +193,7 @@ if (!class_exists("EzAdSense")) {
       $o->desc = __('Position:', 'easy-adsenser');
       $o->style = "width:30%;";
       $o->addChoice('send_headers', 'send_headers', __('Above Header', 'easy-adsenser'));
+      $o->addChoice('loop_start', 'loop_start', __('Above Post Title', 'easy-adsenser'));
       $o->addChoice('the_content', 'the_content', __('Below Header', 'easy-adsenser'));
       $o->addChoice('default', '', __('Beginning of Post', 'easy-adsenser'));
       $this->ezOptions['header_leadin'] = clone $o;
@@ -677,50 +673,50 @@ if (!class_exists("EzAdSense")) {
     }
 
     function getMetaOptions() {
-      if (!empty($this->metaOptions)) {
-        return $this->metaOptions;
+      if (empty($this->metaOptions)) {
+        global $post;
+        $lookup = array('adsense' => 'adsense',
+            'adsense-top' => 'show_leadin',
+            'adsense-middle' => 'show_midtext',
+            'adsense-bottom' => 'show_leadout',
+            'adsense-widget' => 'show_widget',
+            'adsense-search' => 'title_gsearch',
+            'adsense-linkunits' => 'show_lu');
+        $metaOptions = array();
+        foreach ($lookup as $metaKey => $optKey) {
+          if (!empty($this->options[$optKey])) {
+            $metaOptions[$optKey] = $this->options[$optKey];
+          }
+          else {
+            $metaOptions[$optKey] = '';
+          }
+          $customStyle = get_post_custom_values($metaKey, $post->ID, true);
+          if (is_array($customStyle)) {
+            $metaStyle = strtolower($customStyle[0]);
+          }
+          else {
+            $metaStyle = strtolower($customStyle);
+          }
+          $style = '';
+          if ($metaStyle == 'left') {
+            $style = 'float:left;display:block;';
+          }
+          else if ($metaStyle == 'right') {
+            $style = 'float:right;display:block;';
+          }
+          else if ($metaStyle == 'center') {
+            $style = 'text-align:center;display:block;';
+          }
+          else {
+            $style = $metaStyle;
+          }
+          if (!empty($style)) {
+            $metaOptions[$optKey] = $style;
+          }
+        }
+        $this->metaOptions = $metaOptions;
       }
-      global $post;
-      $lookup = array('adsense' => 'adsense',
-          'adsense-top' => 'show_leadin',
-          'adsense-middle' => 'show_midtext',
-          'adsense-bottom' => 'show_leadout',
-          'adsense-widget' => 'show_widget',
-          'adsense-search' => 'title_gsearch',
-          'adsense-linkunits' => 'show_lu');
-      $metaOptions = array();
-      foreach ($lookup as $metaKey => $optKey) {
-        if (!empty($this->options[$optKey])) {
-          $metaOptions[$optKey] = $this->options[$optKey];
-        }
-        else {
-          $metaOptions[$optKey] = '';
-        }
-        $customStyle = get_post_custom_values($metaKey, $post->ID, true);
-        if (is_array($customStyle)) {
-          $metaStyle = strtolower($customStyle[0]);
-        }
-        else {
-          $metaStyle = strtolower($customStyle);
-        }
-        $style = '';
-        if ($metaStyle == 'left') {
-          $style = 'float:left;display:block;';
-        }
-        else if ($metaStyle == 'right') {
-          $style = 'float:right;display:block;';
-        }
-        else if ($metaStyle == 'center') {
-          $style = 'text-align:center;display:block;';
-        }
-        else {
-          $style = $metaStyle;
-        }
-        if (!empty($style)) {
-          $metaOptions[$optKey] = $style;
-        }
-      }
-      return $metaOptions;
+      return $this->metaOptions;
     }
 
     function findParas($content) {
@@ -740,24 +736,58 @@ if (!class_exists("EzAdSense")) {
     }
 
     function mkBorder() {
-      $border = '';
-      if ($this->options['show_borders']) {
-        $border = 'border:#' . $this->options['border_normal'] .
+      if ($this->options['show_borders'] && empty($this->border)) {
+        $this->border = 'border:#' . $this->options['border_normal'] .
                 ' solid ' . $this->options['border_width'] . 'px;" ' .
                 ' onmouseover="this.style.border=\'#' . $this->options['border_color'] .
                 ' solid ' . $this->options['border_width'] . 'px\'" ' .
                 'onmouseout="this.style.border=\'#' . $this->options['border_normal'] .
-                ' solid ' . $this->options['border_width'] . 'px\'"';
+                ' solid ' . $this->options['border_width'] . 'px\'';
       }
-      return $border;
+      return $this->border;
     }
 
-    function filterContent($content) {
+    function mkAdBlock($slot) {
+      $border = $this->mkBorder();
+      $show = $this->metaOptions["show_$slot"];
+      $margin = $this->options["margin_$slot"];
+      if ($this->options['kill_linebreaks']) {
+        $linebreak = "";
+      }
+      else {
+        $linebreak = "\n";
+      }
+      if ($this->options['kill_inline']) {
+        $inline = '';
+      }
+      else {
+        $inline = 'style="' . $show . ';margin:' .
+                $margin . 'px;' . $border . '"';
+      }
+      $unreal = self::showUnreal();
+      $adBlock = stripslashes($linebreak . $this->info() .
+              "<!-- [$slot: {$this->ezCount }] -->$linebreak" .
+              '<div class="ezAdsense adsense adsense-' . $slot . '" ' . $inline . '>' .
+              $this->options["text_$slot"] .
+              ($this->urCount++ < $this->urMax ? $unreal : '') .
+              "</div>$linebreak" . $this->options['info'] . "$linebreak");
+      return $adBlock;
+    }
+
+    function isKilled() {
+      $killed = false;
       foreach ($this->kills as $k) {
         $fn = "is_$k";
         if ($this->options["kill_$k"] && $fn()) {
-          return $content;
+          $killed = true;
         }
+      }
+      return $killed;
+    }
+
+    function filterContent($content) {
+      if ($this->isKilled()) {
+        return $content;
       }
       $this->ezMax = $this->options['max_count'];
       $adsServed = 0;
@@ -777,35 +807,12 @@ if (!class_exists("EzAdSense")) {
         return $content;
       }
 
-      $timeout = 60;
-      $commentArgs = array('status' => 'approve');
-      $commentArgs['post_id'] = get_the_ID();
-      $comments = get_comments($commentArgs);
-      $ezContent = '';
-      foreach ($comments as $comment) {
-        $ezContent .= $comment->comment_content;
-      }
-      $ezContent .= $content;
-      set_transient('ezContent', $ezContent, $timeout);
       if (!in_the_loop()) {
         return $content;
       }
       $this->handleDefaults();
 
-      if ($this->options['kill_linebreaks']) {
-        $linebreak = "";
-      }
-      else {
-        $linebreak = "\n";
-      }
       $wc = str_word_count($content);
-      if ((is_single() || is_page()) && $this->urCount < $this->urMax) {
-        $unreal = self::showUnreal();
-      }
-      else {
-        $unreal = '';
-      }
-      $border = $this->mkBorder();
 
       $show_leadin = $metaOptions['show_leadin'];
       $leadin = '';
@@ -813,20 +820,7 @@ if (!class_exists("EzAdSense")) {
         if ($this->ezCount < $this->ezMax) {
           $adsServed++;
           $this->ezCount++;
-          $margin = $this->options['margin_leadin'];
-          if ($this->options['kill_inline']) {
-            $inline = '';
-          }
-          else {
-            $inline = 'style="' . $show_leadin . ';margin:' .
-                    $margin . 'px;' . $border . '"';
-          }
-          $leadin = stripslashes($this->options['info'] .
-                  "$linebreak<!-- Post[count: " . $this->ezCount . "] -->$linebreak" .
-                  '<div class="ezAdsense adsense adsense-leadin" ' . $inline . '>' .
-                  $this->options['text_leadin'] .
-                  ($this->urCount++ < $this->urMax ? $unreal : '') .
-                  "</div>$linebreak" . $this->options['info'] . "$linebreak");
+          $leadin = $this->mkAdBlock("leadin");
         }
       }
 
@@ -846,19 +840,7 @@ if (!class_exists("EzAdSense")) {
           if ($this->options['force_midad'] || $half > 10) {
             $this->ezCount++;
             $adsServed++;
-            $margin = $this->options['margin_midtext'];
-            if ($this->options['kill_inline']) {
-              $inline = '';
-            }
-            else {
-              $inline = 'style="' . $show_midtext . ';margin:' . $margin . 'px;' . $border . '"';
-            }
-            $midtext = stripslashes($this->options['info'] .
-                    "$linebreak<!-- Post[count: " . $this->ezCount . "] -->$linebreak" .
-                    '<div class="ezAdsense adsense adsense-midtext" ' . $inline . '>' .
-                    $this->options['text_midtext'] .
-                    ($this->urCount++ < $this->urMax ? $unreal : '') .
-                    "</div>$linebreak" . $this->options['info'] . "$linebreak");
+            $midtext = $this->mkAdBlock("midtext");
             $content = substr($content, 0, $split) . $midtext . substr($content, $split);
           }
         }
@@ -870,14 +852,7 @@ if (!class_exists("EzAdSense")) {
         if ($this->ezCount < $this->ezMax) {
           $this->ezCount++;
           $adsServed++;
-          $margin = $this->options['margin_leadout'];
-          if ($this->options['kill_inline']) {
-            $inline = '';
-          }
-          else {
-            $inline = 'style="' . $show_leadout . ';margin:' . $margin . 'px;' . $border . '"';
-          }
-          if (strpos($inline, "float") !== false) {
+          if (strpos($show_leadout, "float") !== false) {
             $paras = $this->findParas($content);
             $split = array_pop($paras);
             if (!empty($split)) {
@@ -885,12 +860,7 @@ if (!class_exists("EzAdSense")) {
               $content2 = substr($content, $split);
             }
           }
-          $leadout = stripslashes($this->options['info'] .
-                  "$linebreak<!-- Post[count: " . $this->ezCount . "] -->$linebreak" .
-                  '<div class="ezAdsense adsense adsense-leadout" ' . $inline . '>' .
-                  $this->options['text_leadout'] .
-                  ($this->urCount++ < $this->urMax ? $unreal : '') .
-                  "</div>$linebreak" . $this->options['info'] . "$linebreak");
+          $leadout = $this->mkAdBlock("leadout");
         }
       }
       if ($this->options['header_leadin']) {
@@ -914,49 +884,40 @@ if (!class_exists("EzAdSense")) {
       self::showUnreal(true);
     }
 
-    function header_leadin() {
+    // This is add_action target to either the_content, loop_start or send_headers.
+    function header_leadin($arg) {
+      if (is_object($arg)) {
+        $content = '';
+      }
+      else {
+        $content = $arg;
+      }
       // if it is an admin page, don't show ads
       if (is_admin()) {
-        return;
+        return $arg;
       }
-      // is_feed() is not ready, because the WP query hasn't been run yet.
+      // is_feed() is not ready, because the WP query may not be run yet.
       if (strpos($_SERVER['REQUEST_URI'], 'feed') !== false) {
-        return;
+        return $arg;
       }
-      $border = $this->mkBorder();
+      if ($this->isKilled()) {
+        return $arg;
+      }
       $show_leadin = $this->options['show_leadin'];
       if ($show_leadin != 'no') {
-        $margin = $this->options['margin_leadin'];
-        if ($this->options['kill_inline']) {
-          $inline = '';
-        }
-        else {
-          $inline = 'style="' . $show_leadin . ';margin:' .
-                  $margin . 'px;' . $border . '"';
-        }
-        $this->ezCount++;
-        $unreal = self::showUnreal();
-        if ($this->options['kill_linebreaks']) {
-          $linebreak = "";
-        }
-        else {
-          $linebreak = "\n";
-        }
-        $this->leadin = stripslashes($this->options['info'] .
-                "$linebreak<!-- Post[count: " . $this->ezCount . "] -->$linebreak" .
-                '<div class="ezAdsense adsense adsense-leadin" ' . $inline . '>' .
-                $this->options['text_leadin'] .
-                ($this->urCount++ < $this->urMax ? $unreal : '') .
-                "</div>$linebreak" . $this->options['info'] . "$linebreak");
-        echo $this->leadin;
+        $this->metaOptions['show_leadin'] = '';
+        echo $this->mkAdBlock("leadin");
+        unset($this->metaOptions);
+        return $arg;
       }
     }
 
-    function footer_leadout() {
+    function footer_leadout($arg) {
       if (is_admin()) {
-        return;
+        return $arg;
       }
       echo $this->leadout;
+      return $arg;
     }
 
   }
@@ -991,6 +952,9 @@ if (class_exists("EzAdSense")) {
       function widget($args, $instance) {
         // outputs the content of the widget
         global $ezAdSense;
+        if ($ezAdSense->isKilled()) {
+          return;
+        }
         extract($args);
         $ezAdSense->options['text_widget'] = $ezAdSense->handleDefaultText($ezAdSense->options['text_widget'], '160x600');
         $metaOptions = $ezAdSense->getMetaOptions();
@@ -1009,36 +973,15 @@ if (class_exists("EzAdSense")) {
           }
           $ezAdSense->ezCount++;
         }
-        $unreal = EzAdSense::showUnreal();
-        if ($ezAdSense->options['kill_linebreaks']) {
-          $linebreak = "";
-        }
-        else {
-          $linebreak = "\n";
-        }
 
         $title = empty($ezAdSense->options['title_widget']) ?
                 __('Sponsored Links', 'easy-adsenser') :
                 stripslashes(htmlspecialchars($ezAdSense->options['title_widget']));
-        $border = $ezAdSense->mkBorder();
         echo $before_widget;
         if (!$ezAdSense->options['kill_widget_title']) {
           echo $before_title . $title . $after_title;
         }
-        $margin = $ezAdSense->options['margin_widget'];
-        if ($ezAdSense->options['kill_inline']) {
-          $inline = '';
-        }
-        else {
-          $inline = 'style="' . $show_widget . ';margin:' .
-                  $margin . 'px;' . $border . '"';
-        }
-        echo stripslashes($ezAdSense->options['info'] .
-                "$linebreak<!-- Widg[count: " . $ezAdSense->ezCount . "] -->$linebreak" .
-                '<div class="ezAdsense adsense adsense-widget"><div ' . $inline . '>' .
-                $ezAdSense->options['text_widget']) .
-        ($ezAdSense->urCount++ < $ezAdSense->urMax ? $unreal : '') .
-        "</div></div>$linebreak" . $ezAdSense->options['info'] . "$linebreak";
+        echo $ezAdSense->mkAdBlock("widget");
         echo $after_widget;
       }
 
@@ -1147,6 +1090,9 @@ if (class_exists("EzAdSense")) {
       function widget($args, $instance) {
         // outputs the content of the widget
         global $ezAdSense;
+        if ($ezAdSense->isKilled()) {
+          return;
+        }
         extract($args);
         $ezAdSense->options['text_lu'] = $ezAdSense->handleDefaultText($ezAdSense->options['text_lu'], '160x160');
         $title = empty($ezAdSense->options['title_lu']) ? '' :
@@ -1158,30 +1104,12 @@ if (class_exists("EzAdSense")) {
           return;
         }
         $show_lu = $metaOptions['show_lu'];
-        $border = $ezAdSense->mkBorder();
         if ($show_lu != 'no') {
-          if ($ezAdSense->options['kill_linebreaks']) {
-            $linebreak = "";
-          }
-          else {
-            $linebreak = "\n";
-          }
           echo $before_widget;
           if (!$ezAdSense->options['kill_widget_title']) {
             echo $title;
           }
-          $margin = $ezAdSense->options['margin_lu'];
-          if ($ezAdSense->options['kill_inline']) {
-            $inline = '';
-          }
-          else {
-            $inline = 'style="' . $show_lu . ';margin:' .
-                    $margin . 'px;' . $border . '"';
-          }
-          echo stripslashes('<div class="ezAdsense adsense adsense-lu"><div ' .
-                  $inline . '>' . "$linebreak" .
-                  $ezAdSense->options['text_lu'] . "$linebreak" .
-                  '</div></div>');
+          echo $ezAdSense->mkAdBlock("lu");
           echo $after_widget;
         }
       }
@@ -1202,10 +1130,10 @@ if (class_exists("EzAdSense")) {
     }
 
     add_action('widgets_init', create_function('', 'return register_widget("EzAdsLU");'));
-    add_filter('the_content', array($ezAdSense, 'filterContent'));
     add_action('admin_menu', 'ezAdSense_ap');
-    add_action('init', array($ezAdSense, 'session_start'));
     add_filter('plugin_action_links', array($ezAdSense, 'plugin_action'), -10, 2);
+
+    add_filter('the_content', array($ezAdSense, 'filterContent'));
     if ($ezAdSense->options['max_link'] === -1) {
       add_action('wp_footer', array($ezAdSense, 'footer_action', 1));
     }

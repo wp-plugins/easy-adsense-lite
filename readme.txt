@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 3.8
-Stable tag: 7.02
+Stable tag: 7.10
 License: GPL2 or later
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
@@ -42,7 +42,7 @@ Easy AdSense is the freely distributed version of a premium plugin. The [Pro ver
 
 == Upgrade Notice ==
 
-Fixing a bug related to showing borders around ad blocks.
+Coding improvements.
 
 == Screenshots ==
 
@@ -140,6 +140,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V7.10: Coding improvements. [Apr 2, 2014]
 * V7.02: Fixing a bug related to showing borders around ad blocks. [Apr 1, 2014]
 * V7.01: Changes to show ads on home/front pages made up of full posts. Translation interface improvements. [Mar 29, 2014]
 * V7.00: Major changes to the options data model and the translation interface. [Mar 21, 2014]
