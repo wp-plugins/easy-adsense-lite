@@ -4,7 +4,7 @@
   Plugin Name: Easy AdSense
   Plugin URI: http://www.thulasidas.com/adsense
   Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense</a>.
-  Version: 7.10
+  Version: 7.12
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -505,27 +505,25 @@ if (!class_exists("EzAdSense")) {
       }
     }
 
-    function migrateOptions() { // temporary
-      if (isset($this->options['kill_pages']) || isset($this->options['kill_attach']) || isset($this->options['kill_front'])) {
-        echo "<div style='color:red;border:2px solid red;padding:5px;font-weight:bold;text-align:center'>Your options need to be updated. Please migrate them."
-        . "&nbsp;<input style='color:red' type='submit' name='migrate' value='Migrate Options' />"
-        . "</div>";
+    function migrateOptions() {
+      $update = false;
+      $lookup = array('limit_lu' => '',
+          'allow_exitjunction' => '',
+          'kill_pages' => 'kill_page',
+          'kill_attach' => 'kill_attachment',
+          'kill_front' => 'kill_front_page',
+          'kill_cat' => 'kill_category');
+      foreach ($lookup as $k => $v) {
+        if (isset($this->options[$k])) {
+          if (!empty($v)) {
+            $this->options[$v] = $this->options[$k];
+          }
+          unset($this->options[$k]);
+          $update = true;
+        }
       }
-      if (!empty($_POST['migrate'])) {
-        unset($this->options['limit_lu']);
-        unset($this->options['allow_exitjunction']);
-
-        $this->options['kill_page'] = $this->options['kill_pages'];
-        unset($this->options['kill_pages']);
-        $this->options['kill_attachment'] = $this->options['kill_attach'];
-        unset($this->options['kill_attach']);
-        $this->options['kill_front_page'] = $this->options['kill_front'];
-        unset($this->options['kill_front']);
-        $this->options['kill_category'] = $this->options['kill_cat'];
-        unset($this->options['kill_cat']);
+      if ($update) {
         update_option($this->optionName, $this->options);
-
-        echo "<div class='updated'>Your options have been migrated.</div>";
       }
     }
 
@@ -790,7 +788,6 @@ if (!class_exists("EzAdSense")) {
         return $content;
       }
       $this->ezMax = $this->options['max_count'];
-      $adsServed = 0;
       if ($this->options['force_widget']) {
         $this->ezMax--;
       }
@@ -818,7 +815,6 @@ if (!class_exists("EzAdSense")) {
       $leadin = '';
       if ($show_leadin != 'no' && $wc > $this->options['wc_leadin']) {
         if ($this->ezCount < $this->ezMax) {
-          $adsServed++;
           $this->ezCount++;
           $leadin = $this->mkAdBlock("leadin");
         }
@@ -839,7 +835,6 @@ if (!class_exists("EzAdSense")) {
           }
           if ($this->options['force_midad'] || $half > 10) {
             $this->ezCount++;
-            $adsServed++;
             $midtext = $this->mkAdBlock("midtext");
             $content = substr($content, 0, $split) . $midtext . substr($content, $split);
           }
@@ -851,7 +846,6 @@ if (!class_exists("EzAdSense")) {
       if ($show_leadout != 'no' && $wc > $this->options['wc_leadout']) {
         if ($this->ezCount < $this->ezMax) {
           $this->ezCount++;
-          $adsServed++;
           if (strpos($show_leadout, "float") !== false) {
             $paras = $this->findParas($content);
             $split = array_pop($paras);
@@ -993,7 +987,7 @@ if (class_exists("EzAdSense")) {
       function form($instance) {
         // outputs the options form on admin
         echo '<p>Configure it at <br />';
-        echo '<a href="options-general.php?page=easy-adsense.php"> ';
+        echo '<a href="options-general.php?page=easy-adsense-lite.php"> ';
         echo 'Settings &rarr; Easy AdSense</a>';
         echo '</p>';
       }
@@ -1068,7 +1062,7 @@ if (class_exists("EzAdSense")) {
       function form($instance) {
         // outputs the options form on admin
         echo '<p>Configure it at <br />';
-        echo '<a href="options-general.php?page=easy-adsense.php"> ';
+        echo '<a href="options-general.php?page=easy-adsense-lite.php"> ';
         echo 'Settings &rarr; Easy AdSense</a>';
         echo '</p>';
       }
@@ -1122,7 +1116,7 @@ if (class_exists("EzAdSense")) {
       function form($instance) {
         // outputs the options form on admin
         echo '<p>Configure it at <br />';
-        echo '<a href="options-general.php?page=easy-adsense.php"> ';
+        echo '<a href="options-general.php?page=easy-adsense-lite.php"> ';
         echo 'Settings &rarr; Easy AdSense</a>';
         echo '</p>';
       }
@@ -1148,6 +1142,7 @@ if (class_exists("EzAdSense")) {
     if ($ezAdSense->options['footer_leadout']) {
       add_action($ezAdSense->options['footer_leadout'], array($ezAdSense, 'footer_leadout'));
     }
+    register_activation_hook(__FILE__, array($ezAdSense, 'migrateOptions'));
   }
 }
 

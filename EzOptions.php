@@ -384,6 +384,8 @@ if (!class_exists("EzBaseOption")) {
 
   class EzSubmit extends EzBaseOption {
 
+    var $onclick = '';
+
     function EzSubmit($name) {
       parent::EzBaseOption('submit', $name);
       $this->value = $this->desc;
@@ -394,6 +396,9 @@ if (!class_exists("EzBaseOption")) {
       echo "<input type='{$this->type}' id='{$this->name}' name='{$this->name}' ";
       if (!empty($this->style)) {
         echo " style='{$this->style}'";
+      }
+      if (!empty($this->onclick)) {
+        echo " onclick=\"{$this->onclick}\"";
       }
       echo " value='{$this->desc}' />\n";
       $this->postRender();
@@ -525,7 +530,7 @@ if (!class_exists("EzBasePlugin")) {
     var $slug, $domain, $name, $plgDir, $plgURL, $plgFile;
     var $ezTran, $ezAdmin, $myPlugins;
     var $isPro, $strPro;
-    var $options;
+    var $options = array(), $ezOptions = array();
 
     function __construct($slug, $name, $file) {
       $this->slug = $slug;
@@ -581,7 +586,7 @@ if (!class_exists("EzBasePlugin")) {
         require_once($this->plgDir . '/EzAdmin.php');
         $this->ezAdmin = new EzAdmin($plg, $slug, $plgURL);
       }
-      if ($this->options['kill_author']) {
+      if (!empty($this->options['kill_author'])) {
         $this->ezAdmin->killAuthor = true;
       }
       $this->ezAdmin->domain = $this->domain;

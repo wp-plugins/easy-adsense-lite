@@ -50,24 +50,39 @@ if (!class_exists('EzAdmin')) {
       $plgLongName = $plg['value'];
       $plgPrice = $plg['price'];
       $benefits = $plg['benefits'];
-      $yesTip = sprintf(__('Buy %s Pro for $%s. PayPal payment. Instant download.', 'easy-adsenser'), $plgLongName, $plgPrice);
-      $yesTitle = __('Get the Pro version now!', 'easy-adsenser');
-      $noTip = __('Continue using the Lite version, and hide this message. After clicking this button, please remember to save your options to hide this box for good.', 'easy-adsenser');
-      $noTitle = __('Stay Lite', 'easy-adsenser');
+      $yesTip = sprintf(__('Buy %s Pro for $%s. PayPal payment. Instant download.', 'easy-common'), $plgLongName, $plgPrice);
+      $yesTitle = __('Get the Pro version now!', 'easy-common');
+      $noTip = __('Continue using the Lite version, and hide this message. After clicking this button, please remember to save your options to hide this box for good.', 'easy-common');
+      $noTitle = __('Stay Lite', 'easy-common');
+      $hideTip = __('Click the link to hide this box. After clicking this link, please remember to save your options to hide this box for good.', 'easy-common');
       if (empty($benefits)) {
         return;
       }
+
+      $s1 = __("Want More Features?", 'easy-common');
+      $s2 = __("The Pro version of this plugin gives you more features and benefits.", 'easy-common');
+      $s3 = __("For instance", 'easy-common');
+      $s4 = __("And much more.", 'easy-common');
+      $s5 = __("New features and bug fixes will first appear in the Pro version before being ported to this freely distributed Lite edition.", 'easy-common');
+      $s6 = __("Go Pro!", 'easy-common');
+      $s7 = __("No thanks", 'easy-common');
+      $s8 = __("Do not show this anymore", 'easy-common');
+      $s9 = sprintf(__("Thank you for using %s!", 'easy-common'), $plgLongName);
+      $s10 = __("Please Save Options to hide this box forever", 'easy-common');
+
       echo <<<ENDINVITE
 <input type="hidden" id="kill_invites" name="kill_invites" value="" />
 <div class="updated" id="tnc">
-<p><h3>Want More Features? <a href="#" onmouseover="Tip('$yesTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$yesTitle')" onmouseout="UnTip()" onclick = "buttonwhich('Yes')">Go Pro!</a></h3>
-The Pro version of this plugin gives you more features and benefits. For instance,
+<p><h3>$s1 <a href="#" onmouseover="Tip('$yesTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$yesTitle')" onmouseout="UnTip()" onclick = "buttonwhich('Yes')">Go Pro!</a></h3>
+$s2 $s3,
 <ol>
 $benefits
 </ol>
-And much more. New features and bug fixes will first appear in the Pro version before being ported to this freely distributed Lite edition. <br />
-<input onmouseover="Tip('$yesTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$yesTitle')" onmouseout="UnTip()" type = "button" id = "ybutton" value = "Go Pro!" onclick = "buttonwhich('Yes')" />
-<input onmouseover="Tip('$noTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$noTitle')" onmouseout="UnTip()" type = "button" id = "nbutton" value = "No thanks" onclick = "buttonwhich('No')" />
+$s4 $s5<br />
+<input onmouseover="Tip('$yesTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$yesTitle')" onmouseout="UnTip()" type = "button" id = "ybutton" value = "$s6" onclick = "buttonwhich('Yes')" />
+<input onmouseover="Tip('$noTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$noTitle')" onmouseout="UnTip()" type = "button" id = "nbutton" value = "$s7" onclick = "buttonwhich('No')" />
+<small style='font-weight:normal;'><a id='hideInvite' href='#' style='float:right; display:block; border:none;'  onmouseover="Tip('$hideTip', WIDTH, 200, CLICKCLOSE, true, TITLE, 'Hide this Box')" onmouseout="UnTip()" onclick = "buttonwhich('No')">
+$s8</a></small>
 <script type = "text/javascript">
 function hideInvite() {
   document.getElementById("tnc").style.display = 'none';
@@ -77,12 +92,26 @@ function buttonwhich(message) {
   document.getElementById("nbutton").disabled = 'true';
   document.getElementById("kill_invites").value = 'true' ;
   setTimeout('hideInvite()', 5000);
-  if (message == 'Yes') popupwindow('http://buy.thulasidas.com/$slug','Get {$plg['value']}', 1024, 768) ;
-  if (message == 'No') document.getElementById("nbutton").value = 'Thank you for using $plgLongName! Please save options to hide this box forever';
+  if (message == 'Yes') popupwindow('http://buy.thulasidas.com/$slug', '$s6', 1024, 768) ;
+  if (message == 'No') {
+    document.getElementById("nbutton").value = '$s9 $s10';
+    document.getElementById("hideInvite").innerHTML = '$s10';
+  }
 }
 </script>
 </div>
 ENDINVITE;
+    }
+
+    function getPlgKey() {
+      $plgKey = basename($this->plgFile, '.php');
+      if (in_array($plgKey, array('easy-ads', 'google-adsense', 'theme-tweaker'))) {
+        $plgKey .= '-lite';
+      }
+      if ($plgKey == 'easy-paypal-lite') {
+        $plgKey = 'easy-paypal-lte';
+      }
+      return $plgKey;
     }
 
     function renderRating($killable = true) {
@@ -93,25 +122,32 @@ ENDINVITE;
       $plg = $this->plg;
       $plgCTime = filemtime($plgFile);
       $plgLongName = $plg['value'];
-      $hideTip = __('Click the link to hide this box. After clicking this link, please remember to save your options to hide this box for good.', 'easy-adsenser');
+      $hideTip = __('Click the link to hide this box. After clicking this link, please remember to save your options to hide this box for good.', 'easy-common');
       if (time() > $plgCTime + (60 * 60 * 24 * 30)) {
-        $msg = "You've installed this plugin over a month ago.";
+        $msg = __("You've installed this plugin over a month ago.", 'easy-common');
+        ;
       }
       else {
-        $msg = "You will find it feature-rich and robust.";
+        $msg = __("You will find it feature-rich and robust.", 'easy-common');
+        ;
       }
-      $plgKey = basename($plgFile, '.php');
+      $plgKey = $this->getPlgKey();
       $display = '';
       if (!$killable) {
         $display = "style='display:none'";
       }
+
+      $s1 = __("If you are satisfied with how well it works, why not rate it and recommend it to others?", 'easy-common');
+      $s2 = __("Click here", 'easy-common');
+      $s3 = __("Do not show this anymore", 'easy-common');
+      $s4 = __("Please Save Options to hide this box forever", 'easy-common');
+
       echo <<<ENDRATING
 <div class='updated' id='rating'>
 <p>Thanks for using <i><b>$plgLongName</b></i>! $msg <br />
-If you are satisfied with how well it works, why not <a href='http://wordpress.org/extend/plugins/$plgKey/' onclick="popupwindow('http://wordpress.org/extend/plugins/$plgKey/','Rate it', 1024, 768);return false;">rate it</a>
-and <a href='http://wordpress.org/extend/plugins/$plgKey/' onclick="popupwindow('http://wordpress.org/extend/plugins/$plgKey/','Rate it', 1024, 768);return false;">recommend it</a> to others? :-)
+$s1 <a href='http://wordpress.org/extend/plugins/$plgKey/' onclick="popupwindow('http://wordpress.org/extend/plugins/$plgKey/','$s2', 1024, 768);return false;">$s2</a>
 <small style='font-weight:normal;'><a id='hideRating' $display href='#' style='float:right; display:block; border:none;'  onmouseover="Tip('$hideTip', WIDTH, 200, CLICKCLOSE, true, TITLE, 'Hide this Box')" onmouseout="UnTip()" onclick = "hideme()">
-Don't show this anymore</a></small></p></div>
+$s3</a></small></p></div>
 <input type="hidden" id="kill_rating" name="kill_rating" value="" />
 <script type = "text/javascript">
 function hideRating() {
@@ -119,7 +155,7 @@ function hideRating() {
 }
 function hideme() {
   document.getElementById("kill_rating").value = 'true' ;
-  document.getElementById("hideRating").innerHTML = 'Please hit the "Save Changes" button below to hide this box forever';
+  document.getElementById("hideRating").innerHTML = '$s4';
   setTimeout('hideRating()', 4000);
 }
 </script>
@@ -133,19 +169,28 @@ ENDRATING;
       $value = '<em><strong>' . $plg['value'] . '</strong></em>';
       $toolTip = $plg['title'];
       $price = $plg['price'];
-      $onclick = "onclick=\"popupwindow('http://buy.thulasidas.com/$slug','Get {$plg['value']}', 1024, 768);return false;\"";
-      $moreInfo = "<b><a href='http://buy.thulasidas.com/$slug' title='Buy the Pro version of {$plg['value']} for \$$price. Instant download link.' $onclick>Pro Version</a></b>";
+      $onclick = "onclick=\"popupwindow('http://buy.thulasidas.com/$slug','Get Pro}', 1024, 768);return false;\"";
+
+      $s2 = __('Lite Version', 'easy-common');
+      $s3 = sprintf(__('Buy the Pro version of %s for $%.2f', 'easy-common'), $plg['value'], $price);
+      $s4 = __('Instant download link.', 'easy-common');
+      $s5 = __('Pro Version', 'easy-common');
+      $moreInfo = "$s2 and <b><a href='http://buy.thulasidas.com/$slug' title='$s3. $s4' $onclick>$s5</a></b>";
       $toolTip .= addslashes('<br />' . $moreInfo);
       $why = addslashes($plg['pro']);
       $version = 'Lite';
-      echo "<b>Get Pro Version!</b>
-<a href='http://buy.thulasidas.com/$slug' title='Buy the Pro version of the $slug plugin. Instant download link.' $onclick><img src='$plgURL/ezpaypal.png' alt='ezPayPal -- Instant PayPal Shop.' class='alignright'/></a>
+
+      $s6 = sprintf(__('You are using the %s version of %s, which is available in two versions:', 'easy-common'), $version, $value);
+      $s7 = sprintf(__('And it costs only $%.2f!', 'easy-common'), $price);
+      $s8 = __('Get the Pro version now!', 'easy-common');
+      echo "<b>$s8</b>
+<a href='http://buy.thulasidas.com/$slug' title='$s3. $s4' $onclick><img src='$plgURL/ezpaypal.png' alt='ezPayPal' class='alignright'/></a>
 <br />
-You are using the $version version of $value, which is also available in a Pro version.
+$s6
 <ul><li>
 $moreInfo
 </li>
-<li>$why And it costs only \$$price!</li>
+<li>$why $s7</li>
 </ul>";
     }
 
@@ -161,18 +206,29 @@ $moreInfo
       $value = '<em><strong>' . $plg['value'] . '</strong></em>';
       $filter = '';
       if (stripos($slug, 'adsense') !== FALSE) {
-        $filter = " (e.g., a filter to ensure AdSense policy compliance) ";
+        $filter = __("e.g., a filter to ensure AdSense policy compliance.", 'easy-common');
       }
       $toolTip = $plg['title'];
       $price = $plg['price'];
-      $onclick = "onclick=\"popupwindow('http://buy.thulasidas.com/$slug','Get {$plg['value']}', 1024, 768);return false;\"";
-      $moreInfo = "&nbsp; <a href='http://buy.thulasidas.com/lite/$slug.zip' title='Download the Lite version of $value'>Lite Version </a>&nbsp; <a href='http://buy.thulasidas.com/$slug' title='Buy the Pro version of $value for \$$price' $onclick>Pro Version</a>";
+      $onclick = "onclick=\"popupwindow('http://buy.thulasidas.com/$slug','Get Pro', 1024, 768);return false;\"";
+
+      $s1 = sprintf(__('Download the Lite version of %s', 'easy-common'), $plg['value']);
+      $s2 = __('Lite Version', 'easy-common');
+      $s3 =  sprintf(__('Buy the Pro version of %s for $%.2f', 'easy-common'), $plg['value'], $price);
+      $s4 = __('Pro Version', 'easy-common');
+      $s5 = __('Buy the Pro Version', 'easy-common');
+
+      $moreInfo = "&nbsp; <a href='http://buy.thulasidas.com/lite/$slug.zip' title='$s1'>$s2 </a>&nbsp; <a href='http://buy.thulasidas.com/$slug' title='$s3' $onclick>$s4</a>";
       $toolTip .= addslashes('<br />' . $moreInfo);
       echo "<div style='background-color:#ffcccc;padding:5px;border: solid 1px;text-align:center;'>
-<span style='font-size:14px;color:#a48;font-variant: small-caps;text-decoration:underline;text-align:center;' $onclick onmouseover=\"TagToTip('pro', WIDTH, 300, TITLE, 'Buy the Pro Version',STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 5, 5])\"><b>The Pro Version</b></span><br />";
+<span style='font-size:14px;color:#a48;font-variant: small-caps;text-decoration:underline;text-align:center;' $onclick onmouseover=\"TagToTip('pro', WIDTH, 300, TITLE, '$s5',STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 5, 5])\"><b>$s4</b></span><br />";
 
+      $s8 = sprintf(__('It costs only $%.2f!', 'easy-common'), $price);
+      $s9 = __('Instant download link.', 'easy-common');
       $value .= '<b><i> Lite</i></b>';
-      echo "Thank you for using $value. The \"Pro\" version gives you more options$filter. Consider <a href='http://buy.thulasidas.com/$slug' title='Pro version of this plugin. Instant download link.' $onclick>buying it</a>. It costs only \$$price.";
+        $s10 = sprintf(__('Thank you for using %s. The \"Pro\" version gives you more options.', 'easy-common'), $value);
+        $s11 = __("Consider buying it.", 'easy-common');
+        echo "$s10 $filter $s11 <a href='http://buy.thulasidas.com/$slug' title='$s3. $s9'>$s8</a>";
       echo "</div>";
     }
 
@@ -226,7 +282,7 @@ $moreInfo
 </div>
 
 <span id="dropbox" style='display:none;'>
-  Dropbox! gives you 2GB of network (cloud) storage for free, which I find quite adequate for any normal user. (That sounds like the famous last words by Bill Gates, doesn’t it? “64KB of memory should be enough for anyone!”) And, you can get 250MB extra for every successful referral you make. That brings me to my ulterior motive – please use this link to sign up. When you do, I get 250MB extra. Don’t worry, you get 250MB extra as well. So I can grow my online storage up to 8GB, which should keep me happy for a long time. Thank you!
+  Dropbox! gives you 2GB of network (cloud) storage for free, which I find quite adequate for any normal user. (That sounds like the famous last words by Bill Gates, doesn’t it? “64KB of memory should be enough for anyone!”) And, you can get 250MB extra for every successful referral you make. That brings me to my ulterior motive – please use this link to sign up. When you do, I get 500MB extra. Don’t worry, you get 500MB extra as well. So I can grow my online storage up to 18GB, which should keep me happy for a long time. Thank you!
 </span>
 
 <div id="unreal" style="margin-left:auto;margin-right:auto;width:200px;display:none;">
@@ -424,21 +480,21 @@ ENDDIVS;
       $url = 'http://www.thulasidas.com/plugins/' . $slug . '#faq';
       $link = '<a href="' . $url . '" target="_blank">' . $value . '</a>';
       echo "&nbsp;<a href='http://support.thulasidas.com' onclick=\"popupwindow('http://support.thulasidas.com','ezSupport for $value', 1024, 768);return false;\" title='";
-      _e('Ask a support question (in English or French only) via ezSupport @ $0.95', 'easy-adsenser');
+      _e('Ask a support question (in English or French only) via ezSupport @ $0.95', 'easy-common');
       echo "'><img src='$plgURL/ezsupport.png' class='alignright' alt='ezSupport Portal'/></a>";
-      printf(__("If you need help with %s, please read the FAQ section on the $link page. It may answer all your questions.", 'easy-adsenser'), $value, $link);
+      printf(__("If you need help with %s, please read the FAQ section on the %s page. It may answer all your questions.", 'easy-common'), $value, $link);
       echo "<br style='line-height: 20px;'/>";
-      _e("Or, if you still need help, you can raise a support ticket.", 'easy-adsenser');
-      echo "&nbsp;<a href='http://support.thulasidas.com' onclick=\"popupwindow('http://support.thulasidas.com','ezSupport for $value', 1024, 768);return false;\" title='";
-      _e('Ask a support question (in English or French only) via ezSupport @ $0.95', 'easy-adsenser');
+      _e("Or, if you still need help, you can raise a support ticket.", 'easy-common');
+      echo "&nbsp;<a href='http://support.thulasidas.com' onclick=\"popupwindow('http://support.thulasidas.com','ezSupport', 1024, 768);return false;\" title='";
+      _e('Ask a support question (in English or French only) via ezSupport @ $0.95', 'easy-common');
       echo "'>";
-      _e("[Request Paid Support]", 'easy-adsenser');
+      _e("[Request Paid Support]", 'easy-common');
       $info = $this->getPlgInfo();
       echo "</a>&nbsp;<small><em>[";
-      _e('Using our ezSupport Ticket System.', 'easy-adsenser');
+      _e('Using our ezSupport Ticket System.', 'easy-common');
       echo "]</em></small>";
       echo "<small style='float:right'><em>[";
-      printf(__('You are using %s (V%s)', 'easy-adsenser'), $value, $info[0]['Version']);
+      printf(__('You are using %s (V%s)', 'easy-common'), $value, $info[0]['Version']);
       echo "]</em></small>";
       $_SESSION['ezSupport'] = $info[0]['Info'];
     }
@@ -454,19 +510,28 @@ ENDDIVS;
       $toolTip = $plg['title'];
       $price = $plg['price'];
       $buyURL = "http://buy.thulasidas.com/$slug";
-      $onclick = "onclick=\"popupwindow('$buyURL','Get $value', 1024, 768);return false;\"";
-      $moreInfo = " &nbsp;  &nbsp; <a href='$buyURL' title='More info about $value'> More Info </a>&nbsp; <a href='$buyURL' $onclick title='Buy the Pro version of $value for \$$price'>Get Pro Version</a>";
+      $s1 = sprintf(__('Get %s', 'easy-common'), $value);
+      $s2 = sprintf(__('More info about %s', 'easy-common'), $value);
+      $s3 = sprintf(__('Buy the Pro version of %s for $%.2f', 'easy-common'), $value, $price);
+      $s4 = __('More Info', 'easy-common');
+
+      $onclick = "onclick=\"popupwindow('$buyURL','$s1', 1024, 768);return false;\"";
+      $moreInfo = " &nbsp;  &nbsp; <a href='$buyURL' title='$s2'> $s4 </a>&nbsp; <a href='$buyURL' $onclick title='$s3'>Get Pro Version</a>";
       $toolTip .= addslashes('<br />' . $moreInfo);
       $why = addslashes($plg['pro']);
-      echo '<div style="background-color:#cff;padding:5px;border: solid 1px;margin:5px;">';
+      echo '<div style="background-color:#cff;padding:5px;border: solid 1px;margin:5px;padding-bottom:15px;">';
       if ($short) {
-        echo "<span onmouseover=\"TagToTip('pro', WIDTH, 350, TITLE, 'Buy the Pro Version',STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 5, 5])\"><b>Buy the <a href='$buyURL' $onclick target='_blank'>Pro Version</a></b>&nbsp; More features, more power!<br /></span>";
+        $s5 = __('Buy the Pro Version', 'easy-common');
+        $s6 = __('More features, more power!', 'easy-common');
+
+        echo "<span onmouseover=\"TagToTip('pro', WIDTH, 350, TITLE, 'Buy the Pro Version',STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 5, 5])\"><b><a href='$buyURL' $onclick target='_blank'>$s5</a></b>&nbsp; $s6</span>";
       }
       else {
+        $s7 = sprintf(__('You are using the Lite version of %s, which is available in two versions: <b>Lite</b> and <b>Pro</b>.', 'easy-common'), $value);
         echo "<b>Get Pro Version!</b>
-<a href='http://buy.thulasidas.com/$slug' title='Buy the Pro version of the $value plugin for \$$price'><img src='$plgURL/ezpaypal.png' alt='ezPayPal -- Your Instant PayPal Shop.' class='alignright' $onclick /></a>
+<a href='http://buy.thulasidas.com/$slug' title='$s3'><img src='$plgURL/ezpaypal.png' alt='ezPayPal' class='alignright' $onclick /></a>
 <br />
-You are using the Lite version of $value, which is available in two versions: <b>Lite</b> and <b>Pro</b>.
+$s7
 <ul><li>
 $moreInfo
 <li>$why</li>

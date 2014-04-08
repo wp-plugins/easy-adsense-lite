@@ -54,7 +54,6 @@ EOF1;
   if (empty($this->options['kill_invites'])) {
     $ez->renderInvite();
   }
-  $this->migrateOptions();
   wp_nonce_field('EzAdsenseSubmit', 'EzAdsenseNonce');
   ?>
   <br />

@@ -23,7 +23,7 @@ if (!$ez->killAuthor) {
       <td>
         <ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >
           <li>
-            <?php _e('Check out my other plugin and PHP efforts:', 'easy-adsenser'); ?>
+            <?php _e('Check out my other plugin and PHP efforts:', 'easy-common'); ?>
             <script type = "text/javascript">
               function popupwindow(url, title, w, h) {
                 var left = (screen.width / 2) - (w / 2);
@@ -53,7 +53,7 @@ if (!$ez->killAuthor) {
           </li>
 
           <li>
-            <?php _e('My Books -- on Physics, Philosophy, making Money etc:', 'easy-adsenser'); ?>
+            <?php _e('My Books -- on Physics, Philosophy, making Money etc:', 'easy-common'); ?>
 
             <ul style="margin-left:0px; padding-left:30px;list-style-type:square; list-style-position:inside;" >
 
