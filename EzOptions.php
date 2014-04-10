@@ -128,7 +128,7 @@ if (!class_exists("EzBaseOption")) {
 
     function mkTagToTip() {
       if (!empty($this->title)) {
-        $toolTip = "<span style='text-decoration:underline' "
+        $toolTip = "<span style='text-decoration:underline;cursor:pointer;' "
                 . "onmouseover=\"Tip('{$this->title}')\" "
                 . "onclick=\"TagToTip('{$this->name}', WIDTH, 300, "
                 . "TITLE, '{$this->tipTitle}', STICKY, 1, CLOSEBTN, true, "
@@ -333,7 +333,7 @@ if (!class_exists("EzBaseOption")) {
 
     function render() {
       echo "{$this->before}\n";
-      echo "<span style='text-decoration:underline' "
+      echo "<span style='text-decoration:underline;cursor:pointer;' "
       . "onmouseover=\"Tip('{$this->title}')\" "
       . "onclick=\"popupwindow('{$this->name}', 'DontCare', 1024, 1024);"
       . "return false;\" onmouseout=\"UnTip();\">"
@@ -570,6 +570,13 @@ if (!class_exists("EzBasePlugin")) {
     function handleSubmits() {
       if (empty($_POST)) {
         return;
+      }
+    }
+
+    function setOptionValues() {
+      $error = EzBaseOption::setValues($this->options, $this->ezOptions);
+      if (WP_DEBUG && !empty($error)) {
+        echo "<div class='error'>$error</div>";
       }
     }
 

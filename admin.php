@@ -339,15 +339,9 @@ no', 'easy-adsenser'); ?>
 if (!$this->isPro) {
   $ez->renderWhyPro();
 }
+$ez->renderSupport();
+include ($this->plgDir . '/tail-text.php');
 ?>
-
-<div style="background-color:#fcf;padding:5px;border: solid 1px;margin:5px;">
-  <?php
-  $ez->renderSupport();
-  ?>
-</div>
-
-<?php include ($this->plgDir . '/tail-text.php'); ?>
 
 <table class="form-table" >
   <tr><th scope="row"><b><?php _e('Credits', 'easy-adsenser'); ?></b></th></tr>

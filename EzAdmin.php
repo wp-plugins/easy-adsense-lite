@@ -473,6 +473,8 @@ ENDDIVS;
     }
 
     function renderSupport() {
+      echo '<div style="background-color:#fcf;padding:5px;border: solid 1px;margin:5px;">
+';
       $plgURL = $this->plgURL;
       $plg = $this->plg;
       $slug = $this->slug;
@@ -497,6 +499,7 @@ ENDDIVS;
       printf(__('You are using %s (V%s)', 'easy-common'), $value, $info[0]['Version']);
       echo "]</em></small>";
       $_SESSION['ezSupport'] = $info[0]['Info'];
+      echo "</div>";
     }
 
     function renderWhyPro($short = false) {
