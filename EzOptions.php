@@ -221,12 +221,12 @@ if (!class_exists("EzBaseOption")) {
         $style = "";
       }
       echo "{$this->before}\n";
-      echo "<span $style id='{$this->name}' $toolTip>{$this->desc} {$this->between}</span>";
+      echo "<span $style id='{$this->name}' $toolTip>{$this->desc} {$this->between}";
       echo "\n{$this->after}\n";
     }
 
     function postRender() {
-
+      echo "</span>";
     }
 
     function render() {
@@ -531,6 +531,7 @@ if (!class_exists("EzBasePlugin")) {
     var $ezTran, $ezAdmin, $myPlugins;
     var $isPro, $strPro;
     var $options = array(), $ezOptions = array();
+    var $prefix;
 
     function __construct($slug, $name, $file) {
       $this->slug = $slug;
@@ -567,9 +568,127 @@ if (!class_exists("EzBasePlugin")) {
       }
     }
 
+    function mkDefaultOptions() {
+      $defaultOptions = array(
+          'kill_invites' => false,
+          'kill_rating' => false,
+          'kill_author' => false);
+      return $defaultOptions;
+    }
+
+    function mkEzOptions() {
+      $this->ezOptions['kill_invites'] = new EzBaseOption('hidden', 'kill_invites');
+      $this->ezOptions['kill_rating'] = new EzBaseOption('hidden', 'kill_rating');
+
+      $o = new EzCheckBox('kill_author');
+      $o->title = __('If you find the author links and ads on the plugin admin page distracting or annoying, you can suppress them by checking this box. Please remember to save your options after checking.', 'easy-latex');
+      $o->desc = __('Kill author links on the admin page?', 'easy-latex');
+      $o->before = "<br /><b>";
+      $o->after = "</b><br />";
+      $this->ezOptions['kill_author'] = clone $o;
+    }
+
+    function resetOptions() {
+      $defaultOptions = $this->mkDefaultOptions();
+      update_option($this->optionName, $defaultOptions);
+      $this->options = $defaultOptions;
+      unset($_POST);
+    }
+
+    function cleanDB() {
+      if (!empty($this->prefix)) {
+        global $wpdb;
+        $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '$this->prefix%'");
+      }
+    }
+
+    function renderNonce() {
+      wp_nonce_field("$this->prefix-submit", "$this->prefix-nonce");
+    }
+
+    function renderSubmitButtons() {
+      $update = new EzSubmit('saveChanges');
+      $update->desc = __('Save Changes', 'easy-common');
+      $update->title = __('Save the changes as specified above', 'easy-common');
+      $update->tipTitle = $update->desc;
+
+      $reset = new EzSubmit('resetOptions');
+      $reset->desc = __('Reset Options', 'easy-common');
+      $reset->title = __('This <b>Reset Options</b> button discards all your changes and loads the default options. This is your only warning!', 'easy-common');
+      $reset->tipWarning = true;
+
+      $cleanDB = new EzSubmit('cleanDB');
+      $cleanDB->desc = __('Clean Database', 'easy-common');
+      $cleanDB->title = __('The <b>Database Cleanup</b> button discards all your AdSense settings you have saved so far for <b>all</b> the themes, including the current one. Use it only if you know that you will not be using these themes. Please be careful with all database operations -- keep a backup.', 'easy-common');
+      $cleanDB->tipWarning = true;
+
+      $uninstall = new EzSubmit('uninstall');
+      $uninstall->desc = __('Uninstall', 'easy-common');
+      $uninstall->title = __('The <b>Uninstall</b> button really kills %s after cleaning up all the options it wrote in your database. This is your only warning! Please be careful with all database operations -- keep a backup.', 'easy-common');
+      $uninstall->tipWarning = true;
+
+      $update->render();
+      $reset->render();
+      $cleanDB->render();
+      $uninstall->render();
+    }
+
     function handleSubmits() {
       if (empty($_POST)) {
         return;
+      }
+      if (empty($this->prefix)) {
+        $this->adminMsg = "<div class='error'><p><strong>" .
+                __('Cannot handle submits without specifying plugin!', 'easy-common') .
+                "</strong></div>";
+        return;
+      }
+      if (!check_admin_referer("$this->prefix-submit", "$this->prefix-nonce")) {
+        return;
+      }
+
+      if (isset($_POST['saveChanges'])) {
+        $this->mkEzOptions();
+        $this->setOptionValues();
+
+        foreach ($this->ezOptions as $k => $o) {
+          if (isset($this->options[$k])) {
+            $this->options[$k] = $o->get();
+          }
+          else {
+            if (WP_DEBUG) {
+              echo "<div class='error'>Warning: <code>option[$k]</code> is not defined, but <code>ezOption[$k]</code> exists!</div>";
+            }
+          }
+        }
+
+        update_option($this->optionName, $this->options);
+
+        $this->adminMsg = "<div class='updated'><p><strong>" .
+                __('Settings Updated.', 'easy-common') .
+                "</strong></div>";
+      }
+      else if (isset($_POST['resetOptions'])) {
+        $this->resetOptions();
+        $this->adminMsg = "<div class='updated'><p><strong>" .
+                __('Ok, all your settings have been discarded!', 'easy-common') .
+                "</strong></div>";
+      }
+      else if (isset($_POST['cleanDB']) || isset($_POST['uninstall'])) {
+        $this->resetOptions();
+        $this->cleanDB($this->prefix);
+        $this->adminMsg = "<div class='updated'><p><strong>" .
+                __('Database has been cleaned. All your options for this plugin (for all themes) have been removed.', 'easy-common') .
+                "</strong></p> </div>";
+
+        if (isset($_POST['uninstall'])) {
+          remove_action('admin_menu', "{$this->prefix}_ap");
+          $this->adminMsg = "<div class='updated'><p><strong>" .
+                  __('This plugin can be deactivated now. ', 'easy-common') .
+                  "<a href='plugins.php'>" .
+                  __('Go to Plugins', 'easy-common') .
+                  "</a>.</strong></div>";
+        }
       }
     }
 
@@ -599,6 +718,18 @@ if (!class_exists("EzBasePlugin")) {
       $this->ezAdmin->domain = $this->domain;
       $this->ezAdmin->plgFile = $this->plgFile;
       return $this->ezAdmin;
+    }
+
+    function info($hide = true) {
+      if (!function_exists('get_plugin_data')) {
+        require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+      }
+      $plugin_data = get_plugin_data($this->plgFile);
+      $str = "{$plugin_data['Name']} V{$plugin_data['Version']}";
+      if ($hide) {
+        $str = "<!-- $str -->";
+      }
+      return $str;
     }
 
     function printAdminPage() {

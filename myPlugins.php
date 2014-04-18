@@ -131,7 +131,9 @@ $myPlugins['easy-latex'] = array('value' => 'Easy WP LaTeX',
             'blurb' => '<em><strong>Easy WP LaTeX</strong></em> is a premium plugin that ',
             'desc' => 'provides a very easy way to display math and equations in your posts.',
             'title' => '<em><strong>Easy WP LaTeX</strong></em> provides a very easy way to display equations or mathematical formulas (typed in as TeX or LaTeX code) in your posts. It translates LaTeX formulas like this [math](a+b)^2 = a^2 + b^2 + 2ab[/math] into this:<br/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="http://l.wordpress.com/latex.php?latex=(a%2bb)^2%20=%20a^2%20%2b%20b^2%20%2b%202ab&amp;bg=E2E7FF&amp;s=1" style="vertical-align:-70%;" alt="(a+b)^2 = a^2 + b^2 + 2ab" />',
-            'pro' => 'The Lite version of the plugin is fully functional. The Pro version gives you options to cache the equation images so that your pages load faster.');
+            'pro' => 'The Lite version of the plugin is fully functional. The Pro version gives you options to cache the equation images so that your pages load faster.',
+            'benefits' => '<li>Pre-configured cache directory.</li>
+<li>Ability to turn control links on formulas.</li>');
 
 $myPlugins['easy-translator'] = array('value' => 'Easy Translator',
             'price' => '3.95',

@@ -4,7 +4,7 @@
   Plugin Name: Easy AdSense
   Plugin URI: http://www.thulasidas.com/adsense
   Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense</a>.
-  Version: 7.13
+  Version: 7.20
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -47,10 +47,11 @@ if (!class_exists("EzAdSense")) {
 
     function EzAdSense() {
       parent::__construct("easy-adsense", "Easy AdSense", __FILE__);
+      $this->prefix = 'ezAdSense';
       $this->adminMsg = '';
       $this->defaults = array('defaultText' => 'Please generate and paste your ad code here. If left empty, the ad location will be highlighted on your blog pages with a reminder to enter your code.');
       $defaultOptions = $this->mkDefaultOptions();
-      $this->optionName = "ezAdSense" . get_option('stylesheet');
+      $this->optionName = $this->prefix . get_option('stylesheet');
       $this->options = get_option($this->optionName);
       if (empty($this->options)) {
         $this->options = $defaultOptions;
@@ -59,8 +60,8 @@ if (!class_exists("EzAdSense")) {
         $this->options = array_merge($defaultOptions, $this->options);
       }
       // Counts and limis
-      $this->ezMax = 99;
-      $this->urMax = 0;
+      $this->ezMax = $this->options['max_count'];
+      $this->urMax = $this->options['max_link'];
       $this->urCount = 0;
       $this->ezCount = 0;
       $this->metaOptions = array();
@@ -108,10 +109,7 @@ if (!class_exists("EzAdSense")) {
         return;
       }
 
-      $this->ezOptions['info'] = new EzBaseOption('', 'info');
-      $this->ezOptions['policy'] = new EzBaseOption('', 'policy');
-      $this->ezOptions['kill_invites'] = new EzBaseOption('', 'kill_invites');
-      $this->ezOptions['kill_rating'] = new EzBaseOption('', 'kill_rating');
+      parent::mkEzOptions();
 
       $o = new EzTextArea('text_leadin');
       $o->before = "<b>" . __('Lead-in AdSense Text', 'easy-adsenser') .
@@ -431,13 +429,6 @@ if (!class_exists("EzAdSense")) {
       $o->addChoice('0', '0', __('Suppress links', 'easy-adsenser'))->after = "<br />";
       $this->ezOptions['max_link'] = clone $o;
 
-      $o = new EzCheckBox('kill_author');
-      $o->title = __('If you find the author links and ads on the plugin admin page distracting or annoying, you can suppress them by checking this box. Please remember to save your options after checking.', 'easy-adsenser');
-      $o->desc = __('Kill author links on the admin page?', 'easy-adsenser');
-      $o->before = "<br />";
-      $o->after = "<br />";
-      $this->ezOptions['kill_author'] = clone $o;
-
       $o = new EzCheckBox('suppressBoxes');
       $o->title = __('Easy AdSense displays a box with red borders to indicate where an ad would have been placed, but has been suppressed by one of the filters above. If you would like to suppress the boxes, check this option.', 'easy-adsenser');
       $o->desc = __('Suppress Placement Boxes?', 'easy-adsenser');
@@ -446,69 +437,12 @@ if (!class_exists("EzAdSense")) {
       $this->ezOptions['suppressBoxes'] = clone $o;
     }
 
-    function setOptionValues() {
-      $error = EzBaseOption::setValues($this->options, $this->ezOptions);
-      if (WP_DEBUG && !empty($error)) {
-        echo "<div class='error'>$error</div>";
-      }
-    }
-
-    function handleSubmits() {
-      if (empty($_POST)) {
-        return;
-      }
-      if (!check_admin_referer('EzAdsenseSubmit', 'EzAdsenseNonce')) {
-        return;
-      }
-      if (isset($_POST['saveChanges'])) {
-        $this->mkEzOptions();
-        $this->setOptionValues();
-
-        foreach ($this->ezOptions as $k => $o) {
-          if (isset($this->options[$k])) {
-            $this->options[$k] = $o->get();
-          }
-          else {
-            if (WP_DEBUG) {
-              echo "<div class='error'>Warning: <code>option[$k]</code> is not defined, but <code>ezOption[$k]</code> exists!</div>";
-            }
-          }
-        }
-
-        update_option($this->optionName, $this->options);
-
-        $this->adminMsg = "<div class='updated'><p><strong>" .
-                __('Settings Updated.', 'easy-adsenser') .
-                "</strong></p> </div>";
-      }
-      else if (isset($_POST['resetOptions'])) {
-        $this->resetOptions();
-        $this->adminMsg = "<div class='updated'><p><strong>" .
-                __('Ok, all your settings have been discarded!', 'easy-adsenser') .
-                "</strong></p> </div>";
-      }
-      else if (isset($_POST['cleanDB']) || isset($_POST['uninstall'])) {
-        $this->resetOptions();
-        $this->cleanDB('ezAdSense');
-        $this->adminMsg = "<div class='updated'><p><strong>" .
-                __('Database has been cleaned. All your options for this plugin (for all themes) have been removed.', 'easy-adsenser') .
-                "</strong></p> </div>";
-
-        if (isset($_POST['uninstall'])) {
-          remove_action('admin_menu', 'ezAdSense_ap');
-          $this->adminMsg = "<div class='updated'><p><strong>" .
-                  __('This plugin can be deactivated now. ', 'easy-adsenser') .
-                  "<a href='plugins.php'>" .
-                  __('Go to Plugins', 'easy-adsenser') .
-                  "</a>.</strong></p></div>";
-        }
-      }
-    }
-
     function migrateOptions() {
       $update = false;
-      $lookup = array('limit_lu' => '',
+      $lookup = array('info' => '',
+          'limit_lu' => '',
           'allow_exitjunction' => '',
+          'policy' => '',
           'kill_pages' => 'kill_page',
           'kill_attach' => 'kill_attachment',
           'kill_front' => 'kill_front_page',
@@ -528,12 +462,7 @@ if (!class_exists("EzAdSense")) {
     }
 
     function mkDefaultOptions() { // TODO: Merge this with mkEzOptions
-      $defaultOptions = array('info' => $this->info(),
-          'kill_invites' => false,
-          'kill_rating' => false,
-          'kill_author' => false,
-          'policy' => 'unknown',
-          'show_leadin' => 'float:right',
+      $defaultOptions = array('show_leadin' => 'float:right',
           'wc_leadin' => 0,
           'margin_leadin' => 12,
           'text_leadin' => $this->defaults['defaultText'],
@@ -584,16 +513,9 @@ if (!class_exists("EzAdSense")) {
           'kill_search' => true,
           'kill_sticky' => false,
           'title_widget' => '',
-          'suppressBoxes' => false);
+          'suppressBoxes' => false) +
+              parent::mkDefaultOptions();
       return $defaultOptions;
-    }
-
-    // Reset all options to defaults
-    function resetOptions() {
-      $defaultOptions = $this->mkDefaultOptions();
-      update_option($this->optionName, $defaultOptions);
-      $this->options = $defaultOptions;
-      unset($_POST);
     }
 
     function handleDefaultText($text, $key = '300x250') {
@@ -641,24 +563,6 @@ if (!class_exists("EzAdSense")) {
         _e("Error locating the admin page!\nEnsure admin.php exists, or reinstall the plugin.", 'easy-adsenser');
         echo '</font>';
       }
-    }
-
-    function info($hide = true) {
-      if (!function_exists('get_plugin_data')) {
-        require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-      }
-      $plugin_data = get_plugin_data(__FILE__);
-      $version = $plugin_data['Version'];
-      $str = "Easy AdSense (WP) V$version";
-      if ($hide) {
-        $str = "<!-- $str -->";
-      }
-      return $str;
-    }
-
-    function cleanDB($prefix) {
-      global $wpdb;
-      $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '$prefix%'");
     }
 
     function plugin_action($links, $file) {
@@ -763,12 +667,13 @@ if (!class_exists("EzAdSense")) {
                 $margin . 'px;' . $border . '"';
       }
       $unreal = self::showUnreal();
-      $adBlock = stripslashes($linebreak . $this->info() .
-              "<!-- [$slot: {$this->ezCount } urCount: {$this->urCount} urMax: {$this->urMax}] -->$linebreak" .
+      $info = $this->info();
+      $adBlock = stripslashes($linebreak . $info . $linebreak .
+              "<!-- [$slot: {$this->ezCount} urCount: {$this->urCount} urMax: {$this->urMax}] -->$linebreak" .
               '<div class="ezAdsense adsense adsense-' . $slot . '" ' . $inline . '>' .
               $this->options["text_$slot"] .
               ($this->urCount++ < $this->urMax ? $unreal : '') .
-              "</div>$linebreak" . $this->options['info'] . "$linebreak");
+              "</div>" . $linebreak . $info . $linebreak);
       return $adBlock;
     }
 
@@ -791,7 +696,6 @@ if (!class_exists("EzAdSense")) {
       if ($this->options['force_widget']) {
         $this->ezMax--;
       }
-      $this->urMax = $this->options['max_link'];
       if ($this->ezCount >= $this->ezMax) {
         return "$content <!-- Easy AdSense Unfiltered [count: {$this->ezCount} "
                 . "is not less than {$this->ezMax}] -->";
