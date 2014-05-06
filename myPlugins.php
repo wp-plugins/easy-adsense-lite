@@ -3,10 +3,10 @@
 /*
   Copyright (C) 2008 www.ads-ez.com
 
-  This program is free software; you can redistribute it and/or
-  modify it under the terms of the GNU General Public License as
-  published by the Free Software Foundation; either version 3 of the
-  License, or (at your option) any later version.
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or (at
+  your option) any later version.
 
   This program is distributed in the hope that it will be useful, but
   WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,14 +21,28 @@ $myPlugins = array();
 
 $needPHP5 = ' <br /> <span style="font-color:#c00;">Note that this plugin requires PHPv5.0+. Please use the Lite version first to ensure that it works before buying the Pro version. If it does not work on your web host, consider the amazing <a href="http://buy.thulasidas.com/easy-adsense/" title="The most popular plugin to insert AdSense on your blog"><em><strong>Easy AdSense Pro</strong></em></a> for all your advertising needs. It can insert non-AdSense blocks as well.</span>';
 
-$myPlugins['ezpaypal-pro'] = array('value' => 'ezPayPal',
+$myPlugins['ezpaypal'] = array('value' => 'ezPayPal',
             'price' => '9.95',
             'share' => false,
             'long' => false,
             'blurb' => '<em><strong>ezPayPal Pro</strong></em> is the simplest possible way to sell your digital goods online. This standalone PHP package ',
             'desc' => 'helps you quickly set up an online store to sell any downloadable item, where your buyers can pay for it and get an automatic, expiring download link. [ezPayPal is a standalone PHP package, which runs independent of WordPress.]',
             'title' => 'Do you have an application, PHP package, photograph, PDF book (or any other downloadable item) to sell? Find the set up of a shopping cart system too overwhelming? <em>ezPayPal</em> may be the right solution for you.',
-            'pro' => 'The Pro version adds a whole slew of features: Data Security, Sandbox Mode, Template Editors, Automatic Handling of returns, refunds, e-chques etc, Sales Editor, Email Tools, Product Version support, Batch Product File Uploads, Data backup/restore/migration tools and so on. It can also be enhanced with optional modules like Affiliate Package, Reporting Tools etc. This powerful and professional package  provides you with a complete and robust solution for your online business.  <em><strong>ezPayPal Pro</strong></em> provides the most robust and feature-complete solution to sell your digital goods online. It helps you quickly set up an online store to sell any downloadable item, where your buyers can pay for it and get an automatic, expiring download link. The whole flow runs fully automated and designed to run unattended. <em><strong>ezPayPal</strong></em> manages all aspects of selling your digital goods.');
+            'pro' => 'The Pro version adds a whole slew of features: Data Security, Sandbox Mode, Template Editors, Automatic Handling of returns, refunds, e-chques etc, Sales Editor, Email Tools, Product Version support, Batch Product File Uploads, Data backup/restore/migration tools and so on. It can also be enhanced with optional modules like Affiliate Package, Reporting Tools etc. This powerful and professional package  provides you with a complete and robust solution for your online business.  <em><strong>ezPayPal Pro</strong></em> provides the most robust and feature-complete solution to sell your digital goods online. It helps you quickly set up an online store to sell any downloadable item, where your buyers can pay for it and get an automatic, expiring download link. The whole flow runs fully automated and designed to run unattended. <em><strong>ezPayPal</strong></em> manages all aspects of selling your digital goods.',
+    'benefits' => '<li><em>Data Security</em>: The <em>Pro</em> version takes special measures to set up data verification links to ensure your sales data is safe and not susceptible to corruption. In technical terms, it checks for the existence of InnoDB in your MySQL installation, and uses it if found, setting up foreign keys to ensure referential integrity, and indices to guarantee performance. The Lite version uses the default MyISAM engine, fast and simple, but not exactly secure.</li>
+<li><em>Sandbox Mode</em>: In the <em>Pro</em> version, you have the option to choose PayPal sandbox mode so that you can check your setup before going live.</li>
+<li><em>DB Backup</em>: The <em>Pro</em> version has an option to generate a backup of your sales info to download to a safe location.</li>
+<li><em>DB Restore</em>: It also provides a means to restore (of course) a previously backed up data file, overwriting (or appending to, as you wish) the existing sales info.</li>
+<li><em>Security Audit</em>: The <em>Pro</em> version provides you with a tool to check your settings and installation for possible security issues.</li>
+<li><em>Data Migration</em>: Using this <em>Pro</em> tool, your database tables can be automatically upgraded to the later version without losing your sales info and other settings. You will also get sample PHP files that can be used to migrate your data from text files into the database.</li>
+<li><em>Template Editor</em>: The email body, thank you page and download display are all editable in the <em>Pro</em> version.</li>
+<li><em>Uninstall Support</em>: In the unlikely event that you want to stop using ezPayPal, this <em>Pro</em> tool can help you clean up your database by deleting all the tables created during ezPayPal installation.</li>
+<li><em>Additional Tools</em>: The <em>Pro</em> version also gives you a bunch of tools (php example files) that can help you migrate your existing sales data or product definitions.</li>
+<li><em>Email facilities</em>: You can select a number of your buyers to notify, for example, of a critical update of your products, or of a free upgrade opportunity.</li>
+<li><em>Upgradeable Products</em>: You can define products that are upgradeable. For instance, you can sell a short eBook at an introductory price. If your buyer likes it, he has the option of buying the full book by paying the difference.</li>
+<li>And more!</li>');
+
+$myPlugins['ezpaypal-pro'] =$myPlugins['ezpaypal']  ;
 
 $myPlugins['easy-ads'] = array('value' => 'Easy Ads',
             'price' => '8.95',
@@ -56,6 +70,15 @@ $myPlugins['google-adsense'] = array('value' => 'Google AdSense',
             'desc' => 'provides you with a fully streamlined interface to manage Google AdSense on your blog.',
             'title' => '<a href="http://buy.thulasidas.com/plugins/google-adsense/" title="A new plugin to handle Google"><em><strong>Google AdSense</strong></em></a> gives you a specialized and intuitive interface to manage AdSense ads on your blog, with size selectors, widget options, color-picker to customize your colors, etc. It is a new generation plugin with a fancy, tabbed interface.',
             'pro' => 'The Lite version of <em><strong>Google AdSense</strong></em> is fully functional.  But the Pro version gives you more features and control. In the Pro version, you get a filter to minimize the chance of your AdSense account getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to Google. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you.' . $needPHP5);
+
+$myPlugins['easy-chitika'] = array('value' => 'Easy Chitika',
+            'price' => '4.75',
+            'share' => true,
+            'long' => false,
+            'blurb' => '<em><strong>Easy Chitika</strong></em> is a single-provider version of <em><strong>Easy Ads</strong></em> specialized for Chitika serving. If you are planning to use more than two providers, it may be easier and more economical to use <em><strong>Easy Ads</strong></em>. <em><strong>Easy Chitika</strong></em> ',
+            'desc' => 'provides you with a fully streamlined interface to manage Chitika ads on your blog.',
+            'title' => '<a href="http://buy.thulasidas.com/plugins/easy-chitika/" title="A new plugin to handle Chitika"><em><strong>Easy Chitika</strong></em></a> gives you a specialized and intuitive interface to manage Chitika ads on your blog, with size selectors, widget options, color-picker to customize your colors, etc. It is a new generation plugin with a fancy, tabbed interface.',
+            'pro' => 'The Lite version of <em><strong>Easy Chitika</strong></em> is fully functional.  But the Pro version gives you more features and control. In the Pro version, you get a filter to minimize the chance of your Chitka account getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to Chitika. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads.' . $needPHP5);
 
 $myPlugins['easy-adsense'] = array('value' => 'Easy AdSense',
             'price' => '4.95',
@@ -111,6 +134,8 @@ $myPlugins['easy-quiz'] = array('value' => 'Easy Quiz',
 <li>Ability to tweak the quiz display colors.</li>
 <li>Color pickers for customization with live preview on the admin page.</li>');
 
+$myPlugins['easy-quiz-pro'] = $myPlugins['easy-quiz'];
+
 $myPlugins['easy-text-links'] = array('value' => 'Easy Text Links',
             'price' => '7.95',
             'share' => false,
@@ -123,6 +148,8 @@ $myPlugins['easy-text-links'] = array('value' => 'Easy Text Links',
 <li>Automated email reminders, and subscription based links.</li>
 <li>Choice of several attractive Advertise Here images.</li>
 <li>Dedicated dedicated and multi-insertable widget for displaying your links.</li>');
+
+$myPlugins['easy-text-links-pro'] = $myPlugins['easy-text-links'];
 
 $myPlugins['easy-latex'] = array('value' => 'Easy WP LaTeX',
             'price' => '2.95',
@@ -142,7 +169,19 @@ $myPlugins['easy-translator'] = array('value' => 'Easy Translator',
             'blurb' => '<em><strong>Easy Translator</strong></em> ',
             'desc' => 'is a blog post translator and a plugin translation tool for authors and translators.',
             'title' => '<em><strong>Easy Translator</strong></em> is a plugin to translate other plugins as well as blog posts. For blog posts and pages, it provides a customizable widget to enable machine translation (from Google or Microsoft). For plugins, it picks up translatable strings (in _[_e]() functions) and presents them and their existing translations (from the MO object of the current text-domain, if loaded) in a user editable form. It can generate a valid PO file that can be emailed to the plugin author directly from the its window, streamlining your work.',
-            'pro' => 'The Lite version of Easy Translator is fully functional. The Pro version adds machine translation help from Google, the ability to email the generated PO file directly, without having to save it and attach it to a mail message,  and color pickers to match the widget colors to your blog theme.');
+            'pro' => 'The Lite version of Easy Translator is fully functional. The Pro version adds machine translation help from Google, the ability to email the generated PO file directly, without having to save it and attach it to a mail message,  and color pickers to match the widget colors to your blog theme.',
+            'benefits' => '<li>Ability to mail translations to the plugin authors</li>
+<li>Machine translation for strings that do not have human translations yet.</li>
+<li>Blog page translation widget.</li>');
+
+$myPlugins['blackjack'] = array('value' => 'Blackjack',
+            'price' => '4.99',
+            'share' => false,
+            'long' => true,
+            'blurb' => '<em><strong>Blackjack</strong></em> ',
+            'desc' => 'shows a simple Blackjack game to your readers.',
+            'title' => '<em><strong>Blackjack</strong></em>  is a quick and easy plugin to present an attractive Blackjack game to your readers. It is based on HTML5/jQuery, and the whole game is played on the browser. Your server is gets no extra load, nor is anything stored in your database.',
+            'pro' => 'The Lite version of Blackjack is fully functional. The Pro version adds color customization, strategy hints and other features related to simulation, winnings accumulation etc. It will also give you revenue generation opportunities by selling these additional features to your readers.');
 
 $myPlugins['unreal-universe'] = array('value' => 'The Unreal Universe - eBook',
             'url' => 'http://www.theunrealuniverse.com',
@@ -177,27 +216,5 @@ $myPlugins['iphoto-tagger'] = array('value' => 'iPhoto Tagger -- Helper for iPho
             'title' => '<em><strong>iPhoto Tagger</strong></em> is a native Mac Application to locate and tag your existing photos depending on whether they have been imported into your iPhoto Library. It first goes through your iPhoto library and catalogs what you have there. It then scans the folder you specify and compares the photos in there with those in your library. If a photo is found exactly once, it will get a Green label, so that it stands out when you browse to it in your Finder (which is Mac-talk for Windows Explorer). Similarly, if the photo appears more than once in your iPhoto library, it will be tagged in Yellow. And, going the extra-mile, iPhotoTagger will color your folder Green if all the photos within have been imported into your iPhoto library. Those folders that have been partially imported will be tagged Yellow.',
             'pro' => 'The Lite version of <em><strong>iPhoto Tagger</strong></em> is fully functional and makes the lists of the photos to be tagged. The Pro version adds the ability to automatically label those photos using Spotlight colors so that they stand out while browsing in Finder.',
             'kind' => 'app');
-
-$myPlugins['ezpaypal'] = array('value' => 'ezPayPal',
-            'price' => '4.95',
-            'share' => false,
-            'long' => true,
-            'hide' => true,
-            'blurb' => '<em><strong>ezPayPal</strong></em> is the simplest possible way to sell your digital goods online. Do you have an application, PHP package, photograph, PDF book (or any other downloadable item) to sell? Find the set up of a shopping cart system too overwhelming? <em>ezPayPal</em> may be the right solution for you.  It ',
-            'desc' => 'gets you started with your online business. Easy and simple!',
-            'title' => '<em><strong>ezPayPal</strong></em> helps you quickly set up an online store to sell any downloadable item, where your buyers can pay for it and get an automatic, expiring download link. The whole flow is fully automated and designed to run unattended.',
-            'pro' => 'The Lite version of <em><strong>ezPayPal</strong></em> is fully functional. But the Pro version gives you more features and control. The Pro version has improved data security, sandbox mode, database backup and restore, security audit, data migration tools, template editor, email facilities, upgradeable products and so on. Please follow the more info link for details.',
-            'benefits' => '<li><em>Data Security</em>: The <em>Pro</em> version takes special measures to set up data verification links to ensure your sales data is safe and not susceptible to corruption. In technical terms, it checks for the existence of InnoDB in your MySQL installation, and uses it if found, setting up foreign keys to ensure referential integrity, and indices to guarantee performance. The Lite version uses the default MyISAM engine, fast and simple, but not exactly secure.</li>
-<li><em>Sandbox Mode</em>: In the <em>Pro</em> version, you have the option to choose PayPal sandbox mode so that you can check your setup before going live.</li>
-<li><em>DB Backup</em>: The <em>Pro</em> version has an option to generate a backup of your sales info to download to a safe location.</li>
-<li><em>DB Restore</em>: It also provides a means to restore (of course) a previously backed up data file, overwriting (or appending to, as you wish) the existing sales info.</li>
-<li><em>Security Audit</em>: The <em>Pro</em> version provides you with a tool to check your settings and installation for possible security issues.</li>
-<li><em>Data Migration</em>: Using this <em>Pro</em> tool, your database tables can be automatically upgraded to the later version without losing your sales info and other settings. You will also get sample PHP files that can be used to migrate your data from text files into the database.</li>
-<li><em>Template Editor</em>: The email body, thank you page and download display are all editable in the <em>Pro</em> version.</li>
-<li><em>Uninstall Support</em>: In the unlikely event that you want to stop using ezPayPal, this <em>Pro</em> tool can help you clean up your database by deleting all the tables created during ezPayPal installation.</li>
-<li><em>Additional Tools</em>: The <em>Pro</em> version also gives you a bunch of tools (php example files) that can help you migrate your existing sales data or product definitions.</li>
-<li><em>Email facilities</em>: You can select a number of your buyers to notify, for example, of a critical update of your products, or of a free upgrade opportunity.</li>
-<li><em>Upgradeable Products</em>: You can define products that are upgradeable. For instance, you can sell a short eBook at an introductory price. If your buyer likes it, he has the option of buying the full book by paying the difference.</li>
-');
 
 $this->myPlugins = $myPlugins;

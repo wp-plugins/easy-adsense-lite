@@ -64,15 +64,15 @@ if (!class_exists('EzAdmin')) {
       $slug = $this->slug;
       $plgLongName = $plg['value'];
       $plgPrice = $plg['price'];
-      $benefits = $plg['benefits'];
       $yesTip = sprintf(__('Buy %s Pro for $%s. PayPal payment. Instant download.', 'easy-common'), $plgLongName, $plgPrice);
       $yesTitle = __('Get the Pro version now!', 'easy-common');
       $noTip = __('Continue using the Lite version, and hide this message. After clicking this button, please remember to save your options to hide this box for good.', 'easy-common');
       $noTitle = __('Stay Lite', 'easy-common');
       $hideTip = __('Click the link to hide this box. After clicking this link, please remember to save your options to hide this box for good.', 'easy-common');
-      if (empty($benefits)) {
+      if (empty($plg['benefits'])) {
         return;
       }
+      $benefits = $plg['benefits'];
 
       $s1 = __("Want More Features?", 'easy-common');
       $s2 = __("The Pro version of this plugin gives you more features and benefits.", 'easy-common');
@@ -472,7 +472,8 @@ ENDDIVS;
       $break = '';
       foreach ($plugins as $k => $p) {
         $baseDir = dirname($k);
-        if ($baseDir == $me) {
+        $baseDirSmall = str_replace("-lite", "", $baseDir);
+        if ($baseDir == $me || $baseDirSmall == $me) {
           $version = $p['Version'];
           if (!empty($_SERVER['HTTP_REFERER'])) {
             $referer = $_SERVER['HTTP_REFERER'];

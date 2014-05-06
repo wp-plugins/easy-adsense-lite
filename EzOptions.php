@@ -544,17 +544,15 @@ if (!class_exists("EzBasePlugin")) {
       if ($this->isPro) {
         $this->strPro = ' Pro';
       }
-      if (is_admin()) {
-        require_once($this->plgDir . '/EzTran.php');
-        if ($this->slug == "easy-adsense") {
-          $this->domain = "easy-adsenser";
-        }
-        else {
-          $this->domain = $this->slug;
-        }
-        $this->ezTran = new EzTran($file, "{$name}{$this->strPro}", $this->domain);
-        $this->ezTran->setLang();
+      if ($this->slug == "easy-adsense") {
+        $this->domain = "easy-adsenser";
       }
+      else {
+        $this->domain = $this->slug;
+      }
+      require_once($this->plgDir . '/EzTran.php');
+      $this->ezTran = new EzTran($this->plgFile, "{$this->name}{$this->strPro}", $this->domain);
+      $this->ezTran->setLang();
     }
 
     function __destruct() {
@@ -581,8 +579,8 @@ if (!class_exists("EzBasePlugin")) {
       $this->ezOptions['kill_rating'] = new EzBaseOption('hidden', 'kill_rating');
 
       $o = new EzCheckBox('kill_author');
-      $o->title = __('If you find the author links and ads on the plugin admin page distracting or annoying, you can suppress them by checking this box. Please remember to save your options after checking.', 'easy-latex');
-      $o->desc = __('Kill author links on the admin page?', 'easy-latex');
+      $o->title = __('If you find the author links and ads on the plugin admin page distracting or annoying, you can suppress them by checking this box. Please remember to save your options after checking.', 'easy-common');
+      $o->desc = __('Kill author links on the admin page?', 'easy-common');
       $o->before = "<br /><b>";
       $o->after = "</b><br />";
       $this->ezOptions['kill_author'] = clone $o;
@@ -700,7 +698,7 @@ if (!class_exists("EzBasePlugin")) {
     }
 
     function mkEzAdmin() {
-      require_once($this->plgDir . '/myPlugins.php');
+      require($this->plgDir . '/myPlugins.php');
       $slug = $this->slug;
       $plg = $this->myPlugins[$slug];
       $plgURL = $this->plgURL;

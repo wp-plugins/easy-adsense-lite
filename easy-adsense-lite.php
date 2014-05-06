@@ -4,7 +4,7 @@
   Plugin Name: Easy AdSense
   Plugin URI: http://www.thulasidas.com/adsense
   Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy AdSense</a>.
-  Version: 7.20
+  Version: 7.21
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -27,8 +27,10 @@
  */
 
 if (class_exists("EzAdSensePro")) {
-  $msg = sprintf(__("<strong><em>%s Pro</em></strong> seems to be active.<br />Please use the Pro version, or deactivate it before activating <strong><em>%s</em></strong>.", "easy-adsenser"), "Easy AdSense", "Easy AdSense");
-  die($msg);
+  $plg = "Easy AdSense Lite";
+  $lite = plugin_basename(__FILE__);
+  include_once('ezDenyLite.php');
+  ezDenyLite($plg, $lite);
 }
 
 if (!class_exists("EzAdSense")) {
@@ -187,7 +189,7 @@ if (!class_exists("EzAdSense")) {
       $this->ezOptions['force_midad'] = clone $o;
 
       $o = new EzSelect('header_leadin');
-      $o->title = __('Select where you would like to show the lead-in ad block. A placement above or below the blog header would be suitable for a wide AdSense block.', 'easy-adsenser') . __('<br />Note that <b>Below Header</b> and <b>End of Page</b> options are hacks that may not be compatible with the WordPress default widget for <b>Recent Posts</b> or anything else that may use DB queries or loops. If you have problems with your sidebars and/or font sizes, please choose some other <b>Postion</b> option.' . 'easy-adsenser');
+      $o->title = __('Select where you would like to show the lead-in ad block. A placement above or below the blog header would be suitable for a wide AdSense block.', 'easy-adsenser') . "<br />" . __('Note that <b>Below Header</b> and <b>End of Page</b> options are hacks that may not be compatible with the WordPress default widget for <b>Recent Posts</b> or anything else that may use DB queries or loops. If you have problems with your sidebars and/or font sizes, please choose some other <b>Postion</b> option.', 'easy-adsenser');
       $o->desc = __('Position:', 'easy-adsenser');
       $o->style = "width:30%;";
       $o->addChoice('send_headers', 'send_headers', __('Above Header', 'easy-adsenser'));

@@ -42,7 +42,7 @@ if (!class_exists("PO")) {
     // Returns a properly escaped string
     static function decorate($str, $esc) {
       if (!get_magic_quotes_gpc()) {
-        $str = addcslashes($str, $esc);
+        // $str = addcslashes($str, $esc);
       }
       return $str;
     }
@@ -153,44 +153,23 @@ if (!class_exists("EzTran")) {
     // target is the language target for the translation. defaults to locale.
 
     var $status, $error, $plgName, $plgDir, $plgURL, $domain, $locale, $state,
-            $isEmbedded = true, $isPro = false, $target, $POs;
+            $isEmbedded = true, $isPro = false, $target, $POs, $slug;
     var $adminMsg;
     var $helpers = array();
     var $sessionVars = array('POs', 'ezt-locale', 'ezt-target');
 
     function __construct($plgFile, $plgName, $domain = '') {
-      if (!empty($_POST['ezt-savePot'])) {
-        // saving cannot be done from handleSubmits
-        // because it would be too late for the headers.
-        $target = $_POST['ezt-target'];
-        $file = "{$target}.po";
-        $potArray = unserialize(gzinflate(base64_decode($_POST['potArray'])));
-        header('Content-Description: File Transfer');
-        header('Content-Disposition: attachment; filename="' . $file . '"');
-        header("Content-Transfer-Encoding: ascii");
-        header('Expires: 0');
-        header('Pragma: no-cache');
-        ob_start();
-        foreach ($potArray as $domain => $str) {
-          $filePO = "{$target}_$domain.po";
-          echo "\n# Begin $filePO\n";
-          print htmlspecialchars_decode($str, ENT_QUOTES);
-          echo "# End $filePO\n\n";
-        }
-        ob_end_flush();
-        $this->status .= '<div class="updated">Pot file: ' . $file . ' was saved.</div> ';
-        exit(0);
-      }
       $this->status = '';
       $this->error = '';
       if (empty($plgName)) {
         $plgName = basename($plgFile, '.php');
-        $plgName = ucfirst(strtr('-_', '  ', $plgName));
+        $plgName = ucfirst(strtr($plgName, '-_', '  '));
       }
       $this->plgName = $plgName;
+      $this->slug = strtolower(strtr($plgName, ' !.,', '----'));
+      $this->slug = str_replace("--", "-", $this->slug);
       if (empty($domain)) {
-        $domain = strtolower(strtr(' !.,', '----', $plgName));
-        $domain = str_replace("--", "-", $domain);
+        $domain = $this->slug;
       }
       $this->domain = $domain;
       $this->plgDir = dirname($plgFile);
@@ -200,6 +179,54 @@ if (!class_exists("EzTran")) {
       $this->target = $this->locale;
       if (!session_id()) {
         session_start();
+      }
+      if (!empty($_POST['ezt-savePot']) || !empty($_POST['ezt-download'])) {
+        // saving cannot be done from handleSubmits
+        // because it would be too late for the headers.
+        $slug = $_POST['ezt-slug'];
+        if ($slug == $this->slug) {
+          if (!empty($_POST['ezt-savePot'])) {
+            $target = $_POST['ezt-target'];
+            $file = "$slug-$target.zip";
+            $potArray = unserialize(gzinflate(base64_decode($_POST['potArray'])));
+            $poName = $target;
+          }
+          if (!empty($_POST['ezt-download'])) {
+            require_once(ABSPATH . WPINC . '/pluggable.php');
+            global $current_user;
+            get_currentuserinfo();
+            $msg = array();
+            $msg['name'] = $current_user->user_firstname . " " .
+                    $current_user->user_lastname;
+            $msg['email'] = $current_user->user_email;
+            $msg['blog'] = get_bloginfo('blog');
+            $msg['url'] = get_bloginfo('url');
+            $msg['charset'] = get_bloginfo('charset');
+            $msg['locale'] = $this->locale;
+            $msg['ezt-target'] = "POT File";
+            $file = "$slug.zip";
+            $s = $this->getFileContents();
+            $POs = $this->getTranPOs($s);
+            $potArray = $this->mkPotStr($POs, $msg);
+            $poName = $slug;
+          }
+          $zip = new ZipStream($file);
+          foreach ($potArray as $d => $str) {
+            if (empty($d)) { // skip strings with no domain -- they are WP core ones
+              continue;
+            }
+            if ($d == $slug) {
+              $filePO = "{$poName}.po";
+            }
+            else { // d should be 'easy-common'
+              $filePO = "{$poName}_$d.po";
+            }
+            $zip->add_file($filePO, $str);
+          }
+          $zip->finish();
+          $this->status .= '<div class="updated">Pot file: ' . $file . ' was saved.</div> ';
+          exit(0);
+        }
       }
     }
 
@@ -263,7 +290,6 @@ if (!class_exists("EzTran")) {
       }
     }
 
-    // Get translatable strings (keys) and text-domains from content
     static function getStrings($contents, &$keys, &$domains) {
       $matches = array();
       $regExp = "#_[_e]\s*\([\'\"](.*)[\'\"]\s*(,\s*[\'\"](.+)[\'\"]|)\s*\)#U";
@@ -280,7 +306,6 @@ if (!class_exists("EzTran")) {
       $keys = str_replace(array("\'", '\"', '\n'), array("'", '"', "\n"), $keys);
     }
 
-    // Get the strings that look like translation keys
     function getTranPOs(&$contents) {
       $keys = $domains = array();
       self::getStrings($contents, $keys, $domains);
@@ -304,7 +329,7 @@ if (!class_exists("EzTran")) {
         }
         $po = new PO($k, $t);
         $po->num = $n;
-        if ($this->isEmbedded || $this->isPro) {
+        if (isset($_POST['ezt-google']) && ($this->isEmbedded || $this->isPro)) {
           $po->tl = $tl;
         }
         $po->domain = $domains[$n];
@@ -342,9 +367,14 @@ EOF;
         if (empty($pot[$po->domain])) {
           $pot[$po->domain] = $potHead;
         }
-        $pot[$po->domain] .= "msgid " . '"' . PO::decorate($po->id, "\n\r\"") . '"' . "\n";
-        $t = $msg[$po->num];
-        $pot[$po->domain] .= "msgstr " . '"' . PO::decorate($t, "\n\r") . '"' . "\n\n";
+        $pot[$po->domain] .= 'msgid "' . PO::decorate($po->id, "\n\r\"") . "\"\n";
+        if (empty($msg[$po->num])) {
+          $t = '';
+        }
+        else {
+          $t = $msg[$po->num];
+        }
+        $pot[$po->domain] .= 'msgstr "' . PO::decorate($t, "\n\r") . "\"\n\n";
       }
       return $pot;
     }
@@ -619,10 +649,17 @@ EOF;
         }
       }
       $tip = "This plugin caches your inputs so that you restart from where you left off. If you would like to discard the cache and start from scratch, please click this button.";
+      if ($this->isEmbedded || $this->isPro) {
+        $useGoogle = "&nbsp;<span onmouseover=\"Tip('By default, the translator will query Google Translator for each string it cannot find a translation of. This may take a few minutes. If you would rather not wait, please uncheck this option.', WIDTH, 350, TITLE, 'Query Google?', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 0, 5])\" onmouseout=\"UnTip()\"><input type='checkbox' name='ezt-google' checked='checked' />&nbsp;Use Google? </span>&nbsp;";
+      }
+      else {
+        $useGoogle = '';
+      }
       $makeStr = '<div class="submit">
 <input type="submit" name="ezt-make" value="Display &amp; Save POT File" title="Make a POT file with the translation strings below and display it" />&nbsp;
-<input type="submit" name="ezt-clear" value="Reload Translation" title="Discard your changes and reload the translation" onmouseover = "Tip(\'' . $tip . '\',WIDTH, 300)" onmouseout="UnTip()" onclick="return confirm(\'Are you sure you want to discard your changes?\nThe page will take a few minutes to reload because we will be querying Google for translations for each translatable string in the plugin files.\nPlease be patient.\');" />&nbsp;
-</div>' . $this->status . $this->error;
+<input type="submit" name="ezt-clear" value="Reload Translation" title="Discard your changes and reload the translation" onmouseover = "Tip(\'' . $tip . '\',WIDTH, 300)" onmouseout="UnTip()" onclick="return confirm(\'Are you sure you want to discard your changes?\nThe page may take a few minutes to reload because we may be querying Google for translations for each translatable string in the plugin files.\nPlease be patient or uncheck the Use Google option, if available.\');" />&nbsp;'
+              . $useGoogle .
+              '</div>' . $this->status . $this->error;
       $saveStr = '<div class="submit">
 <input type="submit" name="ezt-savePot" value="Save POT file" title="Saves the strings shown below to your PC as a POT file" />&nbsp;
 <input type="submit" name="ezt-mailPot" value="Mail POT file" title="Email the translation to the plugin autor" onClick="return confirm(\'Are you sure you want to email the author?\');" />&nbsp;
@@ -634,6 +671,8 @@ EOF;
         $b64 = base64_encode(gzdeflate(serialize($potArray)));
         echo '<input type="hidden" name="potArray" value="' . $b64 . '" />';
         echo '<input type="hidden" name="locale" value="' . $this->locale . '" />';
+        echo '<input type="hidden" name="ezt-target" value="' . $this->target . '" />';
+        echo '<input type="hidden" name="ezt-slug" value="' . $this->slug . '" />';
         if (!$this->isEmbedded) {
           $mail = "<br /><span style='width:15%;float:left;'>Plugin Author:</span><input type='text' style='width: 30%' name='ezt-author' value='' /><br />\n";
           $mail .= "<span style='width:15%;float:left'>Author's Email:</span><input type='text' style='width: 30%' name='ezt-authormail' value='' />\n<br />";
@@ -662,7 +701,8 @@ EOF1;
     function getInvite() {
       $locale = $this->locale;
       $plgName = $this->plgName;
-      $patience = "I will include your translation in the next release.<br /><br /><span style=\"color:red;font-weight:bold\">Please note that the page may take a while to load because the plugin will query Google Translator for each string. Please be patient!</span>";
+      $patience = "I will include your translation in the next release.<br /><br /><span style=\"color:red;font-weight:bold\">Please note that the page may take a while to load because the plugin will query Google Translator for each string. Please be patient! You can make it faster by unchecking the Use Google option.</span>";
+      $tipPot = htmlentities("If you would like to use your own tools to translate (such as <code>poedit</code>), please download the POT file here. Once done with the translation, please send the po file to the plugin author: <code>manoj at thulasidas dot com</code>");
       if ($this->state == "Not Translated") {
         $tip = htmlentities("It is easy to have <b>$plgName</b> in your language. All you have to do is to translate some strings, and email the file to the author.<br /><br />If you would like to help, please use the translation interface. It picks up the translatable strings in <b>$plgName</b> and presents them (and their existing translations in <b>$locale</b>, if any) in an easy-to-edit form. You can then generate a translation file and email it to the author all from the same form. $patience");
         $invite = "<span style='color:red'> Would you like to see <b>$plgName</b> in your langugage (<b>$locale</b>)?&nbsp; <input type='submit' name='ezt-translate' onmouseover=\"Tip('$tip', WIDTH, 350, TITLE, 'How to Translate?', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 0, 5])\" onmouseout=\"UnTip()\" value ='Please help translate ' /></span>";
@@ -756,12 +796,20 @@ EOF1;
           }
           $langOptions .= "<option value='$k' $selected>$v</option>\n";
         }
-        $invite = "If you speak another language, please help translate this plugin. Select a language: <select name='ezt-createpo'>$langOptions</select>&nbsp; <input type='submit' name='ezt-translate' onmouseover=\"Tip('$tip', WIDTH, 350, TITLE, 'How to Translate?', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 0, 5])\" onmouseout=\"UnTip()\" value ='Please help translate ' />";
+        $invite = "If you speak another language, please help translate this plugin. You can either use our web interface or download the POT files.<br />"
+                . "Select a language: <select name='ezt-createpo'>$langOptions</select>&nbsp;"
+                . "&nbsp;<span onmouseover=\"Tip('By default, the translator will query Google Translator for each string it cannot find a translation of. This may take a few minutes. If you would rather not wait, please uncheck this option.', WIDTH, 350, TITLE, 'Query Google?', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 0, 5])\" onmouseout=\"UnTip()\"><input type='checkbox' name='ezt-google' checked='checked' />&nbsp;Use Google? </span>&nbsp;"
+                . "&nbsp;<input type='submit' name='ezt-translate' onmouseover=\"Tip('$tip', WIDTH, 350, TITLE, 'How to Translate?', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 0, 5])\" onmouseout=\"UnTip()\" value ='Use Web Interface'/> &nbsp;"
+                . "&nbsp;<input type='submit' name='ezt-download' onmouseover=\"Tip('$tipPot', WIDTH, 350, TITLE, 'How to Use POT files?', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 0, 5])\" onmouseout=\"UnTip()\" value ='Download POT files'/> ";
       }
       else {
-        $tip = htmlentities("If you would like to improve this translation, please use the translation interface. It picks up the translatable strings in <b>$plgName</b> and presents them and their existing translations in <b>$locale</b> in an easy-to-edit form. You can then generate a translation file and email it to the author all from the same form. Slick, isn\'t it? $patience");
-        $invite = "<span style='color:red'> Would you like to improve this translation of <b>$plgName</b> in your langugage (<b>$locale</b>)?  <input type='submit' name='ezt-translate' onmouseover=\'Tip('$tip', WIDTH, 350, TITLE, 'How to Translate?', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 0, 5])\' onmouseout=\'UnTip()\' value='Improve $locale translation' /></span>";
+        $tip = htmlentities("If you would like to improve this translation, please use the translation interface. It picks up the translatable strings in <b>$plgName</b> and presents them and their existing translations in <b>$locale</b> in an easy-to-edit form. You can then generate a translation file and email it to the author all from the same form. $patience");
+        $invite = "<span style='color:red'> Would you like to improve this translation of <b>$plgName</b> in your langugage (<b>$locale</b>)?</span><br />"
+                . "&nbsp;<span onmouseover=\"Tip('By default, the translator will query Google Translator for each string it cannot find a translation of. This may take a few minutes. If you would rather not wait, please uncheck this option.', WIDTH, 350, TITLE, 'Query Google?', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 0, 5])\" onmouseout=\"UnTip()\"><input type='checkbox' name='ezt-google' checked='checked' />&nbsp;Use Google? </span>&nbsp;"
+                . "&nbsp;<input type='submit' name='ezt-translate' onmouseover=\"Tip('$tip', WIDTH, 350, TITLE, 'How to Translate?', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 0, 5])\" onmouseout=\"UnTip()\" value='Improve $locale translation' />&nbsp;"
+                . "&nbsp;<input type='submit' name='ezt-download' onmouseover=\"Tip('$tipPot', WIDTH, 350, TITLE, 'How to Use POT files?', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, 0, 5])\" onmouseout=\"UnTip()\" value ='Download POT files'/> ";
       }
+      $invite .= '<input type="hidden" name="ezt-slug" value="' . $this->slug . '" />';
       return $invite;
     }
 
@@ -852,7 +900,7 @@ EOF1;
       }
       else if ($this->state != "English") {
         echo "<br />";
-        $plgName = strtr(' ', '-', str_replace(' pro', '', strtolower($this->plgName)));
+        $plgName = strtr(str_replace(' pro', '', strtolower($this->plgName)), ' ', '-');
         echo "<script type='text/javascript'>
 <!--
 function hideTranslator(id, btn, translator) {
@@ -918,3 +966,224 @@ function googleTranslateElementInit() {
 
 }
 
+if (!class_exists('ZipStream')) {
+##########################################################################
+# ZipStream - Streamed, dynamically generated zip archives.              #
+# by Paul Duncan <pabs@pablotron.org>                                    #
+#                                                                        #
+# Copyright (C) 2007-2009 Paul Duncan <pabs@pablotron.org>               #
+#                                                                        #
+# Permission is hereby granted, free of charge, to any person obtaining  #
+# a copy of this software and associated documentation files (the        #
+# "Software"), to deal in the Software without restriction, including    #
+# without limitation the rights to use, copy, modify, merge, publish,    #
+# distribute, sublicense, and/or sell copies of the Software, and to     #
+# permit persons to whom the Software is furnished to do so, subject to  #
+# the following conditions:                                              #
+#                                                                        #
+# The above copyright notice and this permission notice shall be         #
+# included in all copies or substantial portions of the of the Software. #
+#                                                                        #
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,        #
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF     #
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. #
+# IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR      #
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,  #
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR  #
+# OTHER DEALINGS IN THE SOFTWARE.                                        #
+##########################################################################
+
+  class ZipStream {
+
+    const VERSION = '0.2.2';
+
+    var $opt = array(), $files = array(), $cdr_ofs = 0, $ofs = 0;
+
+    function __construct($name = null, $opt = array()) {
+      $this->opt = $opt;
+      if (empty($this->opt['large_file_size'])) {
+        $this->opt['large_file_size'] = 20 * 1024 * 1024;
+      }
+      if (empty($this->opt['large_file_method'])) {
+        $this->opt['large_file_method'] = 'store';
+      }
+      $this->output_name = $name;
+      if ($name || $opt['send_http_headers']) {
+        $this->need_headers = true;
+      }
+    }
+
+    function add_file($name, $data, $opt = array()) {
+      $zdata = gzdeflate($data);
+      $crc = crc32($data);
+      $zlen = strlen($zdata);
+      $len = strlen($data);
+      $meth = 0x08;
+      $this->add_file_header($name, $opt, $meth, $crc, $zlen, $len);
+      $this->send($zdata);
+    }
+
+    function add_file_from_path($name, $path, $opt = array()) {
+      if ($this->is_large_file($path)) {
+        $this->add_large_file($name, $path, $opt);
+      }
+      else {
+        $data = file_get_contents($path);
+        $this->add_file($name, $data, $opt);
+      }
+    }
+
+    function finish() {
+      $this->add_cdr($this->opt);
+      $this->clear();
+    }
+
+    private function add_file_header($name, $opt, $meth, $crc, $zlen, $len) {
+      $name = preg_replace('/^\\/+/', '', $name);
+      $nlen = strlen($name);
+      if (empty($opt['time'])) {
+        $opt['time'] = time();
+      }
+      $dts = $this->dostime($opt['time']);
+      $fields = array(array('V', 0x04034b50), array('v', (6 << 8) + 3), array('v', 0x00), array('v', $meth), array('V', $dts), array('V', $crc), array('V', $zlen), array('V', $len), array('v', $nlen), array('v', 0),);
+      $ret = $this->pack_fields($fields);
+      $cdr_len = strlen($ret) + $nlen + $zlen;
+      $this->send($ret . $name);
+      $this->add_to_cdr($name, $opt, $meth, $crc, $zlen, $len, $cdr_len);
+    }
+
+    private function add_large_file($name, $path, $opt = array()) {
+      $st = stat($path);
+      $block_size = 1048576;
+      $algo = 'crc32b';
+      $zlen = $len = $st['size'];
+      $meth_str = $this->opt['large_file_method'];
+      if ($meth_str == 'store') {
+        $meth = 0x00;
+        $crc = unpack('V', hash_file($algo, $path, true));
+        $crc = $crc[1];
+      }
+      elseif ($meth_str == 'deflate') {
+        $meth = 0x08;
+        $fh = fopen($path, 'rb');
+        $hash_ctx = hash_init($algo);
+        $zlen = 0;
+        while ($data = fgets($fh, $block_size)) {
+          hash_update($hash_ctx, $data);
+          $data = gzdeflate($data);
+          $zlen += strlen($data);
+        } fclose($fh);
+        $crc = unpack('V', hash_final($hash_ctx, true));
+        $crc = $crc[1];
+      }
+      else {
+        die("unknown large_file_method: $meth_str");
+      } $this->add_file_header($name, $opt, $meth, $crc, $zlen, $len);
+      $fh = fopen($path, 'rb');
+      while ($data = fgets($fh, $block_size)) {
+        if ($meth_str == 'deflate') {
+          $data = gzdeflate($data);
+        }
+        $this->send($data);
+      } fclose($fh);
+    }
+
+    function is_large_file($path) {
+      $st = stat($path);
+      return ($this->opt['large_file_size'] > 0) && ($st['size'] > $this->opt['large_file_size']);
+    }
+
+    private function add_to_cdr($name, $opt, $meth, $crc, $zlen, $len, $rec_len) {
+      $this->files[] = array($name, $opt, $meth, $crc, $zlen, $len, $this->ofs);
+      $this->ofs += $rec_len;
+    }
+
+    private function add_cdr_file($args) {
+      list ($name, $opt, $meth, $crc, $zlen, $len, $ofs) = $args;
+      if (empty($opt['comment'])) {
+        $comment = '';
+      }
+      else {
+        $comment = $opt['comment'];
+      }
+      $dts = $this->dostime($opt['time']);
+      $fields = array(array('V', 0x02014b50), array('v', (6 << 8) + 3), array('v', (6 << 8) + 3), array('v', 0x00), array('v', $meth), array('V', $dts), array('V', $crc), array('V', $zlen), array('V', $len), array('v', strlen($name)), array('v', 0), array('v', strlen($comment)), array('v', 0), array('v', 0), array('V', 32), array('V', $ofs),);
+      $ret = $this->pack_fields($fields) . $name . $comment;
+      $this->send($ret);
+      $this->cdr_ofs += strlen($ret);
+    }
+
+    private function add_cdr_eof($opt = null) {
+      $num = count($this->files);
+      $cdr_len = $this->cdr_ofs;
+      $cdr_ofs = $this->ofs;
+      $comment = '';
+      if (!empty($opt) && !empty($opt['comment'])) {
+        $comment = $opt['comment'];
+      }
+      $fields = array(array('V', 0x06054b50), array('v', 0x00), array('v', 0x00), array('v', $num), array('v', $num), array('V', $cdr_len), array('V', $cdr_ofs), array('v', strlen($comment)),);
+      $ret = $this->pack_fields($fields) . $comment;
+      $this->send($ret);
+    }
+
+    private function add_cdr($opt = null) {
+      foreach ($this->files as $file) {
+        $this->add_cdr_file($file);
+      }
+      $this->add_cdr_eof($opt);
+    }
+
+    function clear() {
+      $this->files = array();
+      $this->ofs = 0;
+      $this->cdr_ofs = 0;
+      $this->opt = array();
+    }
+
+    private function send_http_headers() {
+      $opt = $this->opt;
+      $content_type = 'application/x-zip';
+      if (!empty($opt['content_type'])) {
+        $content_type = $this->opt['content_type'];
+      }
+      $disposition = 'attachment';
+      if (!empty($opt['content_disposition'])) {
+        $disposition = $opt['content_disposition'];
+      }
+      if ($this->output_name) {
+        $disposition .= "; filename=\"{$this->output_name}\"";
+      }
+      $headers = array('Content-Type' => $content_type, 'Content-Disposition' => $disposition, 'Pragma' => 'public', 'Cache-Control' => 'public, must-revalidate', 'Content-Transfer-Encoding' => 'binary',);
+      foreach ($headers as $key => $val) {
+        header("$key: $val");
+      }
+    }
+
+    private function send($str) {
+      if ($this->need_headers) {
+        $this->send_http_headers();
+      }
+      $this->need_headers = false;
+      echo $str;
+    }
+
+    function dostime($when = 0) {
+      $d = getdate($when);
+      if ($d['year'] < 1980) {
+        $d = array('year' => 1980, 'mon' => 1, 'mday' => 1, 'hours' => 0, 'minutes' => 0, 'seconds' => 0);
+      } $d['year'] -= 1980;
+      return ($d['year'] << 25) | ($d['mon'] << 21) | ($d['mday'] << 16) | ($d['hours'] << 11) | ($d['minutes'] << 5) | ($d['seconds'] >> 1);
+    }
+
+    function pack_fields($fields) {
+      list ($fmt, $args) = array('', array());
+      foreach ($fields as $field) {
+        $fmt .= $field[0];
+        $args[] = $field[1];
+      } array_unshift($args, $fmt);
+      return call_user_func_array('pack', $args);
+    }
+
+  }
+
+}
