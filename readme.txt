@@ -140,8 +140,8 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
-* V7.31: Additional commit to change the last updated date in the repository. [Aug 14, 2013]
-* V7.30: Adding access to Google AdExchange opportunity for the users through a collaboration. [Aug 14, 2013]
+* V7.31: Additional commit to change the last updated date in the repository. [Aug 14, 2014]
+* V7.30: Adding access to Google AdExchange opportunity for the users through a collaboration. [Aug 14, 2014]
 * V7.22: Fixing some bugs related to the lead-in ad placements. [May 30, 2014]
 * V7.21: Further refactoring and internationalization changes. [May 6, 2014]
 * V7.20: Some refactoring changes. [Apr 18, 2014]
