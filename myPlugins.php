@@ -22,7 +22,7 @@ $myPlugins = array();
 $needPHP5 = ' <br /> <span style="font-color:#c00;">Note that this plugin requires PHPv5.0+. Please use the Lite version first to ensure that it works before buying the Pro version. If it does not work on your web host, consider the amazing <a href="http://buy.thulasidas.com/easy-adsense/" title="The most popular plugin to insert AdSense on your blog"><em><strong>Easy AdSense Pro</strong></em></a> for all your advertising needs. It can insert non-AdSense blocks as well.</span>';
 
 $myPlugins['ezpaypal'] = array('value' => 'ezPayPal',
-            'price' => '9.95',
+            'price' => '19.95',
             'share' => false,
             'long' => false,
             'blurb' => '<em><strong>ezPayPal Pro</strong></em> is the simplest possible way to sell your digital goods online. This standalone PHP package ',
@@ -54,7 +54,7 @@ $myPlugins['easy-ads'] = array('value' => 'Easy Ads',
             'pro' => 'The Lite version of <em><strong>Easy Ads</strong></em> is fully functional.  In the Pro version, you get a filter to minimize the chance of your AdSense and other accounts getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to Google and others. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm (for each provider). The Pro version also gives you control over other global options like activating and deactivating various ad providers, resetting all options etc. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons the ad providers may ban you.' . $needPHP5);
 
 $myPlugins['easy-paypal'] = array('value' => 'Easy PayPal',
-            'price' => '6.95',
+            'price' => '19.95',
             'share' => false,
             'long' => false,
             'blurb' => '<em><strong>Easy PayPal</strong></em> is the plugin version of ezPayPal, the simplest possible way to sell your digital goods online. This premium plugin ',
@@ -63,7 +63,7 @@ $myPlugins['easy-paypal'] = array('value' => 'Easy PayPal',
             'pro' => 'The Pro version adds a whole slew of features: Data Security, Sandbox Mode, Template Editors, Automatic Handling of returns, refunds, e-chques etc, Sales Editor, Email Tools, Product Version support, Batch Product File Uploads, Data backup/restore/migration tools and so on. It can also be enhanced with optional modules like Affiliate Package, Reporting Tools etc. This powerful and professional package  provides you with a complete and robust solution for your online business.  <em><strong>ezPayPal Pro</strong></em> provides the most robust and feature-complete solution to sell your digital goods online. It helps you quickly set up an online store to sell any downloadable item, where your buyers can pay for it and get an automatic, expiring download link. The whole flow runs fully automated and designed to run unattended. <em><strong>ezPayPal</strong></em> manages all aspects of selling your digital goods.');
 
 $myPlugins['google-adsense'] = array('value' => 'Google AdSense',
-            'price' => '5.95',
+            'price' => '9.45',
             'share' => true,
             'long' => false,
             'blurb' => '<em><strong>Google AdSense</strong></em> is a single-provider version of <em><strong>Easy Ads</strong></em> specialized for Google AdSense serving. If you are planning to use more than two providers, it may be easier and more economical to use <em><strong>Easy Ads</strong></em>. <em><strong>Google AdSense</strong></em> ',
@@ -81,7 +81,7 @@ $myPlugins['easy-chitika'] = array('value' => 'Easy Chitika',
             'pro' => 'The Lite version of <em><strong>Easy Chitika</strong></em> is fully functional.  But the Pro version gives you more features and control. In the Pro version, you get a filter to minimize the chance of your Chitka account getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to Chitika. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads.' . $needPHP5);
 
 $myPlugins['easy-adsense'] = array('value' => 'Easy AdSense',
-            'price' => '4.95',
+            'price' => '7.95',
             'share' => true,
             'long' => true,
             'blurb' => '<em><strong>Easy AdSense</strong></em> is an updated version of a very popular (downloaded over 600,000 times) WordPress plugin. This premium plugin ',
@@ -98,7 +98,7 @@ $myPlugins['easy-adsense'] = array('value' => 'Easy AdSense',
         );
 
 $myPlugins['adsense-now'] = array('value' => 'AdSense Now!',
-            'price' => '3.95',
+            'price' => '6.95',
             'share' => true,
             'long' => true,
             'blurb' => '<em><strong>AdSense Now!</strong></em> is an updated version of another popular (downloaded about 150,000 times) WordPress plugin. This premium plugin ',
