@@ -9,11 +9,11 @@ $ezOptions['kill_page'] = array('name' => '<a href="http://codex.wordpress.org/P
     'type' => 'checkbox2');
 $ezOptions['kill_home'] = array('name' => __("Home Page", 'easy-ads'),
     'help' => __("Suppress ads on your home page? Home Page and Front Page are the same for most blogs.", 'easy-ads'),
-    'value' => 1,
+    'value' => 0,
     'type' => 'checkbox2');
 $ezOptions['kill_front_page'] = array('name' => __("Front Page", 'easy-ads'),
     'help' => __("Suppress ads on your front page? Home Page and Front Page are the same for most blogs.", 'easy-ads'),
-    'value' => 1,
+    'value' => 0,
     'type' => 'checkbox2');
 $ezOptions['kill_attachment'] = array('name' => __("Attachment Page", 'easy-ads'),
     'help' => __("Suppress ads on pages that show attachments?", 'easy-ads'),
@@ -21,7 +21,7 @@ $ezOptions['kill_attachment'] = array('name' => __("Attachment Page", 'easy-ads'
     'type' => 'checkbox2');
 $ezOptions['kill_category'] = array('name' => __("Category Pages", 'easy-ads'),
     'help' => __("Suppress ads on pages that come up when you click on category names?", 'easy-ads'),
-    'value' => 1,
+    'value' => 0,
     'type' => 'checkbox2');
 $ezOptions['kill_search'] = array('name' => __("Search Page", 'easy-ads'),
     'help' => __("Suppress ads on pages that show search results?", 'easy-ads'),
@@ -33,9 +33,9 @@ $ezOptions['kill_sticky'] = array('name' => __("Sticky Front Page", 'easy-ads'),
     'type' => 'checkbox2');
 $ezOptions['kill_tag'] = array('name' => __("Tag Pages", 'easy-ads'),
     'help' => __("Suppress ads on pages that come up when you click on tag names?", 'easy-ads'),
-    'value' => 1,
+    'value' => 0,
     'type' => 'checkbox2');
 $ezOptions['kill_archive'] = array('name' => __("Archive Pages", 'easy-ads'),
     'help' => __("Suppress ads on pages that come up when you click on year/month archives?", 'easy-ads'),
-    'value' => 1,
+    'value' => 0,
     'type' => 'checkbox2');
