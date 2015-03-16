@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 4.1
-Stable tag: 8.09
+Stable tag: 8.10
 License: GPL2 or later
 
 Easy Plugin for AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
@@ -50,7 +50,7 @@ Easy Plugin for AdSense is the freely distributed version of a premium plugin. T
 
 == Upgrade Notice ==
 
-Documentation and usability enhancements.
+Providing a downgrade path to the previous, non-AJAX version of the plugin.
 
 == Screenshots ==
 
@@ -61,9 +61,17 @@ Documentation and usability enhancements.
 
 == Installation ==
 
-The easiest way to install this plugin is to use the WordPress Admin interface. Go to your admin dashboard, find the "Plugins" menu, and click on "Add New". Find this plugin and click on "Install Now" and follow the WordPress instructions.
+= Searching =
+
+The easiest way to install this plugin is to use the WordPress Admin interface. Go to your admin dashboard, find the "Plugins" menu, and click on "Add New". Search for this plugin and click on "Install Now" and follow the WordPress instructions.
+
+= Uploading =
 
 If you want to download it and manually install, you can again use the WordPress dashboard interface. First download the plugin zip file to your local computer. Then go to your admin dashboard, find the "Plugins" menu, and click on "Add New". After clicking on the "Add New" menu item as above, click on "Upload" (below the title "Install Plugins" near the top). Browse for your downloaded zip file, upload it and activate the plugin.
+
+= Using Plugin Interface =
+
+Further updates (and Pro upgrades and module installations) to the plugin can be done easily from the plugin admin page itself, by clicking on the *Updates* button on the top right corner.
 
 = Tips =
 
@@ -132,7 +140,7 @@ The middle ads are designed to show up only on long posts (of more than 20 parag
 
 = Can I go back to the previous version of the plugin? I don't like the modern bootstrap/AJAX interface. =
 
-You can download the [previous version](https://downloads.wordpress.org/plugin/easy-adsense-lite.7.60.zip "Last version before the fancy AJAX interface") and install it. First deactivate and delete the latest version of the plugin, and then follow upload method under the *Installation* section of this document. The new version uses an completely different options model, and your old options are left intact in your database.
+You can download the [previous version](https://downloads.wordpress.org/plugin/easy-adsense-lite.7.61.zip "Last version before the fancy AJAX interface") and install it. First deactivate and delete the latest version of the plugin, and then follow the *Uploading* method under the *Installation* section of this document. The new version uses an completely different options model, and your old options are left intact in your database, so that you can go back anytime.
 
 == Translations ==
 
@@ -140,6 +148,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V8.10: Providing a downgrade path to the previous, non-AJAX version of the plugin. [Mar 16, 2015]
 * V8.09: Documentation and usability enhancements. [Mar 13, 2015]
 * V8.08: Documentation and usability enhancements. [Mar 11, 2015]
 * V8.07: More changes for compatibility with PHP5.30. [Mar 11, 2015]
