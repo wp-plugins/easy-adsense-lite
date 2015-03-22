@@ -2,13 +2,15 @@
 
 class EzAdSenseFront {
 
-  var $leadin, $leadout, $options, $defaultText;
+  var $leadin, $leadout, $options, $defaultText, $verbose = false;
   static $ezMax = 3, $ezCount = 0;
   static $urMax = 1, $urCount = 0;
+  static $filterPass = 0, $widgetCount = 0, $info;
 
   function EzAdSenseFront() {
     $optionSet = EzGA::getMobileType();
     if ($optionSet == "Killed") {
+      EzGA::$noAdsReason .= 'Mobile Type says Killed. ';
       EzGA::$noAds = true;
       $optionSet = "";
     }
@@ -17,6 +19,8 @@ class EzAdSenseFront {
     // Counts and limis
     self::$ezMax = $this->options['max_count'];
     self::$urMax = $this->options['max_link'];
+    self::$info = EzGA::info();
+    $this->verbose = !empty($this->options['verbose']);
   }
 
   function ezMax() {
@@ -36,25 +40,18 @@ class EzAdSenseFront {
   }
 
   function mkAdBlock($slot) {
+    $adBlock = '';
     if ($slot != 'lu' && $slot != 'gsearch') {
       self::$ezCount++;
     }
-    $adText = $this->options["text_$slot"];
-    $info = EzGA::info();
-    if (empty($adText)) {
-      $adBlock = "\n$info\n<!-- [$slot: Empty adText: " . self::$ezCount . " of " .
-              self::$ezMax . "] -->\n";
+    if ($slot == 'widget') {
+      self::$widgetCount++;
     }
-    else {
+    $adText = $this->options["text_$slot"];
+    if (!empty($adText)) {
       $border = EzGA::mkBorder();
       $show = EzGA::$metaOptions["show_$slot"];
       $margin = $this->options["margin_$slot"];
-      if (!empty($this->options['kill_linebreaks'])) {
-        $linebreak = "";
-      }
-      else {
-        $linebreak = "\n";
-      }
       if (!empty($this->options['kill_inline'])) {
         $inline = '';
       }
@@ -63,19 +60,56 @@ class EzAdSenseFront {
                 $margin . 'px;' . $border . '"';
       }
       $unreal = EzGA::showUnreal(false);
-      $adBlock = stripslashes($linebreak . $info . $linebreak .
-              "<!-- [$slot: " . self::$ezCount . " of " . self::$ezMax .
-              " urCount: " . self::$urCount . " urMax: " . self::$urMax .
-              "] -->$linebreak" .
-              "<div class='ezAdsense adsense adsense-$slot' $inline>" .
+      $adBlock = "<div class='ezAdsense adsense adsense-$slot' $inline>" .
               $adText .
               (self::$urCount++ < self::$urMax ? $unreal : '') .
-              "</div>" . $linebreak . $info . $linebreak);
+              "</div>";
     }
+    if ($this->verbose) {
+      $info = self::$info;
+      if (empty($adText)) {
+        $adBlock = "\n$info\n<!-- [$slot: Empty adText: " . self::$ezCount . " of " .
+                self::$ezMax . "] -->\n";
+      }
+      else {
+        if (!empty($this->options['kill_linebreaks'])) {
+          $linebreak = "";
+        }
+        else {
+          $linebreak = "\n";
+        }
+        $adBlock = "$linebreak  $info  $linebreak " .
+                "<!-- [$slot: " . self::$ezCount . " of " . self::$ezMax .
+                " urCount: " . self::$urCount . " urMax: " . self::$urMax .
+                "] -->$linebreak $adBlock $linebreak $info $linebreak";
+        echo "\n$info\n <!--  ezCount = " . self::$ezCount . " - incremented at:\n";
+        debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+        echo "-->\n";
+      }
+    }
+    $adBlock = stripslashes($adBlock);
     return $adBlock;
   }
 
+  function resetFilter() {
+    if (self::$filterPass > 1 && is_singular()) {
+      self::$ezMax = $this->options['max_count'] - self::$widgetCount;
+      self::$ezCount = self::$widgetCount;
+      if ($this->verbose) {
+        return " <!-- Filter Reset -->\n";
+      }
+    }
+  }
+
   function filterContent($content) {
+    ++self::$filterPass;
+    $filterReset = $this->resetFilter();
+    $plgName = EzGA::getPlgName();
+    if ($this->verbose) {
+      $content .= " <!-- $plgName: EzCount = " . self::$ezCount .
+              " Filter Pass = " . self::$filterPass . "  -->\n";
+      $content .= $filterReset;
+    }
     $content = EzGA::preFilter($content);
     if (EzGA::$noAds) {
       return $content;
@@ -85,10 +119,12 @@ class EzAdSenseFront {
       // reserve a count for the widget
       self::$ezMax--;
     }
-    $plgName = EzGA::getPlgName();
     if (self::$ezCount >= self::$ezMax) {
-      return $content . " <!-- $plgName: Unfiltered [count: " .
-              self::$ezCount . " is not less than " . self::$ezMax . "] -->";
+      if ($this->verbose) {
+        $content .= " <!-- $plgName: Unfiltered [count: " .
+                self::$ezCount . " is not less than " . self::$ezMax . "] -->\n";
+      }
+      return $content;
     }
 
     $adMax = self::$ezMax;
@@ -157,7 +193,6 @@ class EzAdSenseFront {
     }
     if (!empty($this->options['header_leadin'])) {
       $this->leadin = $leadin;
-      $leadin = '';
     }
     if (!empty($this->options['footer_leadout'])) {
       $this->leadout = $leadout;

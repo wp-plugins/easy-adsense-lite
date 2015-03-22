@@ -26,7 +26,7 @@ $ezOptions[$top] = array('name' => __("Top", 'easy-ads'),
     'value' => $floatLeft,
     'type' => 'radio',
     'options' => $choices);
-$ezOptions[$middle] = array('name' => __("Middle1", 'easy-ads'),
+$ezOptions[$middle] = array('name' => __("Middle", 'easy-ads'),
     'help' => __("Where to show the mid-text ad block? Select left, center, right, or suppress this ad block.", 'easy-ads'),
     'value' => $floatRight,
     'type' => 'radio',

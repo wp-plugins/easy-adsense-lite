@@ -24,6 +24,7 @@ if (!class_exists("EzGA")) {
         'tag', 'archive', 'search', 'single', 'attachment');
     static $unSettable = array('Phone', 'Tablet', 'All', 'Mobile');
     static $noAds = false;
+    static $noAdsReason = '';
 
     static function isActive() {
       if (!function_exists('is_plugin_active')) {
@@ -768,42 +769,58 @@ if (!class_exists("EzGA")) {
     static function preFilter($content, $isWidget = false) {
       $plgName = self::getPlgName();
       if (self::$noAds) {
-        return $content . " <!-- $plgName: PreFiltered - NoAds -->";
+        $reason = self::$noAdsReason;
+        return $content . " <!-- $plgName: PreFiltered - NoAds [ $reason] -->\n";
       }
-      if (self::isKilled()) {
+      $killed = self::isKilled();
+      if (!empty($killed)) {
+        $reason = "is Killed - $killed. ";
         self::$noAds = true;
-        return $content . " <!-- $plgName: is Killed -->";
+        self::$noAdsReason .= $reason;
+        return $content . " <!-- $plgName: $reason -->\n";
       }
       if (empty(self::$options['allow_feeds']) && is_feed()) {
+        $reason = 'is Feed and not allowed. ';
         self::$noAds = true;
-        return $content;
+        self::$noAdsReason .= $reason;
+        return $content . " <!-- $plgName: $reason -->\n";
       }
+
       $metaOptions = self::getMetaOptions();
       if (strpos($content, "<!--noadsense-->") !== false) {
-        self::$noAds = true;
+        $reason = 'Unfiltered - suppressed by noadsense comment. ';
         self::$metaOptions['adsense'] = 'no';
-        return $content . " <!-- $plgName: Unfiltered [suppressed by noadsense comment] -->";
+        self::$noAds = true;
+        self::$noAdsReason .= $reason;
+        return $content . " <!-- $plgName: $reason -->\n";
       }
       if (isset($metaOptions['adsense']) && $metaOptions['adsense'] == 'no') {
+        $reason = 'Unfiltered - suppressed by meta option adsense = no. ';
         self::$noAds = true;
-        return $content . " <!-- $plgName: Unfiltered [suppressed by meta option adsense = no] -->";
+        self::$noAdsReason .= $reason;
+        return $content . " <!-- $plgName: $reason -->\n";
       }
       if (self::isBanned()) {
+        $reason = 'IP is in Banned IP list. ';
         self::$noAds = true;
-        return $content . " <!-- $plgName: Unfiltered [is in Banned IP list]-->";
+        self::$noAdsReason .= $reason;
+        return $content . " <!-- $plgName: $reason -->\n";
       }
-      if (!in_the_loop() && !$isWidget) {
+      if (!in_the_loop() && !$isWidget && !is_single()) {
+        $reason = 'WP is not in the loop. ';
         self::$noAds = true;
-        return $content . " <!-- $plgName: Unfiltered [WP is not in the loop] -->";
+        self::$noAdsReason .= $reason;
+        return $content . " <!-- $plgName: $reason -->\n";
       }
 
       self::cacheContent($content);
-
       if (!self::isSafe()) {
         self::$noAds = true;
-        return $content . " <!-- $plgName: Unfiltered [Content is not Safe] -->";
+        $reason = 'Unfiltered - Content is not Safe. ';
+        self::$noAdsReason .= $reason;
+        return $content . " <!-- $plgName: $reason -->\n";
       }
-      return $content . " <!-- $plgName: Filtered -->";
+      return $content . " <!-- $plgName: Filtered -->\n";
     }
 
     static function showUnreal($print = true) {
@@ -971,7 +988,7 @@ if (!class_exists("EzGA")) {
       foreach (self::$kills as $k) {
         $fn = "is_$k";
         if (!empty(self::$options["kill_$k"]) && $fn()) {
-          return true;
+          return $k;
         }
       }
       return EzGAPro::isKilled();

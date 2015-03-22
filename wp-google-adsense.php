@@ -60,7 +60,7 @@ if (is_admin()) {
         require $this->plgDir . '/admin/no-ajax.php';
         $src = plugins_url("admin/index.php", __FILE__);
         if (!@file_get_contents($src)) {
-          echo "<div style='padding:10px;margin:10px;font-size:1.3em;color:red;font-weight:500'>This plugin needs direct access to its files so that they can be loaded in an iFrame. Looks like you have some security setting denying the required access. Please allow access to the php files in <code>{$this->plgDir}/</code> or <em><strong>Go back to the Non-AJAX Version</strong></em> by following the directions above.</div>";
+          echo "<div style='padding:10px;margin:10px;font-size:1.3em;color:red;font-weight:500'>This plugin needs direct access to its files so that they can be loaded in an iFrame. Looks like you have some security setting denying the required access.  If you have an <code>.htaccess</code> file in your <code>wp-content</code> folder, please remove it or modify it to allow access to the php files in <code>{$this->plgDir}/</code>.<br> Or <em><strong>Go back to the Non-AJAX Version</strong></em> by following the directions above.</div>";
           return;
         }
         echo "</div>";
