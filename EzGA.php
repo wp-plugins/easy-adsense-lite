@@ -806,7 +806,7 @@ if (!class_exists("EzGA")) {
         self::$noAdsReason .= $reason;
         return $content . " <!-- $plgName: $reason -->\n";
       }
-      if (!in_the_loop() && !$isWidget && !is_single()) {
+      if (!in_the_loop() && !$isWidget && !is_singular() && !is_front_page()) {
         $reason = 'WP is not in the loop. ';
         self::$noAds = true;
         self::$noAdsReason .= $reason;

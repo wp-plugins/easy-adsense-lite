@@ -55,7 +55,9 @@ abstract class EzWidget extends WP_Widget {
   }
 
   function form($instance) {
-    echo "<p>" . sprintf(__("Configure it at %s", 'easy-ads'), "<br /><a href='options-general.php?page=wp-google-adsense.php'> " . __("Settings", 'easy-ads') . " &rarr; Google AdSense</a></p>\n");
+    require 'EzGA.php';
+    $plgName = EzGA::getPlgName();
+    echo "<p>" . sprintf(__("Configure it at %s", 'easy-ads'), "<br /><a href='options-general.php?page=wp-google-adsense.php'> " . __("Settings", 'easy-ads') . " &rarr; $plgName</a></p>\n");
   }
 
   static function setPlugin(&$plg) {

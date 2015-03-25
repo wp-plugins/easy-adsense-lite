@@ -15,6 +15,17 @@ else {
     function __construct($slug) {
       $this->slug = $slug;
       $this->localVersion = $this->remoteVersion = -1;
+      if (!class_exists('ZipArchive')) {
+        $msg = "This application cannot update itself because your PHP does not have ZIP support. Please update your application using the following steps.";
+        $pluginLink = "<a href='" . admin_url('plugins.php') . "' class='popup'>Plugins Page</a>";
+        $uploadLink = "<a href='" . admin_url('plugin-install.php?tab=upload') . "' class='popup'>Upload Page</a>";
+        $workAround = "<ol><li>Deactivate and delete your on the $pluginLink. If you do not delete the plugin first, the next step will fail because WordPress will refuse to overwrite the existing plugin folder.</li><li>Install the plugin by uploading the zip file on the $uploadLink.</li><li>Activate the plugin and you are all set.</li></ol>";
+        $msg .= $workAround;
+        echo '<script>$(document).ready(function() {' .
+        "showError(\"$msg\");
+        });
+        </script>";
+      }
     }
 
     function __destruct() {

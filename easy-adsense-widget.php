@@ -60,13 +60,13 @@ if (!class_exists("EzAdsWidget")) {
       if (EzGA::$noAds) {
         return;
       }
-      $plg->options['text_gsearch'] = EzGA::handleDefaultText($plg->options['text_gsearch'], '160x600');
+      $plg->options['text_gsearch'] = EzGA::handleDefaultText($plg->options['text_gsearch'], '200x90');
       $metaOptions = EzGA::getMetaOptions();
       if (isset($metaOptions['adsense']) && $metaOptions['adsense'] == 'no') {
         return;
       }
       $title_gsearch = $metaOptions['title_gsearch'];
-      if ($title_gsearch != 'no') {
+      if ($title_gsearch == 'no') {
         return;
       }
       if (!empty($plg->options['kill_linebreaks'])) {
@@ -131,7 +131,7 @@ if (!class_exists("EzAdsWidget")) {
       if (EzGA::$noAds) {
         return;
       }
-      $plg->options['text_lu'] = EzGA::handleDefaultText($plg->options['text_lu'], '160x600');
+      $plg->options['text_lu'] = EzGA::handleDefaultText($plg->options['text_lu'], '200x90');
       $metaOptions = EzGA::getMetaOptions();
       if (isset($metaOptions['adsense']) && $metaOptions['adsense'] == 'no') {
         return;
@@ -146,7 +146,7 @@ if (!class_exists("EzAdsWidget")) {
     function getTitle() {
       $plg = self::$plg;
       if (empty($plg->options['title_lu'])) {
-        $title = __('Sponsored Links', 'easy-adsenser');
+        $title = __('Link Units', 'easy-adsenser');
       }
       else {
         $title = stripslashes(htmlspecialchars($plg->options['title_lu']));
