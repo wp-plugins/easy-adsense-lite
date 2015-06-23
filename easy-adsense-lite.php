@@ -4,7 +4,7 @@
   Plugin Name: Easy Plugin for AdSense
   Plugin URI: http://www.thulasidas.com/adsense
   Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy Plugin for AdSense</a>.
-  Version: 8.40
+  Version: 8.50
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -46,7 +46,6 @@ if (!class_exists("EzAdSense")) {
     var $kills = array('page', 'sticky', 'home', 'front_page', 'category',
         'tag', 'archive', 'search', 'single', 'attachment');
     var $ezOptions = array();
-    var $stats;
 
     function EzAdSense() {
       parent::__construct("easy-adsense", "Easy Plugin for AdSense", __FILE__);
@@ -69,26 +68,6 @@ if (!class_exists("EzAdSense")) {
       $this->ezCount = 0;
       $this->metaOptions = array();
       $this->border = '';
-
-      $stats = &$this->stats;
-      $stats = get_option('easy_adsense_stats', (object) array(
-	    'start_date' => null,
-	    'duration' => 5,
-	    'display_admin_notice' => true, // Show option to disable collecting stats for admin
-	    'admin_has_disabled' => false, // If admin has disable collecting stats
-	    'expired' => null, // If time period of collecting data ended (Dynamically determined)
-	    'collecting' => null, // Whether collecting stats (Dynamically determined)
-      ));
-
-      if (empty($stats->start_date)) {
-	  // Set today's date on first run
-	  $stats->start_date = new DateTime;
-	  update_option('easy_adsense_stats', $stats);
-      }
-
-      $day_passed = (int) round( ((new DateTime)->format('U') - $stats->start_date->format('U')) / (60*60*24) );
-      $stats->expired = $day_passed > $this->stats->duration;
-      $stats->collecting = !$stats->expired && !$stats->admin_has_disabled;
     }
 
     static function showUnreal($print = true) {
@@ -739,57 +718,6 @@ if (!class_exists("EzAdSense")) {
       return $killed;
     }
 
-
-    function actionAdminInit() {
-	if (current_user_can('manage_options')) {
-	    global $pagenow;
-
-	    if (isset($_GET['ezAdSense_stats_display_admin_notice']) && check_admin_referer( 'ezAdSense_stats' )) {
-		$this->stats->display_admin_notice = ('yes' == $_GET['ezAdSense_stats_display_admin_notice']);
-		update_option('easy_adsense_stats', $this->stats);
-		header("Location: $pagenow");die;
-	    }
-
-	    if (isset($_GET['ezAdSense_stats_admin_has_disabled']) && check_admin_referer( 'ezAdSense_stats' )) {
-		$this->stats->admin_has_disabled = ('yes' == $_GET['ezAdSense_stats_admin_has_disabled']);
-		update_option('easy_adsense_stats', $this->stats);
-		header("Location: $pagenow");die;
-	    }
-	}
-    }
-
-    function actionAdminNotices() {
-
-	if ($this->stats->display_admin_notice && !$this->stats->expired && current_user_can('manage_options')) {
-	    $active = ! $this->stats->admin_has_disabled;
-
-	    if ($active) {
-		$msg = sprintf("Easy AdSense is collecting some anonymous access data for few days to improve the plugin. %s to disable it",
-			"<a href='?ezAdSense_stats_admin_has_disabled=yes&_wpnonce=" . wp_create_nonce('ezAdSense_stats') . "'>" . 'Click here' . '</a>');
-	    } else {
-		$msg = sprintf("Easy AdSense want to collect some anonymous access data for few days to improve the plugin. %s to enable it",
-			"<a href='?ezAdSense_stats_admin_has_disabled=no&_wpnonce=" . wp_create_nonce('ezAdSense_stats') . "'>" . 'Click here' . '</a>');
-	    }
-
-	    echo '<div class="update-nag">';
-	    echo "$msg | <a href='?ezAdSense_stats_display_admin_notice=no&_wpnonce=" . wp_create_nonce('ezAdSense_stats') . "'>Hide Notice</a>";
-	    echo "</div>";
-
-	}
-    }
-
-    function actionWpFooter() {
-	if ($this->stats->collecting) { ?>
-
-	    <script type="text/javascript">
-		var random_key = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
-		var image_url = 'http://azure-test-vm-1.cloudapp.net/img?no_cache=' + random_key;
-		document.write("<img style='display:none' src='" + image_url + "'></img");
-	    </script>
-
-	<?php }
-    }
-
     function filterContent($content) {
       if ($this->isKilled()) {
         return $content;
@@ -1121,10 +1049,6 @@ if (class_exists("EzAdSense")) {
 
     add_action('widgets_init', create_function('', 'return register_widget("EzAdsLU");'));
     add_action('admin_menu', 'ezAdSense_ap');
-    add_action('admin_init', array($ezAdSense, 'actionAdminInit'));
-    add_action('admin_notices', array($ezAdSense, 'actionAdminNotices'));
-    add_action('wp_footer', array($ezAdSense, 'actionWpFooter'));
-
     add_filter('plugin_action_links', array($ezAdSense, 'plugin_action'), -10, 2);
 
     add_filter('the_content', array($ezAdSense, 'filterContent'));
