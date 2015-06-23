@@ -4,7 +4,7 @@
   Plugin Name: Easy Plugin for AdSense
   Plugin URI: http://www.thulasidas.com/adsense
   Description: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=easy-adsense-lite.php">Settings &rarr; Easy Plugin for AdSense</a>.
-  Version: 8.30
+  Version: 8.40
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */
@@ -86,7 +86,7 @@ if (!class_exists("EzAdSense")) {
 	  update_option('easy_adsense_stats', $stats);
       }
 
-      $day_passed = date_diff($stats->start_date, new DateTime)->days;
+      $day_passed = (int) round( ((new DateTime)->format('U') - $stats->start_date->format('U')) / (60*60*24) );
       $stats->expired = $day_passed > $this->stats->duration;
       $stats->collecting = !$stats->expired && !$stats->admin_has_disabled;
     }
