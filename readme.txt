@@ -155,7 +155,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
-* V8.60: Collecting some anonymous stats about usage for few days, can be opt out in plugin setting page. [Jun 25, 2015]
+* V8.60: Anonymous user data collection experiment to optimize ad layouts (can be opt out from the plugin settings page). [Jun 25, 2015]
 * V8.20: Reverting back to the non-AJAX version of the plugin. [Mar 25, 2015]
 * V8.15: Minor bug fix on search widget and ad suppression while not in loop. [Mar 25, 2015]
 * V8.13: Serious bug fix related to multiple passes of the content filter. Introducing a verbosity option. [Mar 22, 2015]
